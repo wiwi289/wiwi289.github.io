@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>字符串匹配算法 | 梦幻泡影</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一.引言 字符串匹配在算法中也算是一个经典，小编接下来将介绍两种字符串匹配的算法，所谓字符串匹配就是在一个字符串中查找某个子串，如果存在目标子串，则返回第一次出现的下标，否则返回-1  二.暴力匹配算法见字思义，这种算法效率十分低，但可以帮助我们理解字符串匹配的整体过程   代码实现 1234567891011121314151617181920static int violenceMatchSt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="字符串匹配算法">
+<meta property="og:url" content="https://wiwiyiyi.com/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95.html">
+<meta property="og:site_name" content="梦幻泡影">
+<meta property="og:description" content="一.引言 字符串匹配在算法中也算是一个经典，小编接下来将介绍两种字符串匹配的算法，所谓字符串匹配就是在一个字符串中查找某个子串，如果存在目标子串，则返回第一次出现的下标，否则返回-1  二.暴力匹配算法见字思义，这种算法效率十分低，但可以帮助我们理解字符串匹配的整体过程   代码实现 1234567891011121314151617181920static int violenceMatchSt">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/5750ee4c59ec352b434eacfca38ed2d1.png">
+<meta property="og:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%AE%97%E6%B3%95%E7%AF%87/kmp%E5%9B%BE%E8%A7%A3.png">
+<meta property="article:published_time" content="2021-03-24T11:17:20.000Z">
+<meta property="article:modified_time" content="2023-01-04T09:03:55.052Z">
+<meta property="article:author" content="EngineerOfFinger">
+<meta property="article:tag" content="算法篇">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/img_convert/5750ee4c59ec352b434eacfca38ed2d1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="梦幻泡影" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/wiwi.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">梦幻泡影</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">[object Object]</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/%20%7C%7C%20fas%20fa-home">主页</a>
+        
+          <a class="main-nav-link" href="/archives/%20%7C%7C%20fas%20fa-archive">时间轴</a>
+        
+          <a class="main-nav-link" href="/tags/%20%7C%7C%20fas%20fa-tags">标签</a>
+        
+          <a class="main-nav-link" href="/categories/%20%7C%7C%20fas%20fa-folder-open">分类</a>
+        
+          <a class="main-nav-link" href="/link/%20%7C%7C%20fas%20fa-link">友链</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wiwiyiyi.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-字符串匹配算法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95.html" class="article-date">
+  <time datetime="2021-03-24T11:17:20.000Z" itemprop="datePublished">2021-03-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      字符串匹配算法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-引言"><a href="#一-引言" class="headerlink" title="一.引言"></a>一.引言</h3><blockquote>
+<p>字符串匹配在算法中也算是一个经典，小编接下来将介绍两种字符串匹配的算法，所谓字符串匹配就是在一个字符串中查找某个子串，如果存在目标子串，则返回第一次出现的下标，否则返回-1</p>
+</blockquote>
+<h3 id="二-暴力匹配算法"><a href="#二-暴力匹配算法" class="headerlink" title="二.暴力匹配算法"></a>二.暴力匹配算法</h3><p>见字思义，这种算法效率十分低，但可以帮助我们理解字符串匹配的整体过程</p>
+<img src="https://img-blog.csdnimg.cn/img_convert/5750ee4c59ec352b434eacfca38ed2d1.png" style="zoom:50%;" />
+
+<p><strong>代码实现</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">static int violenceMatchString(String str1,String str2)&#123;</span><br><span class="line">        char[] s1 = str1.toCharArray();</span><br><span class="line">        char[] s2 = str2.toCharArray();</span><br><span class="line">        int sLen1 = s1.length;</span><br><span class="line">        int sLen2 = s2.length;</span><br><span class="line">        int i = 0,j = 0;</span><br><span class="line">        while (i&lt;sLen1 &amp;&amp; j&lt;sLen2)&#123;</span><br><span class="line">            if (s1[i] == s2[j])&#123;</span><br><span class="line">                i++;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                i = i-(j-1);</span><br><span class="line">                j = 0;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (j==sLen2)&#123;</span><br><span class="line">            return i-j;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>无论是哪种匹配算法，都存在双指针<code>i</code>、<code>j</code>，上面的动图已经很清晰了，该算法的效率之所以效率低，是因为一旦发现不匹配，指针<code>i</code>会回溯，并且还会遍历已经遍历过的子串，反反复复，效率肯定低下</p>
+</blockquote>
+<h3 id="三-KMP算法"><a href="#三-KMP算法" class="headerlink" title="三.KMP算法"></a>三.KMP算法</h3><p>KMP算法是由三位大牛共同发现的，关于它的介绍网上已经很多了，在此不作赘述，主要分享我在学习该算法时的疑惑，最大的疑惑是为什么发生不匹配的情况时可以跳过已经匹配过的子串，该过程是通过next数组来实现的，其实next数组记录的前后缀字符串公共子串中首次出现的位置</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%AE%97%E6%B3%95%E7%AF%87/kmp%E5%9B%BE%E8%A7%A3.png" style="zoom:67%;" />
+
+<p><strong>下面上代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">static int KMPMatchString(String origin,String target)&#123;</span><br><span class="line">            int[] next = KMPNextArray(target);</span><br><span class="line">        for (int i = 0 , j = 0; i &lt; origin.length(); i++) &#123;</span><br><span class="line">            while (j&gt;0 &amp;&amp; origin.charAt(i)!=target.charAt(j))&#123;</span><br><span class="line">                j = next[j-1];</span><br><span class="line">            &#125;</span><br><span class="line">            if (origin.charAt(i)==target.charAt(j))&#123;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">            if (j==target.length())&#123;</span><br><span class="line">                return i-j+1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">    static int[] KMPNextArray(String target)&#123;</span><br><span class="line">        int[] next = new int[target.length()];</span><br><span class="line">        next[0] = 0;</span><br><span class="line">        for (int i = 1,j = 0; i &lt; target.length(); i++) &#123;</span><br><span class="line">            while (j&gt;0 &amp;&amp; target.charAt(i)!=target.charAt(j))&#123;</span><br><span class="line">                j = next[j-1];</span><br><span class="line">            &#125;</span><br><span class="line">            if (target.charAt(i)==target.charAt(j))&#123;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">            next[i] = j;</span><br><span class="line">        &#125;</span><br><span class="line">        return next;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>首先求出next数组，在真正进行字符串匹配时，<code>j</code>的回溯和求next数组时操作一样，关键点也是<code>j</code>的回溯，结合上图进行理解</p>
+</blockquote>
+<h3 id="四-总结"><a href="#四-总结" class="headerlink" title="四.总结"></a>四.总结</h3><blockquote>
+<p>KMP算法通过next数组保存位置并且不会发生<code>i</code>的回溯大大提升了匹配效率，个人感觉KMP算法确实挺绕的，如果实在难以理解，可以通过具体的例子进行步步推衍以及假设分析，会发现<code>i</code>不进行回溯是有道理的并且不会出错</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95.html" data-id="clchki9kl004gt0qhhcu24et4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" rel="tag">算法篇</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          分治算法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">动态规划</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-UI%E7%B3%BB%E5%88%97/">Android UI系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%AE%9E%E6%88%98%E9%9B%86/">Android实战集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E9%9B%86/">Android开发基础集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/">Android自定义系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Android设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%BF%9B%E9%98%B6/">Android进阶</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E9%87%8D%E8%A6%81%E7%BB%84%E4%BB%B6/">Android重要组件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E9%A1%B9%E7%9B%AE/">Android项目</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E8%BF%9B%E9%98%B6/">Java进阶</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/html%E5%AD%A6%E4%B9%A0/">html学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/">个人成长</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%9B%E6%89%A3%E9%A2%98%E8%A7%A3/">力扣题解</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8E%92%E5%BA%8F%E9%9B%86/">排序集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8%E4%B8%8E%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/">注解处理器与开源框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E6%8E%A7%E4%BB%B6/">系统控件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%84%E4%BB%B6%E5%8C%96%E7%B3%BB%E5%88%97/">组件化系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%93%E9%A2%98/">设计模式专题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E9%9B%86/">问题总结集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag">Android常用琐碎知识点</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E5%BC%80%E5%8F%91%E5%B0%8FDemo/" rel="tag">Android开发小Demo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E9%AB%98%E7%BA%A7UI/" rel="tag">Android高级UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" rel="tag">hexo博客搭建问题总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93/" rel="tag">发布开源库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/" rel="tag">学年设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" rel="tag">算法篇</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" rel="tag">系统高级UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" rel="tag">网络开源库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" style="font-size: 18px;">Android常用琐碎知识点</a> <a href="/tags/Android%E5%BC%80%E5%8F%91%E5%B0%8FDemo/" style="font-size: 10px;">Android开发小Demo</a> <a href="/tags/Android%E9%AB%98%E7%BA%A7UI/" style="font-size: 16px;">Android高级UI</a> <a href="/tags/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" style="font-size: 10px;">hexo博客搭建问题总结</a> <a href="/tags/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93/" style="font-size: 10px;">发布开源库</a> <a href="/tags/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">学年设计</a> <a href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" style="font-size: 20px;">算法篇</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" style="font-size: 12px;">系统高级UI</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" style="font-size: 14px;">网络开源库</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/%E8%87%AA%E5%AE%9A%E4%B9%89PhotoView%E5%A4%84%E7%90%86%E6%89%8B%E5%8A%BF.html">自定义PhotoView处理手势</a>
+          </li>
+        
+          <li>
+            <a href="/%E9%A6%96%E6%AC%A1%E5%BC%80%E6%BA%90%E5%BA%93-%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E6%96%87%E5%AD%97%E6%B8%90%E5%8F%98%E6%95%88%E6%9E%9C.html">首次开源库-不一样的文字渐变效果</a>
+          </li>
+        
+          <li>
+            <a href="/CoordinatorLayout%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89Behavior%E5%85%A5%E9%97%A8.html">CoordinatorLayout原理分析以及自定义Behavior入门</a>
+          </li>
+        
+          <li>
+            <a href="/NestedScrollView%E5%B5%8C%E5%A5%97%E6%BB%91%E5%8A%A8%E5%8E%9F%E7%90%86.html">NestedScrollView嵌套滑动原理</a>
+          </li>
+        
+          <li>
+            <a href="/APT-javapoet%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B.html">APT-javapoet详细教程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 EngineerOfFinger<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/%20%7C%7C%20fas%20fa-home" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives/%20%7C%7C%20fas%20fa-archive" class="mobile-nav-link">时间轴</a>
+  
+    <a href="/tags/%20%7C%7C%20fas%20fa-tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/categories/%20%7C%7C%20fas%20fa-folder-open" class="mobile-nav-link">分类</a>
+  
+    <a href="/link/%20%7C%7C%20fas%20fa-link" class="mobile-nav-link">友链</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

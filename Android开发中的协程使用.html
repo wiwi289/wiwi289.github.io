@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Android开发中的协程使用 | 梦幻泡影</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一.引入 我曾在Android开发涉及到网络操作时苦恼，因为网络操作不能在UI主线程里进行，所以关键问题是下载好的数据如何接收，通过函数返回值？显然不现实，因为函数的调用发生在UI主线程里，而下载数据在子线程，两者互不干扰，函数当然不会等数据下载好了之后才进行返回，这便涉及到线程之间的通信，本文核心讲解Kotlin中的协程，在此之前想先提一下java中线程通信的方式-Handler  二.Hand">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android开发中的协程使用">
+<meta property="og:url" content="https://wiwiyiyi.com/Android%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%8D%8F%E7%A8%8B%E4%BD%BF%E7%94%A8.html">
+<meta property="og:site_name" content="梦幻泡影">
+<meta property="og:description" content="一.引入 我曾在Android开发涉及到网络操作时苦恼，因为网络操作不能在UI主线程里进行，所以关键问题是下载好的数据如何接收，通过函数返回值？显然不现实，因为函数的调用发生在UI主线程里，而下载数据在子线程，两者互不干扰，函数当然不会等数据下载好了之后才进行返回，这便涉及到线程之间的通信，本文核心讲解Kotlin中的协程，在此之前想先提一下java中线程通信的方式-Handler  二.Hand">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%8F%E7%A8%8B/Handler.gif">
+<meta property="og:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%8F%E7%A8%8B/%E7%BD%91%E7%BB%9C%E4%B8%8B%E8%BD%BD%E5%B1%95%E7%A4%BA.gif">
+<meta property="article:published_time" content="2020-12-05T12:34:23.000Z">
+<meta property="article:modified_time" content="2023-01-04T09:03:55.004Z">
+<meta property="article:author" content="EngineerOfFinger">
+<meta property="article:tag" content="Android常用琐碎知识点">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%8F%E7%A8%8B/Handler.gif">
+  
+    <link rel="alternate" href="/atom.xml" title="梦幻泡影" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/wiwi.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">梦幻泡影</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">[object Object]</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/%20%7C%7C%20fas%20fa-home">主页</a>
+        
+          <a class="main-nav-link" href="/archives/%20%7C%7C%20fas%20fa-archive">时间轴</a>
+        
+          <a class="main-nav-link" href="/tags/%20%7C%7C%20fas%20fa-tags">标签</a>
+        
+          <a class="main-nav-link" href="/categories/%20%7C%7C%20fas%20fa-folder-open">分类</a>
+        
+          <a class="main-nav-link" href="/link/%20%7C%7C%20fas%20fa-link">友链</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wiwiyiyi.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Android开发中的协程使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Android%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%8D%8F%E7%A8%8B%E4%BD%BF%E7%94%A8.html" class="article-date">
+  <time datetime="2020-12-05T12:34:23.000Z" itemprop="datePublished">2020-12-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E9%9B%86/">Android开发基础集</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android开发中的协程使用
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-引入"><a href="#一-引入" class="headerlink" title="一.引入"></a>一.引入</h3><blockquote>
+<p>我曾在Android开发涉及到网络操作时苦恼，因为网络操作不能在UI主线程里进行，所以关键问题是下载好的数据如何接收，通过函数返回值？显然不现实，因为函数的调用发生在UI主线程里，而下载数据在子线程，两者互不干扰，函数当然不会等数据下载好了之后才进行返回，这便涉及到线程之间的通信，本文核心讲解Kotlin中的协程，在此之前想先提一下java中线程通信的方式-Handler</p>
+</blockquote>
+<h3 id="二-Handler"><a href="#二-Handler" class="headerlink" title="二.Handler"></a>二.Handler</h3><p>在熟练协程之前，使用的是java中线程通信的方式-Handler，不得不说，Handler是真的很好用，使用很简单，并且能解决问题</p>
+<p><strong>使用步骤：</strong></p>
+<ol>
+<li><p>创建一个handler，并将其属性化，重写<code>handleMessage(msg: Message)</code>方法</p>
+</li>
+<li><p>如果进行网络加载的方法在其他类中，调用时需要传入一个<code>handler</code>对象，当数据下载完毕后，创建一个<code>Message</code>对象</p>
+<ul>
+<li>obj-&gt;保存带回的数据，可以是任意类型</li>
+<li>what-&gt;用来标识返回的是什么类型的数据，不止一个线程需要返回数据时使用</li>
+</ul>
+</li>
+<li><p>在<code>handleMessage</code>中根据其他线程发送的<code>msg</code>进行取数据</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">object NetWorkUtils &#123;</span><br><span class="line">    const val TYPE_PIC = 1</span><br><span class="line">    const val TYPE_VIDE0 = 2</span><br><span class="line">    fun LoadPic(link:String,handler: Handler)&#123;</span><br><span class="line">        Thread &#123;</span><br><span class="line">            val url = URL(link)</span><br><span class="line">            val con = url.openConnection() as HttpURLConnection</span><br><span class="line">            con.doInput = true</span><br><span class="line">            val inputStream = url.openStream()</span><br><span class="line">            val bitmap = BitmapFactory.decodeStream(inputStream)</span><br><span class="line">            //创建消息</span><br><span class="line">            val msg = Message()</span><br><span class="line">            //带回数据</span><br><span class="line">            msg.obj = bitmap</span><br><span class="line">            //设置返回数据类型</span><br><span class="line">            msg.what = TYPE_PIC</span><br><span class="line">            //发送消息</span><br><span class="line">            handler.sendMessage(msg)</span><br><span class="line">        &#125;.start()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class MainActivity : AppCompatActivity() &#123;</span><br><span class="line">    val handler = @SuppressLint(&quot;HandlerLeak&quot;)</span><br><span class="line">    object :Handler()&#123;</span><br><span class="line">        override fun handleMessage(msg: Message) &#123;</span><br><span class="line">            super.handleMessage(msg)</span><br><span class="line">            when(msg.what)&#123;</span><br><span class="line">                NetWorkUtils.TYPE_PIC-&gt;&#123;</span><br><span class="line">                    img.setImageBitmap(msg.obj as Bitmap)</span><br><span class="line">                &#125;</span><br><span class="line">                else-&gt;&#123;</span><br><span class="line">                    //返回的是视频数据</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    override fun onCreate(savedInstanceState: Bundle?) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_main)</span><br><span class="line">        loadPic.setOnClickListener &#123;</span><br><span class="line">            val link =&quot;https://seopic.699pic.com/photo/50045/2756.jpg_wh1200.jpg&quot;</span><br><span class="line">            NetWorkUtils.LoadPic(link,handler)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后需要在Manifests中添加网络权限<code>&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;/&gt;</code></p>
+<p><strong>效果展示</strong></p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%8F%E7%A8%8B/Handler.gif" style="zoom: 33%;" />
+
+<blockquote>
+<p>你会发现Handler的使用其实非常简单，并且能解决问题，如果要了解Handler的工作机制，还请自行百度</p>
+</blockquote>
+<h3 id="三-协程引入"><a href="#三-协程引入" class="headerlink" title="三.协程引入"></a>三.协程引入</h3><p>在学习Kotlin时已经详解了协程的基本使用，但那时由于没有合适的使用场景，所以看不到它的闪光点，而在Android开发中，首选<strong>Coroutine</strong>，协程在<strong>网络操作</strong>进行线程切换时相当方便，没有对比就没有伤害，先说说使用<strong>Handler</strong>不好的地方，在刚开始使用Handler时，确实觉得很香，毕竟理解和使用都很容易，但在实际写项目的过程中却发现相当繁琐，因为进行线程间通信的地方不止一处，一旦数量增加，很容易发生混乱，并且代码逻辑变得模糊，下面给出示例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"> fun loadStudent(id:String,handler: Handler)&#123;</span><br><span class="line">        Thread &#123;</span><br><span class="line">            val request = Request.Builder()</span><br><span class="line">                .url(&quot;http://10.129.26.231:8080/student/querybystudentid?studentid=$id&quot;)</span><br><span class="line">                .build()</span><br><span class="line">            val call = client.newCall(request)</span><br><span class="line">            call.enqueue(object :Callback&#123;</span><br><span class="line">                override fun onFailure(call: Call, e: IOException) &#123;</span><br><span class="line">                    mainActivity?.runOnUiThread &#123;</span><br><span class="line">                        mainActivity?.showMessage(&quot;网络连接超时！！&quot;)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                override fun onResponse(call: Call, response: Response) &#123;</span><br><span class="line">                    val result = response.body?.string()</span><br><span class="line">                    val student = gson.fromJson(result, Array&lt;Student&gt;::class.java)</span><br><span class="line">                    val msg = Message()</span><br><span class="line">                    msg.what = Repository.MSG_TYPE_STUDENTINFOR</span><br><span class="line">                    msg.obj = student[0]</span><br><span class="line">                    handler.sendMessage(msg)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;.start()</span><br><span class="line">    &#125;</span><br><span class="line">------------------------------------------------------------------------------------------------------------</span><br><span class="line"> val handler = @SuppressLint(&quot;HandlerLeak&quot;)</span><br><span class="line">    object :Handler()&#123;</span><br><span class="line">        override fun handleMessage(msg: Message) &#123;</span><br><span class="line">            super.handleMessage(msg)</span><br><span class="line">            when(msg.what) &#123;</span><br><span class="line">                MSG_TYPE_STUDENTINFOR -&gt; studentInfor= msg.obj as Student</span><br><span class="line">                MSG_TYPE_SIGNTASKS -&gt;&#123;</span><br><span class="line">                    orgAttandenceInfors = msg.obj as Array&lt;AttendanceInfo&gt;</span><br><span class="line">                    convertAttandenceInfors()</span><br><span class="line">                &#125;</span><br><span class="line">                MSG_TYPE_LEAVEINFORS -&gt;studentLeaveInfors = msg.obj as Array&lt;LeaveInfor&gt;</span><br><span class="line">                MSG_TYPE_UPDATE_LEAVINFORS -&gt;&#123;</span><br><span class="line">                    studentLeaveInfors = msg.obj as Array&lt;LeaveInfor&gt;</span><br><span class="line">                    AllLeaveInforFragment.leaveAdapter.notifyDataSetChanged()</span><br><span class="line">                &#125;</span><br><span class="line">                MSG_TYPE_UPDATE_ALL_LEAVES-&gt;&#123;</span><br><span class="line">                    allStudentLeaves = msg.obj as Array&lt;LeaveInfor&gt;</span><br><span class="line">                    showLeaveFragment.allLeaveAdapter.notifyDataSetChanged()</span><br><span class="line">                &#125;</span><br><span class="line">                MSG_TYPE_NO_SIGNS_LIST -&gt;&#123;</span><br><span class="line">                    noSignStudentLists = msg.obj as Array&lt;AttendanceInfo&gt;</span><br><span class="line">                    LoadAnimationFragment.delayAnim.start()</span><br><span class="line">                    WelcomeActivity.isRestart = false</span><br><span class="line">                &#125;</span><br><span class="line">                MSG_TYPE_UPDATE_NOSIGN_LISTS-&gt;&#123;</span><br><span class="line">                    noSignStudentLists = msg.obj as Array&lt;AttendanceInfo&gt;</span><br><span class="line">                    showSignFragment.showSignAdapter.notifyDataSetChanged()</span><br><span class="line">                &#125;</span><br><span class="line">                MSG_TYPE_ALL_LEAVES -&gt;allStudentLeaves = msg.obj as Array&lt;LeaveInfor&gt;</span><br><span class="line">                MSG_TYPE_RELEASEATTENDANCE_TASK -&gt; &#123;</span><br><span class="line">                        releasedAttendancetask = msg.obj as Array&lt;releasedAttendanceTask&gt;</span><br><span class="line">                        NetWorkDao.loadNoSignStudents(this)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>以上代码是在接触协程前写的一个小项目的局部，虽然对于一个需要进行通信的函数而言，传入一个<strong>Handler</strong>对象即可，但在UI主线程进行数据接收时变得相当复杂，一旦项目做大，Handler是绝对不能再用了，所以下面力荐使用协程<strong>Coroutine</strong></p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/474adbdb9b5c">协程的基本知识点可以参考本链接</a></p>
+<h3 id="四-协程在Android开发中的作用"><a href="#四-协程在Android开发中的作用" class="headerlink" title="四.协程在Android开发中的作用"></a>四.协程在Android开发中的作用</h3><p>首先强调一下协程和线程的区别，协程可以说是一种轻量级的线程，一个进程可以拥有多个线程，一个线程可以拥有多个协程，可以看出，协程是依附于线程的，所以开启一个协程时并不是开启了一个线程，由于协程的挂起机制<strong>suspend</strong>，你可以这样理解协程，将UI主线程想象成马路，如果某处发生交通事故，那么势必会阻塞主线程，此时通过开启协程将事故发生处(耗时任务)挂起，就是将发生事故的车辆悬空挂起，这样就不会影响主干的交通运行，而当发生事故的两辆车的车主解决好矛盾纠纷时(即耗时任务结束)，再将它们放下来，继续行驶在主干上，这样就完成了线程间的切换，当然你也可以根据自己的理解掌握协程的挂起以及切换机制</p>
+<blockquote>
+<p>线程是依赖于操作系统的，但协程仅由程序所决定，协程的挂起是一种函数，因此它的切换没有线程那样消耗大量内存</p>
+</blockquote>
+<ul>
+<li><p>协程的挂起函数需要协程域-CoroutineScope，在Kotlin中有以下两种创造协程域的方式：</p>
+<ol>
+<li><p>GlobalScope.lauch</p>
+<p>此方式创造的是全局的协程域，在Android中伴随着app运行的整个过程，不推荐，因为我们需要的是它能够伴随界面的生命周期</p>
+</li>
+<li><p>runBlocking</p>
+<p>此方式会阻塞主线程，仅用于程序调试，在Android同样不推荐</p>
+</li>
+</ol>
+</li>
+<li><p>JetPack提供ViewModel以及LIveData都有自带的协程域，这才是项目中常用的方式</p>
+</li>
+<li><p>当然也可以通过代码的方式为一个Acitivity/Fragment自定义一个协程域</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class MyFragment:Fragment() &#123;</span><br><span class="line">    private lateinit var scope:CoroutineScope</span><br><span class="line">    private val job:Job = Job()</span><br><span class="line">    override fun onCreate(savedInstanceState: Bundle?) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState)</span><br><span class="line">        scope = CoroutineScope( job + Dispatchers.Main)</span><br><span class="line">        //Dispatchers.Main用于标记此协程域附属于哪个线程，当耗时任务结束后会自动切回来</span><br><span class="line">    &#125;</span><br><span class="line">    override fun onActivityCreated(savedInstanceState: Bundle?) &#123;</span><br><span class="line">        super.onActivityCreated(savedInstanceState)</span><br><span class="line">        scope.launch &#123; </span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    override fun onDestroy() &#123;</span><br><span class="line">        super.onDestroy()</span><br><span class="line">        job.cancel()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但这种方式需要注意协程域的需要伴随Acitvity/Fragment的生命周期</p>
+<blockquote>
+<p>有了协程域，我们便可以开启协程进行耗时的网络/文件操作任务，在协程域内可以自由的进行线程切换，只需切换到其他线程中执行耗时任务即可，切换线程使用<code>withContext(指定的其他线程)</code>，<code>withContext</code>会阻塞当前协程域，直到耗时任务结束，这一特性相当有用</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="1-普通用法"><a href="#1-普通用法" class="headerlink" title="1.普通用法"></a>1.普通用法</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class MainActivity : AppCompatActivity() &#123;</span><br><span class="line">    private lateinit var scope: CoroutineScope</span><br><span class="line">    private val job = Job()</span><br><span class="line">    override fun onCreate(savedInstanceState: Bundle?) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_main)</span><br><span class="line">        scope = CoroutineScope(job+Dispatchers.Main)</span><br><span class="line">        load.setOnClickListener &#123;</span><br><span class="line">            scope.launch &#123;</span><br><span class="line">                val bitmap = withContext(Dispatchers.IO)&#123;</span><br><span class="line">                    val url = URL(&quot;http://img.kuai8.com/attaches/news/image/20131114/20131114102704_17481.jpg&quot;)</span><br><span class="line">                    val conn= url.openConnection() as HttpURLConnection</span><br><span class="line">                    BitmapFactory.decodeStream(url.openStream())</span><br><span class="line">                &#125;</span><br><span class="line">                //切换回来后在UI主线程中执行任务</span><br><span class="line">                imageView.setImageBitmap(bitmap)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    override fun onDestroy() &#123;</span><br><span class="line">        super.onDestroy()</span><br><span class="line">        job.cancel()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%8F%E7%A8%8B/%E7%BD%91%E7%BB%9C%E4%B8%8B%E8%BD%BD%E5%B1%95%E7%A4%BA.gif" style="zoom: 50%;" />
+
+<h4 id="2-搭配JetPack中的ViewModel"><a href="#2-搭配JetPack中的ViewModel" class="headerlink" title="2.搭配JetPack中的ViewModel"></a>2.搭配JetPack中的ViewModel</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class FirstPageViewModel:ViewModel() &#123;</span><br><span class="line">    var imgBitmap:MutableLiveData&lt;Bitmap&gt; = MutableLiveData()</span><br><span class="line">    fun loadImg()&#123;</span><br><span class="line">        viewModelScope.launch &#123;</span><br><span class="line">            imgBitmap.value = withContext(Dispatchers.IO)&#123;</span><br><span class="line">             val url = URL(&quot;http://img.kuai8.com/attaches/news/image/20131114/20131114102704_17481.jpg&quot;)</span><br><span class="line">              val conn= url.openConnection() as HttpURLConnection</span><br><span class="line">                BitmapFactory.decodeStream(url.openStream())</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">------------------------------------------------------------------------------------------------------------</span><br><span class="line">class MainActivity : AppCompatActivity() &#123;</span><br><span class="line">    override fun onCreate(savedInstanceState: Bundle?) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_main)</span><br><span class="line">        val viewModel = ViewModelProvider(this).get(FirstPageViewModel::class.java)</span><br><span class="line">        viewModel.imgBitmap.observe(this)&#123;</span><br><span class="line">            imageView.setImageBitmap(it)</span><br><span class="line">        &#125;</span><br><span class="line">        load.setOnClickListener &#123;</span><br><span class="line">            viewModel.loadImg()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="五-协程用法总结"><a href="#五-协程用法总结" class="headerlink" title="五.协程用法总结"></a>五.协程用法总结</h3><blockquote>
+<p><code>withContext</code>就类似于开启了一个新的线程，只不过其本质是将耗时任务切换到其他线程上去执行，由于其具有阻塞性，即在<strong>同一个协程域中任务的执行是单向的，不会并发</strong>，只有当A任务执行完毕后才会执行其后的B任务，这点特性相当重要，当然只会阻塞协程域，并不会阻塞UI主线程，而外层协程域是附属于主线程的，切回来时会自动在主线程中执行任务，另外一点，<code>withContext</code>代码块最后一句话可作为返回值</p>
+</blockquote>
+<p><strong>相信通过以上对比，发现协程是真的很方便，特别是在MVVM设计模式中，今后会通过项目进行展示</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/Android%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%8D%8F%E7%A8%8B%E4%BD%BF%E7%94%A8.html" data-id="clchki9it0007t0qh90h83ae3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag">Android常用琐碎知识点</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/SharedPreference%E4%B8%8EDataStore.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          SharedPreference与DataStore
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Fragment%E4%BB%A5%E5%8F%8ANavitation.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Fragment以及Navitation</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-UI%E7%B3%BB%E5%88%97/">Android UI系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%AE%9E%E6%88%98%E9%9B%86/">Android实战集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E9%9B%86/">Android开发基础集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/">Android自定义系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Android设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%BF%9B%E9%98%B6/">Android进阶</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E9%87%8D%E8%A6%81%E7%BB%84%E4%BB%B6/">Android重要组件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E9%A1%B9%E7%9B%AE/">Android项目</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E8%BF%9B%E9%98%B6/">Java进阶</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/html%E5%AD%A6%E4%B9%A0/">html学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/">个人成长</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%9B%E6%89%A3%E9%A2%98%E8%A7%A3/">力扣题解</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8E%92%E5%BA%8F%E9%9B%86/">排序集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8%E4%B8%8E%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/">注解处理器与开源框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E6%8E%A7%E4%BB%B6/">系统控件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%84%E4%BB%B6%E5%8C%96%E7%B3%BB%E5%88%97/">组件化系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%93%E9%A2%98/">设计模式专题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E9%9B%86/">问题总结集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag">Android常用琐碎知识点</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E5%BC%80%E5%8F%91%E5%B0%8FDemo/" rel="tag">Android开发小Demo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E9%AB%98%E7%BA%A7UI/" rel="tag">Android高级UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" rel="tag">hexo博客搭建问题总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93/" rel="tag">发布开源库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/" rel="tag">学年设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" rel="tag">算法篇</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" rel="tag">系统高级UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" rel="tag">网络开源库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" style="font-size: 18px;">Android常用琐碎知识点</a> <a href="/tags/Android%E5%BC%80%E5%8F%91%E5%B0%8FDemo/" style="font-size: 10px;">Android开发小Demo</a> <a href="/tags/Android%E9%AB%98%E7%BA%A7UI/" style="font-size: 16px;">Android高级UI</a> <a href="/tags/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" style="font-size: 10px;">hexo博客搭建问题总结</a> <a href="/tags/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93/" style="font-size: 10px;">发布开源库</a> <a href="/tags/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">学年设计</a> <a href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" style="font-size: 20px;">算法篇</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" style="font-size: 12px;">系统高级UI</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" style="font-size: 14px;">网络开源库</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/%E8%87%AA%E5%AE%9A%E4%B9%89PhotoView%E5%A4%84%E7%90%86%E6%89%8B%E5%8A%BF.html">自定义PhotoView处理手势</a>
+          </li>
+        
+          <li>
+            <a href="/%E9%A6%96%E6%AC%A1%E5%BC%80%E6%BA%90%E5%BA%93-%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E6%96%87%E5%AD%97%E6%B8%90%E5%8F%98%E6%95%88%E6%9E%9C.html">首次开源库-不一样的文字渐变效果</a>
+          </li>
+        
+          <li>
+            <a href="/CoordinatorLayout%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89Behavior%E5%85%A5%E9%97%A8.html">CoordinatorLayout原理分析以及自定义Behavior入门</a>
+          </li>
+        
+          <li>
+            <a href="/NestedScrollView%E5%B5%8C%E5%A5%97%E6%BB%91%E5%8A%A8%E5%8E%9F%E7%90%86.html">NestedScrollView嵌套滑动原理</a>
+          </li>
+        
+          <li>
+            <a href="/APT-javapoet%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B.html">APT-javapoet详细教程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 EngineerOfFinger<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/%20%7C%7C%20fas%20fa-home" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives/%20%7C%7C%20fas%20fa-archive" class="mobile-nav-link">时间轴</a>
+  
+    <a href="/tags/%20%7C%7C%20fas%20fa-tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/categories/%20%7C%7C%20fas%20fa-folder-open" class="mobile-nav-link">分类</a>
+  
+    <a href="/link/%20%7C%7C%20fas%20fa-link" class="mobile-nav-link">友链</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

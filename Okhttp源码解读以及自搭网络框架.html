@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Okhttp源码解读以及自搭网络框架 | 梦幻泡影</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一.引言 前面已经了解了Okhttp的基本组成以及用法，除此之外我们还需深入源码了解Okhttp的运行机制，并且能够自己搭建一个类似的网络请求框架，其实弄懂Okhttp一个网络框架，其他的网络开源库自然容易理解  先上Okhttp的整体框架图   下面将从以下三个方面剖析Okhttp的运行机制：  请求发送到哪里去了 请求是被谁处理的 请求是怎么被维护的  以请求为中心展开分析 二.请求发送到哪里">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Okhttp源码解读以及自搭网络框架">
+<meta property="og:url" content="https://wiwiyiyi.com/Okhttp%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB%E4%BB%A5%E5%8F%8A%E8%87%AA%E6%90%AD%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6.html">
+<meta property="og:site_name" content="梦幻泡影">
+<meta property="og:description" content="一.引言 前面已经了解了Okhttp的基本组成以及用法，除此之外我们还需深入源码了解Okhttp的运行机制，并且能够自己搭建一个类似的网络请求框架，其实弄懂Okhttp一个网络框架，其他的网络开源库自然容易理解  先上Okhttp的整体框架图   下面将从以下三个方面剖析Okhttp的运行机制：  请求发送到哪里去了 请求是被谁处理的 请求是怎么被维护的  以请求为中心展开分析 二.请求发送到哪里">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E7%BD%91%E7%BB%9C/Okhttp%E6%A1%86%E6%9E%B6%E5%9B%BE.png">
+<meta property="og:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E7%BD%91%E7%BB%9C/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%9B%BE%E8%A7%A3.png">
+<meta property="og:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E7%BD%91%E7%BB%9C/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F.png">
+<meta property="og:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E7%BD%91%E7%BB%9C/%E5%85%B7%E4%BD%93%E7%BB%B4%E6%8A%A4.png">
+<meta property="og:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E7%BD%91%E7%BB%9C/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6.png">
+<meta property="og:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E7%BD%91%E7%BB%9C/%E5%AE%9E%E6%88%98%E6%BC%94%E7%BB%83.png">
+<meta property="article:published_time" content="2021-02-10T07:39:53.000Z">
+<meta property="article:modified_time" content="2023-01-04T09:03:55.019Z">
+<meta property="article:author" content="EngineerOfFinger">
+<meta property="article:tag" content="网络开源库">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E7%BD%91%E7%BB%9C/Okhttp%E6%A1%86%E6%9E%B6%E5%9B%BE.png">
+  
+    <link rel="alternate" href="/atom.xml" title="梦幻泡影" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/wiwi.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">梦幻泡影</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">[object Object]</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/%20%7C%7C%20fas%20fa-home">主页</a>
+        
+          <a class="main-nav-link" href="/archives/%20%7C%7C%20fas%20fa-archive">时间轴</a>
+        
+          <a class="main-nav-link" href="/tags/%20%7C%7C%20fas%20fa-tags">标签</a>
+        
+          <a class="main-nav-link" href="/categories/%20%7C%7C%20fas%20fa-folder-open">分类</a>
+        
+          <a class="main-nav-link" href="/link/%20%7C%7C%20fas%20fa-link">友链</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wiwiyiyi.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Okhttp源码解读以及自搭网络框架" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Okhttp%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB%E4%BB%A5%E5%8F%8A%E8%87%AA%E6%90%AD%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6.html" class="article-date">
+  <time datetime="2021-02-10T07:39:53.000Z" itemprop="datePublished">2021-02-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E9%9B%86/">Android开发基础集</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Okhttp源码解读以及自搭网络框架
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-引言"><a href="#一-引言" class="headerlink" title="一.引言"></a>一.引言</h3><blockquote>
+<p>前面已经了解了Okhttp的基本组成以及用法，除此之外我们还需深入源码了解Okhttp的运行机制，并且能够自己搭建一个类似的网络请求框架，其实弄懂Okhttp一个网络框架，其他的网络开源库自然容易理解</p>
+</blockquote>
+<p>先上Okhttp的整体框架图</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E7%BD%91%E7%BB%9C/Okhttp%E6%A1%86%E6%9E%B6%E5%9B%BE.png" style="zoom: 40%;" />
+
+<p>下面将从以下三个方面剖析Okhttp的运行机制：</p>
+<ol>
+<li>请求发送到哪里去了</li>
+<li>请求是被谁处理的</li>
+<li>请求是怎么被维护的</li>
+</ol>
+<p>以请求为中心展开分析</p>
+<h3 id="二-请求发送到哪里去了"><a href="#二-请求发送到哪里去了" class="headerlink" title="二.请求发送到哪里去了"></a>二.请求发送到哪里去了</h3><blockquote>
+<p>为了便于理解，下面以异步请求即请求入队列的方式来分析源码</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">synchronized void enqueue(AsyncCall call) &#123;</span><br><span class="line">  if (runningAsyncCalls.size() &lt; maxRequests &amp;&amp; runningCallsForHost(call) &lt; maxRequestsPerHost) &#123;</span><br><span class="line">    runningAsyncCalls.add(call);</span><br><span class="line">    executorService().execute(call);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    readyAsyncCalls.add(call);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过跟踪<code>enqueue()</code>方法，我们发现两个队列：<code>runningAsyncCalls</code>和<code>readyAsyncCalls</code>，即运行中的队列和等待中的队列，只有同时满足运行队列中任务的个数小于64以及对同一个目标的访问数小于5时才会被添加到运行中的队列，并执行，否则添加到等待中的队列</p>
+<h3 id="三-请求是被谁处理的"><a href="#三-请求是被谁处理的" class="headerlink" title="三.请求是被谁处理的"></a>三.请求是被谁处理的</h3><p>从上面的代码可以看到，任务被丢给了<code>executorService()</code>来处理，即线程池</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public synchronized ExecutorService executorService() &#123;</span><br><span class="line">   if (executorService == null) &#123;</span><br><span class="line">     executorService = new ThreadPoolExecutor(0, Integer.MAX_VALUE, 60, TimeUnit.SECONDS,</span><br><span class="line">         new SynchronousQueue&lt;Runnable&gt;(), Util.threadFactory(&quot;OkHttp Dispatcher&quot;, false));</span><br><span class="line">   &#125;</span><br><span class="line">   return executorService;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面通过一张图先来解释一下线程池</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E7%BD%91%E7%BB%9C/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%9B%BE%E8%A7%A3.png" style="zoom:50%;" />
+
+<p>而此处内部创建的是<code>SynchronousQueue</code>无容量的队列，即只要有任务丢进线程池就会立即执行，即使没有空闲线程也会立即创建，所以在设置最大线程数时用的是<code>Integer.MAX_VALUE</code>，相当大的一个值</p>
+<blockquote>
+<p>在第一步时说到Okhttp本身就有两个队列，等待和运行，也就意味着它自己本身就可以控制同一时间最多可以执行多少个任务，超过数量就进入等待的队列，所以就没必要再在线程池中自己维护一个有容量的队列，效率也不太高</p>
+</blockquote>
+<p>当任务交给线程池后，线程池会找一个空闲线程调用<code>run()</code>方法去执行具体的任务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">@Override protected void execute() &#123;</span><br><span class="line">     boolean signalledCallback = false;</span><br><span class="line">     try &#123;</span><br><span class="line">       Response response = getResponseWithInterceptorChain();</span><br><span class="line">       if (retryAndFollowUpInterceptor.isCanceled()) &#123;</span><br><span class="line">         signalledCallback = true;</span><br><span class="line">         responseCallback.onFailure(RealCall.this, new IOException(&quot;Canceled&quot;));</span><br><span class="line">       &#125; else &#123;</span><br><span class="line">         signalledCallback = true;</span><br><span class="line">         responseCallback.onResponse(RealCall.this, response);</span><br><span class="line">       &#125;</span><br><span class="line">     &#125; catch (IOException e) &#123;</span><br><span class="line">       if (signalledCallback) &#123;</span><br><span class="line">         // Do not signal the callback twice!</span><br><span class="line">         Platform.get().log(INFO, &quot;Callback failure for &quot; + toLoggableString(), e);</span><br><span class="line">       &#125; else &#123;</span><br><span class="line">         eventListener.callFailed(RealCall.this, e);</span><br><span class="line">         responseCallback.onFailure(RealCall.this, e);</span><br><span class="line">       &#125;</span><br><span class="line">     &#125; finally &#123;</span><br><span class="line">       client.dispatcher().finished(this);</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line">Response getResponseWithInterceptorChain() throws IOException &#123;</span><br><span class="line">   // Build a full stack of interceptors.</span><br><span class="line">   List&lt;Interceptor&gt; interceptors = new ArrayList&lt;&gt;();</span><br><span class="line">   interceptors.addAll(client.interceptors());</span><br><span class="line">   interceptors.add(retryAndFollowUpInterceptor);</span><br><span class="line">   interceptors.add(new BridgeInterceptor(client.cookieJar()));</span><br><span class="line">   interceptors.add(new CacheInterceptor(client.internalCache()));</span><br><span class="line">   interceptors.add(new ConnectInterceptor(client));</span><br><span class="line">   if (!forWebSocket) &#123;</span><br><span class="line">     interceptors.addAll(client.networkInterceptors());</span><br><span class="line">   &#125;</span><br><span class="line">   interceptors.add(new CallServerInterceptor(forWebSocket));</span><br><span class="line"></span><br><span class="line">   Interceptor.Chain chain = new RealInterceptorChain(interceptors, null, null, null, 0,</span><br><span class="line">       originalRequest, this, eventListener, client.connectTimeoutMillis(),</span><br><span class="line">       client.readTimeoutMillis(), client.writeTimeoutMillis());</span><br><span class="line"></span><br><span class="line">   return chain.proceed(originalRequest);</span><br><span class="line"> &#125;    </span><br></pre></td></tr></table></figure>
+
+<p>这是<code>RealCall</code>的内部类<code>AsyncCall</code>中的方法，调用该方法后，首先进入的是<strong>责任链</strong>模式</p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E7%BD%91%E7%BB%9C/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F.png"></p>
+<p>在请求发送到服务器之前需要通过一系列关卡的检查，这些关卡就是所谓的<strong>拦截器</strong>，只有当符合所有条件的请求才能通过，最终通过<code>RealInterceptorChain</code>发送请求，此过程提升了网络请求的效率</p>
+<h3 id="四-请求是怎么被维护的"><a href="#四-请求是怎么被维护的" class="headerlink" title="四.请求是怎么被维护的"></a>四.请求是怎么被维护的</h3><p>在<code>execute()</code>方法中有一个<code>finally</code>代码块，调用了<code>client.dispatcher().finished(this)</code>，进入到<code>finished()</code>方法内部可以看到<code>promoteCalls()</code>方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">private void promoteCalls() &#123;</span><br><span class="line">    if (runningAsyncCalls.size() &gt;= maxRequests) return; // Already running max capacity.</span><br><span class="line">    if (readyAsyncCalls.isEmpty()) return; // No ready calls to promote.</span><br><span class="line"></span><br><span class="line">    for (Iterator&lt;AsyncCall&gt; i = readyAsyncCalls.iterator(); i.hasNext(); ) &#123;</span><br><span class="line">      AsyncCall call = i.next();</span><br><span class="line"></span><br><span class="line">      if (runningCallsForHost(call) &lt; maxRequestsPerHost) &#123;</span><br><span class="line">        i.remove();</span><br><span class="line">        runningAsyncCalls.add(call);</span><br><span class="line">        executorService().execute(call);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      if (runningAsyncCalls.size() &gt;= maxRequests) return; // Reached max capacity.</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>当一个请求被处理完毕后，会执行以上代码块进行维护，其实就是下图所示的循环</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E7%BD%91%E7%BB%9C/%E5%85%B7%E4%BD%93%E7%BB%B4%E6%8A%A4.png" style="zoom:50%;" />
+
+<p>通过线程间的执行进行维护</p>
+<h3 id="五-自定义网络框架"><a href="#五-自定义网络框架" class="headerlink" title="五.自定义网络框架"></a>五.自定义网络框架</h3><p>经历了上述三个过程发现Okhttp框架其实很清晰，下面模仿它的思路自定义一个请求Json数据的网络框架，先上图</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E7%BD%91%E7%BB%9C/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6.png" style="zoom:50%;" />
+
+<p>通过核心线程进行维护，和上述的Okhttp思路相似，只不过线程池中的队列不再是无容量的，而是指定了空闲线程数以及容量的队列</p>
+<p>说明：由于该Demo涉及到泛型，而Kotlin中个人感觉是不兼容，因此使用Java语言</p>
+<ol>
+<li><p>首先我们需要先写好线程池部分</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">class ThreadPoolManager &#123;</span><br><span class="line">    private LinkedBlockingQueue&lt;Runnable&gt; mQueue = new LinkedBlockingQueue&lt;&gt;();</span><br><span class="line">    private ThreadPoolExecutor mThreadPoolExecutor;</span><br><span class="line">    public Runnable coreThread = new Runnable() &#123;</span><br><span class="line">        Runnable runn = null;</span><br><span class="line">        @Override</span><br><span class="line">        public void run() &#123;</span><br><span class="line">            while (true)&#123;</span><br><span class="line">                try &#123;</span><br><span class="line">                    runn = mQueue.take();</span><br><span class="line">                &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                mThreadPoolExecutor.execute(runn);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    private ThreadPoolManager()&#123;</span><br><span class="line">        mThreadPoolExecutor = new ThreadPoolExecutor(3, 10, 15, TimeUnit.SECONDS, new ArrayBlockingQueue&lt; Runnable &gt;(5)</span><br><span class="line">                , new RejectedExecutionHandler() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void rejectedExecution(Runnable runnable, ThreadPoolExecutor threadPoolExecutor) &#123;</span><br><span class="line">                addTask(runnable);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        mThreadPoolExecutor.execute(coreThread);</span><br><span class="line">    &#125;</span><br><span class="line">    private static  ThreadPoolManager instance = new ThreadPoolManager();</span><br><span class="line">    public static ThreadPoolManager getInstance()&#123;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">    public void addTask(Runnable runnable)&#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            mQueue.put(runnable);</span><br><span class="line">        &#125; catch (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>队列采用的是阻塞式的，保证同步性，线程安全</p>
+<p><strong>核心线程是通过死循环不断监听队列中是否有任务，这和Okhttp通过线程之间的交互连接实现的死循环很类似，此处使用死循环也不会造成很大的开销，毕竟只是一个子线程，只要思路相似即可</strong></p>
+</li>
+<li><p>封装请求部分</p>
+<p>首先需要定义封装请求方法的接口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">interface IHttpRequest &#123;</span><br><span class="line">    void setUrl(String url);</span><br><span class="line">    void setData(byte[] data);</span><br><span class="line">    void setListener(CallbackListener listener);</span><br><span class="line">    void excute();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后是实现类</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">class JsonHttpRequest implements IHttpRequest &#123;</span><br><span class="line">    private String url;</span><br><span class="line">    private byte[] data;</span><br><span class="line">    private CallbackListener mCallbackListener;</span><br><span class="line">    private HttpURLConnection urlConnection;</span><br><span class="line">    @Override</span><br><span class="line">    public void setUrl(String url) &#123;</span><br><span class="line">            this.url = url;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void setData(byte[] data) &#123;</span><br><span class="line">            this.data = data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void setListener(CallbackListener listener) &#123;</span><br><span class="line">            this.mCallbackListener = listener;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void excute() &#123;</span><br><span class="line">        URL url = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            url = new URL(this.url);</span><br><span class="line">            urlConnection = (HttpURLConnection) url.openConnection();</span><br><span class="line">            urlConnection.setConnectTimeout(6000);</span><br><span class="line">            urlConnection.setUseCaches(false);//不使用缓存</span><br><span class="line">            urlConnection.setInstanceFollowRedirects(true);</span><br><span class="line">            urlConnection.setReadTimeout(3080);</span><br><span class="line">            urlConnection.setDoInput(true);</span><br><span class="line">            urlConnection.setDoOutput(true);</span><br><span class="line">            urlConnection.setRequestMethod(&quot;POST&quot;);</span><br><span class="line">            urlConnection.setRequestProperty( &quot;Content-Type&quot;,&quot;application/json;charset=UTF-8&quot;);</span><br><span class="line">            urlConnection.connect();</span><br><span class="line">            OutputStream out = urlConnection.getOutputStream();</span><br><span class="line">            BufferedOutputStream bos = new BufferedOutputStream(out);</span><br><span class="line">            bos.write(data);</span><br><span class="line">            bos.flush();</span><br><span class="line">            out.close();</span><br><span class="line">            bos.close();</span><br><span class="line">            if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK)&#123;</span><br><span class="line">                InputStream in = urlConnection.getInputStream();</span><br><span class="line">                mCallbackListener.onSuccess(in);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;finally &#123;</span><br><span class="line">            urlConnection.disconnect();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>至于为什么要封装<code>excute()</code>方法，因为子线程会调用<code>run()</code>方法，最终会调用任务本身的<code>excute()</code>去具体执行任务</p>
+</li>
+<li><p>封装数据回调</p>
+<p>首先定义回调的接口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">interface CallbackListener &#123;</span><br><span class="line">    void onSuccess(InputStream inputStream);</span><br><span class="line">    void onFailure();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>因为网络请求带回来的是<code>InputStream</code>，然后再将流中的数据写入到内存，转换成具体的对象带出去，一般网络请求的用法大抵如此</p>
+<p>定义带出数据的类，即将网络请求的数据转换成具体需要的对象回调带出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">class JsonCallbackListener&lt;T&gt; implements CallbackListener &#123;</span><br><span class="line">    private Class&lt;T&gt; responseClass;</span><br><span class="line">    private IJsonDataTransforListener listener;</span><br><span class="line">    private Handler mHandler = new Handler(Looper.getMainLooper());</span><br><span class="line">    public JsonCallbackListener(Class&lt;T&gt; responseClass,IJsonDataTransforListener listener)&#123;</span><br><span class="line">        this.responseClass = responseClass;</span><br><span class="line">        this.listener = listener;</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public void onSuccess(InputStream inputStream) &#123;</span><br><span class="line">            String response = getContent(inputStream);</span><br><span class="line">            final T clazz = JSON.parseObject(response,responseClass);</span><br><span class="line">            mHandler.post(new Runnable() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                public void run() &#123;</span><br><span class="line">                    listener.onSuccess(clazz);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private String getContent(InputStream inputStream)&#123;</span><br><span class="line">        StringBuilder builder = new StringBuilder();</span><br><span class="line">        try &#123;</span><br><span class="line">            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));</span><br><span class="line"></span><br><span class="line">            String line = null;</span><br><span class="line">            while (((line = reader.readLine()) != null)) &#123;</span><br><span class="line">                builder.append(line).append(&quot;\n&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;finally &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                inputStream.close();</span><br><span class="line">            &#125; catch (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return builder.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onFailure() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后是数据回调的接口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">interface IJsonDataTransforListener&lt;T&gt; &#123;</span><br><span class="line">    void onSuccess(T t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>最后还差封装具体的网络请求任务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class HttpTask&lt;T&gt; implements Runnable &#123;</span><br><span class="line">    private IHttpRequest httpRequest;</span><br><span class="line">    public HttpTask(String url,T requestData,IHttpRequest httpRequest,CallbackListener listener)&#123;</span><br><span class="line">        this.httpRequest = httpRequest;</span><br><span class="line">        httpRequest.setUrl(url);</span><br><span class="line">        httpRequest.setListener(listener);</span><br><span class="line">        String content = JSON.toJSONString(requestData);</span><br><span class="line">        try &#123;</span><br><span class="line">            httpRequest.setData(content.getBytes(&quot;utf-8&quot;));</span><br><span class="line">        &#125; catch (UnsupportedEncodingException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public void run() &#123;</span><br><span class="line">        httpRequest.excute();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用的时候还需组装一个请求任务，为了体现高度的封装性，再提供一个类进行封装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class MyHttp &#123;</span><br><span class="line">    public static&lt;T,M&gt; void sendJsonRequest(String url,T requestData,Class&lt;M&gt; response,IJsonDataTransforListener listener)&#123;</span><br><span class="line">        IHttpRequest httpRequest = new JsonHttpRequest();</span><br><span class="line">        CallbackListener callbackListener = new JsonCallbackListener&lt;&gt;(response,listener);</span><br><span class="line">        HttpTask httpTask = new HttpTask(url,requestData,httpRequest,callbackListener);</span><br><span class="line">        ThreadPoolManager.getInstance().addTask(httpTask);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>定义数据类型，进行实战演练</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">class MyBean &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return &quot;MyBean&#123;&quot; +</span><br><span class="line">                &quot;resultCode=&quot; + resultCode +</span><br><span class="line">                &quot;, reason=&#x27;&quot; + reason + &#x27;\&#x27;&#x27; +</span><br><span class="line">                &#x27;&#125;&#x27;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private int resultCode;</span><br><span class="line"></span><br><span class="line">    public int getResultCode() &#123;</span><br><span class="line">        return resultCode;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setResultCode(int resultCode) &#123;</span><br><span class="line">        this.resultCode = resultCode;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getReason() &#123;</span><br><span class="line">        return reason;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setReason(String reason) &#123;</span><br><span class="line">        this.reason = reason;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private String reason;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">---------------------------------------------------------------------------------------------------------</span><br><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">    private String url = &quot;http://apis.juhe.cn/simpleWeather/query&quot;;</span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        OkHttpClient client = new OkHttpClient();</span><br><span class="line">        for (int i=0;i&lt;10;i++)&#123;</span><br><span class="line">            sendRequest();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    private void sendRequest()&#123;</span><br><span class="line">        MyHttp.sendJsonRequest(url, null, MyBean.class, new IJsonDataTransforListener&lt;MyBean&gt;() &#123;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public void onSuccess(MyBean myBean) &#123;</span><br><span class="line">                Log.v(&quot;cx&quot;,&quot;返回的数据：&quot;+myBean.toString());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后的那个数据回调是否有点像Okhttp中的异步回调呢，经历了以上步骤还是清晰的看出网络访问框架就是这样一层一层封装的，下面上效果图</p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E7%BD%91%E7%BB%9C/%E5%AE%9E%E6%88%98%E6%BC%94%E7%BB%83.png"></p>
+</li>
+</ol>
+<blockquote>
+<p>可以看到发送的十次请求都有了结果，速度也是很快的</p>
+</blockquote>
+<h3 id="六-总结"><a href="#六-总结" class="headerlink" title="六.总结"></a>六.总结</h3><blockquote>
+<p>经过以上的折磨，我们也大概知道Okhttp的运行原理了，小编也是头一回写网络框架，感觉还不错，只要把握好整体的结构，需要回调带出数据时便定义接口，初级阶段只要清楚原理即可</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/myhttp-demo">代码链接</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/Okhttp%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB%E4%BB%A5%E5%8F%8A%E8%87%AA%E6%90%AD%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6.html" data-id="clchki9jj001it0qhd2vdh27a" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" rel="tag">网络开源库</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Retrofit%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Retrofit源码解读
+        
+      </div>
+    </a>
+  
+  
+    <a href="/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93-Glide.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">网络开源库-Glide</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-UI%E7%B3%BB%E5%88%97/">Android UI系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%AE%9E%E6%88%98%E9%9B%86/">Android实战集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E9%9B%86/">Android开发基础集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/">Android自定义系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Android设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%BF%9B%E9%98%B6/">Android进阶</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E9%87%8D%E8%A6%81%E7%BB%84%E4%BB%B6/">Android重要组件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E9%A1%B9%E7%9B%AE/">Android项目</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E8%BF%9B%E9%98%B6/">Java进阶</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/html%E5%AD%A6%E4%B9%A0/">html学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/">个人成长</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%9B%E6%89%A3%E9%A2%98%E8%A7%A3/">力扣题解</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8E%92%E5%BA%8F%E9%9B%86/">排序集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8%E4%B8%8E%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/">注解处理器与开源框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E6%8E%A7%E4%BB%B6/">系统控件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%84%E4%BB%B6%E5%8C%96%E7%B3%BB%E5%88%97/">组件化系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%93%E9%A2%98/">设计模式专题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E9%9B%86/">问题总结集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag">Android常用琐碎知识点</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E5%BC%80%E5%8F%91%E5%B0%8FDemo/" rel="tag">Android开发小Demo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E9%AB%98%E7%BA%A7UI/" rel="tag">Android高级UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" rel="tag">hexo博客搭建问题总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93/" rel="tag">发布开源库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/" rel="tag">学年设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" rel="tag">算法篇</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" rel="tag">系统高级UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" rel="tag">网络开源库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" style="font-size: 18px;">Android常用琐碎知识点</a> <a href="/tags/Android%E5%BC%80%E5%8F%91%E5%B0%8FDemo/" style="font-size: 10px;">Android开发小Demo</a> <a href="/tags/Android%E9%AB%98%E7%BA%A7UI/" style="font-size: 16px;">Android高级UI</a> <a href="/tags/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" style="font-size: 10px;">hexo博客搭建问题总结</a> <a href="/tags/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93/" style="font-size: 10px;">发布开源库</a> <a href="/tags/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">学年设计</a> <a href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" style="font-size: 20px;">算法篇</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" style="font-size: 12px;">系统高级UI</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" style="font-size: 14px;">网络开源库</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/%E8%87%AA%E5%AE%9A%E4%B9%89PhotoView%E5%A4%84%E7%90%86%E6%89%8B%E5%8A%BF.html">自定义PhotoView处理手势</a>
+          </li>
+        
+          <li>
+            <a href="/%E9%A6%96%E6%AC%A1%E5%BC%80%E6%BA%90%E5%BA%93-%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E6%96%87%E5%AD%97%E6%B8%90%E5%8F%98%E6%95%88%E6%9E%9C.html">首次开源库-不一样的文字渐变效果</a>
+          </li>
+        
+          <li>
+            <a href="/CoordinatorLayout%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89Behavior%E5%85%A5%E9%97%A8.html">CoordinatorLayout原理分析以及自定义Behavior入门</a>
+          </li>
+        
+          <li>
+            <a href="/NestedScrollView%E5%B5%8C%E5%A5%97%E6%BB%91%E5%8A%A8%E5%8E%9F%E7%90%86.html">NestedScrollView嵌套滑动原理</a>
+          </li>
+        
+          <li>
+            <a href="/APT-javapoet%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B.html">APT-javapoet详细教程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 EngineerOfFinger<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/%20%7C%7C%20fas%20fa-home" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives/%20%7C%7C%20fas%20fa-archive" class="mobile-nav-link">时间轴</a>
+  
+    <a href="/tags/%20%7C%7C%20fas%20fa-tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/categories/%20%7C%7C%20fas%20fa-folder-open" class="mobile-nav-link">分类</a>
+  
+    <a href="/link/%20%7C%7C%20fas%20fa-link" class="mobile-nav-link">友链</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

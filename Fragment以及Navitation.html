@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Fragment以及Navitation | 梦幻泡影</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一.引言 Fragment：翻译为碎片，Fragment的初衷是为了适配平板，因为平板的界面比较大，可以划分为多个区域，每个区域就是一个Fragment  Fragment在如今的用法是扮演小型Activity，有属于自己的生命周期，Fragment不像Activity那样耗内存，特别轻巧，亲身经历，如果一个app的界面过多，也就意味着Activity会很多，那么Activity之间的跳转关系便会">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fragment以及Navitation">
+<meta property="og:url" content="https://wiwiyiyi.com/Fragment%E4%BB%A5%E5%8F%8ANavitation.html">
+<meta property="og:site_name" content="梦幻泡影">
+<meta property="og:description" content="一.引言 Fragment：翻译为碎片，Fragment的初衷是为了适配平板，因为平板的界面比较大，可以划分为多个区域，每个区域就是一个Fragment  Fragment在如今的用法是扮演小型Activity，有属于自己的生命周期，Fragment不像Activity那样耗内存，特别轻巧，亲身经历，如果一个app的界面过多，也就意味着Activity会很多，那么Activity之间的跳转关系便会">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://developer.android.google.cn/images/fragment_lifecycle.png">
+<meta property="og:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Fragment/fragmentshow.gif">
+<meta property="og:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Fragment/Navigation%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92.png">
+<meta property="og:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Fragment/%E8%AE%BE%E7%BD%AEback%E7%95%8C%E9%9D%A2.png">
+<meta property="og:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Fragment/navigationshow.gif">
+<meta property="article:published_time" content="2020-12-05T12:33:50.000Z">
+<meta property="article:modified_time" content="2023-01-04T09:03:55.012Z">
+<meta property="article:author" content="EngineerOfFinger">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://developer.android.google.cn/images/fragment_lifecycle.png">
+  
+    <link rel="alternate" href="/atom.xml" title="梦幻泡影" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/wiwi.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">梦幻泡影</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">[object Object]</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/%20%7C%7C%20fas%20fa-home">主页</a>
+        
+          <a class="main-nav-link" href="/archives/%20%7C%7C%20fas%20fa-archive">时间轴</a>
+        
+          <a class="main-nav-link" href="/tags/%20%7C%7C%20fas%20fa-tags">标签</a>
+        
+          <a class="main-nav-link" href="/categories/%20%7C%7C%20fas%20fa-folder-open">分类</a>
+        
+          <a class="main-nav-link" href="/link/%20%7C%7C%20fas%20fa-link">友链</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wiwiyiyi.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Fragment以及Navitation" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Fragment%E4%BB%A5%E5%8F%8ANavitation.html" class="article-date">
+  <time datetime="2020-12-05T12:33:50.000Z" itemprop="datePublished">2020-12-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E9%87%8D%E8%A6%81%E7%BB%84%E4%BB%B6/">Android重要组件</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Fragment以及Navitation
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-引言"><a href="#一-引言" class="headerlink" title="一.引言"></a>一.引言</h3><ul>
+<li><p>Fragment：翻译为碎片，Fragment的初衷是为了适配平板，因为平板的界面比较大，可以划分为多个区域，每个区域就是一个Fragment</p>
+</li>
+<li><p>Fragment在如今的用法是扮演小型Activity，有属于自己的生命周期，Fragment不像Activity那样耗内存，特别轻巧，亲身经历，如果一个app的界面过多，也就意味着Activity会很多，那么Activity之间的跳转关系便会变得很复杂，而Activity的跳转是<strong>相当消耗内存的</strong>，一个简单的app打包之后可能会上百兆，而如果界面之间的跳转使用Fragment，会减少几倍的内存，如果Activity是房间，Fragment是画，那么Activity之间的跳转就是从一个房间进入到另外一个房间，而Frament之间的跳转仅仅只是将新的一幅画贴上去，可想而知，界面采取Fragment跳转是有多easy</p>
+</li>
+<li><p>现在app的设计大多采用一两个甚至一个Activity(即MainActivity)，而其他界面都是Fragment，因为Fragment就是<strong>小型Activity</strong></p>
+</li>
+<li><p>随着Fragment的不断发展，Fragment之间的跳转升级成了<strong>Navigation</strong>，让Fragment的使用变得更加简单</p>
+</li>
+</ul>
+<h3 id="二-Fragment的生命周期"><a href="#二-Fragment的生命周期" class="headerlink" title="二.Fragment的生命周期"></a>二.Fragment的生命周期</h3><p><img src="https://developer.android.google.cn/images/fragment_lifecycle.png"></p>
+<ul>
+<li>onAttach - fragment添加到activity时触发</li>
+<li>onCreate - 创建fragment(准备画框)</li>
+<li>onCreateView - 初始化fragment具体显示的内容-xml (画的具体内容)</li>
+<li>onActivityCreated - Activity创建好后(准备墙)，在此方法中可以访问到fragment对应的xml中的控件</li>
+<li>onStart 启动</li>
+<li>onResume 可以交互</li>
+<li>onPause 暂停交互</li>
+<li>onStop 停止了</li>
+<li>onDestroyView 销毁xml中的视图控件，即销毁画，fragment(画框还在)</li>
+<li>onDestroy  真正销毁fragment</li>
+</ul>
+<h3 id="三-使用Fragment"><a href="#三-使用Fragment" class="headerlink" title="三.使用Fragment"></a>三.使用Fragment</h3><p><strong>①静态使用</strong></p>
+<ol>
+<li><p>在activity的xml中添加fragment组件</p>
+</li>
+<li><p>创建一个类继承于fragment</p>
+</li>
+<li><p>重写对应的生命周期方法-onCreateView必需</p>
+</li>
+<li><p>创建xml文件进行界面布局</p>
+</li>
+<li><p>使用LayoutInflater解析xml</p>
+</li>
+<li><p>在activity的xml中设置fragment对应的name属性</p>
+</li>
+</ol>
+<p><strong>②动态使用</strong></p>
+<ol>
+<li><p>在activity的xml中添加FrameLayout组件进行占位</p>
+</li>
+<li><p>创建一个类继承于fragment</p>
+</li>
+<li><p>重写对应的生命周期方法-onCreateView必需</p>
+</li>
+<li><p>创建xml文件进行界面布局</p>
+</li>
+<li><p>使用LayoutInflater解析xml</p>
+</li>
+<li><p>使用FragmentManager管理fragment的切换</p>
+<p>Activity中：supportFragmentManager</p>
+<p>Fragment中：fragmentManager</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> mAdd.setOnClickListener &#123;</span><br><span class="line">            supportFragmentManager.beginTransaction()</span><br><span class="line">                .add(R.id.container,LoginFragment())</span><br><span class="line">                .addToBackStack(null)</span><br><span class="line">                .commit()</span><br><span class="line">        &#125;</span><br><span class="line">mReplace.setOnClickListener &#123;</span><br><span class="line">            supportFragmentManager.beginTransaction()</span><br><span class="line">                .replace(R.id.container,RegisterFragment())</span><br><span class="line">                .commit()</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>addToBackStack(null)</code>可以将fragment添加到栈中</p>
+</blockquote>
+<h3 id="四-fragment跳转添加动画"><a href="#四-fragment跳转添加动画" class="headerlink" title="四.fragment跳转添加动画"></a>四.fragment跳转添加动画</h3><ol>
+<li><p>在<code>res</code>目录下新建一个<code>Android Resource Directory</code>，类型为<code>anim</code></p>
+</li>
+<li><p>在<code>anim</code>下新建<code>Animation Resource File</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//slide_in</span><br><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;set xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:duration=&quot;500&quot;&gt;</span><br><span class="line">    &lt;translate</span><br><span class="line">        android:fromXDelta=&quot;-100%&quot;</span><br><span class="line">        android:toXDelta=&quot;0%&quot;/&gt;</span><br><span class="line">&lt;/set&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p><code>setCustomAnimations(R.anim.slide_in,R.anim.slide_out,R.anim.pop_in,R.anim.pop_out)</code>设置切换动画</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">supportFragmentManager.beginTransaction()</span><br><span class="line">               .setCustomAnimations(R.anim.slide_in,R.anim.slide_out,R.anim.pop_in,R.anim.pop_out)</span><br><span class="line">               .replace(R.id.container,RegisterFragment())</span><br><span class="line">               .commit()</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>效果展示</strong></p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Fragment/fragmentshow.gif" style="zoom:33%;" />
+
+<h3 id="五-Navigation"><a href="#五-Navigation" class="headerlink" title="五.Navigation"></a>五.Navigation</h3><p>①为了支持<code>safe-args</code>需要在<strong>工程gradle</strong>中添加依赖</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def nav_version = &quot;2.3.1&quot;</span><br><span class="line">classpath &quot;androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version&quot;</span><br></pre></td></tr></table></figure>
+
+<p>②在app对应的gradle中添加<code>apply plugin: &quot;androidx.navigation.safeargs.kotlin&quot;</code></p>
+<p>官网强烈要求使用<code>safe-args</code>的跳转方式，可以保证类型安全</p>
+<p><strong>Navigation中三大重要组成</strong></p>
+<ol>
+<li><p>NavHostFragment</p>
+<p>用于承载所有Fragment，就是一个容器，画框</p>
+</li>
+<li><p>NavGraph</p>
+<p>导航图，构建Fragment之间的跳转关系，还可管理参数传递和切换动画</p>
+</li>
+<li><p>NavController</p>
+<p>管理Fragment之间的切换</p>
+</li>
+</ol>
+<p><strong>Navigation搭配底部导航使用步骤：</strong></p>
+<ol>
+<li><p>提前准备好几个具有跳转关系的Fragment</p>
+</li>
+<li><p>创建导航图</p>
+<p>①在<code>res</code>目录下新建一个<code>Android Resource Directory</code>，类型为<code>navigation</code></p>
+<p>②在<code>navigation</code>下新建<code>Navigation Resource File</code></p>
+</li>
+<li><p>在导航图中构建导航关系</p>
+</li>
+<li><p>创建菜单</p>
+<p>①在<code>res</code>目录下新建一个<code>Android Resource Directory</code>，类型为<code>navigation</code></p>
+<p>②在<code>navigation</code>下新建<code>Menu Resource File</code></p>
+<p>③创建菜单项，每一项的<strong>id</strong>必须和导航图里面每个视图的id一样，一一对应才能完成跳转</p>
+</li>
+<li><p>在<code>activity_main.xml</code>中添加<code>NavHostFragment</code>容器，并关联上<code>NavGraph</code>，添加<code>BottomNavigationView</code>，并添加<code>menu</code>属性</p>
+</li>
+<li><p>在MainActivity中加载<code>NavController</code>控制Fragment跳转</p>
+</li>
+<li><p>将底部导航控件和<code>NavController</code>相关联</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class MainActivity : AppCompatActivity() &#123;</span><br><span class="line">    private lateinit var navController: NavController</span><br><span class="line">    override fun onCreate(savedInstanceState: Bundle?) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_main)</span><br><span class="line">        navController=findNavController(R.id.nav_host_fragment)</span><br><span class="line">        bottomNavigationView.setupWithNavController(navController)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>添加顶部toolBar以及菜单</strong></p>
+<ol>
+<li><p>在<code>styles.xml</code>中将<code>&lt;style name=&quot;AppTheme&quot; parent=&quot;Theme.AppCompat.Light.NoActionBar&quot;&gt;</code>更改为<code>NoActionBar</code></p>
+</li>
+<li><p>在<code>activity_main.xml</code>中添加<code>ToolBar</code></p>
+</li>
+<li><p>设置<code>ActionBar</code></p>
+<p><code>setSupportActionBar(toolbar)</code></p>
+</li>
+<li><p>将toolBar和navController关联，当切换界面时，会把对应fragment的label显示到actionBar</p>
+<p><code>setupActionBarWithNavController(navController)</code></p>
+</li>
+</ol>
+<p><strong>抽屉式布局</strong></p>
+<ol>
+<li><p>将activity_main.xml的外层用drawerLayout包裹</p>
+</li>
+<li><p>在原来的约束布局下面添加一个<code>NavigationView</code>，并添加<code>android:layout_gravity = &quot;start&quot;</code>属性，end表示从右边滑出</p>
+</li>
+<li><p>添加<code>menu</code>属性</p>
+</li>
+<li><p>在MainActivity中关联<code>NavigationView</code>和<code>NavController</code></p>
+<p><code>nav_view.setupWithNavController(navController)</code></p>
+</li>
+<li><p>将<code>appBarConfiguration</code>属性化(即全局)，并初始化</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">appBarConfiguration = AppBarConfiguration(setOf(R.id.homeFragment,R.id.registerFragment),</span><br><span class="line">                drawer</span><br><span class="line">            )</span><br></pre></td></tr></table></figure>
+
+<p>第一个参数表示有哪些Fragment是同级的，不能通过顶部的返回键返回，第二个参数是给toolBar左侧添加一个菜单标志，提示用户</p>
+</li>
+</ol>
+<p><strong>Fragment跳转时传递数据</strong></p>
+<ol>
+<li><p>在导航图中给目的地界面添加参数</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Fragment/Navigation%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92.png" style="zoom: 50%;" /></li>
+<li><p>通过NavController进行导航跳转</p>
+<p>首先创建action对象，当你在导航图中添加导航关系后，会自动生成一个以起始Fragment类名命名的action类，当然该类可以有很多个跳转关系</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">loginBtn.setOnClickListener &#123;</span><br><span class="line">            val action = HomeFragmentDirections.actionHomeFragmentToLoginFragment2(nameInput.text.toString())</span><br><span class="line">            findNavController().navigate(action)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果想传递参数，则将参数填入action的圆括号内即可</p>
+</li>
+<li><p>目的地Fragment取出数据</p>
+<p>通过代理模式<code>by</code>取数据更加方便，且不易出错</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">val args:LoginFragmentArgs by navArgs()</span><br><span class="line"> override fun onActivityCreated(savedInstanceState: Bundle?) &#123;</span><br><span class="line">        super.onActivityCreated(savedInstanceState)</span><br><span class="line">        showText.text = args.userName</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>推荐使用这种方式进行数据传递</p>
+</li>
+</ol>
+<p><strong>如果想设置按back键退回到哪个界面，只需在导航图中进行设置</strong></p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Fragment/%E8%AE%BE%E7%BD%AEback%E7%95%8C%E9%9D%A2.png" style="zoom:50%;" />
+
+<p>这种设置对于层级很深的跳转很有用</p>
+<p><strong>下面展示综合效果</strong></p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Fragment/navigationshow.gif" style="zoom:33%;" />
+
+<h3 id="六-总结"><a href="#六-总结" class="headerlink" title="六.总结"></a>六.总结</h3><blockquote>
+<p>学完Fragment后，会发现Navigation让界面的跳转变得更加轻松，从此app的设计多采用一个Activity，多个Fragment的形式，并且app的基本框架会使用Navigation相关组件</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/fragment-and-navigation">代码链接</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/Fragment%E4%BB%A5%E5%8F%8ANavitation.html" data-id="clchki9j9000xt0qhdifcdyvf" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Android%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%8D%8F%E7%A8%8B%E4%BD%BF%E7%94%A8.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Android开发中的协程使用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-MVVM.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android设计模式-MVVM搭配LiveData的使用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-UI%E7%B3%BB%E5%88%97/">Android UI系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%AE%9E%E6%88%98%E9%9B%86/">Android实战集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E9%9B%86/">Android开发基础集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/">Android自定义系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Android设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%BF%9B%E9%98%B6/">Android进阶</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E9%87%8D%E8%A6%81%E7%BB%84%E4%BB%B6/">Android重要组件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E9%A1%B9%E7%9B%AE/">Android项目</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E8%BF%9B%E9%98%B6/">Java进阶</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/html%E5%AD%A6%E4%B9%A0/">html学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/">个人成长</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%9B%E6%89%A3%E9%A2%98%E8%A7%A3/">力扣题解</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8E%92%E5%BA%8F%E9%9B%86/">排序集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8%E4%B8%8E%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/">注解处理器与开源框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E6%8E%A7%E4%BB%B6/">系统控件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%84%E4%BB%B6%E5%8C%96%E7%B3%BB%E5%88%97/">组件化系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%93%E9%A2%98/">设计模式专题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E9%9B%86/">问题总结集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag">Android常用琐碎知识点</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E5%BC%80%E5%8F%91%E5%B0%8FDemo/" rel="tag">Android开发小Demo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E9%AB%98%E7%BA%A7UI/" rel="tag">Android高级UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" rel="tag">hexo博客搭建问题总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93/" rel="tag">发布开源库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/" rel="tag">学年设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" rel="tag">算法篇</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" rel="tag">系统高级UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" rel="tag">网络开源库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" style="font-size: 18px;">Android常用琐碎知识点</a> <a href="/tags/Android%E5%BC%80%E5%8F%91%E5%B0%8FDemo/" style="font-size: 10px;">Android开发小Demo</a> <a href="/tags/Android%E9%AB%98%E7%BA%A7UI/" style="font-size: 16px;">Android高级UI</a> <a href="/tags/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" style="font-size: 10px;">hexo博客搭建问题总结</a> <a href="/tags/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93/" style="font-size: 10px;">发布开源库</a> <a href="/tags/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">学年设计</a> <a href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" style="font-size: 20px;">算法篇</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" style="font-size: 12px;">系统高级UI</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" style="font-size: 14px;">网络开源库</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/%E8%87%AA%E5%AE%9A%E4%B9%89PhotoView%E5%A4%84%E7%90%86%E6%89%8B%E5%8A%BF.html">自定义PhotoView处理手势</a>
+          </li>
+        
+          <li>
+            <a href="/%E9%A6%96%E6%AC%A1%E5%BC%80%E6%BA%90%E5%BA%93-%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E6%96%87%E5%AD%97%E6%B8%90%E5%8F%98%E6%95%88%E6%9E%9C.html">首次开源库-不一样的文字渐变效果</a>
+          </li>
+        
+          <li>
+            <a href="/CoordinatorLayout%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89Behavior%E5%85%A5%E9%97%A8.html">CoordinatorLayout原理分析以及自定义Behavior入门</a>
+          </li>
+        
+          <li>
+            <a href="/NestedScrollView%E5%B5%8C%E5%A5%97%E6%BB%91%E5%8A%A8%E5%8E%9F%E7%90%86.html">NestedScrollView嵌套滑动原理</a>
+          </li>
+        
+          <li>
+            <a href="/APT-javapoet%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B.html">APT-javapoet详细教程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 EngineerOfFinger<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/%20%7C%7C%20fas%20fa-home" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives/%20%7C%7C%20fas%20fa-archive" class="mobile-nav-link">时间轴</a>
+  
+    <a href="/tags/%20%7C%7C%20fas%20fa-tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/categories/%20%7C%7C%20fas%20fa-folder-open" class="mobile-nav-link">分类</a>
+  
+    <a href="/link/%20%7C%7C%20fas%20fa-link" class="mobile-nav-link">友链</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

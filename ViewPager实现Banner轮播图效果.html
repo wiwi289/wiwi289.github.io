@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>ViewPager实现Banner轮播图效果 | 梦幻泡影</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一.前言 电商类App基本上都会有一个Banner(轮播图)来展示图片广告信息，日常开发中有时也用得着，所以就抽空去玩了玩，github上已经有封装好的Banner供使用，下面先从一般的ViewPager实现开始，主要是介绍用法   二.ViewPager实现Banner轮播图片 要说轮播，RecyclerView和ViewPager都可以轻松实现，搞一个定时器不断变化当前的Position即可，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ViewPager实现Banner轮播图效果">
+<meta property="og:url" content="https://wiwiyiyi.com/ViewPager%E5%AE%9E%E7%8E%B0Banner%E8%BD%AE%E6%92%AD%E5%9B%BE%E6%95%88%E6%9E%9C.html">
+<meta property="og:site_name" content="梦幻泡影">
+<meta property="og:description" content="一.前言 电商类App基本上都会有一个Banner(轮播图)来展示图片广告信息，日常开发中有时也用得着，所以就抽空去玩了玩，github上已经有封装好的Banner供使用，下面先从一般的ViewPager实现开始，主要是介绍用法   二.ViewPager实现Banner轮播图片 要说轮播，RecyclerView和ViewPager都可以轻松实现，搞一个定时器不断变化当前的Position即可，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/Banner%E6%95%88%E6%9E%9C.gif">
+<meta property="og:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/banner%E6%95%88%E6%9E%9C.gif">
+<meta property="article:published_time" content="2021-12-07T05:57:14.000Z">
+<meta property="article:modified_time" content="2023-01-04T09:03:55.029Z">
+<meta property="article:author" content="EngineerOfFinger">
+<meta property="article:tag" content="Android高级UI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/Banner%E6%95%88%E6%9E%9C.gif">
+  
+    <link rel="alternate" href="/atom.xml" title="梦幻泡影" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/wiwi.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">梦幻泡影</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">[object Object]</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/%20%7C%7C%20fas%20fa-home">主页</a>
+        
+          <a class="main-nav-link" href="/archives/%20%7C%7C%20fas%20fa-archive">时间轴</a>
+        
+          <a class="main-nav-link" href="/tags/%20%7C%7C%20fas%20fa-tags">标签</a>
+        
+          <a class="main-nav-link" href="/categories/%20%7C%7C%20fas%20fa-folder-open">分类</a>
+        
+          <a class="main-nav-link" href="/link/%20%7C%7C%20fas%20fa-link">友链</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wiwiyiyi.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ViewPager实现Banner轮播图效果" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/ViewPager%E5%AE%9E%E7%8E%B0Banner%E8%BD%AE%E6%92%AD%E5%9B%BE%E6%95%88%E6%9E%9C.html" class="article-date">
+  <time datetime="2021-12-07T05:57:14.000Z" itemprop="datePublished">2021-12-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ViewPager实现Banner轮播图效果
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-前言"><a href="#一-前言" class="headerlink" title="一.前言"></a>一.前言</h3><blockquote>
+<p>电商类App基本上都会有一个Banner(轮播图)来展示图片广告信息，日常开发中有时也用得着，所以就抽空去玩了玩，github上已经有封装好的Banner供使用，下面先从一般的ViewPager实现开始，主要是介绍用法</p>
+</blockquote>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/Banner%E6%95%88%E6%9E%9C.gif"></p>
+<h3 id="二-ViewPager实现Banner轮播图片"><a href="#二-ViewPager实现Banner轮播图片" class="headerlink" title="二.ViewPager实现Banner轮播图片"></a>二.ViewPager实现Banner轮播图片</h3><blockquote>
+<p>要说轮播，RecyclerView和ViewPager都可以轻松实现，搞一个定时器不断变化当前的Position即可，但是要无限轮播还要搭配指示器的变化还是得费点功夫</p>
+</blockquote>
+<p>这里就不粘代码了，附上代码链接，下面主要理一下思路</p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/improving-repository/commit/49062104ab8a6f51c5c450d936099eaa8b2dd21c">ViewPager实现Banner链接</a></p>
+<ol>
+<li>准备一个存储所有ImageView的数组，这是后续添加到ViewPager中的数据源，遍历添加的同时添加一个指示器(点)，每个指示器有两种状态，通过selector的xml配置即可</li>
+<li>通过一个线程无限轮询，每隔一段时间切换到主线程改变当前展示的Item，因为是无限轮播，所以当前的Index索引会不断累加</li>
+<li>实现PagerAdapter，在<strong>instantiateItem</strong>提供视图的方法中通过取余的方式拿到当前应该展示哪个ImageView，在添加之前还得在<strong>destroyItem</strong>视图移除方法中将当前ImageView的parent移除，否则无法添加进去，PagerAdapter的功能就是提供视图来源</li>
+<li>添加页面滑动监听，在轮询线程中通过改变当前展示视图的Index，这是动力源，切换到下一个视图时，需要更新文本信息和指示器的状态，所以需要一个全局变量用来标识上一个索引值</li>
+</ol>
+<blockquote>
+<p>此方式可以实现无限轮播且改变相应信息的效果，但缺点很明显，没有移植性，封装性也没有，让Activity中的代码难以管理，但理解了基本原理即可：轮询线程改变索引(动力源)+PagerAdapter(视图来源)+页面滑动监听(信息更新)</p>
+</blockquote>
+<h3 id="三-Banner的封装以及高级用法"><a href="#三-Banner的封装以及高级用法" class="headerlink" title="三.Banner的封装以及高级用法"></a>三.Banner的封装以及高级用法</h3><p>上面实现的Banner不仅缺点明显，并且效果也普通，因为没有动画和其他附加效果，下面介绍一下github上比较🔥的一个Banner开源库，看源码其实就是封装加扩展，下面还是介绍用法</p>
+<ol>
+<li><p>指示器</p>
+<p>该开源库提供了如下几种指示器的样式，原理就是自定义View，根据当前的选中Index做绘制</p>
+<ul>
+<li>NumIndicator：数字指示器，自定义的，1/6的样式，比较简单，就是绘制文本</li>
+<li>CircleIndicator：圆形指示器，如果需要定义自己的样式，比如选中和非选中的大小，指示器间的间距，需要继承并自定义，这是不太好的地方，应该提供一个接口供用户配置</li>
+<li>DrawableIndicator：将某个小的icon图标作为指示器样式</li>
+<li>RectangleIndicator：不连贯的圆角矩形指示器</li>
+<li>RoundLinesIndicator：圆形线条指示器</li>
+</ul>
+<p>注：DrawableIndicator有坑，它只能外置，单独作为一个View，然后获取到indicator对象赋值给Banner，其他三个都可以通过new的方式注入给Banner</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">binding.banner.setAdapter(ImageAdapter(bannerModels))</span><br><span class="line">						//.setIndicator(RoundLinesIndicator(context))</span><br><span class="line">            .setIndicator(binding.indicator,false)</span><br><span class="line">                //添加画廊效果</span><br><span class="line">            .setBannerGalleryEffect(50, 10)                        </span><br></pre></td></tr></table></figure>
+
+<p>对比可以看到区别，一个是来自XML布局</p>
+</li>
+<li><p>页面的切换动画</p>
+<ul>
+<li>AlphaPageTransformer：透明度变化的切换效果</li>
+<li>ScaleInTransformer：当前图片缩小退出</li>
+<li>RotateDownPageTransformer：以下边界的中点为圆心进行旋转切换</li>
+<li>RotateUpPageTransformer：以上边界边界的中点为圆心进行旋转切换</li>
+<li>DepthPageTransformer：当前图片淡出，下一张图片从后面放大展示，营造一种由里向外的感觉</li>
+<li>RotateYTransformer：围绕Y轴旋转，整体效果类似于方块于方块之间的切换</li>
+<li>ZoomOutPageTransformer：当前图片先缩小再放大，同时伴随平移，有点向进入房间后再出房间</li>
+<li>MZScaleInTransformer：内部实现魅族效果使用的，单独使用可能效果不一定好，和Scale效果有点类似</li>
+</ul>
+<p>注：官网上说可以相互搭配使用，但是会有叠加影响，推荐和AlphaPageTransformer搭配使用，有了透明度的变化可能会更酷</p>
+</li>
+<li><p>关联视图(Fragment/Activity的生命周期)</p>
+<p>当前的视图已经不可见的时候就应该停止轮播</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">banner.addBannerLifecycleObserver(LifecycleOwner owners)</span><br></pre></td></tr></table></figure>
+
+<p>如此更便于管理</p>
+</li>
+</ol>
+<p>总的来说，该库用于实现基本的图片轮播还是很方遍的，我是踩过一点坑，只要效果好也还行</p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/banner%E6%95%88%E6%9E%9C.gif"></p>
+<h3 id="四-总结"><a href="#四-总结" class="headerlink" title="四.总结"></a>四.总结</h3><blockquote>
+<p>这个库还是蛮不错的，里面的效果都推荐尝试尝试，日常开发基本够用了</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/improving-repository/commit/03e8196762c61bd8df824afc7ac69f6798258e19">代码链接</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/ViewPager%E5%AE%9E%E7%8E%B0Banner%E8%BD%AE%E6%92%AD%E5%9B%BE%E6%95%88%E6%9E%9C.html" data-id="clchki9ju002et0qhh8q2b2xh" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android%E9%AB%98%E7%BA%A7UI/" rel="tag">Android高级UI</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%BC%98%E5%8C%96.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          性能优化-数据结构优化
+        
+      </div>
+    </a>
+  
+  
+    <a href="/volatile%E5%85%B3%E9%94%AE%E5%AD%97%E5%92%8CThreadLocal.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">volatile关键字和ThreadLocal</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-UI%E7%B3%BB%E5%88%97/">Android UI系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%AE%9E%E6%88%98%E9%9B%86/">Android实战集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E9%9B%86/">Android开发基础集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/">Android自定义系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Android设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%BF%9B%E9%98%B6/">Android进阶</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E9%87%8D%E8%A6%81%E7%BB%84%E4%BB%B6/">Android重要组件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E9%A1%B9%E7%9B%AE/">Android项目</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E8%BF%9B%E9%98%B6/">Java进阶</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/html%E5%AD%A6%E4%B9%A0/">html学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/">个人成长</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%9B%E6%89%A3%E9%A2%98%E8%A7%A3/">力扣题解</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8E%92%E5%BA%8F%E9%9B%86/">排序集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8%E4%B8%8E%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/">注解处理器与开源框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E6%8E%A7%E4%BB%B6/">系统控件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%84%E4%BB%B6%E5%8C%96%E7%B3%BB%E5%88%97/">组件化系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%93%E9%A2%98/">设计模式专题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E9%9B%86/">问题总结集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag">Android常用琐碎知识点</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E5%BC%80%E5%8F%91%E5%B0%8FDemo/" rel="tag">Android开发小Demo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E9%AB%98%E7%BA%A7UI/" rel="tag">Android高级UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" rel="tag">hexo博客搭建问题总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93/" rel="tag">发布开源库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/" rel="tag">学年设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" rel="tag">算法篇</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" rel="tag">系统高级UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" rel="tag">网络开源库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" style="font-size: 18px;">Android常用琐碎知识点</a> <a href="/tags/Android%E5%BC%80%E5%8F%91%E5%B0%8FDemo/" style="font-size: 10px;">Android开发小Demo</a> <a href="/tags/Android%E9%AB%98%E7%BA%A7UI/" style="font-size: 16px;">Android高级UI</a> <a href="/tags/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" style="font-size: 10px;">hexo博客搭建问题总结</a> <a href="/tags/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93/" style="font-size: 10px;">发布开源库</a> <a href="/tags/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">学年设计</a> <a href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" style="font-size: 20px;">算法篇</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" style="font-size: 12px;">系统高级UI</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" style="font-size: 14px;">网络开源库</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/%E8%87%AA%E5%AE%9A%E4%B9%89PhotoView%E5%A4%84%E7%90%86%E6%89%8B%E5%8A%BF.html">自定义PhotoView处理手势</a>
+          </li>
+        
+          <li>
+            <a href="/%E9%A6%96%E6%AC%A1%E5%BC%80%E6%BA%90%E5%BA%93-%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E6%96%87%E5%AD%97%E6%B8%90%E5%8F%98%E6%95%88%E6%9E%9C.html">首次开源库-不一样的文字渐变效果</a>
+          </li>
+        
+          <li>
+            <a href="/CoordinatorLayout%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89Behavior%E5%85%A5%E9%97%A8.html">CoordinatorLayout原理分析以及自定义Behavior入门</a>
+          </li>
+        
+          <li>
+            <a href="/NestedScrollView%E5%B5%8C%E5%A5%97%E6%BB%91%E5%8A%A8%E5%8E%9F%E7%90%86.html">NestedScrollView嵌套滑动原理</a>
+          </li>
+        
+          <li>
+            <a href="/APT-javapoet%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B.html">APT-javapoet详细教程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 EngineerOfFinger<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/%20%7C%7C%20fas%20fa-home" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives/%20%7C%7C%20fas%20fa-archive" class="mobile-nav-link">时间轴</a>
+  
+    <a href="/tags/%20%7C%7C%20fas%20fa-tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/categories/%20%7C%7C%20fas%20fa-folder-open" class="mobile-nav-link">分类</a>
+  
+    <a href="/link/%20%7C%7C%20fas%20fa-link" class="mobile-nav-link">友链</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

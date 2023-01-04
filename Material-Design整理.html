@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Material Design整理 | 梦幻泡影</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一.前言 Material Design早在2014年就已经推出了，现在很多APP都会使用里面的控件布局UI，实现一些炫酷的布局效果很容易，本文旨在整理全套的基本使用，便于查阅  二.Material Design使用示例 底部工具栏   使用场景：  仅限移动设备 访问底部导航抽屉 有两到五个动作的屏幕  注：不适用于带有底部导航栏的应用 代码链接 FloatActionButton常用属性：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Material Design整理">
+<meta property="og:url" content="https://wiwiyiyi.com/Material-Design%E6%95%B4%E7%90%86.html">
+<meta property="og:site_name" content="梦幻泡影">
+<meta property="og:description" content="一.前言 Material Design早在2014年就已经推出了，现在很多APP都会使用里面的控件布局UI，实现一些炫酷的布局效果很容易，本文旨在整理全套的基本使用，便于查阅  二.Material Design使用示例 底部工具栏   使用场景：  仅限移动设备 访问底部导航抽屉 有两到五个动作的屏幕  注：不适用于带有底部导航栏的应用 代码链接 FloatActionButton常用属性：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Material%20Design/%E5%BA%95%E9%83%A8%E5%B7%A5%E5%85%B7%E6%A0%8F.png">
+<meta property="article:published_time" content="2021-12-16T02:58:45.000Z">
+<meta property="article:modified_time" content="2023-01-04T09:03:55.017Z">
+<meta property="article:author" content="EngineerOfFinger">
+<meta property="article:tag" content="Android高级UI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Material%20Design/%E5%BA%95%E9%83%A8%E5%B7%A5%E5%85%B7%E6%A0%8F.png">
+  
+    <link rel="alternate" href="/atom.xml" title="梦幻泡影" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/wiwi.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">梦幻泡影</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">[object Object]</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/%20%7C%7C%20fas%20fa-home">主页</a>
+        
+          <a class="main-nav-link" href="/archives/%20%7C%7C%20fas%20fa-archive">时间轴</a>
+        
+          <a class="main-nav-link" href="/tags/%20%7C%7C%20fas%20fa-tags">标签</a>
+        
+          <a class="main-nav-link" href="/categories/%20%7C%7C%20fas%20fa-folder-open">分类</a>
+        
+          <a class="main-nav-link" href="/link/%20%7C%7C%20fas%20fa-link">友链</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wiwiyiyi.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Material-Design整理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Material-Design%E6%95%B4%E7%90%86.html" class="article-date">
+  <time datetime="2021-12-16T02:58:45.000Z" itemprop="datePublished">2021-12-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Material Design整理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-前言"><a href="#一-前言" class="headerlink" title="一.前言"></a>一.前言</h3><blockquote>
+<p>Material Design早在2014年就已经推出了，现在很多APP都会使用里面的控件布局UI，实现一些炫酷的布局效果很容易，本文旨在整理全套的基本使用，便于查阅</p>
+</blockquote>
+<h3 id="二-Material-Design使用示例"><a href="#二-Material-Design使用示例" class="headerlink" title="二.Material Design使用示例"></a>二.Material Design使用示例</h3><ol>
+<li><p>底部工具栏</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Material%20Design/%E5%BA%95%E9%83%A8%E5%B7%A5%E5%85%B7%E6%A0%8F.png" style="zoom:50%;" /></li>
+</ol>
+<p>使用场景：</p>
+<ul>
+<li>仅限移动设备</li>
+<li>访问底部导航抽屉</li>
+<li>有两到五个动作的屏幕</li>
+</ul>
+<p>注：不适用于带有底部导航栏的应用</p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/improving-repository/commit/59615210fbc6a0d75b22fe988ac8d2349f7c8d30">代码链接</a></p>
+<p>FloatActionButton常用属性：</p>
+<table>
+<thead>
+<tr>
+<th align="center">属性名</th>
+<th align="center">属性值以及含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">app:layout_anchor</td>
+<td align="center">相对于哪个控件的锚点</td>
+</tr>
+<tr>
+<td align="center">app:layout_anchorGravity</td>
+<td align="center">相对于锚点控件的位置(bottom|end|left…)</td>
+</tr>
+<tr>
+<td align="center">app:rippleColor</td>
+<td align="center">设置点击水波纹的颜色</td>
+</tr>
+<tr>
+<td align="center">app:fabSize</td>
+<td align="center">设置按钮大小</td>
+</tr>
+</tbody></table>
+<p>BottomAppBar常用属性：</p>
+<table>
+<thead>
+<tr>
+<th align="center">属性名</th>
+<th align="center">属性值以及含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">app:navigationIcon</td>
+<td align="center">设置导航菜单图标(也叫溢出菜单)</td>
+</tr>
+<tr>
+<td align="center">app:hideOnScroll</td>
+<td align="center">设置随着内容的滚动消失以及出现</td>
+</tr>
+<tr>
+<td align="center">app:backgroundTint</td>
+<td align="center">设置背景色</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;style name=&quot;ShapeAppearance.App.SmallComponent&quot; parent=&quot;ShapeAppearance.MaterialComponents.SmallComponent&quot;&gt;</span><br><span class="line">       &lt;item name=&quot;cornerFamily&quot;&gt;cut&lt;/item&gt;</span><br><span class="line">       &lt;item name=&quot;cornerSize&quot;&gt;4dp&lt;/item&gt;</span><br><span class="line">   &lt;/style&gt;</span><br><span class="line"></span><br><span class="line">   &lt;style name=&quot;Widget.App.FloatingActionButton&quot; parent=&quot;Widget.MaterialComponents.FloatingActionButton&quot;&gt;</span><br><span class="line">       &lt;item name=&quot;materialThemeOverlay&quot;&gt;@style/ThemeOverlay.App.FloatingActionButton&lt;/item&gt;</span><br><span class="line">   &lt;/style&gt;</span><br><span class="line"></span><br><span class="line">   &lt;style name=&quot;ThemeOverlay.App.FloatingActionButton&quot; parent=&quot;&quot;&gt;</span><br><span class="line">       &lt;item name=&quot;shapeAppearanceSmallComponent&quot;&gt;@style/ShapeAppearance.App.SmallComponent&lt;/item&gt;</span><br><span class="line">   &lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>styles.xml添加如上样式，并让FloatActionButton使用可以展示不同的样式，点击的响应范围没变，对图形做了剪裁，详情看代码</p>
+<p><a target="_blank" rel="noopener" href="https://material.io/develop/android/theming/shape">关于自定义Shape剪裁</a></p>
+<ol start="2">
+<li><p>顶部工具栏</p>
+<p>①基本的工具栏滚动消失行为</p>
+<ul>
+<li><code>app:liftOnScroll=&quot;true&quot;</code>作用于AppBarLayout，显示与内容位于同一高度的顶部应用栏，滚动时，它会增加高度并让内容在其后面滚动</li>
+<li><code>app:layout_scrollFlags=&quot;scroll|enterAlways|snap&quot;</code>作用于MaterialToolbar，顶部应用栏在向上滚动时消失，向下滚动时出现</li>
+<li><code>app:layout_behavior=&quot;@string/appbar_scrolling_view_behavior&quot;</code>使NestedScrollView滚动搭配CoordinatorLayout</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/improving-repository/commit/9a673d4800e990a53c2b5db4de8441a88538b6ab">代码链接</a></p>
+<p>②突出的顶部应用栏</p>
+<p>在MaterialToolbar外面套一层CollapsingToolbarLayout，并调大AppBarLayout的高度，使其可折叠</p>
+<p>CollapsingToolbarLayout其实就是FrameLayout，所以还可以包裹一个ImageView作背景</p>
+<ul>
+<li><p><code>android:fitsSystemWindows=&quot;true&quot;</code>搭配主题透明可以使状态栏沉浸式，AppBarLayout中除了MaterialToolbar都需要加</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;style name=&quot;Theme.TopAppBarFitTheme&quot; parent=&quot;Theme.MaterialComponents.DayNight.NoActionBar&quot;&gt;</span><br><span class="line">        &lt;item name=&quot;android:windowTranslucentStatus&quot;&gt;true&lt;/item&gt;</span><br><span class="line">    &lt;/style&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p><code>app:layout_scrollFlags=&quot;scroll|exitUntilCollapsed|snap&quot;</code>作用于CollapsingToolbarLayout，使得滑动时可折叠</p>
+</li>
+<li><p><code>app:layout_collapseMode=&quot;pin&quot;</code>作用于MaterialToolbar，固定滑到顶端ToolBar</p>
+</li>
+<li><p><code>android:background=&quot;@android:color/transparent&quot;</code>使MaterialToolbar透明，图片展示效果更佳</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/improving-repository/commit/91a8e23146a8ae1438a6af4cd0f80a63c4cd722b">代码链接</a></p>
+<p>③添加可变化式的ToolBar样式(上下文变化)</p>
+<p>对于删除元素这种场景使用颇多</p>
+<ul>
+<li>定义删除状态的Menu</li>
+<li>代码中添加回调(ActionMode)</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;style name=&quot;Theme.TopAppBarFitTheme&quot; parent=&quot;Theme.MaterialComponents.DayNight.NoActionBar&quot;&gt;</span><br><span class="line">      &lt;item name=&quot;android:windowTranslucentStatus&quot;&gt;true&lt;/item&gt;</span><br><span class="line">      &lt;item name=&quot;windowActionModeOverlay&quot;&gt;true&lt;/item&gt;</span><br><span class="line">      &lt;item name=&quot;actionModeStyle&quot;&gt;@style/Widget.App.ActionMode&lt;/item&gt;</span><br><span class="line">      &lt;item name=&quot;actionModeCloseDrawable&quot;&gt;@drawable/ic_close_24dp&lt;/item&gt;</span><br><span class="line">      &lt;item name=&quot;actionBarTheme&quot;&gt;@style/ThemeOverlay.MaterialComponents.Dark.ActionBar&lt;/item&gt;</span><br><span class="line">  &lt;/style&gt;</span><br><span class="line">  &lt;style name=&quot;Widget.App.ActionMode&quot; parent=&quot;Widget.AppCompat.ActionMode&quot;&gt;</span><br><span class="line">      &lt;item name=&quot;titleTextStyle&quot;&gt;?attr/textAppearanceHeadline6&lt;/item&gt;</span><br><span class="line">      &lt;item name=&quot;subtitleTextStyle&quot;&gt;?attr/textAppearanceSubtitle1&lt;/item&gt;</span><br><span class="line">      &lt;item name=&quot;background&quot;&gt;@color/material_grey_900&lt;/item&gt;</span><br><span class="line">  &lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>ActionMode对应的主题</p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/improving-repository/commit/4bbc9e3b835a40c7e79e781793b6ebe5ca0d534f">代码链接</a></p>
+</li>
+<li><p>底部导航栏</p>
+<p>官方是不建议单独使用，通常的用法是搭配Navigation(导航图)实现主页之间的切换</p>
+<p>这里主要介绍menu的点击响应</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">binding.bottomNav.setOnItemSelectedListener &#123; item -&gt;</span><br><span class="line">            when(item.itemId) &#123;</span><br><span class="line">                R.id.page1 -&gt; &#123;</span><br><span class="line">                    true</span><br><span class="line">                &#125;</span><br><span class="line">                R.id.page2 -&gt; &#123;        </span><br><span class="line">                    true</span><br><span class="line">                &#125;</span><br><span class="line">                else -&gt; false</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p>因为其他的点击事件的API被废弃了，看上去不雅观，所以这里就是用比较原始的API</p>
+<p><code>BottomNavigationView</code>还提供了带数量的标签Drawable，比如QQ的未读消息数量，使用很简单</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">private fun showCountDrawable(@IdRes menuId: Int) &#123;</span><br><span class="line">           binding.bottomNav.getOrCreateBadge(menuId).apply &#123;</span><br><span class="line">               if (!isVisible) isVisible = true</span><br><span class="line">               number = ++num</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   </span><br><span class="line">   private fun removeCountDrawable(@IdRes menuId: Int) &#123;</span><br><span class="line">           binding.bottomNav.getBadge(menuId).also &#123; badgeDrawable -&gt;</span><br><span class="line">               if (badgeDrawable?.isVisible == true) &#123;</span><br><span class="line">                   badgeDrawable.clearNumber()</span><br><span class="line">                   badgeDrawable.isVisible = false</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+
+<p>很多时候会使用路由框架，就和Navigation的导航框架会有冲突，所以还是可以考虑单独使用BottomNavigationView</p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/improving-repository/commit/e75aa3b17706f68c14e31e25e99ad63becb2a3f2">代码链接</a></p>
+<p>这里就不展示主题的更换，详情可以参考官网，和之前提到的主题更换很类似</p>
+</li>
+<li><p>按钮</p>
+<p>这里主要罗列比较特殊的按钮，比如线边框，就不用再用shape做背景了</p>
+<p>①通过设置style达到效果</p>
+<table>
+<thead>
+<tr>
+<th align="center">style值</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Widget.MaterialComponents.Button.TextButton</td>
+<td align="center">不带icon的普通文本按钮</td>
+</tr>
+<tr>
+<td align="center">Widget.MaterialComponents.Button.TextButton.Icon</td>
+<td align="center">带icon的文本按钮</td>
+</tr>
+<tr>
+<td align="center">Widget.MaterialComponents.Button.OutlinedButton</td>
+<td align="center">不带icon的轮廓(线边框)按钮</td>
+</tr>
+<tr>
+<td align="center">Widget.MaterialComponents.Button.OutlinedButton.Icon</td>
+<td align="center">带icon的轮廓按钮</td>
+</tr>
+<tr>
+<td align="center">Widget.MaterialComponents.Button.Icon</td>
+<td align="center">原始风格带icon</td>
+</tr>
+</tbody></table>
+<p>②<strong>按钮组(MaterialButtonToggleGroup)：</strong></p>
+<ul>
+<li>app:singleSelection：设置是否单选</li>
+</ul>
+<p>内部的Button只设置icon，然后自定义样式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;style name=&quot;Widget.App.Button.OutlinedButton.IconOnly&quot; parent=&quot;Widget.MaterialComponents.Button.OutlinedButton&quot;&gt;</span><br><span class="line">        &lt;item name=&quot;iconPadding&quot;&gt;0dp&lt;/item&gt;</span><br><span class="line">        &lt;item name=&quot;android:insetTop&quot;&gt;0dp&lt;/item&gt;</span><br><span class="line">        &lt;item name=&quot;android:insetBottom&quot;&gt;0dp&lt;/item&gt;</span><br><span class="line">        &lt;item name=&quot;android:paddingLeft&quot;&gt;12dp&lt;/item&gt;</span><br><span class="line">        &lt;item name=&quot;android:paddingRight&quot;&gt;12dp&lt;/item&gt;</span><br><span class="line">        &lt;item name=&quot;android:minWidth&quot;&gt;48dp&lt;/item&gt;</span><br><span class="line">        &lt;item name=&quot;android:minHeight&quot;&gt;48dp&lt;/item&gt;</span><br><span class="line">    &lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>③选择按钮(CheckBox)：通过selector的xml设置android:button属性，xml内部是state_checked属性</p>
+<p>通用属性</p>
+<table>
+<thead>
+<tr>
+<th align="center">属性值</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">app:icon</td>
+<td align="center">设置图标</td>
+</tr>
+<tr>
+<td align="center">app:iconTint</td>
+<td align="center">设置图标颜色</td>
+</tr>
+<tr>
+<td align="center">app:iconSize</td>
+<td align="center">设置图标大小</td>
+</tr>
+<tr>
+<td align="center">app:iconGravity</td>
+<td align="center">设置图标位置</td>
+</tr>
+<tr>
+<td align="center">app:iconPadding</td>
+<td align="center">设置图标和文本的距离</td>
+</tr>
+<tr>
+<td align="center">app:rippleColor</td>
+<td align="center">点击的水波纹颜色</td>
+</tr>
+<tr>
+<td align="center">app:strokeColor</td>
+<td align="center">描边的颜色(如果有)</td>
+</tr>
+<tr>
+<td align="center">app:strokeWidth</td>
+<td align="center">描边的粗细(如果有)</td>
+</tr>
+<tr>
+<td align="center">app:backgroundTint</td>
+<td align="center">设置背景色</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>Chip条目</p>
+<p>共有四种类型，都是成组使用，通过不同的主题来区分</p>
+<table>
+<thead>
+<tr>
+<th align="center">Style</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Widget.MaterialComponents.Chip.Action</td>
+<td align="center">默认的样式，只带有icon</td>
+</tr>
+<tr>
+<td align="center">Widget.MaterialComponents.Chip.Entry</td>
+<td align="center">输入条目样式</td>
+</tr>
+<tr>
+<td align="center">Widget.MaterialComponents.Chip.Choice</td>
+<td align="center">多项选择组</td>
+</tr>
+<tr>
+<td align="center">Widget.MaterialComponents.Chip.Filter</td>
+<td align="center">过滤组</td>
+</tr>
+</tbody></table>
+<p>①单个Chip元素常用属性</p>
+<table>
+<thead>
+<tr>
+<th align="center">属性值</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">app:chipIcon</td>
+<td align="center">普通样式的icon</td>
+</tr>
+<tr>
+<td align="center">app:checkedIcon</td>
+<td align="center">选择样式的icon</td>
+</tr>
+<tr>
+<td align="center">app:closeIcon</td>
+<td align="center">移除样式的icon</td>
+</tr>
+</tbody></table>
+<p>注：其余配套的属性都是和其功能搭配的，比如<code>check**</code></p>
+<p>这个地方设置了对应的style就是对应的功能，比如过滤，点击之后就会自动更改选中样式，很方便，对于带closeIcon的Chip，可以设置点击事件，点×后可以让该Chip变成GONE，还是蛮好用的，然后获取对应被选中的Chip，代码中也有体现</p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/improving-repository/commit/036d4aafeb5474c092baa5a16e4e402d46373d52">代码链接</a></p>
+</li>
+<li><p>日期/时间选择器</p>
+<p>日期/时间选择器，这里就一笔带过了，使用超简单，包括有时间范围的合没有时间范围的，拿到build之后的对象，还可以设置选择后的监听，拿到选择的具体日期或者时间跨度，详情看官网，比传统的时间选择器好用太多</p>
+<p>此外还可以通过设置常量构造器限制选择的范围</p>
+<p>日期和时间的选择器使用方式雷同，下面贴一下时间选择器的用法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">val picker = MaterialTimePicker.Builder()</span><br><span class="line">                //设置小时制，12小时的界面会不同</span><br><span class="line">                .setTimeFormat(TimeFormat.CLOCK_24H)</span><br><span class="line">                .setHour(12)</span><br><span class="line">                .setMinute(10)</span><br><span class="line">                .setTitleText(&quot;Select Appointment time&quot;)</span><br><span class="line">                //设置展示的输入方式，不设置也可以，两种模式可以手动切换</span><br><span class="line">                .setInputMode(INPUT_MODE_CLOCK)</span><br><span class="line">                .build()</span><br><span class="line">        picker.addOnPositiveButtonClickListener &#123;</span><br><span class="line">            // 点击确定按钮</span><br><span class="line">        &#125;</span><br><span class="line">        picker.addOnNegativeButtonClickListener &#123;</span><br><span class="line">            // 点击取消按钮</span><br><span class="line">        &#125;</span><br><span class="line">        picker.addOnCancelListener &#123;</span><br><span class="line">            // call back code</span><br><span class="line">        &#125;</span><br><span class="line">        picker.addOnDismissListener &#123;</span><br><span class="line">            // Dialog消失的回调</span><br><span class="line">        &#125;</span><br><span class="line">        picker.show(supportFragmentManager,&quot;tag&quot;)</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://material-io.cn/components/date-pickers/android#using-date-pickers">时间选择器官网链接</a></p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/improving-repository/commit/6efadff5ce61c5926d6e903958a0e4109bd821e0">代码链接</a></p>
+</li>
+<li><p>长按控件弹出菜单</p>
+<p>这个还是蛮实用的吧，实现也比较简单，直接代码查看即可，也可以通过<code>PopupMenu</code>弹出菜单，这个用途是响应某个菜单按钮弹出</p>
+<p>①长按某个控件弹出菜单</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">// 1.注册</span><br><span class="line">registerForContextMenu(view)</span><br><span class="line">// 2.重写对应的菜单解析方法</span><br><span class="line">override fun onCreateContextMenu(</span><br><span class="line">        menu: ContextMenu?,</span><br><span class="line">        v: View?,</span><br><span class="line">        menuInfo: ContextMenu.ContextMenuInfo?</span><br><span class="line">    ) &#123;</span><br><span class="line">        super.onCreateContextMenu(menu, v, menuInfo)</span><br><span class="line">        menuInflater.inflate(R.menu.contextual_action_bar,menu)</span><br><span class="line">    &#125;</span><br><span class="line">// 3.重写菜单项被点击的处理方法</span><br><span class="line">override fun onContextItemSelected(item: MenuItem): Boolean &#123;</span><br><span class="line">        return when (item.itemId) &#123;</span><br><span class="line">            R.id.share -&gt; &#123;</span><br><span class="line">                true</span><br><span class="line">            &#125;</span><br><span class="line">            R.id.delete -&gt; &#123;</span><br><span class="line">                true</span><br><span class="line">            &#125;</span><br><span class="line">            R.id.more -&gt; &#123;</span><br><span class="line">                true</span><br><span class="line">            &#125;</span><br><span class="line">            else -&gt; super.onContextItemSelected(item)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>②单击控件弹出菜单</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">// 1.添加点击监听</span><br><span class="line">view.setOnClickListener &#123;</span><br><span class="line">            showMenu(view,R.menu.contextual_action_bar)</span><br><span class="line">        &#125;</span><br><span class="line">// 2.通过PopupMenu弹出菜单</span><br><span class="line">private fun showMenu(v: View, @MenuRes menuRes: Int) &#123;</span><br><span class="line">        val popup = PopupMenu(this, v)</span><br><span class="line">        popup.menuInflater.inflate(menuRes, popup.menu)</span><br><span class="line"></span><br><span class="line">        popup.setOnMenuItemClickListener &#123; menuItem: MenuItem -&gt;</span><br><span class="line">            when(menuItem.itemId) &#123;</span><br><span class="line">                R.id.share -&gt; &#123;</span><br><span class="line">                    true</span><br><span class="line">                &#125;</span><br><span class="line">                R.id.delete -&gt; &#123;</span><br><span class="line">                    true</span><br><span class="line">                &#125;</span><br><span class="line">                R.id.more -&gt; &#123;</span><br><span class="line">                    true</span><br><span class="line">                &#125;</span><br><span class="line">                else -&gt; false</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        popup.setOnDismissListener &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        // Show the popup menu.</span><br><span class="line">        popup.show()</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://material-io.cn/components/menus/android#dropdown-menus">官网文档</a></p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/improving-repository/commit/72aa2b4eeec04e45181bfe9e2a1825842c91e571">代码链接</a></p>
+</li>
+<li><p>抽屉布局</p>
+<p>这里介绍两种抽屉布局</p>
+<p>①常规的抽屉布局(类似QQ)</p>
+<ul>
+<li><p>定义Menu(这里可以有多个菜单Group，最终效果还蛮不错)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;menu xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;</span><br><span class="line">    &lt;group</span><br><span class="line">        android:id=&quot;@+id/group1&quot;</span><br><span class="line">        android:checkableBehavior=&quot;single&quot;&gt;</span><br><span class="line">        &lt;item</span><br><span class="line">            android:id=&quot;@+id/item1&quot;</span><br><span class="line">            android:icon=&quot;@drawable/ic_favourite_filled_24dp&quot;</span><br><span class="line">            android:title=&quot;@string/title_1&quot;</span><br><span class="line">            android:checked=&quot;true&quot; /&gt;</span><br><span class="line">        &lt;item</span><br><span class="line">            android:id=&quot;@+id/item2&quot;</span><br><span class="line">            android:icon=&quot;@drawable/ic_favourite_filled_24dp&quot;</span><br><span class="line">            android:title=&quot;@string/title_2&quot; /&gt;</span><br><span class="line">        &lt;item</span><br><span class="line">            android:id=&quot;@+id/item3&quot;</span><br><span class="line">            android:icon=&quot;@drawable/ic_favourite_filled_24dp&quot;</span><br><span class="line">            android:title=&quot;@string/title_3&quot; /&gt;</span><br><span class="line">    &lt;/group&gt;</span><br><span class="line">    &lt;group</span><br><span class="line">        android:id=&quot;@+id/group2&quot;</span><br><span class="line">        android:checkableBehavior=&quot;single&quot;&gt;</span><br><span class="line">        &lt;item</span><br><span class="line">            android:id=&quot;@+id/subtitle&quot;</span><br><span class="line">            android:title=&quot;Subtitle&quot;&gt;</span><br><span class="line">            &lt;menu&gt;</span><br><span class="line">                &lt;item</span><br><span class="line">                    android:id=&quot;@+id/item4&quot;</span><br><span class="line">                    android:icon=&quot;@drawable/ic_favourite_filled_24dp&quot;</span><br><span class="line">                    android:title=&quot;Item 4&quot; /&gt;</span><br><span class="line"></span><br><span class="line">                &lt;item</span><br><span class="line">                    android:id=&quot;@+id/item5&quot;</span><br><span class="line">                    android:icon=&quot;@drawable/ic_favourite_filled_24dp&quot;</span><br><span class="line">                    android:title=&quot;Item 5&quot; /&gt;</span><br><span class="line"></span><br><span class="line">            &lt;/menu&gt;</span><br><span class="line">        &lt;/item&gt;</span><br><span class="line">    &lt;/group&gt;</span><br><span class="line">&lt;/menu&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这里把第二个菜单组当做了子菜单</p>
+</li>
+<li><p>定义HeaderLayout(HeaderLayout和菜单都是给NavigationView使用的)</p>
+</li>
+<li><p>实现home页布局(home布局和NavigationView通过DrawerLayout包裹)</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/improving-repository/commit/d050624784119898f2013e350894d0fea966ebed">代码链接</a></p>
+<p>如果需要像QQ一样拉满屏幕，可以设置NavigationView<code>android:layout_marginRight=&quot;-65dp&quot;</code></p>
+<p>②底部弹出抽屉</p>
+<p>和左侧抽屉不一样的是，这里使用到了Behavior，通过将<code>BottomSheetBehavior</code>和<code>NavigationView</code>绑定实现从底部弹出抽屉，这个可以搭配前面写过的底部工具栏来使用</p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/improving-repository/commit/2000c6f9d3cde97744c5110e749b925ce42ad44e">代码链接</a></p>
+</li>
+<li><p>文本输入框</p>
+<p>这个变化稍大，使用Material这套可以避免很多的自定义样式，蛮重要的，下面分类叙述</p>
+<p>①附加icon</p>
+<ul>
+<li><p>app:startIconDrawable：添加起始图标</p>
+</li>
+<li><p>app:endIconMode：设置末尾模式，比如×，输入密码的模式下带小眼睛等，还可以自定义</p>
+</li>
+<li><p>app:endIconDrawable：在<code>custom</code>自定义模式下添加自己的icon，对于自己的icon还可以添加点击事件，这点很方便</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">textField.setEndIconOnClickListener &#123;</span><br><span class="line">  //末尾图标按下的回调</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">textField.addOnEditTextAttachedListener &#123;</span><br><span class="line"> //</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">textField.addOnEndIconChangedListener &#123;</span><br><span class="line">  //末尾图标更改的回调</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>②通过指定外层<code>TextInputLayout</code>的style和<code>AutoCompleteTextView</code>实现下拉选择输入</p>
+<p>style=”@style/Widget.MaterialComponents.TextInputLayout.*.ExposedDropdownMenu”</p>
+<p>③添加辅助说明文本在输入框的下方(作用于TextInputLayout)</p>
+<p>app:helperTextEnabled=”true”<br>app:helperText=”辅助说明文本”</p>
+<p>④添加文本计数功能(作用于TextInputLayout)</p>
+<p>app:counterEnabled=”true”<br>app:counterMaxLength=”20”</p>
+</li>
+</ol>
+<p>​        ⑤添加警告图标(作用于TextInputLayout)</p>
+<p>​        app:errorEnabled=”true”</p>
+<p>​        <code>passwordLayout.error = getString(警示信息)</code>，清空则赋为null即可</p>
+<p>​        ⑥添加前后缀文本信息</p>
+<p>​        app:prefixText=”前缀文本”<br>​        app:suffixText=”后缀文本”</p>
+<p>​        这个常见于特定格式的邮箱补齐</p>
+<p>​        ⑦添加文本改变的监听</p>
+<p>​        <code>textField.editText?.doOnTextChanged &#123; text, start, before, count -&gt; &#125;</code>，可以不为里面的输入框设置id，直接通过外层        的TextInputLayout直接添加监听事件</p>
+<ol start="10">
+<li><p>Snackbar</p>
+<p>类似于Toast的提示，使用也类似，下面简单介绍</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Snackbar.make(binding.root,&quot;我是Snackbar&quot;,Snackbar.LENGTH_LONG)</span><br><span class="line">            .setAction(&quot;撤销&quot;)&#123;</span><br><span class="line">                //撤销后的响应</span><br><span class="line">            &#125;</span><br><span class="line">            //设置位于哪个控件的上方</span><br><span class="line">            .setAnchorView(binding.textField)</span><br><span class="line">            .show()</span><br></pre></td></tr></table></figure>
+
+<p>所以也可以像平时封装Toast一样封装Snackbar，便于使用</p>
+</li>
+<li><p>Bottom Sheet(底部面板)</p>
+<p>这个也超实用，只要需要底部弹窗的都可以用这个，Bottom Sheet分两种，一个是常驻的，一个是动态弹出</p>
+<p>①常驻的Bottom Sheet：记得高德地图和美团里面都有用到</p>
+<ul>
+<li><p>设置behavior属性：app:layout_behavior=”@string/bottom_sheet_behavior”</p>
+</li>
+<li><p>设置起始高度：app:behavior_peekHeight=”dp值”</p>
+</li>
+<li><p>代码中可以通过<code>BottomSheetBehavior.from(设置过behavoir的view)</code>拿到behavoir，然后设置高度或者状态</p>
+</li>
+<li><p>常用的状态就是关闭(BottomSheetBehavior.STATE_COLLAPSED)和展开(BottomSheetBehavior.STATE_EXPANDED)</p>
+</li>
+<li><p>只要xml中设置了behavoir就可以拖动，至于最终能拖动多大距离，取决于控件的<code>layout_height</code></p>
+</li>
+<li><p>添加拖动的监听事件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">behavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() &#123;</span><br><span class="line">            override fun onStateChanged(bottomSheet: View, newState: Int) &#123;</span><br><span class="line">                when (newState) &#123;</span><br><span class="line">                    BottomSheetBehavior.STATE_EXPANDED -&gt; &#123;</span><br><span class="line">                    &#125;</span><br><span class="line">                    BottomSheetBehavior.STATE_COLLAPSED -&gt; &#123;</span><br><span class="line">                    &#125;</span><br><span class="line">                    BottomSheetBehavior.STATE_DRAGGING -&gt; &#123;</span><br><span class="line">                    &#125;</span><br><span class="line">                    BottomSheetBehavior.STATE_SETTLING -&gt; &#123;</span><br><span class="line">                    &#125;</span><br><span class="line">                    BottomSheetBehavior.STATE_HIDDEN -&gt; &#123;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            override fun onSlide(bottomSheet: View, slideOffset: Float) &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<p>​            ②动态的底部弹窗，有点类似于Dialog，但比Dialog好用</p>
+<p>​            需要继承<code>BottomSheetDialogFragment</code>，然后和Fragment的创建类似，初始化布局，这里为了能够设置弹窗的高度，需要拿到系            统的<code>design_bottom_sheet</code>，如若不然，就算你布局时match_parent，也不会填满屏幕，之后设置高度，以及默认的起始高度</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//拿到系统的Bottom Sheet，固定写法</span><br><span class="line">val view:FrameLayout = dialog?.findViewById(R.id.design_bottom_sheet)!!</span><br><span class="line">//拿到与之关联的behavior</span><br><span class="line">val behavior = BottomSheetBehavior.from(view)</span><br><span class="line">//设置弹出高度，如果不设置，则停止滑动时会停在默认0的位置</span><br><span class="line">behavior.peekHeight = 3000</span><br><span class="line">//设置弹窗大小</span><br><span class="line">view.layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT</span><br><span class="line">behavior.state = BottomSheetBehavior.STATE_EXPANDED</span><br></pre></td></tr></table></figure>
+
+<p>​            这里贴一下关键代码，这段初始化必须在onStart()中，否则会报错，因为dialog是在onCreate中创建的</p>
+<p>​            <a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/improving-repository/commit/ea7546e7fb640a5c33479e56825e14e42300074f">代码链接</a></p>
+<h3 id="三-总结"><a href="#三-总结" class="headerlink" title="三.总结"></a>三.总结</h3><blockquote>
+<p>此篇琐碎的小文写了老久，算是对Material Design摸了一个底，实话说确实很好用，只不过上述是静态的使用，将它们组合在一起还需要动画支持，比如自定义Behavior和共享元素的转场动画</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/Material-Design%E6%95%B4%E7%90%86.html" data-id="clchki9ji001gt0qhbcec9wep" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android%E9%AB%98%E7%BA%A7UI/" rel="tag">Android高级UI</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6%E4%BB%A5%E5%8F%8A%E6%BB%91%E5%8A%A8%E5%86%B2%E7%AA%81%E7%9A%84%E5%A4%84%E7%90%86.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          事件分发机制以及滑动冲突的处理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Binder%E6%9C%BA%E5%88%B6%E6%B5%85%E8%B0%88.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Binder机制浅谈</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-UI%E7%B3%BB%E5%88%97/">Android UI系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%AE%9E%E6%88%98%E9%9B%86/">Android实战集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E9%9B%86/">Android开发基础集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/">Android自定义系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Android设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%BF%9B%E9%98%B6/">Android进阶</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E9%87%8D%E8%A6%81%E7%BB%84%E4%BB%B6/">Android重要组件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E9%A1%B9%E7%9B%AE/">Android项目</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E8%BF%9B%E9%98%B6/">Java进阶</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/html%E5%AD%A6%E4%B9%A0/">html学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/">个人成长</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%9B%E6%89%A3%E9%A2%98%E8%A7%A3/">力扣题解</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8E%92%E5%BA%8F%E9%9B%86/">排序集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8%E4%B8%8E%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/">注解处理器与开源框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E6%8E%A7%E4%BB%B6/">系统控件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%84%E4%BB%B6%E5%8C%96%E7%B3%BB%E5%88%97/">组件化系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%93%E9%A2%98/">设计模式专题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E9%9B%86/">问题总结集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag">Android常用琐碎知识点</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E5%BC%80%E5%8F%91%E5%B0%8FDemo/" rel="tag">Android开发小Demo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E9%AB%98%E7%BA%A7UI/" rel="tag">Android高级UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" rel="tag">hexo博客搭建问题总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93/" rel="tag">发布开源库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/" rel="tag">学年设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" rel="tag">算法篇</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" rel="tag">系统高级UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" rel="tag">网络开源库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" style="font-size: 18px;">Android常用琐碎知识点</a> <a href="/tags/Android%E5%BC%80%E5%8F%91%E5%B0%8FDemo/" style="font-size: 10px;">Android开发小Demo</a> <a href="/tags/Android%E9%AB%98%E7%BA%A7UI/" style="font-size: 16px;">Android高级UI</a> <a href="/tags/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" style="font-size: 10px;">hexo博客搭建问题总结</a> <a href="/tags/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93/" style="font-size: 10px;">发布开源库</a> <a href="/tags/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">学年设计</a> <a href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" style="font-size: 20px;">算法篇</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" style="font-size: 12px;">系统高级UI</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" style="font-size: 14px;">网络开源库</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/%E8%87%AA%E5%AE%9A%E4%B9%89PhotoView%E5%A4%84%E7%90%86%E6%89%8B%E5%8A%BF.html">自定义PhotoView处理手势</a>
+          </li>
+        
+          <li>
+            <a href="/%E9%A6%96%E6%AC%A1%E5%BC%80%E6%BA%90%E5%BA%93-%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E6%96%87%E5%AD%97%E6%B8%90%E5%8F%98%E6%95%88%E6%9E%9C.html">首次开源库-不一样的文字渐变效果</a>
+          </li>
+        
+          <li>
+            <a href="/CoordinatorLayout%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89Behavior%E5%85%A5%E9%97%A8.html">CoordinatorLayout原理分析以及自定义Behavior入门</a>
+          </li>
+        
+          <li>
+            <a href="/NestedScrollView%E5%B5%8C%E5%A5%97%E6%BB%91%E5%8A%A8%E5%8E%9F%E7%90%86.html">NestedScrollView嵌套滑动原理</a>
+          </li>
+        
+          <li>
+            <a href="/APT-javapoet%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B.html">APT-javapoet详细教程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 EngineerOfFinger<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/%20%7C%7C%20fas%20fa-home" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives/%20%7C%7C%20fas%20fa-archive" class="mobile-nav-link">时间轴</a>
+  
+    <a href="/tags/%20%7C%7C%20fas%20fa-tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/categories/%20%7C%7C%20fas%20fa-folder-open" class="mobile-nav-link">分类</a>
+  
+    <a href="/link/%20%7C%7C%20fas%20fa-link" class="mobile-nav-link">友链</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

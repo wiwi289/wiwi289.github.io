@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>MVVM、LiveData、DataBinding综合小demo | 梦幻泡影</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一.引言 在学习了MVVM架构方式的基础上，又了解了DataBinding以及LiveData实现轻架构，在很大程度上减轻了控制器Activity&#x2F;Fragment的负担，下面通过一个小例子来进行巩固，融合的知识点如下：   ViewModel(此实例使用的是AndroidViewModel，因为它可搭配SharedPreference轻松使用) DataBinding LiveData Frag">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MVVM、LiveData、DataBinding综合小demo">
+<meta property="og:url" content="https://wiwiyiyi.com/MVVM%E3%80%81LiveData%E3%80%81DataBinding%E7%BB%BC%E5%90%88%E5%B0%8Fdemo.html">
+<meta property="og:site_name" content="梦幻泡影">
+<meta property="og:description" content="一.引言 在学习了MVVM架构方式的基础上，又了解了DataBinding以及LiveData实现轻架构，在很大程度上减轻了控制器Activity&#x2F;Fragment的负担，下面通过一个小例子来进行巩固，融合的知识点如下：   ViewModel(此实例使用的是AndroidViewModel，因为它可搭配SharedPreference轻松使用) DataBinding LiveData Frag">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/MVVMdemo%E5%B1%95%E7%A4%BA.gif">
+<meta property="og:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E7%9F%A2%E9%87%8F%E5%9B%BE.png">
+<meta property="og:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%9F%A2%E9%87%8F%E5%9B%BE%E6%A0%B7%E5%BC%8F.png">
+<meta property="og:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%8F%90%E4%BE%9B%E6%B1%89%E5%8C%961.png">
+<meta property="og:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%8F%90%E4%BE%9B%E6%B1%89%E5%8C%962.png">
+<meta property="og:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%8F%90%E4%BE%9B%E6%B1%89%E5%8C%963.png">
+<meta property="article:published_time" content="2021-01-26T02:20:45.000Z">
+<meta property="article:modified_time" content="2023-01-04T09:03:55.016Z">
+<meta property="article:author" content="EngineerOfFinger">
+<meta property="article:tag" content="Android常用琐碎知识点">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/MVVMdemo%E5%B1%95%E7%A4%BA.gif">
+  
+    <link rel="alternate" href="/atom.xml" title="梦幻泡影" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/wiwi.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">梦幻泡影</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">[object Object]</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/%20%7C%7C%20fas%20fa-home">主页</a>
+        
+          <a class="main-nav-link" href="/archives/%20%7C%7C%20fas%20fa-archive">时间轴</a>
+        
+          <a class="main-nav-link" href="/tags/%20%7C%7C%20fas%20fa-tags">标签</a>
+        
+          <a class="main-nav-link" href="/categories/%20%7C%7C%20fas%20fa-folder-open">分类</a>
+        
+          <a class="main-nav-link" href="/link/%20%7C%7C%20fas%20fa-link">友链</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wiwiyiyi.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-MVVM、LiveData、DataBinding综合小demo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/MVVM%E3%80%81LiveData%E3%80%81DataBinding%E7%BB%BC%E5%90%88%E5%B0%8Fdemo.html" class="article-date">
+  <time datetime="2021-01-26T02:20:45.000Z" itemprop="datePublished">2021-01-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Android设计模式</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MVVM、LiveData、DataBinding综合小demo
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-引言"><a href="#一-引言" class="headerlink" title="一.引言"></a>一.引言</h3><blockquote>
+<p>在学习了MVVM架构方式的基础上，又了解了DataBinding以及LiveData实现轻架构，在很大程度上减轻了控制器Activity/Fragment的负担，下面通过一个小例子来进行巩固，融合的知识点如下：</p>
+</blockquote>
+<ol>
+<li>ViewModel(此实例使用的是AndroidViewModel，因为它可搭配SharedPreference轻松使用)</li>
+<li>DataBinding</li>
+<li>LiveData</li>
+<li>Fragment以及Navigation</li>
+<li>SharedPreferences</li>
+<li>使用建造者模式创建AlertDialog</li>
+</ol>
+<p><strong>除此之外，还有一些小细节，比如使用AS提供的矢量图<code>Vector Asset</code>，可以保证拉伸时保持原有比例，配置横屏布局，虽然我在实际操作时没控制好比例，但在写项目的时候应该考虑横屏布局，使用资源文件<code>strings.xml</code>并且提供多国语言支持</strong></p>
+<p>本次demo是一个简单的加减法口算测试，可供小孩子使用，实际意义还不错，下面展示效果</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/MVVMdemo%E5%B1%95%E7%A4%BA.gif" style="zoom:33%;" />
+
+<h3 id="二-知识点分析"><a href="#二-知识点分析" class="headerlink" title="二.知识点分析"></a>二.知识点分析</h3><ol>
+<li><p>ViewModel加强-&gt;SavedStateHandle</p>
+<p>在app模块对应的gradle中添加<code>implementation &#39;androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.0-beta01&#39;</code></p>
+<p><code>SavedStateHandle</code>属于lifecycle中的一个分支，可用于ViewModel被摧毁时保存数据，它存放的是键值对，最大的用处是提供了<code>getLiveData&lt;类型&gt;(KEY)</code>获取与键对应的LiveData值，通过<code>set(KEY,value)</code>设置初始值并添加到<code>handle</code>中。</p>
+<p>若想在构造函数中保存handle对象，则创建ViewModel时传入<code>SavedStateViewModelFactory(requireActivity().application,requireActivity()</code></p>
+</li>
+<li><p>AndroidViewModel</p>
+<p>在AndroidViewModel内部可以通过<code>getApplication()</code>获取到<code>Application</code>对象，从而得以访问全局资源，在本demo中主要用于获取<code>SharedPreferences</code>的对象来存储数据</p>
+</li>
+<li><p>创建AS提供的矢量图</p>
+<p>选择<strong>res</strong>目录，鼠标右键，选择<code>Vector Asset</code>，然后根据自己的喜好选择矢量图，设置大小颜色等</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E7%9F%A2%E9%87%8F%E5%9B%BE.png" style="zoom: 40%;" />
+
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%9F%A2%E9%87%8F%E5%9B%BE%E6%A0%B7%E5%BC%8F.png" style="zoom:50%;" /></li>
+<li><p>为<code>strings.xml</code>中的资源提供多国语言</p>
+<p>在写项目的时候建议在<code>strings.xml</code>中添加后再使用，直接赋值text的硬编码方式不便维护，下面展示提供多国语言</p>
+<p>本demo提供的是汉化：</p>
+<p>①在<code>strings.xml</code>中点击<code>Open editor</code></p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%8F%90%E4%BE%9B%E6%B1%89%E5%8C%961.png" style="zoom:40%;" />
+
+<p>②点击左上角的地球图标，选择你要添加的新语言，这里选择中文</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%8F%90%E4%BE%9B%E6%B1%89%E5%8C%962.png" style="zoom:50%;" />
+
+<p>③添加后，会多出一列供你填充翻译版本</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%8F%90%E4%BE%9B%E6%B1%89%E5%8C%963.png" style="zoom: 50%;" /></li>
+</ol>
+<h3 id="三-基于本demo对MVVM的小结"><a href="#三-基于本demo对MVVM的小结" class="headerlink" title="三.基于本demo对MVVM的小结"></a>三.基于本demo对MVVM的小结</h3><blockquote>
+<p>该小demo逻辑简单，如果不使用MVVM的架构方式，而用传统的MVC架构，那么所有的逻辑都会在Controller中进行，包括数据的处理、控件的响应事件，不要简单地觉得ViewModel就仅仅用于管理界面中的数据，它还可以进行数据的处理以及简单的逻辑，所以使用MVVM架构，在控制器Controller中只需要处理控件的点击事件即可，大大减轻了Controller的负担，再加上DataBinding实现数据回绑到界面上，就更加轻松了，下面上代码进行体会</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">//ViewModel</span><br><span class="line">class MyViewModel(application: Application, handle: SavedStateHandle):AndroidViewModel(application) &#123;</span><br><span class="line">    private var handle:SavedStateHandle?=null</span><br><span class="line">    private val Key_High_Score = &quot;key_high_score&quot;</span><br><span class="line">    private val Key_Left_Number = &quot;key_left_number&quot;</span><br><span class="line">    private val Key_Right_Number = &quot;key_right_number&quot;</span><br><span class="line">    private val Key_Operatior = &quot;key_operator&quot;</span><br><span class="line">    private val Key_Answer = &quot;key_answer&quot;</span><br><span class="line">    private val Save_Shp_Data_Name = &quot;save_shp_data_name&quot;</span><br><span class="line">    private val Key_Current_Score = &quot;key_current_score&quot;</span><br><span class="line">    var win_flag = false</span><br><span class="line">    init &#123;</span><br><span class="line">        if (!handle.contains(Key_High_Score))&#123;</span><br><span class="line">            val shp = getApplication&lt;Application&gt;().getSharedPreferences(Save_Shp_Data_Name,Context.MODE_PRIVATE)</span><br><span class="line">            handle.set(Key_High_Score,shp.getInt(Key_High_Score,0))</span><br><span class="line">            handle.set(Key_Left_Number,0)</span><br><span class="line">            handle.set(Key_Right_Number,0)</span><br><span class="line">            handle.set(Key_Operatior,&quot;+&quot;)</span><br><span class="line">            handle.set(Key_Answer,0)</span><br><span class="line">            handle.set(Key_Current_Score,0)</span><br><span class="line">        &#125;</span><br><span class="line">        this.handle = handle</span><br><span class="line">    &#125;</span><br><span class="line">    public fun getLeftNumber()=handle?.getLiveData&lt;Int&gt;(Key_Left_Number)</span><br><span class="line">    public fun getRightNumber()=handle?.getLiveData&lt;Int&gt;(Key_Right_Number)</span><br><span class="line">    public fun  getOperator()=handle?.getLiveData&lt;String&gt;(Key_Operatior)</span><br><span class="line">    public fun  getHighScore()=handle?.getLiveData&lt;Int&gt;(Key_High_Score)</span><br><span class="line">    public fun  getCurrentScore()=handle?.getLiveData&lt;Int&gt;(Key_Current_Score)</span><br><span class="line">    public fun getAnswer() = handle?.getLiveData&lt;Int&gt;(Key_Answer)</span><br><span class="line">    fun generator()&#123;</span><br><span class="line">        val Level = 20</span><br><span class="line">        val x = (1..Level).random()</span><br><span class="line">        val y = (1..Level).random()</span><br><span class="line">        if (x%2==0)&#123;</span><br><span class="line">            getOperator()?.value = &quot;+&quot;</span><br><span class="line">            if (x&gt;y)&#123;</span><br><span class="line">                getAnswer()?.value = x</span><br><span class="line">                getLeftNumber()?.value = y</span><br><span class="line">                getRightNumber()?.value = (x-y)</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                getAnswer()?.value = y</span><br><span class="line">                getLeftNumber()?.value = x</span><br><span class="line">                getRightNumber()?.value = (y-x)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            getOperator()?.value = &quot;-&quot;</span><br><span class="line">            if (x&gt;y)&#123;</span><br><span class="line">                getAnswer()?.value = (x-y)</span><br><span class="line">                getLeftNumber()?.value = x</span><br><span class="line">                getRightNumber()?.value = y</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                getAnswer()?.value = (y-x)</span><br><span class="line">                getLeftNumber()?.value = y</span><br><span class="line">                getRightNumber()?.value = x</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    fun save()&#123;</span><br><span class="line">        val shp = getApplication&lt;Application&gt;().getSharedPreferences(Save_Shp_Data_Name,Context.MODE_PRIVATE)</span><br><span class="line">        shp.edit().apply&#123;</span><br><span class="line">            getHighScore()?.value?.let &#123; putInt(Key_High_Score, it) &#125;</span><br><span class="line">            apply()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    fun answerCorrect()&#123;</span><br><span class="line">        getCurrentScore()?.value = getCurrentScore()?.value?.plus(1)</span><br><span class="line">        if(getCurrentScore()?.value!! &gt; getHighScore()?.value!!)&#123;</span><br><span class="line">            getHighScore()?.value = getCurrentScore()?.value</span><br><span class="line">            win_flag = true</span><br><span class="line">        &#125;</span><br><span class="line">        generator()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>控制器Fragment中的代码就不展示了，可以自行前往代码链接查看，它主要用于处理控件的点击事件，从上面的代码就可以感受到ViewModel的强大以及便利，因此对于MVVM的架构方式，所有和数据相关的操作都尽可能地放在ViewModel中，Controller只负责衔接即处理控件的各种响应事件</p>
+<blockquote>
+<p>除此之外，写完这个小demo后，对<strong>ViewModel实现数据共享</strong>的用处更加印象深刻，整个demo只有一个ViewModel，各个Fragment中的代码几乎相同，ViewModel融合了各个界面所需的所有数据，当然，当界面变得复杂起来，最好一个界面对应一个ViewModel</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/master-of-mental-arithmetic/">代码链接</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/MVVM%E3%80%81LiveData%E3%80%81DataBinding%E7%BB%BC%E5%90%88%E5%B0%8Fdemo.html" data-id="clchki9jf0019t0qh347zaxgo" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag">Android常用琐碎知识点</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Room-Android%E4%B8%AD%E7%9A%84%E5%B0%8F%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Room-Android中的小型数据库
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Android%E8%BD%BB%E6%9E%B6%E6%9E%84DataBinding.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android轻架构DataBinding</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-UI%E7%B3%BB%E5%88%97/">Android UI系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%AE%9E%E6%88%98%E9%9B%86/">Android实战集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E9%9B%86/">Android开发基础集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/">Android自定义系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Android设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%BF%9B%E9%98%B6/">Android进阶</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E9%87%8D%E8%A6%81%E7%BB%84%E4%BB%B6/">Android重要组件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E9%A1%B9%E7%9B%AE/">Android项目</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E8%BF%9B%E9%98%B6/">Java进阶</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/html%E5%AD%A6%E4%B9%A0/">html学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/">个人成长</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%9B%E6%89%A3%E9%A2%98%E8%A7%A3/">力扣题解</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8E%92%E5%BA%8F%E9%9B%86/">排序集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8%E4%B8%8E%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/">注解处理器与开源框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E6%8E%A7%E4%BB%B6/">系统控件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%84%E4%BB%B6%E5%8C%96%E7%B3%BB%E5%88%97/">组件化系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%93%E9%A2%98/">设计模式专题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E9%9B%86/">问题总结集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag">Android常用琐碎知识点</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E5%BC%80%E5%8F%91%E5%B0%8FDemo/" rel="tag">Android开发小Demo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E9%AB%98%E7%BA%A7UI/" rel="tag">Android高级UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" rel="tag">hexo博客搭建问题总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93/" rel="tag">发布开源库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/" rel="tag">学年设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" rel="tag">算法篇</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" rel="tag">系统高级UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" rel="tag">网络开源库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" style="font-size: 18px;">Android常用琐碎知识点</a> <a href="/tags/Android%E5%BC%80%E5%8F%91%E5%B0%8FDemo/" style="font-size: 10px;">Android开发小Demo</a> <a href="/tags/Android%E9%AB%98%E7%BA%A7UI/" style="font-size: 16px;">Android高级UI</a> <a href="/tags/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" style="font-size: 10px;">hexo博客搭建问题总结</a> <a href="/tags/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93/" style="font-size: 10px;">发布开源库</a> <a href="/tags/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">学年设计</a> <a href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" style="font-size: 20px;">算法篇</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" style="font-size: 12px;">系统高级UI</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" style="font-size: 14px;">网络开源库</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/%E8%87%AA%E5%AE%9A%E4%B9%89PhotoView%E5%A4%84%E7%90%86%E6%89%8B%E5%8A%BF.html">自定义PhotoView处理手势</a>
+          </li>
+        
+          <li>
+            <a href="/%E9%A6%96%E6%AC%A1%E5%BC%80%E6%BA%90%E5%BA%93-%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E6%96%87%E5%AD%97%E6%B8%90%E5%8F%98%E6%95%88%E6%9E%9C.html">首次开源库-不一样的文字渐变效果</a>
+          </li>
+        
+          <li>
+            <a href="/CoordinatorLayout%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89Behavior%E5%85%A5%E9%97%A8.html">CoordinatorLayout原理分析以及自定义Behavior入门</a>
+          </li>
+        
+          <li>
+            <a href="/NestedScrollView%E5%B5%8C%E5%A5%97%E6%BB%91%E5%8A%A8%E5%8E%9F%E7%90%86.html">NestedScrollView嵌套滑动原理</a>
+          </li>
+        
+          <li>
+            <a href="/APT-javapoet%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B.html">APT-javapoet详细教程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 EngineerOfFinger<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/%20%7C%7C%20fas%20fa-home" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives/%20%7C%7C%20fas%20fa-archive" class="mobile-nav-link">时间轴</a>
+  
+    <a href="/tags/%20%7C%7C%20fas%20fa-tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/categories/%20%7C%7C%20fas%20fa-folder-open" class="mobile-nav-link">分类</a>
+  
+    <a href="/link/%20%7C%7C%20fas%20fa-link" class="mobile-nav-link">友链</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

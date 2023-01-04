@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>NestedScrollView嵌套滑动原理 | 梦幻泡影</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一.前言 前面回顾了View体系的事件分发机制，本文主要会介绍NestedScrollView的滑动嵌套原理，要知道事件分发的流程的是死的，怎么让事件的消费更加合理，才能更好的处理嵌套滑动的冲突，有一说一，NestedScrollView通过接口回调的方式做的很nice  二.使用传统的思路解决嵌套滑动 平常我们经常会用到纵向滑动内嵌套纵向滑动，外层的纵向滑动容器通常会选择NestedScroll">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NestedScrollView嵌套滑动原理">
+<meta property="og:url" content="https://wiwiyiyi.com/NestedScrollView%E5%B5%8C%E5%A5%97%E6%BB%91%E5%8A%A8%E5%8E%9F%E7%90%86.html">
+<meta property="og:site_name" content="梦幻泡影">
+<meta property="og:description" content="一.前言 前面回顾了View体系的事件分发机制，本文主要会介绍NestedScrollView的滑动嵌套原理，要知道事件分发的流程的是死的，怎么让事件的消费更加合理，才能更好的处理嵌套滑动的冲突，有一说一，NestedScrollView通过接口回调的方式做的很nice  二.使用传统的思路解决嵌套滑动 平常我们经常会用到纵向滑动内嵌套纵向滑动，外层的纵向滑动容器通常会选择NestedScroll">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/%E4%BC%A0%E7%BB%9F%E7%9A%84%E5%B5%8C%E5%A5%97%E6%BB%91%E5%8A%A8%E6%9C%BA%E5%88%B6show.gif">
+<meta property="og:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/NestedScroll%E6%9C%BA%E5%88%B6%E6%B5%81%E7%A8%8B1.png">
+<meta property="og:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B5%8C%E5%A5%97%E6%BB%91%E5%8A%A8show.gif">
+<meta property="og:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/NestedScroll%E6%9C%BA%E5%88%B6%E6%B5%81%E7%A8%8B2.png">
+<meta property="og:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/NestedScroll%E6%9C%BA%E5%88%B6%E6%B5%81%E7%A8%8B3.png">
+<meta property="og:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/NestedScroll%E6%9C%BA%E5%88%B6%E6%B5%81%E7%A8%8B4.png">
+<meta property="article:published_time" content="2022-01-23T05:50:24.000Z">
+<meta property="article:modified_time" content="2023-01-04T09:03:55.018Z">
+<meta property="article:author" content="EngineerOfFinger">
+<meta property="article:tag" content="Android高级UI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/%E4%BC%A0%E7%BB%9F%E7%9A%84%E5%B5%8C%E5%A5%97%E6%BB%91%E5%8A%A8%E6%9C%BA%E5%88%B6show.gif">
+  
+    <link rel="alternate" href="/atom.xml" title="梦幻泡影" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/wiwi.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">梦幻泡影</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">[object Object]</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/%20%7C%7C%20fas%20fa-home">主页</a>
+        
+          <a class="main-nav-link" href="/archives/%20%7C%7C%20fas%20fa-archive">时间轴</a>
+        
+          <a class="main-nav-link" href="/tags/%20%7C%7C%20fas%20fa-tags">标签</a>
+        
+          <a class="main-nav-link" href="/categories/%20%7C%7C%20fas%20fa-folder-open">分类</a>
+        
+          <a class="main-nav-link" href="/link/%20%7C%7C%20fas%20fa-link">友链</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wiwiyiyi.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-NestedScrollView嵌套滑动原理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/NestedScrollView%E5%B5%8C%E5%A5%97%E6%BB%91%E5%8A%A8%E5%8E%9F%E7%90%86.html" class="article-date">
+  <time datetime="2022-01-23T05:50:24.000Z" itemprop="datePublished">2022-01-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android-UI%E7%B3%BB%E5%88%97/">Android UI系列</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      NestedScrollView嵌套滑动原理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-前言"><a href="#一-前言" class="headerlink" title="一.前言"></a>一.前言</h3><blockquote>
+<p>前面回顾了View体系的事件分发机制，本文主要会介绍NestedScrollView的滑动嵌套原理，要知道事件分发的流程的是死的，怎么让事件的消费更加合理，才能更好的处理嵌套滑动的冲突，有一说一，NestedScrollView通过接口回调的方式做的很nice</p>
+</blockquote>
+<h3 id="二-使用传统的思路解决嵌套滑动"><a href="#二-使用传统的思路解决嵌套滑动" class="headerlink" title="二.使用传统的思路解决嵌套滑动"></a>二.使用传统的思路解决嵌套滑动</h3><blockquote>
+<p>平常我们经常会用到纵向滑动内嵌套纵向滑动，外层的纵向滑动容器通常会选择NestedScrollView，那么现在先按照传统的思维来替代外层的NestedScrollView，观察可以得到什么样的效果</p>
+</blockquote>
+<p>这里采用外部拦截法，需要格外注意的是<code>super.onInterceptTouchEvent(ev)</code>默认情况下是不会拦截DOWN事件的，看源码也能看出这个拦截的条件是有多苛刻，所以直接return这个就好，不用手动return false</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public boolean onInterceptTouchEvent(MotionEvent ev) &#123;</span><br><span class="line">        if (ev.isFromSource(InputDevice.SOURCE_MOUSE)</span><br><span class="line">                &amp;&amp; ev.getAction() == MotionEvent.ACTION_DOWN</span><br><span class="line">                &amp;&amp; ev.isButtonPressed(MotionEvent.BUTTON_PRIMARY)</span><br><span class="line">                &amp;&amp; isOnScrollbarThumb(ev.getX(), ev.getY())) &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>在滑动控制过程中，都有一个最小滑动距离，这里通过<code>ViewConfiguration.get(context).scaledTouchSlop</code>获取</p>
+<p>为了模拟嵌套滑动效果，MOVE事件的拦截需要自定义规则，这里是以顶部的图片是否可见作为判断准则，具体代码下面会附上链接</p>
+<p>基本规则：</p>
+<ol>
+<li>向上滑动时，如果顶部图片可见，则外层消费MOVE事件</li>
+<li>向下滑动时，如果顶部图片不可见，则外层消费MOVE事件</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/improving-repository/commit/5df6e3417781597964ffdced677dbf37dd96840d">传统嵌套滑动机制实现</a></p>
+<p>下面看一下最终的效果如何</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/%E4%BC%A0%E7%BB%9F%E7%9A%84%E5%B5%8C%E5%A5%97%E6%BB%91%E5%8A%A8%E6%9C%BA%E5%88%B6show.gif" style="zoom:67%;" />
+
+<p>可以看到，优先滑动的是外层，但是很明显，当外层不能再滑(顶部图片不可见)时，内层的RecyclerView不可滑动，显然不符合预期，不过根据原理确实也应该是这样的效果，外层容器一旦拿到了MOVE事件，就不可能再放给孩子了，因为前面的文章说到，只有内部拦截法，也就是孩子才可以决定时候放给父亲，只要父亲决定消费MOVE事件了，那么孩子肯定就消费不了了。</p>
+<h3 id="三-分析NestedScroll机制"><a href="#三-分析NestedScroll机制" class="headerlink" title="三.分析NestedScroll机制"></a>三.分析NestedScroll机制</h3><blockquote>
+<p>有了上面的铺垫，下面就来搞一搞NestedScroll，主要是通过接口回调的方式来灵活消费事件，值得强调的是NestedScroll机制没有改变事件分发的流程，只是在分发和消费流程中增加了接口回调</p>
+</blockquote>
+<h5 id="流程解析"><a href="#流程解析" class="headerlink" title="流程解析"></a>流程解析</h5><p>NestedScroll机制有两类接口：</p>
+<ol>
+<li><p>NestedScrollingParent</p>
+<p>当可滑动的ViewGroup充当父View时实现该接口</p>
+</li>
+<li><p>NestedScrollingChild</p>
+<p>当可滑动的ViewGroup充当子View时实现该接口</p>
+</li>
+</ol>
+<p>先通过一张流程图来熟悉一下NestedScroll的基本工作大致流程</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/NestedScroll%E6%9C%BA%E5%88%B6%E6%B5%81%E7%A8%8B1.png" style="zoom:50%;" />
+
+<p>上图还是比较清晰了，嵌套滑动流程都是从子View主动触发的，然后在分发和处理前去寻找和自己关联的可嵌套滑动的父View，简单说就是以父亲为尊，父View的回调也是很有特点的，都是on开头的方法回调</p>
+<p>注：这里再强调一下事件消费的问题，在消费流程中会通过一个<code>consumed[2]</code>数组来保存消费的多少，<code>consumed[0]</code>表示水平方向消费的距离，<code>consumed[1]</code>表示竖直方向消费的距离，因为传递的是引用，所以父亲消费结束后，回到子View，子View再消费剩下的部分，如果子View没有完全消费完，那么还会再询问父亲要不要<strong>继续消费</strong>，分配到具体的阶段就是，预滚动和滚动阶段，会询问两次</p>
+<h5 id="接口方法解析"><a href="#接口方法解析" class="headerlink" title="接口方法解析"></a>接口方法解析</h5><p>下面来具体分析一下上述两个接口中具体的方法，当然，随着后续的扩展还会有后缀2和3的对应接口，这里分析原始的接口</p>
+<ol>
+<li><p>NestedScrollingChild</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">public interface NestedScrollingChild &#123;</span><br><span class="line">    /**</span><br><span class="line">    * 启用或禁用嵌套滚动的方法，设置为true，并且当前界面的View的层次结构是支持嵌套滚动的</span><br><span class="line">    * (也就是需要NestedScrollingParent嵌套NestedScrollingChild)，才会触发嵌套滚动。</span><br><span class="line">    * 一般这个方法内部都是直接代理给NestedScrollingChildHelper的同名方法即可</span><br><span class="line">    */</span><br><span class="line">    void setNestedScrollingEnabled(boolean enabled);</span><br><span class="line">    </span><br><span class="line">    /**</span><br><span class="line">    * 判断当前View是否支持嵌套滑动。一般也是直接代理给NestedScrollingChildHelper的同名方法即可</span><br><span class="line">    */</span><br><span class="line">    boolean isNestedScrollingEnabled();</span><br><span class="line">    </span><br><span class="line">    /**</span><br><span class="line">    * 表示view开始滚动了,一般是在ACTION_DOWN中调用，如果返回true则表示父布局支持嵌套滚动。</span><br><span class="line">    * 一般也是直接代理给NestedScrollingChildHelper的同名方法即可。这个时候正常情况会触发Parent的onStartNestedScroll()方法</span><br><span class="line">    */</span><br><span class="line">    boolean startNestedScroll(@ScrollAxis int axes);</span><br><span class="line">    </span><br><span class="line">    /**</span><br><span class="line">    * 一般是在事件结束比如ACTION_UP或者ACTION_CANCLE中调用,告诉父布局滚动结束。一般也是直接代理给NestedScrollingChildHelper的同名方法即可</span><br><span class="line">    */</span><br><span class="line">    void stopNestedScroll();</span><br><span class="line">    </span><br><span class="line">    /**</span><br><span class="line">    * 判断当前View是否有嵌套滑动的Parent。一般也是直接代理给NestedScrollingChildHelper的同名方法即可</span><br><span class="line">    */</span><br><span class="line">    boolean hasNestedScrollingParent();</span><br><span class="line">    </span><br><span class="line">    /**</span><br><span class="line">    * 在当前View消费滚动距离之后。通过调用该方法，把剩下的滚动距离传给父布局。如果当前没有发生嵌套滚动，或者不支持嵌套滚动，调用该方法也没啥用。</span><br><span class="line">    * 内部一般也是直接代理给NestedScrollingChildHelper的同名方法即可</span><br><span class="line">    * dxConsumed：被当前View消费了的水平方向滑动距离</span><br><span class="line">    * dyConsumed：被当前View消费了的垂直方向滑动距离</span><br><span class="line">    * dxUnconsumed：未被消费的水平滑动距离</span><br><span class="line">    * dyUnconsumed：未被消费的垂直滑动距离</span><br><span class="line">    * offsetInWindow：输出可选参数。如果不是null，该方法完成返回时，</span><br><span class="line">    * 会将该视图从该操作之前到该操作完成之后的本地视图坐标中的偏移量封装进该参数中，offsetInWindow[0]水平方向，offsetInWindow[1]垂直方向</span><br><span class="line">    * @return true：表示滚动事件分发成功,fasle: 分发失败</span><br><span class="line">    */</span><br><span class="line">    boolean dispatchNestedScroll(int dxConsumed, int dyConsumed,</span><br><span class="line">            int dxUnconsumed, int dyUnconsumed, @Nullable int[] offsetInWindow);</span><br><span class="line">    </span><br><span class="line">    /**</span><br><span class="line">    * 在当前View消费滚动距离之前把滑动距离传给父布局。相当于把优先处理权交给Parent</span><br><span class="line">    * 内部一般也是直接代理给NestedScrollingChildHelper的同名方法即可。</span><br><span class="line">	* dx：当前水平方向滑动的距离</span><br><span class="line">	* dy：当前垂直方向滑动的距离</span><br><span class="line">	* consumed：输出参数，会将Parent消费掉的距离封装进该参数consumed[0]代表水平方向，consumed[1]代表垂直方向</span><br><span class="line">	* @return true：代表Parent消费了滚动距离</span><br><span class="line">    */</span><br><span class="line">    boolean dispatchNestedPreScroll(int dx, int dy, @Nullable int[] consumed,</span><br><span class="line">            @Nullable int[] offsetInWindow);</span><br><span class="line">    </span><br><span class="line">    /**</span><br><span class="line">    *将惯性滑动的速度分发给Parent。内部一般也是直接代理给NestedScrollingChildHelper的同名方法即可</span><br><span class="line">	* velocityX：表示水平滑动速度</span><br><span class="line">	* velocityY：垂直滑动速度</span><br><span class="line">	* consumed：true：表示当前View消费了滑动事件，否则传入false</span><br><span class="line">	* @return true：表示Parent处理了滑动事件</span><br><span class="line">	*/</span><br><span class="line">    boolean dispatchNestedFling(float velocityX, float velocityY, boolean consumed);</span><br><span class="line">    </span><br><span class="line">    /**</span><br><span class="line">    * 在当前View自己处理惯性滑动前，先将滑动事件分发给Parent,一般来说如果想自己处理惯性的滑动事件，</span><br><span class="line">    * 就不应该调用该方法给Parent处理。如果给了Parent并且返回true，那表示Parent已经处理了，自己就不应该再做处理。</span><br><span class="line">    * 返回false，代表Parent没有处理，但是不代表Parent后面就不用处理了</span><br><span class="line">    * @return true：表示Parent处理了滑动事件</span><br><span class="line">    */</span><br><span class="line">    boolean dispatchNestedPreFling(float velocityX, float velocityY);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>NestedScrollingParent</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">public interface NestedScrollingParent &#123;</span><br><span class="line">    /**</span><br><span class="line">    * 当NestedScrollingChild调用方法startNestedScroll()时,会调用该方法。主要就是通过返回值告诉系统是否需要对后续的滚动进行处理</span><br><span class="line">    * child：该ViewParen的包含NestedScrollingChild的直接子View，如果只有一层嵌套，和target是同一个View</span><br><span class="line">    * target：本次嵌套滚动的NestedScrollingChild</span><br><span class="line">    * nestedScrollAxes：滚动方向</span><br><span class="line">    * @return </span><br><span class="line">    * true:表示我需要进行处理，后续的滚动会触发相应的回到</span><br><span class="line">    * false: 我不需要处理，后面也就不会进行相应的回调了</span><br><span class="line">    */</span><br><span class="line">    //child和target的区别，如果是嵌套两层如:Parent包含一个LinearLayout，LinearLayout里面才是NestedScrollingChild类型的View。这个时候，</span><br><span class="line">    //child指向LinearLayout，target指向NestedScrollingChild；如果Parent直接就包含了NestedScrollingChild，</span><br><span class="line">    //这个时候target和child都指向NestedScrollingChild</span><br><span class="line">    boolean onStartNestedScroll(@NonNull View child, @NonNull View target, @ScrollAxis int axes);</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">    * 如果onStartNestedScroll()方法返回的是true的话,那么紧接着就会调用该方法.它是让嵌套滚动在开始滚动之前,</span><br><span class="line">    * 让布局容器(viewGroup)或者它的父类执行一些配置的初始化的</span><br><span class="line">    */</span><br><span class="line">    void onNestedScrollAccepted(@NonNull View child, @NonNull View target, @ScrollAxis int axes);</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">    * 停止滚动了,当子view调用stopNestedScroll()时会调用该方法</span><br><span class="line">    */</span><br><span class="line">    void onStopNestedScroll(@NonNull View target);</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">    * 当子view调用dispatchNestedScroll()方法时,会调用该方法。也就是开始分发处理嵌套滑动了</span><br><span class="line">    * dxConsumed：已经被target消费掉的水平方向的滑动距离</span><br><span class="line">    * dyConsumed：已经被target消费掉的垂直方向的滑动距离</span><br><span class="line">    * dxUnconsumed：未被tagert消费掉的水平方向的滑动距离</span><br><span class="line">    * dyUnconsumed：未被tagert消费掉的垂直方向的滑动距离</span><br><span class="line">    */</span><br><span class="line">    void onNestedScroll(@NonNull View target, int dxConsumed, int dyConsumed,</span><br><span class="line">            int dxUnconsumed, int dyUnconsumed);</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">    * 当子view调用dispatchNestedPreScroll()方法是,会调用该方法。也就是在NestedScrollingChild在处理滑动之前，</span><br><span class="line">    * 会先将机会给Parent处理。如果Parent想先消费部分滚动距离，将消费的距离放入consumed</span><br><span class="line">    * dx：水平滑动距离</span><br><span class="line">    * dy：处置滑动距离</span><br><span class="line">    * consumed：表示Parent要消费的滚动距离,consumed[0]和consumed[1]分别表示父布局在x和y方向上消费的距离.</span><br><span class="line">    */</span><br><span class="line">    void onNestedPreScroll(@NonNull View target, int dx, int dy, @NonNull int[] consumed);</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">    * 你可以捕获对内部NestedScrollingChild的fling事件</span><br><span class="line">    * velocityX：水平方向的滑动速度</span><br><span class="line">    * velocityY：垂直方向的滑动速度</span><br><span class="line">    * consumed：是否被child消费了</span><br><span class="line">    * @return</span><br><span class="line">    * true:则表示消费了滑动事件</span><br><span class="line">    */</span><br><span class="line">    boolean onNestedFling(@NonNull View target, float velocityX, float velocityY, boolean consumed);</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">    * 在惯性滑动距离处理之前，会调用该方法，同onNestedPreScroll()一样，也是给Parent优先处理的权利</span><br><span class="line">    * target：本次嵌套滚动的NestedScrollingChild</span><br><span class="line">    * velocityX：水平方向的滑动速度</span><br><span class="line">    * velocityY：垂直方向的滑动速度</span><br><span class="line">    * @return</span><br><span class="line">    * true：表示Parent要处理本次滑动事件，Child就不要处理了</span><br><span class="line">    */</span><br><span class="line">    boolean onNestedPreFling(@NonNull View target, float velocityX, float velocityY);</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">    * 返回当前滑动的方向，一般直接通过NestedScrollingParentHelper.getNestedScrollAxes()返回即可</span><br><span class="line">    */</span><br><span class="line">    @ScrollAxis</span><br><span class="line">    int getNestedScrollAxes();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>①这里值得注意的是target和child的区别，target是可以嵌套滑动的子View，并不一定是直接子View，直接子View又称Child</p>
+<p>②扩展的2接口新增了<code>type</code>参数，主要是为了区别事件类型：touch(触摸)和fling(惯性滑动)，3新增了cousumed引用</p>
+</li>
+</ol>
+<p>上面提到，嵌套滑动的处理流程是从子View开始的，它会不断向上递归父View，寻找可嵌套滑动的父View，然后再自己消费，介绍了这么多，还是得回到如何使用这两个接口，下面通过一个小例子来展示效果</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B5%8C%E5%A5%97%E6%BB%91%E5%8A%A8show.gif" style="zoom:50%;" />
+
+<p>可以看到效果很明显，滚动的优先级以父View为尊，如果图片可见，并且向上滚动，则父View先消费，如果图片不可见，并且向下滚动，则父View先消费，剩余的才给子View消费，相比于传统的方式，传统的做不到把剩余的给子View消费，而这种接口回调的方式可以</p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/improving-repository/commit/57f7e45c3b5bba1c73d7c396e1a57ee1ad87c5ac">自定义嵌套滑动机制</a></p>
+<p>其实代码实现也很少，很简单，接口中的方法都是交给各自对应的Helper类去管理，唯一要处理的就是预滚动和滚动中的逻辑</p>
+<p>关于Helper，这里就不做介绍了，源码实在有点多，毕竟本文的关键在于看懂大致流程，并能使用，源码其实比较清晰，比如向上递归寻找可嵌套的父View就是交给Helper类来做的，另外就是，由于起点是子View，所以ChildHelper得源码会比较多一点，具体要调用哪些，可以参考我的代码链接，最后再附上NestedScroll机制的几张流程图，方便记忆</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/NestedScroll%E6%9C%BA%E5%88%B6%E6%B5%81%E7%A8%8B2.png" style="zoom:50%;" />
+
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/NestedScroll%E6%9C%BA%E5%88%B6%E6%B5%81%E7%A8%8B3.png" style="zoom:30%;" />
+
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/NestedScroll%E6%9C%BA%E5%88%B6%E6%B5%81%E7%A8%8B4.png" style="zoom:25%;" />
+
+<p>在文末还是留点东西，如果想更改开始的那个传统滑动嵌套机制又该如何实现，很明显内部的RecyclerView不就是NestedScrollingChild的实现类吗，所以只需要让外部的容器实现NestedScrollingParent就好了，方法什么的都和自定义的方式一模一样，附上代码链接</p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/improving-repository/commit/8ffefc87eecc398680673a3c4559d293b677c950">更改传统的嵌套滑动机制</a></p>
+<h3 id="四-总结"><a href="#四-总结" class="headerlink" title="四.总结"></a>四.总结</h3><blockquote>
+<p>有了事件分发的基础，其实理解NestedScroll很容易的，上面从传统-&gt;自定义-&gt;更改传统的链条展示了NestedScroll相关接口的用法，还是蛮有意思的，这为接下来的自定义Behavior打下基础</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/NestedScrollView%E5%B5%8C%E5%A5%97%E6%BB%91%E5%8A%A8%E5%8E%9F%E7%90%86.html" data-id="clchki9jh001ct0qh0l2d2ftr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android%E9%AB%98%E7%BA%A7UI/" rel="tag">Android高级UI</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/CoordinatorLayout%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89Behavior%E5%85%A5%E9%97%A8.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          CoordinatorLayout原理分析以及自定义Behavior入门
+        
+      </div>
+    </a>
+  
+  
+    <a href="/APT-javapoet%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">APT-javapoet详细教程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-UI%E7%B3%BB%E5%88%97/">Android UI系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%AE%9E%E6%88%98%E9%9B%86/">Android实战集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E9%9B%86/">Android开发基础集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/">Android自定义系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Android设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%BF%9B%E9%98%B6/">Android进阶</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E9%87%8D%E8%A6%81%E7%BB%84%E4%BB%B6/">Android重要组件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E9%A1%B9%E7%9B%AE/">Android项目</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E8%BF%9B%E9%98%B6/">Java进阶</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/html%E5%AD%A6%E4%B9%A0/">html学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/">个人成长</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%9B%E6%89%A3%E9%A2%98%E8%A7%A3/">力扣题解</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8E%92%E5%BA%8F%E9%9B%86/">排序集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8%E4%B8%8E%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/">注解处理器与开源框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E6%8E%A7%E4%BB%B6/">系统控件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%84%E4%BB%B6%E5%8C%96%E7%B3%BB%E5%88%97/">组件化系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%93%E9%A2%98/">设计模式专题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E9%9B%86/">问题总结集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag">Android常用琐碎知识点</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E5%BC%80%E5%8F%91%E5%B0%8FDemo/" rel="tag">Android开发小Demo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E9%AB%98%E7%BA%A7UI/" rel="tag">Android高级UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" rel="tag">hexo博客搭建问题总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93/" rel="tag">发布开源库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/" rel="tag">学年设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" rel="tag">算法篇</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" rel="tag">系统高级UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" rel="tag">网络开源库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" style="font-size: 18px;">Android常用琐碎知识点</a> <a href="/tags/Android%E5%BC%80%E5%8F%91%E5%B0%8FDemo/" style="font-size: 10px;">Android开发小Demo</a> <a href="/tags/Android%E9%AB%98%E7%BA%A7UI/" style="font-size: 16px;">Android高级UI</a> <a href="/tags/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" style="font-size: 10px;">hexo博客搭建问题总结</a> <a href="/tags/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93/" style="font-size: 10px;">发布开源库</a> <a href="/tags/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">学年设计</a> <a href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" style="font-size: 20px;">算法篇</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" style="font-size: 12px;">系统高级UI</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" style="font-size: 14px;">网络开源库</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/%E8%87%AA%E5%AE%9A%E4%B9%89PhotoView%E5%A4%84%E7%90%86%E6%89%8B%E5%8A%BF.html">自定义PhotoView处理手势</a>
+          </li>
+        
+          <li>
+            <a href="/%E9%A6%96%E6%AC%A1%E5%BC%80%E6%BA%90%E5%BA%93-%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E6%96%87%E5%AD%97%E6%B8%90%E5%8F%98%E6%95%88%E6%9E%9C.html">首次开源库-不一样的文字渐变效果</a>
+          </li>
+        
+          <li>
+            <a href="/CoordinatorLayout%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89Behavior%E5%85%A5%E9%97%A8.html">CoordinatorLayout原理分析以及自定义Behavior入门</a>
+          </li>
+        
+          <li>
+            <a href="/NestedScrollView%E5%B5%8C%E5%A5%97%E6%BB%91%E5%8A%A8%E5%8E%9F%E7%90%86.html">NestedScrollView嵌套滑动原理</a>
+          </li>
+        
+          <li>
+            <a href="/APT-javapoet%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B.html">APT-javapoet详细教程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 EngineerOfFinger<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/%20%7C%7C%20fas%20fa-home" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives/%20%7C%7C%20fas%20fa-archive" class="mobile-nav-link">时间轴</a>
+  
+    <a href="/tags/%20%7C%7C%20fas%20fa-tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/categories/%20%7C%7C%20fas%20fa-folder-open" class="mobile-nav-link">分类</a>
+  
+    <a href="/link/%20%7C%7C%20fas%20fa-link" class="mobile-nav-link">友链</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

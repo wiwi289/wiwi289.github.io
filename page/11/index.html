@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>梦幻泡影</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="success&#x3D;persistence">
+<meta property="og:type" content="website">
+<meta property="og:title" content="梦幻泡影">
+<meta property="og:url" content="https://wiwiyiyi.com/page/11/index.html">
+<meta property="og:site_name" content="梦幻泡影">
+<meta property="og:description" content="success&#x3D;persistence">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="EngineerOfFinger">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="梦幻泡影" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/wiwi.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">梦幻泡影</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">[object Object]</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/%20%7C%7C%20fas%20fa-home">主页</a>
+        
+          <a class="main-nav-link" href="/archives/%20%7C%7C%20fas%20fa-archive">时间轴</a>
+        
+          <a class="main-nav-link" href="/tags/%20%7C%7C%20fas%20fa-tags">标签</a>
+        
+          <a class="main-nav-link" href="/categories/%20%7C%7C%20fas%20fa-folder-open">分类</a>
+        
+          <a class="main-nav-link" href="/link/%20%7C%7C%20fas%20fa-link">友链</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wiwiyiyi.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-自定义属性和绘制文本" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B1%9E%E6%80%A7%E5%92%8C%E7%BB%98%E5%88%B6%E6%96%87%E6%9C%AC.html" class="article-date">
+  <time datetime="2020-10-25T15:10:22.000Z" itemprop="datePublished">2020-10-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/">Android自定义系列</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B1%9E%E6%80%A7%E5%92%8C%E7%BB%98%E5%88%B6%E6%96%87%E6%9C%AC.html">自定义属性和绘制文本</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-引言"><a href="#一-引言" class="headerlink" title="一.引言"></a>一.引言</h3><p>我们自定义的控件，很多时候会设置图片资源、文本内容以及背景色等，显然我们不能把这些都写死，为了能够让使用者根据自己的需求以及爱好来设置这些属性，我们需要给外部提供一个可设置的接口接收用户设置的数据，然后在代码中将它们都解析取出来，并展示到界面中去，提供接口即自定义属性</p>
+<h3 id="二-自定义属性的步骤"><a href="#二-自定义属性的步骤" class="headerlink" title="二.自定义属性的步骤"></a>二.自定义属性的步骤</h3><ol>
+<li>在<code>values</code>文件夹下新建一个<code>Values Resource File</code>资源文件</li>
+<li>通过<code>&lt;declare-styleable name=&quot;类名&quot;&gt;添加的属性&lt;/declare-styleable&gt;</code>的标签形式声明为哪个类添加属性</li>
+<li>使用<code>&lt;attr name=&quot;属性名&quot; format=&quot;类型|reference&quot;/&gt;</code>来添加一个属性</li>
+</ol>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B1%9E%E6%80%A7%E6%AD%A5%E9%AA%A4.png"></p>
+<p>以上步骤仅仅是给用户提供一个接口设置控件的属性，也就意味着这些属性仅仅在xml中，只是一些值，为了能够让他们显示到界面上去，我们还需将这些值传递到代码中，通过代码真真实实的设置控件的属性，传值这个过程称为解析属性</p>
+<ol start="4">
+<li>在<code>constructor(context: Context,attrs: AttributeSet):super(context,attrs)&#123;&#125;</code>在此构造函数中进行解析，因为xml中控件的所有属性都保存在<code>attrs</code>中，这也就是为什么要提供一个这样的构造函数的原因</li>
+<li>通过<code>context</code>提供的<code>obtainStyledAttributes(attrs,R.styleable.类名)</code>获取到存储指定<strong>类名控件</strong>的属性数组并存储在容器中，返回类型为<code>TypedArray</code></li>
+<li>将返回的对象进行保存，命名为<code>typedArray</code>，我们通过<code>typedArray</code>可以获取到自定义的属性的<strong>值</strong>，下表为<code>TypedArray</code>提供的方法，获取不同类型的属性值</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center">方法名</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">getResourceId(R.styleable.类名_属性名,提供一个默认值)</td>
+<td align="center">获取一张图片的id值</td>
+</tr>
+<tr>
+<td align="center">getDrawable(R.styleable.类名_属性名)</td>
+<td align="center">获取到一张图片的drawable资源</td>
+</tr>
+<tr>
+<td align="center">getBoolean(R.styleable.类名_属性名,提供一个默认值)</td>
+<td align="center">获取一个布尔值</td>
+</tr>
+<tr>
+<td align="center">getInt(R.styleable.类名_属性名,提供一个默认值)</td>
+<td align="center">获取一个整型值</td>
+</tr>
+<tr>
+<td align="center">getFloat(R.styleable.类名_属性名,提供一个默认值)</td>
+<td align="center">获取一个浮点型</td>
+</tr>
+<tr>
+<td align="center">getString(R.styleable.类名_属性名)</td>
+<td align="center">获取一个字符串</td>
+</tr>
+<tr>
+<td align="center">getColor(R.styleable.类名_属性名,提供一个默认值)</td>
+<td align="center">获取一个颜色值</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>以上为几种常用的方法，获取一张图片最好采用<code>getResourceId</code>，因为它仅仅是一个整数值，而<code>getDrawable</code>获取的是一张图片的资源即字节，相对占用更多的空间，解析除想要的属性的值后，再把它们通过对应的<code>set方法</code>赋值给对应的控件即可</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">private fun parseAttr(attrs: AttributeSet)&#123;</span><br><span class="line">        val typedArray:TypedArray = context.obtainStyledAttributes(attrs,R.styleable.BottomBar)</span><br><span class="line">        bgPic = typedArray.getResourceId(R.styleable.BottomBar_normalIcon,R.drawable.circle)</span><br><span class="line">        selectIcon = typedArray.getResourceId(R.styleable.BottomBar_selectIcon,R.drawable.circle_selected)</span><br><span class="line">        selectColor  = typedArray.getColor(R.styleable.BottomBar_selectColor,Color.RED)</span><br><span class="line">        Bottomtext = typedArray.getString(R.styleable.BottomBar_text)</span><br><span class="line">        normalColor = typedArray.getColor(R.styleable.BottomBar_normalColor,Color.BLACK)</span><br><span class="line">        mSelected = typedArray.getBoolean(R.styleable.BottomBar_selected,false)</span><br><span class="line">        typedArray.recycle()</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>typedArray</code>使用完毕后，最好调用<code>recycle()</code>进行资源释放</p>
+</blockquote>
+<h3 id="三-自定义属性实战应用"><a href="#三-自定义属性实战应用" class="headerlink" title="三.自定义属性实战应用"></a>三.自定义属性实战应用</h3><p><strong>效果预览</strong></p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/%E5%9C%86%E5%BD%A2%E8%BF%9B%E5%BA%A6%E6%9D%A1.gif" style="zoom:50%;" />
+
+<ol>
+<li><p>该动画属于自定义动画，动画因子为<strong>外层圆弧的弧度</strong>，由于该动画表示的是下载比例，所以动画因子的变动范围选择<strong>0-1.0</strong>，乘以360即可。</p>
+</li>
+<li><p>该动画的圆环背景和前景色都可以由用户来设置，以及文字颜色等，即自定义属性。</p>
+</li>
+<li><p>除自定义属性外，还用到了绘制文本，绘制文本最难的点在于控制文本的位置，当画笔一旦确立，我们就可以通过画笔对象获取到字体矩阵<code>fontMetrics</code>，此矩阵包含了几个位置信息，字体底/顶部、行底/顶部、水平基准线，画笔内部可以设置文字水平居中，但垂直居中只能手动更改y坐标来实现</p>
+</li>
+</ol>
+<p><strong>字体矩阵的位置图示</strong></p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/%E5%AD%97%E4%BD%93%E7%9F%A9%E9%98%B5%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg"></p>
+<p>字体大小一旦确定，<code>ascent和descent</code>也就确定了，即字体的高度，所以y坐标加上space就能让文本垂直居中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">val mtrics = textPaint.fontMetrics</span><br><span class="line">        val space = (mtrics.descent-mtrics.ascent)/2f-mtrics.descent</span><br><span class="line">        val text=&quot;$&#123;(progress*100).toInt()&#125;%&quot;</span><br><span class="line">        canvas?.drawText(text,cx,cy+space,textPaint)</span><br></pre></td></tr></table></figure>
+
+<p><strong>小思考</strong></p>
+<blockquote>
+<p>前面提到过，外部提供的值，传给控件需要重写<code>set()</code>方法，并且调用<code>invalidate()</code>进行界面的刷新，那么传递属性的值需不需要进行刷新呢，答案是不需要，在<code>onCreate()</code>方法中解析xml中的控件时，还没有进行绘制，解析控件时就会将控件对应的属性全部加载出来，所以不需要进行界面的刷新，界面的刷新通常在<code>onDraw()</code>中绘制好后才会调用<code>invalidate()</code>，下面通过执行顺序的打印证实</p>
+</blockquote>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/%E7%BB%98%E5%88%B6%E9%A1%BA%E5%BA%8F.png"></p>
+<p>可以看到<code>onDraw()</code>确实是在<code>setContentView(R.layout.activity_main)</code>解析完控件后才被调用的</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote>
+<p>自定属性是自定义控件和动画中相当重要的部分，也是高级UI板块中必须掌握的，没有自定义属性，自定义的控件就失去了灵魂</p>
+</blockquote>
+<p><strong>代码链接</strong></p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/androidUI-circleLoad/tree/master/app/src/main/java/swu/cx/flowgroup">圆形加载进度动画</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B1%9E%E6%80%A7%E5%92%8C%E7%BB%98%E5%88%B6%E6%96%87%E6%9C%AC.html" data-id="clchki9lm0071t0qhcftlfcp4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-三种事件回调详解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/%E4%B8%89%E7%A7%8D%E4%BA%8B%E4%BB%B6%E5%9B%9E%E8%B0%83%E8%AF%A6%E8%A7%A3.html" class="article-date">
+  <time datetime="2020-10-24T11:39:25.000Z" itemprop="datePublished">2020-10-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E9%9B%86/">Android开发基础集</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/%E4%B8%89%E7%A7%8D%E4%BA%8B%E4%BB%B6%E5%9B%9E%E8%B0%83%E8%AF%A6%E8%A7%A3.html">三种事件回调详解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>在日常开发中，我发现事件的回调常常用到，无论是事件监听还是普通的状态判断(符合某个状态便做某件事)都使用了事件的回调，事件回调分为三种：</p>
+<ol>
+<li>保存一个类的对象。比如类B的某个成员方法在执行到某个程度时(即满足一个条件)需要用到类A中的一个成员方法，那么类B就需要保存一个类A的对象，通过类A的对象自然可以调用A的成员方法</li>
+</ol>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E4%BA%8B%E4%BB%B6%E5%9B%9E%E8%B0%83/%E4%BA%8B%E4%BB%B6%E5%9B%9E%E8%B0%83.png"></p>
+<p>这是最简单但用得也最少的方式，耦合性不但高，还不灵活(没有复用性)，比如不想调用Teacher中的方法而想调用Father类的方法，那岂不是Student类中还需要保存一个Father类的对象，显然不太好，接口回调可以解决这个问题，提高复用性</p>
+<ol start="2">
+<li>保存一个接口的对象。其实本质和方式1差不多，但灵活性很高。</li>
+</ol>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E4%BA%8B%E4%BB%B6%E5%9B%9E%E8%B0%83/%E4%BA%8B%E4%BB%B6%E5%9B%9E%E8%B0%832.png"></p>
+<p>如果Student的对象现在想向Father类要钱，那么只需要Father类实现接口，并重写<code>callBack()</code>方法，让后重新设置listener的值，让它保存Father类的一个对象即可，如此一想，接口回调是不是灵活了很多</p>
+<ol start="3">
+<li>在Kotlin中事件回调采用高阶函数，高阶函数解决了很多麻烦，相当好用</li>
+</ol>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E4%BA%8B%E4%BB%B6%E5%9B%9E%E8%B0%83/%E4%BA%8B%E4%BB%B6%E5%9B%9E%E8%B0%833.png"></p>
+<p>使用高阶函数回调的优势：</p>
+<p>① 高阶函数的回调保存的是函数对象，而不是像前两种保存的是一个类的对象，不会引发安全性问题，这在Android开发界面的生命周期中很关键，一旦Activity被销毁，就意味着对象就没了，在进行回调肯定会发生错误，很严重</p>
+<p>② 高阶函数的返回值可以为任意类型，使用的时候可以返回也可以不返回，不像接口回调中的抽象函数，要么有返回要么就没有返回，必须确定下来，不太方便，向Father类要钱，肯定会返回一个值，但原本接口中的方法是没有返回值的，这就很麻烦</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote>
+<p>近年来，Kotlin语言广泛使用，所以建议掌握，对比了以上三种回调方式后，首选的回调方式肯定是高阶函数的回调，真的很好用</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/%E4%B8%89%E7%A7%8D%E4%BA%8B%E4%BB%B6%E5%9B%9E%E8%B0%83%E8%AF%A6%E8%A7%A3.html" data-id="clchki9k0002ut0qhbrcf7t11" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag">Android常用琐碎知识点</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-自定义控件实战" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6%E5%AE%9E%E6%88%98.html" class="article-date">
+  <time datetime="2020-10-23T06:37:25.000Z" itemprop="datePublished">2020-10-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/">Android自定义系列</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6%E5%AE%9E%E6%88%98.html">自定义控件实战</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-引言"><a href="#一-引言" class="headerlink" title="一.引言"></a>一.引言</h3><blockquote>
+<p>前面已经详细介绍了自定义绘制各种图案，下面通过一个解锁界面的小Demo进行知识点的巩固</p>
+</blockquote>
+<p><strong>效果图</strong></p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Lock/Lock.gif" style="zoom:40%;" />
+
+<p>实现手势滑动解锁的功能有三种思路：</p>
+<ol>
+<li>第一种是用一个个的ImageView通过ConstarintLayout约束布局形成九宫格，并且线条图片也是提前布局好的，这种方式最简单，逻辑很少，但缺点也很明显：移植复用性太差，除了复制代码还得拷贝图片，并且布局不易管理，不推荐这种方式</li>
+<li>自定义控件：通过绘制的方式实现解锁效果，好处明显-&gt;不需要图片占内存，移植复用方便，直拷贝类即可，就像系统的控件一样，直接拿来用就好，很简单，但内部实现的逻辑稍微复杂</li>
+<li>自定义ViewGroup：暂时不考虑，因为ViewGroup主要是用来定义自己的Layout规则，通常不涉及绘制，从实现的难易程度来说，自定义控件是最好的方式了</li>
+</ol>
+<blockquote>
+<p>在此提供1和2两种方式实现解锁功能，对比一下就知道自定义控件是有多好用了</p>
+</blockquote>
+<h3 id="二-通过图片实现解锁"><a href="#二-通过图片实现解锁" class="headerlink" title="二.通过图片实现解锁"></a>二.通过图片实现解锁</h3><p>首先我们得准备好解锁功能需要用到的图片素材，我将其放在百度网盘上</p>
+<p><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1WtXT-aD68h-GjlDWfQW0OQ">图片链接</a><br>提取码：tf9o </p>
+<blockquote>
+<p>为让所有布局图片便于管理，选择专门用一个容器来承载所有ImageView，这样的好处是让所有布局图片形成一个整体，此种方式布局稍微麻烦一点，用好引导线会方便很多</p>
+</blockquote>
+<p><strong>布局效果展示</strong></p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Lock/Lock1.png"></p>
+<ul>
+<li><p>基本思路是先把选中之后的红点和线布局好并设置为不可见，最关键的是为每一个点和每条线设置一个tag值，这样通过点的tag线性运算唯一确定一条线并让这条线可见，实现两点连线，设置tag值同样用于记录密码，手势滑动解锁本质也会归结到普通的数字密码，手势仅仅是一个界面，我们需要将滑过的点转换成一串密码，这样才能进行密码的判断</p>
+</li>
+<li><p>手势滑动和代码逻辑之间的桥梁是<code>onTouchEvent()</code>这个事件监听的方法，详情请看这篇文章<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/60656d5dc863">触摸事件的监听</a></p>
+</li>
+<li><p>此外还需要一个记录点亮过的点和线的数组，因为都是ImageView，所以可以统一管理，当手指离开屏幕后，需要对这些数据还原</p>
+</li>
+</ul>
+<h3 id="三-自定义控件实现解锁"><a href="#三-自定义控件实现解锁" class="headerlink" title="三.自定义控件实现解锁"></a>三.自定义控件实现解锁</h3><p>解锁模块，我们只需要重写<code>onDraw()</code>方法即可，因为全过程只需要不断绘制、刷新界面即可</p>
+<p><strong>难点分析:</strong></p>
+<ol>
+<li>为了能够动态对九个点进行操作，比如点亮后在中心画一个同心圆，以及清空操作，都是以一个点为对象进行操作，很容易想到对它进行封装，封装每个点应该具有的属性，如每个点都会有一个tag进行记录密码</li>
+<li>当我们想在解锁这个控件内部调用其他控件，比如密码错误应该通过<strong>TextView</strong>提示用户，显然我们只能通过Activity这个中介来实现，容易想到事件回调，java中采用接口进行回调，优点是<strong>复用性很强</strong>，但缺点也很明显，耦合性很高，在kotlin中高阶函数回调完美解决这个问题，强烈推荐高阶函数回调，<strong>三种回调方式详情点击前往查看</strong></li>
+</ol>
+<p><a href="https://wiwiyiyi.com/%E4%B8%89%E7%A7%8D%E4%BA%8B%E4%BB%B6%E5%9B%9E%E8%B0%83%E8%AF%A6%E8%A7%A3/#more">三种事件回调对比分析</a></p>
+<p><strong>基本思路</strong></p>
+<ol>
+<li>首先得确定九个点相对于控件的尺寸，同样的九宫格这个正方形区域也和控件的宽高有关，在<code>onsizechanged()</code>此方法中已经能够获取到控件的尺寸，在此方法中我们就得确定好九个点圆心的位置以及其他信息</li>
+<li>第一步初始化基本信息后，就可以在<code>onDraw()</code>方法进行绘制九个点，并且还需提前绘制线，点亮点内部的同心圆，这些都得提前绘制好，在后续操中只需调用<code>invalidate()</code>进行界面的刷新即可</li>
+<li>重写<code>onTouchEvent()</code>方法，在内部实现手势滑动等监听，判断触摸点是否在某个点内，通过rect矩形区域来判断，每个点都会有自己的矩形区域，并且是自己的属性，方便使用</li>
+<li>此处除了将Dot类进行封装外，还将Dot类嵌套在解锁控件内部，进一步封装</li>
+</ol>
+<p><strong>附上代码链接：</strong></p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/androidUI-Lock1/tree/master/app/src/main/java/swu/cx/lock">使用图片实现解锁</a></p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/androidUI-defineLock/tree/master/app/src/main/java/swu/cx/definelock">自定义控件实现解锁</a></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote>
+<p>对比以上两种解锁方式，你会发现自定义控件的强大之处，可以设计你想要的图案以及动画效果，特好用</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6%E5%AE%9E%E6%88%98.html" data-id="clchki9lo007at0qhb90n43ob" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android%E9%AB%98%E7%BA%A7UI/" rel="tag">Android高级UI</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-自定义控件与动画" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6%E4%B8%8E%E5%8A%A8%E7%94%BB.html" class="article-date">
+  <time datetime="2020-10-23T06:07:11.000Z" itemprop="datePublished">2020-10-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/">Android自定义系列</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6%E4%B8%8E%E5%8A%A8%E7%94%BB.html">自定义控件与动画</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-引言"><a href="#一-引言" class="headerlink" title="一.引言"></a>一.引言</h3><blockquote>
+<p>之前在简书中写到自定义动画是建立在自定义控件的基础上的，可以理解为自定义的控件本身一块画布(一个矩形区域)，而我们通过onDraw()方法在上面绘制<strong>动态变化更新的图案</strong>即形成了一个全新的控件，同时那些全新的图案便是自定义动画</p>
+</blockquote>
+<h3 id="二-实现思路"><a href="#二-实现思路" class="headerlink" title="二.实现思路"></a>二.实现思路</h3><p>任何一个自定义的动画都至少有一个<strong>动画因子</strong>，动画的连续变化过程都是由于某个变量的连续改变而发生，称这个变量为动画因子</p>
+<p>自定义动画的过程如下：</p>
+<ol>
+<li> 拆分为多个部分</li>
+</ol>
+<p>   当你看到一个动画时，首先应该分析它的组成部分，包含哪些几何图形</p>
+<ol start="2">
+<li><p>寻找关系</p>
+<p>这些几何图形之间有没有某种联系，比如两个图形同时出现、同时消失，或者接连出现</p>
+</li>
+<li><p>每个部分的绘制</p>
+<p>分析完毕各部分的关系后便可开始绘制</p>
+</li>
+<li><p>  寻找动画因子</p>
+</li>
+</ol>
+<p>   先进行绘制初始状态，然后寻找动画因子，让它的值在一个范围内不断变化，并把值传递给起始状态，刷新界面</p>
+<ol start="5">
+<li>创建动画<br>使用<code>ValueAnimator.ofFloat(value1,value2)</code>不断产生value1和value2之间连续变化的值，此步骤就是让动画因子连续变化，并动态地传值刷新界面</li>
+</ol>
+<h3 id="三-实战讲解"><a href="#三-实战讲解" class="headerlink" title="三.实战讲解"></a>三.实战讲解</h3><blockquote>
+<p>只有将自定义动画应用于实际项目中才会体会到如何拆分动画以及寻找动画因子</p>
+</blockquote>
+<ol>
+<li>贪吃蛇加载</li>
+</ol>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/%E8%B4%AA%E5%90%83%E5%8A%A8%E7%94%BB.gif" style="zoom: 50%;" />
+
+<blockquote>
+<p>此动画有两个动画因子，一是大圆弧张开的角度，二是小球的x坐标，不断改变大圆弧张开的角度<strong>angle</strong>便可实现张闭合嘴，不断改变小球的x坐标，便可实现移动效果，显然这两个动画是同时进行的</p>
+</blockquote>
+<p><strong>关键点是计算出大球和小球的半径，相对于控件的宽高而言</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">if (width&gt;=height)&#123;</span><br><span class="line">            radius=height/6f</span><br><span class="line">            //如果宽度小于8.5个R</span><br><span class="line">            if (8.5*radius&gt;width)&#123;</span><br><span class="line">                radius=width/8.5f</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            radius=width/8.5f</span><br><span class="line">            //如果高度小于6个R</span><br><span class="line">            if (6*radius&gt;height)&#123;</span><br><span class="line">                radius=height/6f</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        mouseRadius=3f*radius</span><br><span class="line">        space=0.5f*radius</span><br></pre></td></tr></table></figure>
+
+<p><strong>相对尺寸分析</strong></p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/%E8%B4%AA%E5%90%83%E5%B0%BA%E5%AF%B8%E5%88%86%E6%9E%90.png"></p>
+<ol start="2">
+<li>脉搏跳动加载动画</li>
+</ol>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/%E8%84%89%E6%90%8F%E8%B7%B3%E5%8A%A8.gif" style="zoom:50%;" />
+
+<blockquote>
+<p>此动画结构相对简单，仅仅是三个圆的缩放效果，但它们并不是同时开始，关键点是为每一个动画设置延迟加载动画，动画因子是圆的半径</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if (width&gt;=height)&#123;</span><br><span class="line">            radius=height/2f</span><br><span class="line">            if (7*radius&gt;width)&#123;</span><br><span class="line">                radius=width/7f</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            radius=width/7f</span><br><span class="line">        &#125;</span><br><span class="line">        cx=(width-7*radius)/2f+radius</span><br><span class="line">        cy=height/2f</span><br></pre></td></tr></table></figure>
+
+<p><strong>尺寸分析</strong></p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/%E8%84%89%E6%90%8F%E8%B7%B3%E5%8A%A8%E5%88%86%E6%9E%90.png"></p>
+<blockquote>
+<p>以上两个动画稍微麻烦一点的是确定几何图形的相对控件的尺寸，最终的效果还是很棒的</p>
+</blockquote>
+<ol start="3">
+<li>特色进度条加载</li>
+</ol>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/%E7%89%B9%E8%89%B2%E8%BF%9B%E5%BA%A6%E6%9D%A1.gif" style="zoom:50%;" />
+
+<blockquote>
+<p>此动画的动画因子有两个，一是<strong>圆角矩形的圆角半径</strong>，它变动的范围是<strong>0-width/2</strong>，二是圆角矩形的宽度，此宽度是由left和right共同决定的，因此只需动态改变left的值即可，变动范围是<strong>0-(width-height)/2</strong>，两个动画是先后执行</p>
+</blockquote>
+<p>当圆角矩形缩成一个圆时，会打√或者打×，这是由下载成功或者失败来确定的，打√或者打×绘制路径即可</p>
+<p><strong>打√尺寸分析</strong></p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/%E6%89%93%E2%88%9A%E5%88%86%E6%9E%90.jpg" style="zoom: 80%;" />
+
+<p><strong>打×分析</strong></p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/%E6%89%93%C3%97%E5%88%86%E6%9E%90.jpg" style="zoom:80%;" />
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote>
+<p>以上下载或者加载控件都会通过高阶函数回调下载状态以及等待状态，主要是寻找动画因子、几何图形组成成分、使用ValueAnimator不断产生值，刷新界面，当给动画因子赋值时就会刷新，所以选择重写<code>set()</code>方法，这样做很方便</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//定义进度的变化因⼦ 0-1.0</span><br><span class="line">    var progress = 0f</span><br><span class="line">        set(value) &#123;</span><br><span class="line">            field = value</span><br><span class="line">            //刷新</span><br><span class="line">            invalidate()</span><br><span class="line">            //开启完成动画</span><br><span class="line">            if (progress == 1.0f) &#123;</span><br><span class="line">                startFinishAnim()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>如果看到心仪的动画效果，可以尝试跟着以上步骤将它写出来，相信最终的效果肯定很棒</strong></p>
+<p><strong>代码链接</strong></p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/androidUI-waitLoading/tree/master/app/src/main/java/swu/cx/test">贪吃和脉搏跳动动画</a></p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/andoridUI-progressBar/tree/master/app/src/main/java/swu/cx/progressbar">特色进度条动画</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6%E4%B8%8E%E5%8A%A8%E7%94%BB.html" data-id="clchki9lo0077t0qh1gjp6c9y" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android%E9%AB%98%E7%BA%A7UI/" rel="tag">Android高级UI</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-学年设计1-桌面模拟App" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A11-%E6%A1%8C%E9%9D%A2%E6%A8%A1%E6%8B%9FApp.html" class="article-date">
+  <time datetime="2020-10-22T11:45:07.000Z" itemprop="datePublished">2020-10-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E9%A1%B9%E7%9B%AE/">Android项目</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A11-%E6%A1%8C%E9%9D%A2%E6%A8%A1%E6%8B%9FApp.html">学年设计1-桌面模拟App</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-引言"><a href="#一-引言" class="headerlink" title="一.引言"></a>一.引言</h3><blockquote>
+<p>在学安卓UI阶段，我带领队友进行了安卓小项目的设计，成果命名为<strong>桌面模拟App</strong></p>
+<p>该项目的灵感来源：</p>
+<p>我们每天经历着这样一个过程：手机滑动解锁-&gt;进入桌面-&gt;点击某个app的缩略图标-&gt;进入到对应界面并完成相关操作，这款小app模拟的便是整个过程，但我们平时看到桌面不够个性化，比如应用图标的展示，没有任何动画效果，比较呆板，我们对此进行了动画美化，此外我们还模拟了qq登录，同样主要是对界面进行美化</p>
+</blockquote>
+<h3 id="二-所用到的知识点"><a href="#二-所用到的知识点" class="headerlink" title="二.所用到的知识点"></a>二.所用到的知识点</h3><ol>
+<li>Android动画：帧动画、补间动画、属性动画</li>
+<li>Activity跳转：显示和隐式跳转，隐式跳转主要用于启动系统服务</li>
+<li>SharedPreferences将数据写入文件，并对SharedPreferences进行封装</li>
+<li>自定义控件-&gt;主要是onDraw()方法进行绘制</li>
+<li>事件的回调-&gt;此处采用的是保存监听者对象，缺点是让Acitivity和控件耦合性太高，最好使用高阶函数回调</li>
+<li>比目科技的短信验证服务(可以参考官方文档)以及虚化模式(github上开源)</li>
+</ol>
+<h3 id="三-难点和坑点分析"><a href="#三-难点和坑点分析" class="headerlink" title="三.难点和坑点分析"></a>三.难点和坑点分析</h3><ul>
+<li>我在设计相册的图片播放功能时，由于想综合的运用补间动画和属性动画，但补间动画中设置了fillAfter=true，所以导致属性动画没有效果，当然最好的方式是全程都使用属性动画，其实在实际开发中，属性动画用的更多，不仅可以实现连续值变化，而且发生的变化都是真实的，相反，补间动画只是一种虚像，没有实际改变控件的属性</li>
+<li>为了实现一个动画接一个动画的展示，不能使用循环语句进行控制，因为程序的执行速度非常快，根本看不到中间动画的效果，只能采取动画监听的方式</li>
+<li>在自定义解锁控件时，得用一个类来管理九宫格里面的点，封装相应的属性，便于使用，除此之外还得设置一个监听者进行事件回调或者访问其他控件，虽然控件内部可以通过<code>context.startActivity(Intent(context,目的界面::class.java))</code>来实现界面跳转，但这种方式不是很好，另外如果我们需要访问其他控件是会报错的，暂时理解为控件之间是相互独立的，需要通过xml对应Activity进行管理、使用，总之事件回调的使用很有必要，并且推荐高阶函数实现事件回调，大大降低耦合性</li>
+<li>猫头鹰的登录界面主要是文本框的监听事件，本项目还可进行优化，由于时间原因就省去了，账号注册时应该输入用户的手机号，这里直接写死了，这点很不好，测试之后忘记优化升级，猫头鹰手臂旋转的动画由于使用了属性动画，而属性动画是无法更改旋转中心的，所以需要使用两个属性动画才能达到效果</li>
+<li>qq列表中listView、ExpandableListView中<strong>适配器</strong>的理解，另外实现qq列表的折叠功能使用ExpandableListView已经过时了，并且效果不好，后面会介绍另外一个控件进行实现</li>
+</ul>
+<h3 id="四-项目分工情况"><a href="#四-项目分工情况" class="headerlink" title="四.项目分工情况"></a>四.项目分工情况</h3><ul>
+<li>我负责：桌面应用展示动画以及相册播放图片功能、系统服务的跳转</li>
+<li>队友1：滑动解锁界面</li>
+<li>队友2：猫头鹰登录界面以及账号注册界面</li>
+</ul>
+<h3 id="五-项目结构流程图"><a href="#五-项目结构流程图" class="headerlink" title="五.项目结构流程图"></a>五.项目结构流程图</h3><p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/%E6%B5%81%E7%A8%8B%E5%9B%BE.png"></p>
+<h3 id="六-项目效果展示"><a href="#六-项目效果展示" class="headerlink" title="六.项目效果展示"></a>六.项目效果展示</h3><ol>
+<li>解锁界面展示</li>
+</ol>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/%E8%A7%A3%E9%94%81%E5%B1%95%E7%A4%BA.gif"></p>
+<ol start="2">
+<li>桌面菜单展示</li>
+</ol>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/%E8%8F%9C%E5%8D%95%E5%B1%95%E7%A4%BA.gif"></p>
+<ol start="3">
+<li>模拟qq展示</li>
+</ol>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/qq%E5%B1%95%E7%A4%BA.gif"></p>
+<ol start="4">
+<li>相册播放图片展示</li>
+</ol>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/%E7%9B%B8%E5%86%8C%E5%B1%95%E7%A4%BA.gif"></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote>
+<p>本次学年项目的设计总体很满意，初次体验了团队合作，队友之间的配合相当重要，以及在合并项目的过程中长了不少知识，收获很大，对所学Android知识点的巩固很有帮助！</p>
+</blockquote>
+<p><strong>代码链接</strong></p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/academic-year-design">学年设计1</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A11-%E6%A1%8C%E9%9D%A2%E6%A8%A1%E6%8B%9FApp.html" data-id="clchki9ko004mt0qhgrszhk1o" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/" rel="tag">学年设计</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hexo-github搭建博客问题总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexo-github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93.html" class="article-date">
+  <time datetime="2020-10-18T08:39:43.000Z" itemprop="datePublished">2020-10-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E9%9B%86/">问题总结集</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexo-github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93.html">hexo+github搭建博客问题总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-引入"><a href="#1-引入" class="headerlink" title="1.引入"></a>1.引入</h3><p>为了搭建自己的博客，选择不同于简书平台以及CSDN等的风格样式，我选择了在github上搭建静态网页，windows系统在搭建时bug频频，本文总结了我在搭建过程中遇到的问题以及解决方案</p>
+<p><strong>推荐一个前辈的博客，我跟着他搭建还算比较顺利</strong></p>
+<p><a target="_blank" rel="noopener" href="http://182.254.228.71/">小石头前辈的博客链接</a></p>
+<h3 id="2-问题一"><a href="#2-问题一" class="headerlink" title="2.问题一"></a>2.问题一</h3><p>当我们将本地仓库的博客推送到github上时，并进行了秘钥添加，但当访问https://仓库名.github.io时无法访问，这是最近才出现的问题</p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/hexo%2Bgithub%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/1.png" alt="1"></p>
+<p><strong>解决方法如下：</strong></p>
+<p>①. <a target="_blank" rel="noopener" href="http://tool.chinaz.com/dns?type=1&host=wiwi289.github.io&ip=">查询DNS</a></p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/hexo%2Bgithub%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/2.png"></p>
+<p>②.进入C:\Windows\System32\drivers\etc找到host文件，由于对此文件的修改需要管理员权限，所以将其复制一份到桌面</p>
+<p>③.打开复制到桌面的host文件，将查找出来的所有DNS拼接上<strong>仓库名.github.io</strong>并添加到host文件的末尾</p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/hexo%2Bgithub%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/3.png"></p>
+<p>④.再将修改好的host文件移动到etc文件中，替换之前的host</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32627137/article/details/108046461">参考文章-解决访问github上的个人博客遭到拒绝</a></p>
+<h3 id="3-问题二"><a href="#3-问题二" class="headerlink" title="3.问题二"></a>3.问题二</h3><p>我在下载next主题时，使用的是DOS命令，网速特别慢，而且下载失败很多次，都是下载超时，这就让人很头疼，这里不建议使用DOS命令在终端进行下载，你可以直接去官网下载压缩包，然后解压到themes文件夹下，并重命名为next即可，速度快多了，此处我直接在百度网盘上提供next的压缩包</p>
+<p><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/15mtSV9Ud8psTcYwm9zbeUQ">next压缩包链接</a></p>
+<p><strong>提取码：va5q</strong></p>
+<h3 id="4-问题三"><a href="#4-问题三" class="headerlink" title="4.问题三"></a>4.问题三</h3><p>在启用next主题后，在本地 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a> 进行预览时显示一堆英文符号，没有CSS样式，困扰了我一天，如下图<br><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/hexo%2Bgithub%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/4.png" /><br>产生这种现象的原因是hexo 5高版本把 swig 渲染插件删了，需要单独安装，进入到本地博客的文件，右键Git Bash Here</p>
+<p>输入<strong>npm i hexo-renderer-swig</strong>安装插件，然后hexo clean ,hexo g ,hexo s就可正常预览</p>
+<h3 id="5-问题四"><a href="#5-问题四" class="headerlink" title="5.问题四"></a>5.问题四</h3><p>修改配置时，一定要看清是站点配置文件还是主题配置文件，还有就是很多问题都是由于空格数量或者位置不对产生的，在你不确定需要几个空格时，可以先看下系统板块有多少空格以及空格的位置，这点很关键</p>
+<h3 id="6-问题五"><a href="#6-问题五" class="headerlink" title="6.问题五"></a>6.问题五</h3><p>为了让谷歌和百度收录我们的博客，我们需要提交sitemap，小石头前辈写得很详细了，但我在注册谷歌账号的时候，发生了这样一个尴尬的情况，我注册成功谷歌邮箱后，说是有异常，让我进行手机号验证，但让人头疼的时，输入手机号无法进行验证，无论是啥手机号都不行，网上都说被封号了，刚注册就封？？？没办法，只能去淘宝买一个谷歌账号，5块钱解决问题，不用担心什么隐私问题，毕竟我们只是需要一个谷歌账号进行收录网站，网站本身就是公开的，所以不用担心，放心购买。</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/hexo%2Bgithub%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/Screenshot_20201021_223945_com.tencent.androidqqm.jpg" style="zoom:25%;" />
+
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/hexo%2Bgithub%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/Screenshot_20201021_224023_com.taobao.taobao.jpg" style="zoom:25%;" />
+
+<h3 id="7-问题六"><a href="#7-问题六" class="headerlink" title="7.问题六"></a>7.问题六</h3><p>我在coding平台上构建静态网页时，难受了一两个小时，因为coding更新了，在网上找的博客，界面会和你的不一样，我大部分时间花在了找构建静态网页的入口上，下面提供图示</p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/hexo%2Bgithub%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/7.gif"></p>
+<p>左下角的<strong>项目设置</strong>，按照图示找到功能开关，打开<strong>持续集成</strong>和<strong>持续部署</strong>两个开关，然后就会出现持续部署这个选项，再进行实名认证即可创建静态网页，还有创建<strong>普通静态网页</strong>即可，<strong>不需要选择hexo网页</strong>，反而会部署失败，因为hexo类型严格要求格式以及内容，普通的即可，使用没有问题，最后还想说，coding官网的企业微信小哥哥很热心，我问了他好多问题，回答都很及时，在官网的文档末尾能找到他的微信</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/hexo%2Bgithub%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/5.png" style="zoom:50%;" />
+
+<p>再重新进行hexo clean、hexo g &amp;&amp; gulp、hexo d，再次向百度提交站点，这时就可以成功抓取信息</p>
+<h3 id="8-问题七"><a href="#8-问题七" class="headerlink" title="8.问题七"></a>8.问题七</h3><p>他的博客中还提了将博客部署到gitee即码云上，但由于目前gitee的网页绑定域名服务关闭了，我没打算继续弄，小石头前辈亲自尝试后说部署过后反而降低了博客加载速度，所以不建议部署到gitee上，另外我又尝试了使用腾讯CDN进行加速网页加载，但效果并不明显，第一次加载都很慢，最好的方式是拥有自己的服务器，但目前不考虑，实在太贵了</p>
+<h3 id="9-问题八"><a href="#9-问题八" class="headerlink" title="9.问题八"></a>9.问题八</h3><p>在给github上的仓库添加域名解析时，主机的线路类型一定要选择<strong>境外</strong>，不然会和后面绑定coding发生冲突</p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/hexo%2Bgithub%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/6.png"></p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><blockquote>
+<p>搭建属于自己的博客需要很有耐心，并且花连续的时间，最后的效果一定很棒！</p>
+</blockquote>
+<p><strong>最后再提供几篇参考文章进行美化界面：</strong></p>
+<p><a target="_blank" rel="noopener" href="https://www.wolfdan.cn/Hexo-Next-Gemini%E4%B8%BB%E9%A2%98%E9%80%8F%E6%98%8E%E5%8C%96%E4%BB%A5%E5%8F%8A%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%9A%84%E6%9B%B4%E6%94%B9/">Hexo-Next-Gemini主题透明化以及背景图片的更改</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/csdnSR/article/details/78300820">修改nexT Pisces主题内容区宽度</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/mqdxiaoxiao/article/details/93797964">Hexo博客NexT主题下添加文章边框阴影效果</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/hexo-github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93.html" data-id="clchki9jy002pt0qhf4jfh3g6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" rel="tag">hexo博客搭建问题总结</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/10/">&amp;laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-UI%E7%B3%BB%E5%88%97/">Android UI系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%AE%9E%E6%88%98%E9%9B%86/">Android实战集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E9%9B%86/">Android开发基础集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/">Android自定义系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Android设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%BF%9B%E9%98%B6/">Android进阶</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E9%87%8D%E8%A6%81%E7%BB%84%E4%BB%B6/">Android重要组件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E9%A1%B9%E7%9B%AE/">Android项目</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E8%BF%9B%E9%98%B6/">Java进阶</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/html%E5%AD%A6%E4%B9%A0/">html学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/">个人成长</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%9B%E6%89%A3%E9%A2%98%E8%A7%A3/">力扣题解</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8E%92%E5%BA%8F%E9%9B%86/">排序集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8%E4%B8%8E%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/">注解处理器与开源框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E6%8E%A7%E4%BB%B6/">系统控件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%84%E4%BB%B6%E5%8C%96%E7%B3%BB%E5%88%97/">组件化系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%93%E9%A2%98/">设计模式专题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E9%9B%86/">问题总结集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag">Android常用琐碎知识点</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E5%BC%80%E5%8F%91%E5%B0%8FDemo/" rel="tag">Android开发小Demo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E9%AB%98%E7%BA%A7UI/" rel="tag">Android高级UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" rel="tag">hexo博客搭建问题总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93/" rel="tag">发布开源库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/" rel="tag">学年设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" rel="tag">算法篇</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" rel="tag">系统高级UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" rel="tag">网络开源库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" style="font-size: 18px;">Android常用琐碎知识点</a> <a href="/tags/Android%E5%BC%80%E5%8F%91%E5%B0%8FDemo/" style="font-size: 10px;">Android开发小Demo</a> <a href="/tags/Android%E9%AB%98%E7%BA%A7UI/" style="font-size: 16px;">Android高级UI</a> <a href="/tags/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" style="font-size: 10px;">hexo博客搭建问题总结</a> <a href="/tags/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93/" style="font-size: 10px;">发布开源库</a> <a href="/tags/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">学年设计</a> <a href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" style="font-size: 20px;">算法篇</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" style="font-size: 12px;">系统高级UI</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" style="font-size: 14px;">网络开源库</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/%E8%87%AA%E5%AE%9A%E4%B9%89PhotoView%E5%A4%84%E7%90%86%E6%89%8B%E5%8A%BF.html">自定义PhotoView处理手势</a>
+          </li>
+        
+          <li>
+            <a href="/%E9%A6%96%E6%AC%A1%E5%BC%80%E6%BA%90%E5%BA%93-%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E6%96%87%E5%AD%97%E6%B8%90%E5%8F%98%E6%95%88%E6%9E%9C.html">首次开源库-不一样的文字渐变效果</a>
+          </li>
+        
+          <li>
+            <a href="/CoordinatorLayout%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89Behavior%E5%85%A5%E9%97%A8.html">CoordinatorLayout原理分析以及自定义Behavior入门</a>
+          </li>
+        
+          <li>
+            <a href="/NestedScrollView%E5%B5%8C%E5%A5%97%E6%BB%91%E5%8A%A8%E5%8E%9F%E7%90%86.html">NestedScrollView嵌套滑动原理</a>
+          </li>
+        
+          <li>
+            <a href="/APT-javapoet%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B.html">APT-javapoet详细教程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 EngineerOfFinger<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/%20%7C%7C%20fas%20fa-home" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives/%20%7C%7C%20fas%20fa-archive" class="mobile-nav-link">时间轴</a>
+  
+    <a href="/tags/%20%7C%7C%20fas%20fa-tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/categories/%20%7C%7C%20fas%20fa-folder-open" class="mobile-nav-link">分类</a>
+  
+    <a href="/link/%20%7C%7C%20fas%20fa-link" class="mobile-nav-link">友链</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

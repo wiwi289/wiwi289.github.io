@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>梦幻泡影</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="success&#x3D;persistence">
+<meta property="og:type" content="website">
+<meta property="og:title" content="梦幻泡影">
+<meta property="og:url" content="https://wiwiyiyi.com/page/10/index.html">
+<meta property="og:site_name" content="梦幻泡影">
+<meta property="og:description" content="success&#x3D;persistence">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="EngineerOfFinger">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="梦幻泡影" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/wiwi.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">梦幻泡影</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">[object Object]</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/%20%7C%7C%20fas%20fa-home">主页</a>
+        
+          <a class="main-nav-link" href="/archives/%20%7C%7C%20fas%20fa-archive">时间轴</a>
+        
+          <a class="main-nav-link" href="/tags/%20%7C%7C%20fas%20fa-tags">标签</a>
+        
+          <a class="main-nav-link" href="/categories/%20%7C%7C%20fas%20fa-folder-open">分类</a>
+        
+          <a class="main-nav-link" href="/link/%20%7C%7C%20fas%20fa-link">友链</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wiwiyiyi.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Room-Android中的小型数据库" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Room-Android%E4%B8%AD%E7%9A%84%E5%B0%8F%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93.html" class="article-date">
+  <time datetime="2021-01-28T08:26:46.000Z" itemprop="datePublished">2021-01-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E9%9B%86/">Android开发基础集</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Room-Android%E4%B8%AD%E7%9A%84%E5%B0%8F%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93.html">Room-Android中的小型数据库</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-引言"><a href="#一-引言" class="headerlink" title="一.引言"></a>一.引言</h3><blockquote>
+<p>前面已经学习了SharedPreferences以及了解了DataStore两种实现数据永久保存的方式，但如果在项目中频繁的更新修改数据，局部刷新，那么以上两种方式显得十分笨拙，下面介绍JetPack的另外一个永久化保存的方式Room，它是SQLite的抽象，帮助开发者流畅地访问数据库</p>
+</blockquote>
+<h3 id="二-准备工作-添加依赖"><a href="#二-准备工作-添加依赖" class="headerlink" title="二.准备工作-添加依赖"></a>二.准备工作-添加依赖</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">  def room_version = &quot;2.2.5&quot;</span><br><span class="line"></span><br><span class="line">  implementation &quot;androidx.room:room-runtime:$room_version&quot;</span><br><span class="line">  annotationProcessor &quot;androidx.room:room-compiler:$room_version&quot; // For Kotlin use kapt instead of annotationProcessor</span><br><span class="line">  // Test helpers</span><br><span class="line">  testImplementation &quot;androidx.room:room-testing:$room_version&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>如果你使用的Kotlin进行开发，则将<code>annotationProcessor</code>替换成<code>kapt</code>，除此之外还需在app模块对应的gradle中添加<code>apply plugin: &#39;kotlin-kapt&#39;</code></strong>,这点很重要，我就是配置出错入坑俩小时</p>
+<h3 id="三-Room分点详解"><a href="#三-Room分点详解" class="headerlink" title="三.Room分点详解"></a>三.Room分点详解</h3><p>上面已经提到<code>Room</code>是数据库的抽象，所以如何区分一个类是否是实体类<code>Entity</code>、<code>Dao</code>以及<code>DataBase</code>是通过标记来实现，即使用<strong>注解</strong></p>
+<ol>
+<li><p>Entity</p>
+<p>实体，定义了表的结构，下面以Excel为例</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Room/Entity.png" style="zoom: 67%;" />
+
+<p>所以Excel就类似一个数据库，包括查找，删除，插入等操作</p>
+<p>下面通过代码展示使用Entity标签构建一个实体类</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@Entity</span><br><span class="line">class Word()&#123;</span><br><span class="line">    @PrimaryKey(autoGenerate = true)</span><br><span class="line">    var id = 0</span><br><span class="line">    @ColumnInfo(name = &quot;english_word&quot;)</span><br><span class="line">    lateinit var word:String</span><br><span class="line">    @ColumnInfo(name = &quot;chinese_meaning&quot;)</span><br><span class="line">    lateinit var meaning:String</span><br><span class="line">    constructor(word:String,meaning:String):this()&#123;</span><br><span class="line">        this.word = word</span><br><span class="line">        this.meaning = meaning</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>每一列的信息即为字段，上面的写法还不够简洁，推荐使用数据类<code>data class</code></p>
+</li>
+<li><p>Dao</p>
+<p>可以理解为一种操作，和数据库有关的所有操作都将封装在用Dao中，而在实际开发中它用于标记接口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">@Dao</span><br><span class="line">interface WordDao &#123;</span><br><span class="line">    @Insert</span><br><span class="line">    fun inserWords(vararg words: Word)</span><br><span class="line"></span><br><span class="line">    @Update</span><br><span class="line">    fun update(vararg words: Word)</span><br><span class="line"></span><br><span class="line">    @Delete</span><br><span class="line">    fun deleteWords(vararg words: Word)</span><br><span class="line"></span><br><span class="line">    @Query(&quot;DELETE FROM WORD&quot;)</span><br><span class="line">    fun deleteAllWords()</span><br><span class="line"></span><br><span class="line">    @Query(&quot;SELECT * From WORD ORDER BY ID DESC&quot;)</span><br><span class="line">    fun getAllLiveWords():LiveData&lt;List&lt;Word&gt;&gt;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当然相关操作不止上面所提供的，只需要明确标签括号内的语句进行添加方法即可</p>
+</li>
+<li><p>Database</p>
+<p>用于标识数据库，标识的是抽象类</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@Database(entities = [Word::class],version = 1,exportSchema = false)</span><br><span class="line">abstract class WordDataBase :RoomDatabase()&#123;</span><br><span class="line">    companion object&#123; </span><br><span class="line">        var instance:WordDataBase?=null</span><br><span class="line">        fun getInstance(context: Context) = instance?: synchronized(this)&#123;</span><br><span class="line">            instance?:Room.databaseBuilder(context.applicationContext,WordDataBase::class.java,&quot;word_dataBase&quot;).build().also &#123; instance = it &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    abstract fun getWordDao():WordDao</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果有多个Entity，那么需要写在<code>entities</code>集合中，并且提供对应的<code>getDao()</code>方法，版本号<code>version</code>也很重要，当你增添字段时需要增加版本号，如果要保证数据不丢失，还需搭配<code>migration</code></p>
+<p>另外，由于数据库的实例化非常耗资源，所以提供单例</p>
+<h3 id="四-Room使用及其架构"><a href="#四-Room使用及其架构" class="headerlink" title="四.Room使用及其架构"></a>四.Room使用及其架构</h3><ol>
+<li>使用ViewModel管理界面中的数据</li>
+<li>创建一个Repository类进行真正的数据读取与存储操作，ViewModel中也提供相应的方法供外部调用</li>
+<li>Dao是支持返回LiveData数据的，因此在Activity/Fragment中添加监听</li>
+</ol>
+<blockquote>
+<p>数据库的读取插入等操作相当耗时，所以不能在主线程中执行，Kotlin开发首选协程，切换到IO线程上执行耗时任务，如果需要返回值并操控UI控件，则用<code>withContext</code>切换线程，此Demo中用到了可变参数，详情可以参考下面的文章</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/174c0e254713">Kotlin中如何使用和传递可变参数</a></p>
+<p><strong>下面上代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">class MainActivity : AppCompatActivity() &#123;</span><br><span class="line">    lateinit var myViewModel: MyViewModel</span><br><span class="line">    override fun onCreate(savedInstanceState: Bundle?) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_main)</span><br><span class="line">        myViewModel = ViewModelProvider(this,MyViewModelFactory(application)).get(MyViewModel::class.java)</span><br><span class="line">            myViewModel.allWordsLive.observe(this)&#123;words-&gt;</span><br><span class="line">                var text =&quot;&quot;</span><br><span class="line">                words.forEach &#123;</span><br><span class="line">                    text+=it.id.toString() + &quot;:&quot; +it.word + &quot;=&quot; + it.meaning + &quot;\n&quot;</span><br><span class="line">                &#125;</span><br><span class="line">                showText.text = text</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        insert.setOnClickListener &#123;</span><br><span class="line">            val word1 = Word(&quot;Hello&quot;,&quot;你好呀&quot;)</span><br><span class="line">            val word2 = Word(&quot;World&quot;,&quot;世界！&quot;)</span><br><span class="line">            myViewModel.insert(word1,word2)</span><br><span class="line">        &#125;</span><br><span class="line">        clear.setOnClickListener &#123;</span><br><span class="line">            myViewModel.clear()</span><br><span class="line">        &#125;</span><br><span class="line">        modify.setOnClickListener &#123;</span><br><span class="line">            val word = Word(&quot;Hi&quot;,&quot;我是夹克&quot;)</span><br><span class="line">            word.id = 454</span><br><span class="line">            myViewModel.modify(word)</span><br><span class="line">        &#125;</span><br><span class="line">        delete.setOnClickListener &#123;</span><br><span class="line">            val word = Word(&quot;afsdaf&quot;,&quot;hga&quot;)</span><br><span class="line">            word.id = 454</span><br><span class="line">            myViewModel.delete(word)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">---------------------------------------------------------------------------------------------------------</span><br><span class="line">class WordRepository private constructor() &#123;</span><br><span class="line">    var allWordsLive: LiveData&lt;List&lt;Word&gt;&gt;</span><br><span class="line">        private set</span><br><span class="line">    var wordDao: WordDao</span><br><span class="line">    private var scope: CoroutineScope</span><br><span class="line">    private val job = Job()</span><br><span class="line"></span><br><span class="line">    init &#123;</span><br><span class="line">        val wordDataBase = WordDataBase.getInstance(context.applicationContext)</span><br><span class="line">        wordDao = wordDataBase.getWordDao()</span><br><span class="line">        allWordsLive = wordDao.getAllLiveWords()</span><br><span class="line">        scope = CoroutineScope(Dispatchers.Main + job)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    companion object &#123;</span><br><span class="line">        var instance: WordRepository? = null</span><br><span class="line">        lateinit var context: Context</span><br><span class="line">        fun getInstance(context: Context): WordRepository &#123;</span><br><span class="line">            this.context = context</span><br><span class="line">            if (instance == null) &#123;</span><br><span class="line">                synchronized(this) &#123;</span><br><span class="line">                    if (instance == null) &#123;</span><br><span class="line">                        instance = WordRepository()</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            return instance!!</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fun insert(vararg words: Word) &#123;</span><br><span class="line">        scope.launch(Dispatchers.IO) &#123;</span><br><span class="line">            wordDao.inserWords(*words)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fun clear() &#123;</span><br><span class="line">        scope.launch(Dispatchers.IO) &#123;</span><br><span class="line">            wordDao.deleteAllWords()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fun modify(vararg words: Word) &#123;</span><br><span class="line">        scope.launch(Dispatchers.IO) &#123;</span><br><span class="line">            wordDao.update(*words)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fun delete(vararg words: Word) &#123;</span><br><span class="line">        scope.launch(Dispatchers.IO) &#123;</span><br><span class="line">            wordDao.deleteWords(*words)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>ViewModel层的代码省略，也会提供相应的方法进行一层转接，因为如果对数据的真正处理放在ViewModel中的话，会显得很臃肿</p>
+</blockquote>
+<p>安装app后，会在data/data/包名/databases文件夹中找到相应的文件</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Room/dataBase.jpg" style="zoom:50%;" /></li>
+</ol>
+<h3 id="五-版本迁移"><a href="#五-版本迁移" class="headerlink" title="五.版本迁移"></a>五.版本迁移</h3><blockquote>
+<p>如果我们要对数据库中的字段进行增删改等操作时，必须增加版本号的值，另外在创建数据库对象时还需进行版本迁移，迁移有以下两种方式</p>
+</blockquote>
+<ol>
+<li>fallbackToDestructiveMigration()破坏式迁移，暴力地将当前的数据清空，重新构建一个数据库，所以当你重新安装时，之前的数据都丢失了，显然这样是不合理的</li>
+<li>addMigrations(MIGRATION_1_2)<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">val MIGRATION_1_2 = object :Migration(1, 2)&#123;</span><br><span class="line">            override fun migrate(database: SupportSQLiteDatabase) &#123;</span><br><span class="line">                database.execSQL(&quot;ALTER TABLE word ADD COLUMN bar_data INTEGER NOT NULL DEFAULT 1&quot;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">  Room.databaseBuilder(context.applicationContext,WordDataBase::class.java,&quot;word_dataBase&quot;).addMigrations(MIGRATION_1_2).build()</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Migration()构造函数中传入从原始版本号和新版本号，<code>migrate()</code>方法中写增删改操作</p>
+</blockquote>
+</li>
+</ol>
+<p><strong>在SQLite中没有删除字段这一操作，所以如果想要删除某一字段需要经历一下四个步骤</strong></p>
+<p>① 创建一个新表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">database.execSQL(&quot;CREATE TABLE word_temp (id INTEGER PRIMARY KEY NOT NULL,english_word TEXT,chinese_meaning TEXT)&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>② 将旧表中的数据进行复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">database.execSQL(&quot;INSERT INTO word_temp (id,english_word,chinese_meaning) SELECT id,english_word,chinese_meaning FROM word&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>③ 删除旧表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">database.execSQL(&quot;DROP TABLE word&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>④ 将新表改名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">database.execSQL(&quot;ALTER TABLE word_temp RENAME to word&quot;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在升级版本肯定会优先选择第二种版本迁移的方式，如果想要了解更多操作数据库的语法建议进行深度学习</p>
+</blockquote>
+<h3 id="六-总结"><a href="#六-总结" class="headerlink" title="六.总结"></a>六.总结</h3><blockquote>
+<p>以上是Room的用法展示，因为没学过数据库的操作，所以有点手生，接下来会通过项目进行练习，并学习更多有关数据库的操作，甚至系统性地学习数据库</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/Room-Android%E4%B8%AD%E7%9A%84%E5%B0%8F%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93.html" data-id="clchki9jo001wt0qh5rc165mg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag">Android常用琐碎知识点</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-MVVM、LiveData、DataBinding综合小demo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/MVVM%E3%80%81LiveData%E3%80%81DataBinding%E7%BB%BC%E5%90%88%E5%B0%8Fdemo.html" class="article-date">
+  <time datetime="2021-01-26T02:20:45.000Z" itemprop="datePublished">2021-01-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Android设计模式</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/MVVM%E3%80%81LiveData%E3%80%81DataBinding%E7%BB%BC%E5%90%88%E5%B0%8Fdemo.html">MVVM、LiveData、DataBinding综合小demo</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-引言"><a href="#一-引言" class="headerlink" title="一.引言"></a>一.引言</h3><blockquote>
+<p>在学习了MVVM架构方式的基础上，又了解了DataBinding以及LiveData实现轻架构，在很大程度上减轻了控制器Activity/Fragment的负担，下面通过一个小例子来进行巩固，融合的知识点如下：</p>
+</blockquote>
+<ol>
+<li>ViewModel(此实例使用的是AndroidViewModel，因为它可搭配SharedPreference轻松使用)</li>
+<li>DataBinding</li>
+<li>LiveData</li>
+<li>Fragment以及Navigation</li>
+<li>SharedPreferences</li>
+<li>使用建造者模式创建AlertDialog</li>
+</ol>
+<p><strong>除此之外，还有一些小细节，比如使用AS提供的矢量图<code>Vector Asset</code>，可以保证拉伸时保持原有比例，配置横屏布局，虽然我在实际操作时没控制好比例，但在写项目的时候应该考虑横屏布局，使用资源文件<code>strings.xml</code>并且提供多国语言支持</strong></p>
+<p>本次demo是一个简单的加减法口算测试，可供小孩子使用，实际意义还不错，下面展示效果</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/MVVMdemo%E5%B1%95%E7%A4%BA.gif" style="zoom:33%;" />
+
+<h3 id="二-知识点分析"><a href="#二-知识点分析" class="headerlink" title="二.知识点分析"></a>二.知识点分析</h3><ol>
+<li><p>ViewModel加强-&gt;SavedStateHandle</p>
+<p>在app模块对应的gradle中添加<code>implementation &#39;androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.0-beta01&#39;</code></p>
+<p><code>SavedStateHandle</code>属于lifecycle中的一个分支，可用于ViewModel被摧毁时保存数据，它存放的是键值对，最大的用处是提供了<code>getLiveData&lt;类型&gt;(KEY)</code>获取与键对应的LiveData值，通过<code>set(KEY,value)</code>设置初始值并添加到<code>handle</code>中。</p>
+<p>若想在构造函数中保存handle对象，则创建ViewModel时传入<code>SavedStateViewModelFactory(requireActivity().application,requireActivity()</code></p>
+</li>
+<li><p>AndroidViewModel</p>
+<p>在AndroidViewModel内部可以通过<code>getApplication()</code>获取到<code>Application</code>对象，从而得以访问全局资源，在本demo中主要用于获取<code>SharedPreferences</code>的对象来存储数据</p>
+</li>
+<li><p>创建AS提供的矢量图</p>
+<p>选择<strong>res</strong>目录，鼠标右键，选择<code>Vector Asset</code>，然后根据自己的喜好选择矢量图，设置大小颜色等</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E7%9F%A2%E9%87%8F%E5%9B%BE.png" style="zoom: 40%;" />
+
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%9F%A2%E9%87%8F%E5%9B%BE%E6%A0%B7%E5%BC%8F.png" style="zoom:50%;" /></li>
+<li><p>为<code>strings.xml</code>中的资源提供多国语言</p>
+<p>在写项目的时候建议在<code>strings.xml</code>中添加后再使用，直接赋值text的硬编码方式不便维护，下面展示提供多国语言</p>
+<p>本demo提供的是汉化：</p>
+<p>①在<code>strings.xml</code>中点击<code>Open editor</code></p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%8F%90%E4%BE%9B%E6%B1%89%E5%8C%961.png" style="zoom:40%;" />
+
+<p>②点击左上角的地球图标，选择你要添加的新语言，这里选择中文</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%8F%90%E4%BE%9B%E6%B1%89%E5%8C%962.png" style="zoom:50%;" />
+
+<p>③添加后，会多出一列供你填充翻译版本</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%8F%90%E4%BE%9B%E6%B1%89%E5%8C%963.png" style="zoom: 50%;" /></li>
+</ol>
+<h3 id="三-基于本demo对MVVM的小结"><a href="#三-基于本demo对MVVM的小结" class="headerlink" title="三.基于本demo对MVVM的小结"></a>三.基于本demo对MVVM的小结</h3><blockquote>
+<p>该小demo逻辑简单，如果不使用MVVM的架构方式，而用传统的MVC架构，那么所有的逻辑都会在Controller中进行，包括数据的处理、控件的响应事件，不要简单地觉得ViewModel就仅仅用于管理界面中的数据，它还可以进行数据的处理以及简单的逻辑，所以使用MVVM架构，在控制器Controller中只需要处理控件的点击事件即可，大大减轻了Controller的负担，再加上DataBinding实现数据回绑到界面上，就更加轻松了，下面上代码进行体会</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">//ViewModel</span><br><span class="line">class MyViewModel(application: Application, handle: SavedStateHandle):AndroidViewModel(application) &#123;</span><br><span class="line">    private var handle:SavedStateHandle?=null</span><br><span class="line">    private val Key_High_Score = &quot;key_high_score&quot;</span><br><span class="line">    private val Key_Left_Number = &quot;key_left_number&quot;</span><br><span class="line">    private val Key_Right_Number = &quot;key_right_number&quot;</span><br><span class="line">    private val Key_Operatior = &quot;key_operator&quot;</span><br><span class="line">    private val Key_Answer = &quot;key_answer&quot;</span><br><span class="line">    private val Save_Shp_Data_Name = &quot;save_shp_data_name&quot;</span><br><span class="line">    private val Key_Current_Score = &quot;key_current_score&quot;</span><br><span class="line">    var win_flag = false</span><br><span class="line">    init &#123;</span><br><span class="line">        if (!handle.contains(Key_High_Score))&#123;</span><br><span class="line">            val shp = getApplication&lt;Application&gt;().getSharedPreferences(Save_Shp_Data_Name,Context.MODE_PRIVATE)</span><br><span class="line">            handle.set(Key_High_Score,shp.getInt(Key_High_Score,0))</span><br><span class="line">            handle.set(Key_Left_Number,0)</span><br><span class="line">            handle.set(Key_Right_Number,0)</span><br><span class="line">            handle.set(Key_Operatior,&quot;+&quot;)</span><br><span class="line">            handle.set(Key_Answer,0)</span><br><span class="line">            handle.set(Key_Current_Score,0)</span><br><span class="line">        &#125;</span><br><span class="line">        this.handle = handle</span><br><span class="line">    &#125;</span><br><span class="line">    public fun getLeftNumber()=handle?.getLiveData&lt;Int&gt;(Key_Left_Number)</span><br><span class="line">    public fun getRightNumber()=handle?.getLiveData&lt;Int&gt;(Key_Right_Number)</span><br><span class="line">    public fun  getOperator()=handle?.getLiveData&lt;String&gt;(Key_Operatior)</span><br><span class="line">    public fun  getHighScore()=handle?.getLiveData&lt;Int&gt;(Key_High_Score)</span><br><span class="line">    public fun  getCurrentScore()=handle?.getLiveData&lt;Int&gt;(Key_Current_Score)</span><br><span class="line">    public fun getAnswer() = handle?.getLiveData&lt;Int&gt;(Key_Answer)</span><br><span class="line">    fun generator()&#123;</span><br><span class="line">        val Level = 20</span><br><span class="line">        val x = (1..Level).random()</span><br><span class="line">        val y = (1..Level).random()</span><br><span class="line">        if (x%2==0)&#123;</span><br><span class="line">            getOperator()?.value = &quot;+&quot;</span><br><span class="line">            if (x&gt;y)&#123;</span><br><span class="line">                getAnswer()?.value = x</span><br><span class="line">                getLeftNumber()?.value = y</span><br><span class="line">                getRightNumber()?.value = (x-y)</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                getAnswer()?.value = y</span><br><span class="line">                getLeftNumber()?.value = x</span><br><span class="line">                getRightNumber()?.value = (y-x)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            getOperator()?.value = &quot;-&quot;</span><br><span class="line">            if (x&gt;y)&#123;</span><br><span class="line">                getAnswer()?.value = (x-y)</span><br><span class="line">                getLeftNumber()?.value = x</span><br><span class="line">                getRightNumber()?.value = y</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                getAnswer()?.value = (y-x)</span><br><span class="line">                getLeftNumber()?.value = y</span><br><span class="line">                getRightNumber()?.value = x</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    fun save()&#123;</span><br><span class="line">        val shp = getApplication&lt;Application&gt;().getSharedPreferences(Save_Shp_Data_Name,Context.MODE_PRIVATE)</span><br><span class="line">        shp.edit().apply&#123;</span><br><span class="line">            getHighScore()?.value?.let &#123; putInt(Key_High_Score, it) &#125;</span><br><span class="line">            apply()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    fun answerCorrect()&#123;</span><br><span class="line">        getCurrentScore()?.value = getCurrentScore()?.value?.plus(1)</span><br><span class="line">        if(getCurrentScore()?.value!! &gt; getHighScore()?.value!!)&#123;</span><br><span class="line">            getHighScore()?.value = getCurrentScore()?.value</span><br><span class="line">            win_flag = true</span><br><span class="line">        &#125;</span><br><span class="line">        generator()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>控制器Fragment中的代码就不展示了，可以自行前往代码链接查看，它主要用于处理控件的点击事件，从上面的代码就可以感受到ViewModel的强大以及便利，因此对于MVVM的架构方式，所有和数据相关的操作都尽可能地放在ViewModel中，Controller只负责衔接即处理控件的各种响应事件</p>
+<blockquote>
+<p>除此之外，写完这个小demo后，对<strong>ViewModel实现数据共享</strong>的用处更加印象深刻，整个demo只有一个ViewModel，各个Fragment中的代码几乎相同，ViewModel融合了各个界面所需的所有数据，当然，当界面变得复杂起来，最好一个界面对应一个ViewModel</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/master-of-mental-arithmetic/">代码链接</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/MVVM%E3%80%81LiveData%E3%80%81DataBinding%E7%BB%BC%E5%90%88%E5%B0%8Fdemo.html" data-id="clchki9jf0019t0qh347zaxgo" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag">Android常用琐碎知识点</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Android轻架构DataBinding" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Android%E8%BD%BB%E6%9E%B6%E6%9E%84DataBinding.html" class="article-date">
+  <time datetime="2021-01-23T02:54:48.000Z" itemprop="datePublished">2021-01-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Android设计模式</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Android%E8%BD%BB%E6%9E%B6%E6%9E%84DataBinding.html">Android轻架构DataBinding</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-引言"><a href="#一-引言" class="headerlink" title="一.引言"></a>一.引言</h3><blockquote>
+<p>前面已经学习了MVVM设计模式，以及ViewModel搭配LiveData的使用减轻Activity/Fragment的负担，本篇文章将介绍JetPack架构系列中的DataBinding进一步让Activity/Fragment中的代码更加简洁</p>
+</blockquote>
+<h3 id="二-DataBinding简介"><a href="#二-DataBinding简介" class="headerlink" title="二.DataBinding简介"></a>二.DataBinding简介</h3><p>在Android实际开发中，我们还是习惯用<code>findViewbyId</code>或者直接通过控件的<code>id</code>获取到控件的引用对象，<strong>前者无疑会让  Activity/Fragment中的代码变得相当冗杂</strong>，特别是控件变得很多时，后者虽然使用方便，但有的时候会出错，<strong>比如两个界面不小心设置了相同的id值，那么在访问使用时肯定会报错，这样是不安全的</strong>，所以JetPack推出了DataBinding对一个界面即Activity/Fragment管理属于它的所有控件，这样既不会让代码膨胀，也保证了使用安全，确实不错。除此之外，它还可搭配ViewModel和LiveData将数据回绑到界面XML布局文件中，并且实时更新界面数据，当然这只适合界面中的部分数据，但也减轻了控制器的负担，下面通过一张图来展示使用DataBinding后的轻架构</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/dataBinding%E7%BB%91%E5%AE%9A%E8%A7%86%E5%9B%BE.png" style="zoom:50%;" />
+
+<h3 id="三-DataBinding具体使用"><a href="#三-DataBinding具体使用" class="headerlink" title="三.DataBinding具体使用"></a>三.DataBinding具体使用</h3><ol>
+<li><p>创建ViewModel</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class MyViewModel : ViewModel() &#123;</span><br><span class="line">    private var number: MutableLiveData&lt;Int&gt; = MutableLiveData()</span><br><span class="line">    init &#123;</span><br><span class="line">        if (number.value == null) &#123;</span><br><span class="line">            number.value = 0</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    fun getNumber() = number</span><br><span class="line">    fun add(num: Int) &#123;</span><br><span class="line">        number.value = number.value!!.plus(num)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>在app模块对应的gradle添加如下一句话</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">    compileSdkVersion 30</span><br><span class="line">    buildToolsVersion &quot;29.0.3&quot;</span><br><span class="line"></span><br><span class="line">    defaultConfig &#123;</span><br><span class="line">        applicationId &quot;swu.cx.databindingtest&quot;</span><br><span class="line">        minSdkVersion 19</span><br><span class="line">        targetSdkVersion 30</span><br><span class="line">        versionCode 1</span><br><span class="line">        versionName &quot;1.0&quot;</span><br><span class="line"></span><br><span class="line">        testInstrumentationRunner &quot;androidx.test.runner.AndroidJUnitRunner&quot;</span><br><span class="line">        vectorDrawables&#123;</span><br><span class="line">            useSupportLibrary = true</span><br><span class="line">        &#125;</span><br><span class="line">        //添加此处，以支持使用DataBinding</span><br><span class="line">        dataBinding&#123;</span><br><span class="line">            enabled = true</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    buildTypes &#123;</span><br><span class="line">        release &#123;</span><br><span class="line">            minifyEnabled false</span><br><span class="line">            proguardFiles getDefaultProguardFile(&#x27;proguard-android-optimize.txt&#x27;), &#x27;proguard-rules.pro&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>按照如下步骤调整XML格式</p>
+<ol>
+<li>鼠标右键</li>
+</ol>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%AD%A5%E9%AA%A41.png"></p>
+<ol start="2">
+<li><p>点击调整格式</p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%AD%A5%E9%AA%A42.png"></p>
+</li>
+</ol>
+</li>
+<li><p>在Activity/Fragment中加载DataBinding的对象</p>
+<p>每个Activity/Fragment都会自动生成一个DataBinding的类</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">private lateinit var binding: ActivityMainBinding</span><br><span class="line">binding = DataBindingUtil.setContentView(this,R.layout.activity_main)</span><br></pre></td></tr></table></figure>
+
+<p>通过以上代码就成功将视图中的控件绑定在binding对象中<code>binding.textView.setText()</code>，这样就能访问控件</p>
+</li>
+<li><p>在XML中的&lt;data&gt;标签中定义变量，用于数据回绑</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;layout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;data&gt;</span><br><span class="line">        &lt;variable</span><br><span class="line">            name=&quot;data&quot;</span><br><span class="line">            type=&quot;swu.cx.databindingtest.MyViewModel&quot; /&gt;</span><br><span class="line">    &lt;/data&gt;</span><br><span class="line"></span><br><span class="line">    &lt;androidx.constraintlayout.widget.ConstraintLayout</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;match_parent&quot;</span><br><span class="line">        tools:context=&quot;.MainActivity&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;TextView</span><br><span class="line">            android:id=&quot;@+id/textView&quot;</span><br><span class="line">            android:layout_width=&quot;127dp&quot;</span><br><span class="line">            android:layout_height=&quot;44dp&quot;</span><br><span class="line">            android:gravity=&quot;center&quot;</span><br><span class="line">            android:text=&quot;@&#123;String.valueOf(data.number)&#125;&quot;</span><br><span class="line">            app:layout_constraintBottom_toBottomOf=&quot;parent&quot;</span><br><span class="line">            app:layout_constraintEnd_toEndOf=&quot;parent&quot;</span><br><span class="line">            app:layout_constraintStart_toStartOf=&quot;parent&quot;</span><br><span class="line">            app:layout_constraintTop_toTopOf=&quot;parent&quot;</span><br><span class="line">            app:layout_constraintVertical_bias=&quot;0.253&quot; /&gt;</span><br><span class="line"></span><br><span class="line">        &lt;ImageButton</span><br><span class="line">            android:id=&quot;@+id/up&quot;</span><br><span class="line">            android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_marginTop=&quot;128dp&quot;</span><br><span class="line">            app:layout_constraintEnd_toStartOf=&quot;@+id/down&quot;</span><br><span class="line">            app:layout_constraintHorizontal_bias=&quot;0.5&quot;</span><br><span class="line">            app:layout_constraintStart_toStartOf=&quot;parent&quot;</span><br><span class="line">            app:layout_constraintTop_toBottomOf=&quot;@+id/textView&quot;</span><br><span class="line">            android:onClick=&quot;@&#123;()-&gt;data.add(1)&#125;&quot;</span><br><span class="line">            app:srcCompat=&quot;@drawable/ic_baseline_thumb_up_24&quot; /&gt;</span><br><span class="line"></span><br><span class="line">        &lt;ImageButton</span><br><span class="line">            android:id=&quot;@+id/down&quot;</span><br><span class="line">            android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">            app:layout_constraintEnd_toEndOf=&quot;parent&quot;</span><br><span class="line">            app:layout_constraintHorizontal_bias=&quot;0.5&quot;</span><br><span class="line">            app:layout_constraintStart_toEndOf=&quot;@+id/up&quot;</span><br><span class="line">            app:layout_constraintTop_toTopOf=&quot;@+id/up&quot;</span><br><span class="line">            android:onClick=&quot;@&#123;()-&gt;data.add(-1)&#125;&quot;</span><br><span class="line">            app:srcCompat=&quot;@drawable/ic_baseline_thumb_down_24&quot; /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;</span><br><span class="line">&lt;/layout&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>用@{}包裹代码，()-&gt;表示调用函数</strong></p>
+</li>
+<li><p>在Activity/Fragment中设置data，并监听data的数据变化</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">binding.data = viewModel</span><br><span class="line">binding.lifecycleOwner = this</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果图如下</strong></p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/dataBinding%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA.gif" style="zoom: 80%;" /></li>
+</ol>
+<h3 id="四-总结"><a href="#四-总结" class="headerlink" title="四.总结"></a>四.总结</h3><blockquote>
+<p>可能你现在还习惯用id直接访问控件对象，但在写大型项目时还是考虑使用DataBinding统一管理一个界面中的控件，另外界面中一些简单值的变化还可回绑到界面中，减少Activity/Fragment中的逻辑，是一个不错的选择，轻架构。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/Android%E8%BD%BB%E6%9E%B6%E6%9E%84DataBinding.html" data-id="clchki9j2000kt0qhbbq4b5v6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-SharedPreference与DataStore" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/SharedPreference%E4%B8%8EDataStore.html" class="article-date">
+  <time datetime="2020-12-05T12:35:17.000Z" itemprop="datePublished">2020-12-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E9%9B%86/">Android开发基础集</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/SharedPreference%E4%B8%8EDataStore.html">SharedPreference与DataStore</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-引言"><a href="#一-引言" class="headerlink" title="一.引言"></a>一.引言</h3><blockquote>
+<p>前面已经学习了ViewModel，其最大的优势就是可以管理界面的数据，比如屏幕旋转时保存数据等，但如果退出app后，数据依然消失，如果我们想永久保存用户的登录信息如用户名以及密码等要另择它法，本篇文章将介绍<code>SharedPreferences</code>和<code>DataStore</code>两种永久保存数据的方式，它们的本质都是将数据保存至SD卡中的文件</p>
+</blockquote>
+<h3 id="二-SharedPreferences存储方式"><a href="#二-SharedPreferences存储方式" class="headerlink" title="二.SharedPreferences存储方式"></a>二.SharedPreferences存储方式</h3><p><code>SharedPreferences</code>在实际应用中十分简单，它是通过key-value键值对的形式来存储数据，但缺陷也挺大，所以JetPack推出了<code>DataStore</code>，在写小项目时，我们通常会将<code>SharedPreferences</code>进行封装，并提供单例进行数据的存储以及读取，这样会方便很多</p>
+<blockquote>
+<p>存储数据和读取数据首先都会获取到<code>SharedPreferences</code>的对象，并同时生成存储数据的文件，值得注意的一点是，<code>SharedPreferences</code>是Context提供的，所以要获取对象得使用一个context，我们习惯性的会将activity作为context，但这样会导致<code>内存泄漏</code>，比如activity销毁了，<code>SharedPreferences</code>中记录的还是那个context，所以在此我们使用<code>applicationContext</code>，它本身是单例，最顶层，伴随着整个app，所以很合适</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">val preference = mContext?.getSharedPreferences(FILE_NAME,Context.MODE_PRIVATE)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>其次是文件的存储读取模式，通常选取私有的，供当前的app进行操作</p>
+</blockquote>
+<ol>
+<li><p>存储数据</p>
+<p>写入数据是通过<code>editor</code>来操作，通过其提供的put方法来存入具体的数据，最后进行提交</p>
+<p>提交有两种方式，一是<code>apply()</code>，而是<code>commit()</code>，但推荐使用<code>apply()</code>，因为apply采用的是非同步的提交，如果有多个editor同时提交数据的话，它会以最后提交的那个数据写入文件，而commit是同步的，意思是每次提交都会写入文件，效率太低</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fun savePassWord(pwd:String)&#123;</span><br><span class="line">        val preference = mContext?.getSharedPreferences(FILE_NAME,Context.MODE_PRIVATE)</span><br><span class="line">        preference?.edit()?.apply &#123;</span><br><span class="line">            putString(KEY,pwd)</span><br><span class="line">            apply()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>读取数据</p>
+<p>读取数据只需要获取<code>SharedPreferences</code>的对象即可，再根据键获取值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fun getPassWord():String?&#123;</span><br><span class="line">        val preference = mContext?.getSharedPreferences(FILE_NAME,Context.MODE_PRIVATE)</span><br><span class="line">        return preference?.getString(KEY,null)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>具体使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//存入密码</span><br><span class="line">SharedPreferenceUtil.getInstance(applicationContext).savePassWord(&quot;123456&quot;)</span><br><span class="line">//取出密码</span><br><span class="line">val pwd = SharedPreferenceUtil.getInstance(applicationContext).getPassWord()</span><br><span class="line">Log.v(&quot;cx&quot;,&quot;密码是：$pwd&quot;)</span><br></pre></td></tr></table></figure>
+
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/SharedPreferences/SharedPreference%E5%AD%98%E5%82%A8.png" style="zoom: 50%;" /></li>
+</ol>
+<h3 id="三-DataStore-Preferences-DataStore"><a href="#三-DataStore-Preferences-DataStore" class="headerlink" title="三.DataStore-Preferences DataStore"></a>三.DataStore-Preferences DataStore</h3><blockquote>
+<p>DataStore是JetPack系列中的一员，官网推出它旨在替代SharedPreferences，但就目前而言，我觉得其使用不方便，毕竟才出不久，不是很成熟，特别是Proto DataStore配置相当繁琐，小编还未成功配置，日后有时间会再次尝试并补充</p>
+</blockquote>
+<p>本次先演示Preferences DataStore的基本使用，该方式同SharedPreferences一样通过键值对的方式存储基本数据，但最大的不同是Preferences DataStore是基于Flow读取数据，并且读和写都支持协程，本世纪是协程的时代，所以还是建议掌握DataStore的基本使用，虽然它目前不太方便，下面进行详解</p>
+<p><strong>存入和读取数据首先得需要通过<code>context</code>创建DataStore对象，另外还需通过<code>preferencesKey</code>创建Key</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">private val FILE_NAME = &quot;userInfor&quot;</span><br><span class="line">private val KEY1 = &quot;user_name&quot;</span><br><span class="line">val dataStore = mContext?.createDataStore(FILE_NAME)</span><br><span class="line">val name = preferencesKey&lt;String&gt;(KEY1)</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>存入数据</p>
+<p>通过<code>edit</code>代码块，类似于数组存值的方式进行写入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">suspend fun saveData(data:String)&#123;</span><br><span class="line">        val dataStore = mContext?.createDataStore(FILE_NAME)</span><br><span class="line">        val name = preferencesKey&lt;String&gt;(KEY1)</span><br><span class="line">        dataStore?.edit &#123;</span><br><span class="line">            it[name] = data</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>读取数据</p>
+<p>通过dataStore.data获取到Flow类型包装后的值，虽然Flow是以异步的方式读取数据，但也有不方便的地方，由于Flow的异步机制，猜测其开启了一个协程，并且是阻塞式的，所以如果Flow没有结束便会阻塞后面的代码进行，需要通过<code>withTimeoutOrNull</code>设置延迟时间来手动结束，这是第一点，第二点是想要返回具体的数据而不是Flow类型，还需通过<code>collect</code>代码块进行转换，综上dataStore确实使用起来没有SharedPreferences那样简单，下面贴出代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">suspend fun getData():String?&#123;</span><br><span class="line">        val dataStore = mContext?.createDataStore(FILE_NAME)</span><br><span class="line">        val name = preferencesKey&lt;String&gt;(KEY1)</span><br><span class="line">        val data = dataStore?.data?.map &#123;</span><br><span class="line">            it[name]</span><br><span class="line">        &#125;</span><br><span class="line">        var result:String?=null</span><br><span class="line">        withTimeoutOrNull(300) &#123;</span><br><span class="line">            data?.collect &#123;</span><br><span class="line">                result = it</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return result</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/vitaviva/article/details/104103958">有关Flow的介绍可以参考该篇文章</a></p>
+<blockquote>
+<p>最后暂时只能先写到这里了，Proto dataStore尚在研究中，相信它的功能更强大，毕竟能存储对象，可以将多个值封装起来，而不用具体分类存哪些数据，相信不久的将来，DataStore会做得更好</p>
+</blockquote>
+<p>   <strong>Preferences DataStore封装后的全部代码</strong></p>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">class PreferenceDataStore &#123;</span><br><span class="line">    private val FILE_NAME = &quot;userInfor&quot;</span><br><span class="line">    private val KEY1 = &quot;user_name&quot;</span><br><span class="line">    companion object&#123;</span><br><span class="line">        private var instance:PreferenceDataStore?=null</span><br><span class="line">        private var mContext:Context?=null</span><br><span class="line">        fun getInstance(context: Context):PreferenceDataStore&#123;</span><br><span class="line">            mContext = context</span><br><span class="line">            if (instance==null)&#123;</span><br><span class="line">                synchronized(this)&#123;</span><br><span class="line">                    if (instance==null)&#123;</span><br><span class="line">                        instance = PreferenceDataStore()</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            return instance!!</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    suspend fun saveData(data:String)&#123;</span><br><span class="line">        val dataStore = mContext?.createDataStore(FILE_NAME)</span><br><span class="line">        val name = preferencesKey&lt;String&gt;(KEY1)</span><br><span class="line">        dataStore?.edit &#123;</span><br><span class="line">            it[name] = data</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    suspend fun getData():String?&#123;</span><br><span class="line">        val dataStore = mContext?.createDataStore(FILE_NAME)</span><br><span class="line">        val name = preferencesKey&lt;String&gt;(KEY1)</span><br><span class="line">        val data = dataStore?.data?.map &#123;</span><br><span class="line">            it[name]</span><br><span class="line">        &#125;</span><br><span class="line">        var result:String?=null</span><br><span class="line">        withTimeoutOrNull(2000) &#123;</span><br><span class="line">            data?.collect &#123;</span><br><span class="line">                result = it</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return result</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>   <strong>使用DataStore存入数据会生成下图所示文件</strong></p>
+   <img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/SharedPreferences/dataStore.jpg" style="zoom:50%;" />
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/SharedPreference%E4%B8%8EDataStore.html" data-id="clchki9jq0023t0qhgeo5h9sa" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag">Android常用琐碎知识点</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Android开发中的协程使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Android%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%8D%8F%E7%A8%8B%E4%BD%BF%E7%94%A8.html" class="article-date">
+  <time datetime="2020-12-05T12:34:23.000Z" itemprop="datePublished">2020-12-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E9%9B%86/">Android开发基础集</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Android%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%8D%8F%E7%A8%8B%E4%BD%BF%E7%94%A8.html">Android开发中的协程使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-引入"><a href="#一-引入" class="headerlink" title="一.引入"></a>一.引入</h3><blockquote>
+<p>我曾在Android开发涉及到网络操作时苦恼，因为网络操作不能在UI主线程里进行，所以关键问题是下载好的数据如何接收，通过函数返回值？显然不现实，因为函数的调用发生在UI主线程里，而下载数据在子线程，两者互不干扰，函数当然不会等数据下载好了之后才进行返回，这便涉及到线程之间的通信，本文核心讲解Kotlin中的协程，在此之前想先提一下java中线程通信的方式-Handler</p>
+</blockquote>
+<h3 id="二-Handler"><a href="#二-Handler" class="headerlink" title="二.Handler"></a>二.Handler</h3><p>在熟练协程之前，使用的是java中线程通信的方式-Handler，不得不说，Handler是真的很好用，使用很简单，并且能解决问题</p>
+<p><strong>使用步骤：</strong></p>
+<ol>
+<li><p>创建一个handler，并将其属性化，重写<code>handleMessage(msg: Message)</code>方法</p>
+</li>
+<li><p>如果进行网络加载的方法在其他类中，调用时需要传入一个<code>handler</code>对象，当数据下载完毕后，创建一个<code>Message</code>对象</p>
+<ul>
+<li>obj-&gt;保存带回的数据，可以是任意类型</li>
+<li>what-&gt;用来标识返回的是什么类型的数据，不止一个线程需要返回数据时使用</li>
+</ul>
+</li>
+<li><p>在<code>handleMessage</code>中根据其他线程发送的<code>msg</code>进行取数据</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">object NetWorkUtils &#123;</span><br><span class="line">    const val TYPE_PIC = 1</span><br><span class="line">    const val TYPE_VIDE0 = 2</span><br><span class="line">    fun LoadPic(link:String,handler: Handler)&#123;</span><br><span class="line">        Thread &#123;</span><br><span class="line">            val url = URL(link)</span><br><span class="line">            val con = url.openConnection() as HttpURLConnection</span><br><span class="line">            con.doInput = true</span><br><span class="line">            val inputStream = url.openStream()</span><br><span class="line">            val bitmap = BitmapFactory.decodeStream(inputStream)</span><br><span class="line">            //创建消息</span><br><span class="line">            val msg = Message()</span><br><span class="line">            //带回数据</span><br><span class="line">            msg.obj = bitmap</span><br><span class="line">            //设置返回数据类型</span><br><span class="line">            msg.what = TYPE_PIC</span><br><span class="line">            //发送消息</span><br><span class="line">            handler.sendMessage(msg)</span><br><span class="line">        &#125;.start()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class MainActivity : AppCompatActivity() &#123;</span><br><span class="line">    val handler = @SuppressLint(&quot;HandlerLeak&quot;)</span><br><span class="line">    object :Handler()&#123;</span><br><span class="line">        override fun handleMessage(msg: Message) &#123;</span><br><span class="line">            super.handleMessage(msg)</span><br><span class="line">            when(msg.what)&#123;</span><br><span class="line">                NetWorkUtils.TYPE_PIC-&gt;&#123;</span><br><span class="line">                    img.setImageBitmap(msg.obj as Bitmap)</span><br><span class="line">                &#125;</span><br><span class="line">                else-&gt;&#123;</span><br><span class="line">                    //返回的是视频数据</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    override fun onCreate(savedInstanceState: Bundle?) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_main)</span><br><span class="line">        loadPic.setOnClickListener &#123;</span><br><span class="line">            val link =&quot;https://seopic.699pic.com/photo/50045/2756.jpg_wh1200.jpg&quot;</span><br><span class="line">            NetWorkUtils.LoadPic(link,handler)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后需要在Manifests中添加网络权限<code>&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;/&gt;</code></p>
+<p><strong>效果展示</strong></p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%8F%E7%A8%8B/Handler.gif" style="zoom: 33%;" />
+
+<blockquote>
+<p>你会发现Handler的使用其实非常简单，并且能解决问题，如果要了解Handler的工作机制，还请自行百度</p>
+</blockquote>
+<h3 id="三-协程引入"><a href="#三-协程引入" class="headerlink" title="三.协程引入"></a>三.协程引入</h3><p>在学习Kotlin时已经详解了协程的基本使用，但那时由于没有合适的使用场景，所以看不到它的闪光点，而在Android开发中，首选<strong>Coroutine</strong>，协程在<strong>网络操作</strong>进行线程切换时相当方便，没有对比就没有伤害，先说说使用<strong>Handler</strong>不好的地方，在刚开始使用Handler时，确实觉得很香，毕竟理解和使用都很容易，但在实际写项目的过程中却发现相当繁琐，因为进行线程间通信的地方不止一处，一旦数量增加，很容易发生混乱，并且代码逻辑变得模糊，下面给出示例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"> fun loadStudent(id:String,handler: Handler)&#123;</span><br><span class="line">        Thread &#123;</span><br><span class="line">            val request = Request.Builder()</span><br><span class="line">                .url(&quot;http://10.129.26.231:8080/student/querybystudentid?studentid=$id&quot;)</span><br><span class="line">                .build()</span><br><span class="line">            val call = client.newCall(request)</span><br><span class="line">            call.enqueue(object :Callback&#123;</span><br><span class="line">                override fun onFailure(call: Call, e: IOException) &#123;</span><br><span class="line">                    mainActivity?.runOnUiThread &#123;</span><br><span class="line">                        mainActivity?.showMessage(&quot;网络连接超时！！&quot;)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                override fun onResponse(call: Call, response: Response) &#123;</span><br><span class="line">                    val result = response.body?.string()</span><br><span class="line">                    val student = gson.fromJson(result, Array&lt;Student&gt;::class.java)</span><br><span class="line">                    val msg = Message()</span><br><span class="line">                    msg.what = Repository.MSG_TYPE_STUDENTINFOR</span><br><span class="line">                    msg.obj = student[0]</span><br><span class="line">                    handler.sendMessage(msg)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;.start()</span><br><span class="line">    &#125;</span><br><span class="line">------------------------------------------------------------------------------------------------------------</span><br><span class="line"> val handler = @SuppressLint(&quot;HandlerLeak&quot;)</span><br><span class="line">    object :Handler()&#123;</span><br><span class="line">        override fun handleMessage(msg: Message) &#123;</span><br><span class="line">            super.handleMessage(msg)</span><br><span class="line">            when(msg.what) &#123;</span><br><span class="line">                MSG_TYPE_STUDENTINFOR -&gt; studentInfor= msg.obj as Student</span><br><span class="line">                MSG_TYPE_SIGNTASKS -&gt;&#123;</span><br><span class="line">                    orgAttandenceInfors = msg.obj as Array&lt;AttendanceInfo&gt;</span><br><span class="line">                    convertAttandenceInfors()</span><br><span class="line">                &#125;</span><br><span class="line">                MSG_TYPE_LEAVEINFORS -&gt;studentLeaveInfors = msg.obj as Array&lt;LeaveInfor&gt;</span><br><span class="line">                MSG_TYPE_UPDATE_LEAVINFORS -&gt;&#123;</span><br><span class="line">                    studentLeaveInfors = msg.obj as Array&lt;LeaveInfor&gt;</span><br><span class="line">                    AllLeaveInforFragment.leaveAdapter.notifyDataSetChanged()</span><br><span class="line">                &#125;</span><br><span class="line">                MSG_TYPE_UPDATE_ALL_LEAVES-&gt;&#123;</span><br><span class="line">                    allStudentLeaves = msg.obj as Array&lt;LeaveInfor&gt;</span><br><span class="line">                    showLeaveFragment.allLeaveAdapter.notifyDataSetChanged()</span><br><span class="line">                &#125;</span><br><span class="line">                MSG_TYPE_NO_SIGNS_LIST -&gt;&#123;</span><br><span class="line">                    noSignStudentLists = msg.obj as Array&lt;AttendanceInfo&gt;</span><br><span class="line">                    LoadAnimationFragment.delayAnim.start()</span><br><span class="line">                    WelcomeActivity.isRestart = false</span><br><span class="line">                &#125;</span><br><span class="line">                MSG_TYPE_UPDATE_NOSIGN_LISTS-&gt;&#123;</span><br><span class="line">                    noSignStudentLists = msg.obj as Array&lt;AttendanceInfo&gt;</span><br><span class="line">                    showSignFragment.showSignAdapter.notifyDataSetChanged()</span><br><span class="line">                &#125;</span><br><span class="line">                MSG_TYPE_ALL_LEAVES -&gt;allStudentLeaves = msg.obj as Array&lt;LeaveInfor&gt;</span><br><span class="line">                MSG_TYPE_RELEASEATTENDANCE_TASK -&gt; &#123;</span><br><span class="line">                        releasedAttendancetask = msg.obj as Array&lt;releasedAttendanceTask&gt;</span><br><span class="line">                        NetWorkDao.loadNoSignStudents(this)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>以上代码是在接触协程前写的一个小项目的局部，虽然对于一个需要进行通信的函数而言，传入一个<strong>Handler</strong>对象即可，但在UI主线程进行数据接收时变得相当复杂，一旦项目做大，Handler是绝对不能再用了，所以下面力荐使用协程<strong>Coroutine</strong></p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/474adbdb9b5c">协程的基本知识点可以参考本链接</a></p>
+<h3 id="四-协程在Android开发中的作用"><a href="#四-协程在Android开发中的作用" class="headerlink" title="四.协程在Android开发中的作用"></a>四.协程在Android开发中的作用</h3><p>首先强调一下协程和线程的区别，协程可以说是一种轻量级的线程，一个进程可以拥有多个线程，一个线程可以拥有多个协程，可以看出，协程是依附于线程的，所以开启一个协程时并不是开启了一个线程，由于协程的挂起机制<strong>suspend</strong>，你可以这样理解协程，将UI主线程想象成马路，如果某处发生交通事故，那么势必会阻塞主线程，此时通过开启协程将事故发生处(耗时任务)挂起，就是将发生事故的车辆悬空挂起，这样就不会影响主干的交通运行，而当发生事故的两辆车的车主解决好矛盾纠纷时(即耗时任务结束)，再将它们放下来，继续行驶在主干上，这样就完成了线程间的切换，当然你也可以根据自己的理解掌握协程的挂起以及切换机制</p>
+<blockquote>
+<p>线程是依赖于操作系统的，但协程仅由程序所决定，协程的挂起是一种函数，因此它的切换没有线程那样消耗大量内存</p>
+</blockquote>
+<ul>
+<li><p>协程的挂起函数需要协程域-CoroutineScope，在Kotlin中有以下两种创造协程域的方式：</p>
+<ol>
+<li><p>GlobalScope.lauch</p>
+<p>此方式创造的是全局的协程域，在Android中伴随着app运行的整个过程，不推荐，因为我们需要的是它能够伴随界面的生命周期</p>
+</li>
+<li><p>runBlocking</p>
+<p>此方式会阻塞主线程，仅用于程序调试，在Android同样不推荐</p>
+</li>
+</ol>
+</li>
+<li><p>JetPack提供ViewModel以及LIveData都有自带的协程域，这才是项目中常用的方式</p>
+</li>
+<li><p>当然也可以通过代码的方式为一个Acitivity/Fragment自定义一个协程域</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class MyFragment:Fragment() &#123;</span><br><span class="line">    private lateinit var scope:CoroutineScope</span><br><span class="line">    private val job:Job = Job()</span><br><span class="line">    override fun onCreate(savedInstanceState: Bundle?) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState)</span><br><span class="line">        scope = CoroutineScope( job + Dispatchers.Main)</span><br><span class="line">        //Dispatchers.Main用于标记此协程域附属于哪个线程，当耗时任务结束后会自动切回来</span><br><span class="line">    &#125;</span><br><span class="line">    override fun onActivityCreated(savedInstanceState: Bundle?) &#123;</span><br><span class="line">        super.onActivityCreated(savedInstanceState)</span><br><span class="line">        scope.launch &#123; </span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    override fun onDestroy() &#123;</span><br><span class="line">        super.onDestroy()</span><br><span class="line">        job.cancel()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但这种方式需要注意协程域的需要伴随Acitvity/Fragment的生命周期</p>
+<blockquote>
+<p>有了协程域，我们便可以开启协程进行耗时的网络/文件操作任务，在协程域内可以自由的进行线程切换，只需切换到其他线程中执行耗时任务即可，切换线程使用<code>withContext(指定的其他线程)</code>，<code>withContext</code>会阻塞当前协程域，直到耗时任务结束，这一特性相当有用</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="1-普通用法"><a href="#1-普通用法" class="headerlink" title="1.普通用法"></a>1.普通用法</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class MainActivity : AppCompatActivity() &#123;</span><br><span class="line">    private lateinit var scope: CoroutineScope</span><br><span class="line">    private val job = Job()</span><br><span class="line">    override fun onCreate(savedInstanceState: Bundle?) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_main)</span><br><span class="line">        scope = CoroutineScope(job+Dispatchers.Main)</span><br><span class="line">        load.setOnClickListener &#123;</span><br><span class="line">            scope.launch &#123;</span><br><span class="line">                val bitmap = withContext(Dispatchers.IO)&#123;</span><br><span class="line">                    val url = URL(&quot;http://img.kuai8.com/attaches/news/image/20131114/20131114102704_17481.jpg&quot;)</span><br><span class="line">                    val conn= url.openConnection() as HttpURLConnection</span><br><span class="line">                    BitmapFactory.decodeStream(url.openStream())</span><br><span class="line">                &#125;</span><br><span class="line">                //切换回来后在UI主线程中执行任务</span><br><span class="line">                imageView.setImageBitmap(bitmap)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    override fun onDestroy() &#123;</span><br><span class="line">        super.onDestroy()</span><br><span class="line">        job.cancel()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%8F%E7%A8%8B/%E7%BD%91%E7%BB%9C%E4%B8%8B%E8%BD%BD%E5%B1%95%E7%A4%BA.gif" style="zoom: 50%;" />
+
+<h4 id="2-搭配JetPack中的ViewModel"><a href="#2-搭配JetPack中的ViewModel" class="headerlink" title="2.搭配JetPack中的ViewModel"></a>2.搭配JetPack中的ViewModel</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class FirstPageViewModel:ViewModel() &#123;</span><br><span class="line">    var imgBitmap:MutableLiveData&lt;Bitmap&gt; = MutableLiveData()</span><br><span class="line">    fun loadImg()&#123;</span><br><span class="line">        viewModelScope.launch &#123;</span><br><span class="line">            imgBitmap.value = withContext(Dispatchers.IO)&#123;</span><br><span class="line">             val url = URL(&quot;http://img.kuai8.com/attaches/news/image/20131114/20131114102704_17481.jpg&quot;)</span><br><span class="line">              val conn= url.openConnection() as HttpURLConnection</span><br><span class="line">                BitmapFactory.decodeStream(url.openStream())</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">------------------------------------------------------------------------------------------------------------</span><br><span class="line">class MainActivity : AppCompatActivity() &#123;</span><br><span class="line">    override fun onCreate(savedInstanceState: Bundle?) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_main)</span><br><span class="line">        val viewModel = ViewModelProvider(this).get(FirstPageViewModel::class.java)</span><br><span class="line">        viewModel.imgBitmap.observe(this)&#123;</span><br><span class="line">            imageView.setImageBitmap(it)</span><br><span class="line">        &#125;</span><br><span class="line">        load.setOnClickListener &#123;</span><br><span class="line">            viewModel.loadImg()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="五-协程用法总结"><a href="#五-协程用法总结" class="headerlink" title="五.协程用法总结"></a>五.协程用法总结</h3><blockquote>
+<p><code>withContext</code>就类似于开启了一个新的线程，只不过其本质是将耗时任务切换到其他线程上去执行，由于其具有阻塞性，即在<strong>同一个协程域中任务的执行是单向的，不会并发</strong>，只有当A任务执行完毕后才会执行其后的B任务，这点特性相当重要，当然只会阻塞协程域，并不会阻塞UI主线程，而外层协程域是附属于主线程的，切回来时会自动在主线程中执行任务，另外一点，<code>withContext</code>代码块最后一句话可作为返回值</p>
+</blockquote>
+<p><strong>相信通过以上对比，发现协程是真的很方便，特别是在MVVM设计模式中，今后会通过项目进行展示</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/Android%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%8D%8F%E7%A8%8B%E4%BD%BF%E7%94%A8.html" data-id="clchki9it0007t0qh90h83ae3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag">Android常用琐碎知识点</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Fragment以及Navitation" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Fragment%E4%BB%A5%E5%8F%8ANavitation.html" class="article-date">
+  <time datetime="2020-12-05T12:33:50.000Z" itemprop="datePublished">2020-12-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E9%87%8D%E8%A6%81%E7%BB%84%E4%BB%B6/">Android重要组件</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Fragment%E4%BB%A5%E5%8F%8ANavitation.html">Fragment以及Navitation</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-引言"><a href="#一-引言" class="headerlink" title="一.引言"></a>一.引言</h3><ul>
+<li><p>Fragment：翻译为碎片，Fragment的初衷是为了适配平板，因为平板的界面比较大，可以划分为多个区域，每个区域就是一个Fragment</p>
+</li>
+<li><p>Fragment在如今的用法是扮演小型Activity，有属于自己的生命周期，Fragment不像Activity那样耗内存，特别轻巧，亲身经历，如果一个app的界面过多，也就意味着Activity会很多，那么Activity之间的跳转关系便会变得很复杂，而Activity的跳转是<strong>相当消耗内存的</strong>，一个简单的app打包之后可能会上百兆，而如果界面之间的跳转使用Fragment，会减少几倍的内存，如果Activity是房间，Fragment是画，那么Activity之间的跳转就是从一个房间进入到另外一个房间，而Frament之间的跳转仅仅只是将新的一幅画贴上去，可想而知，界面采取Fragment跳转是有多easy</p>
+</li>
+<li><p>现在app的设计大多采用一两个甚至一个Activity(即MainActivity)，而其他界面都是Fragment，因为Fragment就是<strong>小型Activity</strong></p>
+</li>
+<li><p>随着Fragment的不断发展，Fragment之间的跳转升级成了<strong>Navigation</strong>，让Fragment的使用变得更加简单</p>
+</li>
+</ul>
+<h3 id="二-Fragment的生命周期"><a href="#二-Fragment的生命周期" class="headerlink" title="二.Fragment的生命周期"></a>二.Fragment的生命周期</h3><p><img src="https://developer.android.google.cn/images/fragment_lifecycle.png"></p>
+<ul>
+<li>onAttach - fragment添加到activity时触发</li>
+<li>onCreate - 创建fragment(准备画框)</li>
+<li>onCreateView - 初始化fragment具体显示的内容-xml (画的具体内容)</li>
+<li>onActivityCreated - Activity创建好后(准备墙)，在此方法中可以访问到fragment对应的xml中的控件</li>
+<li>onStart 启动</li>
+<li>onResume 可以交互</li>
+<li>onPause 暂停交互</li>
+<li>onStop 停止了</li>
+<li>onDestroyView 销毁xml中的视图控件，即销毁画，fragment(画框还在)</li>
+<li>onDestroy  真正销毁fragment</li>
+</ul>
+<h3 id="三-使用Fragment"><a href="#三-使用Fragment" class="headerlink" title="三.使用Fragment"></a>三.使用Fragment</h3><p><strong>①静态使用</strong></p>
+<ol>
+<li><p>在activity的xml中添加fragment组件</p>
+</li>
+<li><p>创建一个类继承于fragment</p>
+</li>
+<li><p>重写对应的生命周期方法-onCreateView必需</p>
+</li>
+<li><p>创建xml文件进行界面布局</p>
+</li>
+<li><p>使用LayoutInflater解析xml</p>
+</li>
+<li><p>在activity的xml中设置fragment对应的name属性</p>
+</li>
+</ol>
+<p><strong>②动态使用</strong></p>
+<ol>
+<li><p>在activity的xml中添加FrameLayout组件进行占位</p>
+</li>
+<li><p>创建一个类继承于fragment</p>
+</li>
+<li><p>重写对应的生命周期方法-onCreateView必需</p>
+</li>
+<li><p>创建xml文件进行界面布局</p>
+</li>
+<li><p>使用LayoutInflater解析xml</p>
+</li>
+<li><p>使用FragmentManager管理fragment的切换</p>
+<p>Activity中：supportFragmentManager</p>
+<p>Fragment中：fragmentManager</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> mAdd.setOnClickListener &#123;</span><br><span class="line">            supportFragmentManager.beginTransaction()</span><br><span class="line">                .add(R.id.container,LoginFragment())</span><br><span class="line">                .addToBackStack(null)</span><br><span class="line">                .commit()</span><br><span class="line">        &#125;</span><br><span class="line">mReplace.setOnClickListener &#123;</span><br><span class="line">            supportFragmentManager.beginTransaction()</span><br><span class="line">                .replace(R.id.container,RegisterFragment())</span><br><span class="line">                .commit()</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>addToBackStack(null)</code>可以将fragment添加到栈中</p>
+</blockquote>
+<h3 id="四-fragment跳转添加动画"><a href="#四-fragment跳转添加动画" class="headerlink" title="四.fragment跳转添加动画"></a>四.fragment跳转添加动画</h3><ol>
+<li><p>在<code>res</code>目录下新建一个<code>Android Resource Directory</code>，类型为<code>anim</code></p>
+</li>
+<li><p>在<code>anim</code>下新建<code>Animation Resource File</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//slide_in</span><br><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;set xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:duration=&quot;500&quot;&gt;</span><br><span class="line">    &lt;translate</span><br><span class="line">        android:fromXDelta=&quot;-100%&quot;</span><br><span class="line">        android:toXDelta=&quot;0%&quot;/&gt;</span><br><span class="line">&lt;/set&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p><code>setCustomAnimations(R.anim.slide_in,R.anim.slide_out,R.anim.pop_in,R.anim.pop_out)</code>设置切换动画</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">supportFragmentManager.beginTransaction()</span><br><span class="line">               .setCustomAnimations(R.anim.slide_in,R.anim.slide_out,R.anim.pop_in,R.anim.pop_out)</span><br><span class="line">               .replace(R.id.container,RegisterFragment())</span><br><span class="line">               .commit()</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>效果展示</strong></p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Fragment/fragmentshow.gif" style="zoom:33%;" />
+
+<h3 id="五-Navigation"><a href="#五-Navigation" class="headerlink" title="五.Navigation"></a>五.Navigation</h3><p>①为了支持<code>safe-args</code>需要在<strong>工程gradle</strong>中添加依赖</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def nav_version = &quot;2.3.1&quot;</span><br><span class="line">classpath &quot;androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version&quot;</span><br></pre></td></tr></table></figure>
+
+<p>②在app对应的gradle中添加<code>apply plugin: &quot;androidx.navigation.safeargs.kotlin&quot;</code></p>
+<p>官网强烈要求使用<code>safe-args</code>的跳转方式，可以保证类型安全</p>
+<p><strong>Navigation中三大重要组成</strong></p>
+<ol>
+<li><p>NavHostFragment</p>
+<p>用于承载所有Fragment，就是一个容器，画框</p>
+</li>
+<li><p>NavGraph</p>
+<p>导航图，构建Fragment之间的跳转关系，还可管理参数传递和切换动画</p>
+</li>
+<li><p>NavController</p>
+<p>管理Fragment之间的切换</p>
+</li>
+</ol>
+<p><strong>Navigation搭配底部导航使用步骤：</strong></p>
+<ol>
+<li><p>提前准备好几个具有跳转关系的Fragment</p>
+</li>
+<li><p>创建导航图</p>
+<p>①在<code>res</code>目录下新建一个<code>Android Resource Directory</code>，类型为<code>navigation</code></p>
+<p>②在<code>navigation</code>下新建<code>Navigation Resource File</code></p>
+</li>
+<li><p>在导航图中构建导航关系</p>
+</li>
+<li><p>创建菜单</p>
+<p>①在<code>res</code>目录下新建一个<code>Android Resource Directory</code>，类型为<code>navigation</code></p>
+<p>②在<code>navigation</code>下新建<code>Menu Resource File</code></p>
+<p>③创建菜单项，每一项的<strong>id</strong>必须和导航图里面每个视图的id一样，一一对应才能完成跳转</p>
+</li>
+<li><p>在<code>activity_main.xml</code>中添加<code>NavHostFragment</code>容器，并关联上<code>NavGraph</code>，添加<code>BottomNavigationView</code>，并添加<code>menu</code>属性</p>
+</li>
+<li><p>在MainActivity中加载<code>NavController</code>控制Fragment跳转</p>
+</li>
+<li><p>将底部导航控件和<code>NavController</code>相关联</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class MainActivity : AppCompatActivity() &#123;</span><br><span class="line">    private lateinit var navController: NavController</span><br><span class="line">    override fun onCreate(savedInstanceState: Bundle?) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_main)</span><br><span class="line">        navController=findNavController(R.id.nav_host_fragment)</span><br><span class="line">        bottomNavigationView.setupWithNavController(navController)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>添加顶部toolBar以及菜单</strong></p>
+<ol>
+<li><p>在<code>styles.xml</code>中将<code>&lt;style name=&quot;AppTheme&quot; parent=&quot;Theme.AppCompat.Light.NoActionBar&quot;&gt;</code>更改为<code>NoActionBar</code></p>
+</li>
+<li><p>在<code>activity_main.xml</code>中添加<code>ToolBar</code></p>
+</li>
+<li><p>设置<code>ActionBar</code></p>
+<p><code>setSupportActionBar(toolbar)</code></p>
+</li>
+<li><p>将toolBar和navController关联，当切换界面时，会把对应fragment的label显示到actionBar</p>
+<p><code>setupActionBarWithNavController(navController)</code></p>
+</li>
+</ol>
+<p><strong>抽屉式布局</strong></p>
+<ol>
+<li><p>将activity_main.xml的外层用drawerLayout包裹</p>
+</li>
+<li><p>在原来的约束布局下面添加一个<code>NavigationView</code>，并添加<code>android:layout_gravity = &quot;start&quot;</code>属性，end表示从右边滑出</p>
+</li>
+<li><p>添加<code>menu</code>属性</p>
+</li>
+<li><p>在MainActivity中关联<code>NavigationView</code>和<code>NavController</code></p>
+<p><code>nav_view.setupWithNavController(navController)</code></p>
+</li>
+<li><p>将<code>appBarConfiguration</code>属性化(即全局)，并初始化</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">appBarConfiguration = AppBarConfiguration(setOf(R.id.homeFragment,R.id.registerFragment),</span><br><span class="line">                drawer</span><br><span class="line">            )</span><br></pre></td></tr></table></figure>
+
+<p>第一个参数表示有哪些Fragment是同级的，不能通过顶部的返回键返回，第二个参数是给toolBar左侧添加一个菜单标志，提示用户</p>
+</li>
+</ol>
+<p><strong>Fragment跳转时传递数据</strong></p>
+<ol>
+<li><p>在导航图中给目的地界面添加参数</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Fragment/Navigation%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92.png" style="zoom: 50%;" /></li>
+<li><p>通过NavController进行导航跳转</p>
+<p>首先创建action对象，当你在导航图中添加导航关系后，会自动生成一个以起始Fragment类名命名的action类，当然该类可以有很多个跳转关系</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">loginBtn.setOnClickListener &#123;</span><br><span class="line">            val action = HomeFragmentDirections.actionHomeFragmentToLoginFragment2(nameInput.text.toString())</span><br><span class="line">            findNavController().navigate(action)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果想传递参数，则将参数填入action的圆括号内即可</p>
+</li>
+<li><p>目的地Fragment取出数据</p>
+<p>通过代理模式<code>by</code>取数据更加方便，且不易出错</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">val args:LoginFragmentArgs by navArgs()</span><br><span class="line"> override fun onActivityCreated(savedInstanceState: Bundle?) &#123;</span><br><span class="line">        super.onActivityCreated(savedInstanceState)</span><br><span class="line">        showText.text = args.userName</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>推荐使用这种方式进行数据传递</p>
+</li>
+</ol>
+<p><strong>如果想设置按back键退回到哪个界面，只需在导航图中进行设置</strong></p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Fragment/%E8%AE%BE%E7%BD%AEback%E7%95%8C%E9%9D%A2.png" style="zoom:50%;" />
+
+<p>这种设置对于层级很深的跳转很有用</p>
+<p><strong>下面展示综合效果</strong></p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Fragment/navigationshow.gif" style="zoom:33%;" />
+
+<h3 id="六-总结"><a href="#六-总结" class="headerlink" title="六.总结"></a>六.总结</h3><blockquote>
+<p>学完Fragment后，会发现Navigation让界面的跳转变得更加轻松，从此app的设计多采用一个Activity，多个Fragment的形式，并且app的基本框架会使用Navigation相关组件</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/fragment-and-navigation">代码链接</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/Fragment%E4%BB%A5%E5%8F%8ANavitation.html" data-id="clchki9j9000xt0qhdifcdyvf" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Html学习随笔" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Html%E5%AD%A6%E4%B9%A0%E9%9A%8F%E7%AC%94.html" class="article-date">
+  <time datetime="2020-11-20T02:56:17.000Z" itemprop="datePublished">2020-11-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/html%E5%AD%A6%E4%B9%A0/">html学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Html%E5%AD%A6%E4%B9%A0%E9%9A%8F%E7%AC%94.html">Html学习随笔</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Html与Css笔记"><a href="#Html与Css笔记" class="headerlink" title="Html与Css笔记"></a>Html与Css笔记</h3><h4 id="1-文字效果"><a href="#1-文字效果" class="headerlink" title="1.文字效果"></a>1.文字效果</h4><table>
+<thead>
+<tr>
+<th align="center">效果</th>
+<th align="center">格式</th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">文字加粗</td>
+<td align="center"><strong></strong>或则<b></b>标签</td>
+<td align="center">更推荐使用<strong></td>
+</tr>
+<tr>
+<td align="center">倾斜</td>
+<td align="center"><em></em>或者<i></i></td>
+<td align="center">推荐使用<em></td>
+</tr>
+<tr>
+<td align="center">删除线</td>
+<td align="center"><del></del>或者<s></s></td>
+<td align="center">推荐使用<del></td>
+</tr>
+<tr>
+<td align="center">下划线</td>
+<td align="center"><ins></ins>或者<u></u></td>
+<td align="center">推荐使用<ins></td>
+</tr>
+</tbody></table>
+<h3 id="2-盒子标签"><a href="#2-盒子标签" class="headerlink" title="2.盒子标签"></a>2.盒子标签</h3><ul>
+<li><p>&lt;div&gt;&lt;/div&gt;</p>
+<p>一行只能放一个·大盒子</p>
+</li>
+<li><p>&lt;span&gt;&lt;/span&gt;</p>
+<p>一行可以放多个<span>即为跨距的意思</p>
+</li>
+</ul>
+<h3 id="3-图像标签"><a href="#3-图像标签" class="headerlink" title="3.图像标签"></a>3.图像标签</h3><p>&lt;img src = “图片路径”/&gt;</p>
+<table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="center">属性值</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">src</td>
+<td align="center">图片路径</td>
+<td align="center">必须属性</td>
+</tr>
+<tr>
+<td align="center">alt</td>
+<td align="center">文本</td>
+<td align="center">替换文本，图片不能正常显示时替换</td>
+</tr>
+<tr>
+<td align="center">title</td>
+<td align="center">文本</td>
+<td align="center">提示文本，鼠标放在图片上时显示</td>
+</tr>
+<tr>
+<td align="center">width</td>
+<td align="center">像素</td>
+<td align="center">设置图像的高度</td>
+</tr>
+<tr>
+<td align="center">height</td>
+<td align="center">像素</td>
+<td align="center">设置图片的高度</td>
+</tr>
+<tr>
+<td align="center">border</td>
+<td align="center">像素</td>
+<td align="center">设置的图片的边框粗细</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>高度和宽度修改其中一个即可，等比例缩放，同时修改会失真</p>
+<p>属性写在标签后面，不分先后，各属性之间通过空格隔开</p>
+</blockquote>
+<h3 id="4-图片的相对路径"><a href="#4-图片的相对路径" class="headerlink" title="4.图片的相对路径"></a>4.图片的相对路径</h3><table>
+<thead>
+<tr>
+<th align="center">相对路径分类</th>
+<th align="center">符号格式</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">同一级路径</td>
+<td align="center">无</td>
+<td align="center">图片和html文件位于同一文件级，&lt;img src=”wiwi.jpg”/&gt;</td>
+</tr>
+<tr>
+<td align="center">下一级路径</td>
+<td align="center">/</td>
+<td align="center">图片位于位于html文件下一级，&lt;img src=”images/wiwi.jpg”/&gt;</td>
+</tr>
+<tr>
+<td align="center">上一级路径</td>
+<td align="center">../</td>
+<td align="center">图片位于html文件上一级，&lt;img src=”../wiwi.jpg”/&gt;</td>
+</tr>
+</tbody></table>
+<h3 id="5-超链接标签"><a href="#5-超链接标签" class="headerlink" title="5.超链接标签"></a>5.超链接标签</h3><p>&lt;a href=”跳转目标”  target=”目标窗口的弹出方式”&gt; 文本或图像 &lt;/a&gt;</p>
+<table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">href</td>
+<td align="center">指定链接目标的url地址，(必须属性) 当为标签应用<strong>href</strong>属性时，它就具有了超链接的功能</td>
+</tr>
+<tr>
+<td align="center">target</td>
+<td align="center">指定链接页面的<strong>打开方式</strong>，其中_self为默认值，__blank为在新窗口中打开方式</td>
+</tr>
+</tbody></table>
+<p><strong>链接分类</strong></p>
+<ol>
+<li><p>外部链接</p>
+<p>&lt;a href=”<a target="_blank" rel="noopener" href="http://www.baidu.com&quot;&gt;百度/">http://www.baidu.com&quot;&gt;百度\</a></a></p>
+</li>
+<li><p>内部链接</p>
+<p>网站内部之间的相互链接，直接链接内部链接名称即可</p>
+<p>&lt;a href=”index.html”&gt;首页&lt;/a&gt;</p>
+</li>
+<li><p>空链接</p>
+<p>&lt;a href=”#”&gt;空链接&lt;/a&gt;</p>
+</li>
+<li><p>下载链接</p>
+<p>地址链接的是<strong>文件：.exe、zip</strong></p>
+<p>&lt;a href=”img.zip”&gt;图片下载&lt;/a&gt;</p>
+<p>点击之后会立即将图片下载到本地</p>
+</li>
+<li><p>网页元素的链接</p>
+<p>&lt;a href=”<a target="_blank" rel="noopener" href="http://www.baidu.com&quot;&gt;/">http://www.baidu.com&quot;&gt;\</a><img src="wiwi.jpg"/>&lt;/a&gt;</p>
+</li>
+<li><p>锚点链接</p>
+<p>点击链接可以快速定位到页面中的某个位置</p>
+<p>使用步骤</p>
+<ol>
+<li>在链接文本的href属性中，设置属性的值为**”#名字”**，如&lt;a href=”#two”&gt;第二季&lt;/a&gt;</li>
+<li>在目标位置标签中加入<strong>id属性=上面的名字</strong>，如&lt;h3 id=”two”&gt;第二季介绍&lt;/h3&gt;</li>
+</ol>
+</li>
+</ol>
+<h3 id="6-常用符号语法"><a href="#6-常用符号语法" class="headerlink" title="6.常用符号语法"></a>6.常用符号语法</h3><table>
+<thead>
+<tr>
+<th align="center">特殊符号</th>
+<th align="center">描述</th>
+<th align="center">字符代码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"></td>
+<td align="center">空格符</td>
+<td align="center">&amp;nbsp;</td>
+</tr>
+<tr>
+<td align="center">&lt;</td>
+<td align="center">小于符</td>
+<td align="center">&amp;lt;</td>
+</tr>
+<tr>
+<td align="center">&gt;</td>
+<td align="center">大于符</td>
+<td align="center">&amp;gt;</td>
+</tr>
+<tr>
+<td align="center">&amp;</td>
+<td align="center">和符</td>
+<td align="center">&amp;amp;</td>
+</tr>
+</tbody></table>
+<h3 id="7-表格标签"><a href="#7-表格标签" class="headerlink" title="7.表格标签"></a>7.表格标签</h3><ol>
+<li><p>&lt;table&gt;&lt;table/&gt;用于定义表格的标签</p>
+</li>
+<li><p>&lt;tr&gt;&lt;tr/&gt;用于定义表格中的行，必须嵌套在&lt;table&gt;标签中</p>
+</li>
+<li><p>&lt;td&gt;&lt;td/&gt;用于定义表格中的单元格，必须嵌套在&lt;tr&gt;&lt;tr/&gt;中</p>
+</li>
+<li><p>&lt;th&gt;&lt;th/&gt;常用于表头，加粗和居中效果</p>
+</li>
+</ol>
+<p><strong>表格的属性</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">属性名</th>
+<th align="center">属性值</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">align</td>
+<td align="center">left、center、right</td>
+<td align="center">规定表格相对于周围元素的对齐方式</td>
+</tr>
+<tr>
+<td align="center">border</td>
+<td align="center">1或””</td>
+<td align="center">设置表格是否有边框，””表示默认没有</td>
+</tr>
+<tr>
+<td align="center">cellpadding</td>
+<td align="center">像素值</td>
+<td align="center">设置内容和单元格的内间距，默认1像素</td>
+</tr>
+<tr>
+<td align="center">cellspacing</td>
+<td align="center">像素值</td>
+<td align="center">设置单元格之间的空白，默认2像素</td>
+</tr>
+<tr>
+<td align="center">width</td>
+<td align="center">像素值或百分比</td>
+<td align="center">设置表格的宽度</td>
+</tr>
+</tbody></table>
+<p><strong>表格的结构标签</strong></p>
+<ol>
+<li>&lt;thead&gt;&lt;thead/&gt; 定义表格的头部，内部必须有&lt;tr&gt;标签，一般位于表格的第一行</li>
+<li>&lt;tbody&gt;&lt;tbody&gt;   定义表格的主体，主要用于放数据主体</li>
+</ol>
+<p><strong>单元格的合并</strong></p>
+<ul>
+<li>跨行合并：rowspan=”合并单元格的个数”</li>
+<li>跨列合并：colspan=”合并单元格的个数”</li>
+</ul>
+<p><strong>合并单元格的步骤</strong></p>
+<ol>
+<li>确定是跨行还是跨列合并</li>
+<li>找到目标单元格，写上<strong>合并方式=合并的单元格数量</strong>，如&lt;td colspan=”2”&gt; &lt;/td&gt;</li>
+<li>删除多余的单元格</li>
+</ol>
+<h3 id="8-列表标签"><a href="#8-列表标签" class="headerlink" title="8.列表标签"></a>8.列表标签</h3><ol>
+<li><p>无序列表</p>
+<ul>
+<li>用&lt;ul&gt;&lt;ul&gt;  定义列表</li>
+<li>&lt;li&gt;&lt;li/&gt;  定义列表项</li>
+</ul>
+<p>注：&lt;ul&gt;标签内只能放&lt;li&gt;标签，但&lt;li&gt;标签内可以容纳所有元素</p>
+</li>
+<li><p>有序列表</p>
+<ul>
+<li>使用&lt;ol&gt;&lt;ol/&gt; 定义有序列表</li>
+</ul>
+</li>
+<li><p>自定义列表</p>
+<ul>
+<li><p>自定义列表常用于对术语或名词进行解释和描述，列表项前没有任何项目符号</p>
+</li>
+<li><p>语法格式</p>
+<p>&lt;dl&gt;</p>
+<p>​     &lt;dt&gt;分类标题&lt;/dt&gt;</p>
+<p>​    &lt;dd&gt;子项一&lt;/dd&gt;</p>
+<p>​    &lt;dd&gt;子项二&lt;/dd&gt;</p>
+<p>  &lt;/dl&gt;</p>
+</li>
+<li><p>&lt;dl&gt;标签内只能放&lt;dt&gt;和&lt;dd&gt;标签</p>
+</li>
+<li><p>通常情况下，一个&lt;dt&gt;对应多个&lt;dd&gt;标签</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="9-表单"><a href="#9-表单" class="headerlink" title="9. 表单"></a>9. 表单</h3><p>使用&lt;form&gt;&lt;form/&gt;表示表单域</p>
+<p>(1)&lt;input&gt;</p>
+<p>格式：&lt;input type= “属性值”/&gt;</p>
+<p>常用type的属性值如下表</p>
+<table>
+<thead>
+<tr>
+<th align="center">type值</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">button</td>
+<td align="center">定义可点击按钮，用于通过JS启动脚本</td>
+</tr>
+<tr>
+<td align="center">checkbox</td>
+<td align="center">定义复选框</td>
+</tr>
+<tr>
+<td align="center">text</td>
+<td align="center">定义单行的输入字段，输入文本·，默认宽度为20个字符</td>
+</tr>
+<tr>
+<td align="center">hidden</td>
+<td align="center">定义隐藏的输入字段</td>
+</tr>
+<tr>
+<td align="center">image</td>
+<td align="center">定义图像形式的提交按钮</td>
+</tr>
+<tr>
+<td align="center">password</td>
+<td align="center">定义密码字段，该字段中的字符被掩码</td>
+</tr>
+<tr>
+<td align="center">radio</td>
+<td align="center">定义单选按钮</td>
+</tr>
+<tr>
+<td align="center">reset</td>
+<td align="center">定义重置按钮，清空表单中的所有数据</td>
+</tr>
+<tr>
+<td align="center">submit</td>
+<td align="center">定义提交按钮，将表单的数据提交给服务器</td>
+</tr>
+</tbody></table>
+<ol>
+<li><p>每个表单元素都有自己的name属性，可以理解为Java里面的<strong>引用对象</strong>，多个单选按钮以及复选框按钮必须设置相同的name</p>
+</li>
+<li><p>value：设置input元素的值</p>
+</li>
+<li><p>checked：规定input元素首次加载时被选中，主要针对单选和多选按钮</p>
+</li>
+<li><p>maxLength：设置输入的最大长度</p>
+</li>
+</ol>
+<p>(2) 表单标签-label</p>
+<ul>
+<li><p>用于绑定某个表单元素，增加用户体验</p>
+</li>
+<li><p>格式：</p>
+<p>&lt;label for=”sex”&gt;男&lt;/label&gt;</p>
+<p>&lt;input type=”radio” name=”sex” id=”sex”&gt;</p>
+</li>
+<li><p>label标签的for属性应和相关元素的id属性相同</p>
+</li>
+</ul>
+<p>(3) 下拉表单元素&lt;select&gt;</p>
+<ul>
+<li><p>针对多个选择</p>
+</li>
+<li><p>语法格式</p>
+<p>&lt;select&gt;</p>
+<p>​      &lt;option&gt;选项一&lt;/option&gt;</p>
+<p>​      &lt;option&gt;选项二&lt;/option&gt;</p>
+<p>​      &lt;option&gt;选项三&lt;/option&gt;</p>
+<p>​    &lt;/select&gt;</p>
+</li>
+<li><p>注：至少包含一对&lt;option&gt;，可以给某个option设置selected属性，首次加载默认选中</p>
+</li>
+</ul>
+<p>(4) 文本域表单元素&lt;textarea&gt;</p>
+<ul>
+<li><p>针对多行文本</p>
+</li>
+<li><p>语法格式</p>
+<p>&lt;textarea cols=”一行多少个字” rows=”行数”&gt;</p>
+<p>​        文本内容</p>
+<p>​    &lt;/textarea&gt;</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/Html%E5%AD%A6%E4%B9%A0%E9%9A%8F%E7%AC%94.html" data-id="clchki9jd0015t0qhg2u736d8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-系统高级UI之RecyclerView" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI%E4%B9%8BRecyclerView.html" class="article-date">
+  <time datetime="2020-11-09T03:30:44.000Z" itemprop="datePublished">2020-11-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%B3%BB%E7%BB%9F%E6%8E%A7%E4%BB%B6/">系统控件</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI%E4%B9%8BRecyclerView.html">系统高级UI之RecyclerView</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-引言"><a href="#一-引言" class="headerlink" title="一.引言"></a>一.引言</h3><blockquote>
+<p>当我们需要需要一个滚动列表来显示内容时，首选<strong>RecyclerView</strong>，是目前滚动列表中功能最强大的，下面以一个Demo的效果来进行展示</p>
+</blockquote>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/recyclershow.gif" style="zoom: 50%;" />
+
+<h3 id="二-使用RecyclerView的具体步骤"><a href="#二-使用RecyclerView的具体步骤" class="headerlink" title="二.使用RecyclerView的具体步骤"></a>二.使用RecyclerView的具体步骤</h3><blockquote>
+<p>系统已经对RecyclerView进行了解耦，即将其分为几大板块(组成部分)</p>
+</blockquote>
+<ul>
+<li>adapter：完成数据的显示 RecyclerView.Adapter</li>
+<li>layoutManager:：布局样式(线性 网格 瀑布流 滚动方向)</li>
+<li>itemDecoration：每一个item的装饰器(通常用来设置间距)</li>
+<li>xxx_layout.xml：每一个item显示的样子模板(即每一个子View)</li>
+<li>给每个item中的一部分设置监听事件</li>
+</ul>
+<blockquote>
+<p>创建一个RecyclerView只是搭建了一个框架，内容还需填充以上所列，此处强调一下<strong>adapter</strong>适配器，这就好比电源适配器，将220v的电源转换成手机或者电脑可以使用的电压，类似的，一个<strong>RecyclerView</strong>在不同的场景下可以显示不同的视图，全显示文本，或者全是图片，亦或是图片加文本，将这些内容传给<strong>RecyclerView</strong>便是<strong>adapter</strong>适配器的功能</p>
+</blockquote>
+<p><strong>下面是具体使用步骤：</strong></p>
+<ol>
+<li><p>创建RecyclerView-&gt;xml里面配置</p>
+</li>
+<li><p>代码中配置属性</p>
+<p>① 确定布局样式-&gt;layoutManager</p>
+<p>② 确定数据源，此处会在Demo中强调</p>
+</li>
+<li><p>定义一个类实现RecyclerView.Adapter接口</p>
+<p>RecyclerView就是通过接口里面的方法来访问数据的</p>
+<p>① 创建一个类继承于RecyclerView.ViewHolder，以便重复利用，提高运行效率</p>
+<p>② 重写adapter里面的抽象方法</p>
+<p>​     <code>getItemCount()</code>：确定元素个数</p>
+<p>​     <code>onCreateViewHolder()</code>：确定每⼀个item的视图(xml中配置，并通过LayoutInflater解析得到View)</p>
+<p>​     <code>onBindViewHolder()</code>：将数据与View进行绑定</p>
+<p>③ 接收外部传递过来的数据源 -&gt;构造函数(属性)</p>
+</li>
+<li><p>设置item装饰器-&gt;<code>addItemDecoration()</code></p>
+<p>① 使用系统提供的实现类，如<code>DividerItemDecoration</code>添加分割线</p>
+<p>② ⾃⼰创建⼀个类继承于<code>ItemDecoration</code> 重写onDraw或者 onDrawOver、getItemOffset</p>
+</li>
+<li><p>如果想让每个Item分屏显示，需要<code>LinearSnapHelper</code>类通过<code>attachToRecyclerView()</code>关联<strong>RecyclerView</strong></p>
+</li>
+<li><p>CardView可以用来设置圆角，感觉效果还不错，它是一个容器</p>
+</li>
+</ol>
+<blockquote>
+<p>特别想强调一下<code>ViewHolder</code>的使用，<strong>adapter</strong>管理的数据就是<code>ViewHolder</code>，<strong>RecyclerView</strong>将<code>ViewHolder</code>封装在内部，就是为了，不用每次都去加载视图，使用过的<code>ViewHolder</code>会被存储起来，下一次使用只需更改View里面的数据即可，大大提高了效率</p>
+</blockquote>
+<h3 id="三-浏览图片Demo"><a href="#三-浏览图片Demo" class="headerlink" title="三.浏览图片Demo"></a>三.浏览图片Demo</h3><blockquote>
+<p>下面通过一个浏览图片的小Demo来巩固对<strong>RecyclerView</strong>的使用，效果展示已在最顶部展示，很多app都采取了这样的浏览模式，还是蛮有意义的</p>
+</blockquote>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/RecyclerView%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E5%9B%BE.png"></p>
+<blockquote>
+<p>值得一提的是该Demo获取数据的方式进行了架构，<code>Factory</code>接口作为中转站(生成数据)，但具体获取数据的方式是不确定的，只有通过它的实现类来确定，此处是<code>LocalUtil</code>即本地加载数据，<code>Repository</code>使用两个变量保存数据是为了进行数据的同步，一个<strong>私有</strong>，一个<strong>公开</strong>，私有的会根据需求进行数据的删除和增加，公有的便提供给每个界面使用</p>
+</blockquote>
+<blockquote>
+<p>给Item添加监听事件，由于每个视图都有子控件，所以我们通常会给具体的子控件设置点击事件，<strong>RecyclerView</strong>没有单独给每个Item设置监听事件的方法</p>
+</blockquote>
+<h3 id="四-总结"><a href="#四-总结" class="headerlink" title="四.总结"></a>四.总结</h3><blockquote>
+<p>要想熟练使用<strong>RecyclerView</strong>就必须熟悉它由几大部分组成，当必需的几个部分添加完毕后，便可正常显示，另外需要注意的是，数据源从何而来，采取合理的架构方式，提高复用性，以及数据的封装</p>
+</blockquote>
+<p><strong>代码链接</strong></p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/recycler-view-demo/">RecyclerView的小Demo</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI%E4%B9%8BRecyclerView.html" data-id="clchki9lb0068t0qhbx2ca3os" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" rel="tag">系统高级UI</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-自定义ViewGroup" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/%E8%87%AA%E5%AE%9A%E4%B9%89ViewGroup.html" class="article-date">
+  <time datetime="2020-10-27T01:40:10.000Z" itemprop="datePublished">2020-10-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/">Android自定义系列</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/%E8%87%AA%E5%AE%9A%E4%B9%89ViewGroup.html">自定义ViewGroup</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-引言"><a href="#一-引言" class="headerlink" title="一.引言"></a>一.引言</h3><blockquote>
+<p>前面对自定义ViewGroup做了一个简单的引入，本文将详细讲解真正自定义ViewGroup的三种情况</p>
+</blockquote>
+<ol>
+<li>父容器尺寸确定，需要根据父容器的尺寸确定子控件的尺寸</li>
+<li>子控件尺寸确定，需要确定父容器的尺寸</li>
+<li>子控件和父容器尺寸都不确定，先测量子控件，在确定父容器尺寸</li>
+</ol>
+<ul>
+<li><p>一个ViewGroup添加控件的具体流程分5步</p>
+<ol>
+<li><p>通过<code>super.onMeasure(widthMeasureSpec, heightMeasureSpec)</code>拿到容器本身的限制，即预测量容器自身</p>
+</li>
+<li><p>测量每个子控件的尺寸<code>measureChildren()</code>、<code>measure()</code></p>
+</li>
+<li><p>在<code>onMeasure()</code>中定排列规则</p>
+</li>
+<li><p>计算当前容器的最终尺寸</p>
+</li>
+<li><p>摆放(布局)控件</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="二-第一种情况实例"><a href="#二-第一种情况实例" class="headerlink" title="二.第一种情况实例"></a>二.第一种情况实例</h3><p>当父容器大小确定后，子控件的大小由我们自己确定，随着子控件的数量增多，每个子控件的尺寸肯定越来越小，实现demo的效果图如下</p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/%E7%AC%AC%E4%B8%80%E7%A7%8D%E6%83%85%E5%86%B5.gif"></p>
+<p>过程分析：</p>
+<ol>
+<li>由于父容器的宽高是确定的，并且布局规则是<strong>每行两个子控件，且相同</strong>，所以子控件的宽度是确定的</li>
+<li>而子控件的高度取决于子控件的数量，具体为有多少行子控件，<code>val childHeight = (parentHeight-(row+1)*space)/row</code></li>
+<li>计算出子控件的尺寸后，还得获取<code>MeasureSpec</code>，最后测量每一个子控件，本质为储存每一个子控件的尺寸</li>
+<li>在布局的时候，注意的一点是<strong>什么时候应该换行，以及换行时，</strong><code>left</code><strong>和</strong><code>top</code><strong>的变化是怎样的</strong>，也就是按照布局规则进行摆放子控件</li>
+</ol>
+<h3 id="三-第二种情况实例"><a href="#三-第二种情况实例" class="headerlink" title="三.第二种情况实例"></a>三.第二种情况实例</h3><p>当我们在xml配置文件中，确定控件的大小为多少dp，且容器的大小为<code>wrap_content</code>，这时需要通过子控件的大小确定父容器的大小，demo效果图如下：</p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/%E4%BB%A3%E7%A0%81%E6%BC%94%E7%A4%BA%E7%AC%AC%E4%BA%8C%E7%A7%8D%E6%83%85%E5%86%B5.gif"></p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/%E6%89%8B%E6%9C%BA%E6%BC%94%E7%A4%BA.gif" style="zoom:50%;" />
+
+<p>过程分析：</p>
+<ol>
+<li>首先搭建框架，我们需要两个变量记录容器最终的大小，最后通过<code>setMeasuredDimension(resultWidth,resultHeight)</code>保存尺寸</li>
+<li>中间过程便是通过所有子控件的尺寸来确定父容器的尺寸，下面先按照之前的写法进行测量所有子控件，我们可以通过<code>layoutParams</code>获取子控件的尺寸，然后获取<code>MeasureSpec</code></li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">val child = getChildAt(0)</span><br><span class="line">val lp = child.layoutParams</span><br><span class="line">val childWidhSpec = MeasureSpec.makeMeasureSpec(lp.width,MeasureSpec.EXACTLY)</span><br><span class="line">val childHeightSpec = MeasureSpec.makeMeasureSpec(lp.height,MeasureSpec.EXACTLY)</span><br><span class="line">for (i in 0 until childCount)&#123;</span><br><span class="line">     getChildAt(i).measure(childWidhSpec,childHeightSpec)</span><br><span class="line">        &#125;        </span><br></pre></td></tr></table></figure>
+
+<p>​    而以上代完全可以通过一行代码来替换<code>measureChildren(widthMeasureSpec,heightMeasureSpec)</code>，所以对于在xml对子控件设置固定大小的情况下，使用该方法更加简便，可以去查看<code>measureChildren()</code>的内部实现，系统帮我们完成了一系列繁杂的操作</p>
+<ol start="3">
+<li>由于该demo中的子控件都是规则的，所以测量起来十分方便，只需知道有多少行子控件即可，布局的时候和第一种情况几乎相同</li>
+</ol>
+<h3 id="四-第三种情况-gt-流式布局"><a href="#四-第三种情况-gt-流式布局" class="headerlink" title="四.第三种情况-&gt;流式布局"></a>四.第三种情况-&gt;流式布局</h3><p>当子控件和父容器都是<code>wrap_content</code>的时候，特别是需要添加间距时，显得稍微复杂一点，下面以近年来兴起的<strong>流失布局</strong>为例分析这种情况，demo效果如下</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/%E6%B5%81%E5%BC%8F%E5%B8%83%E5%B1%80.jpg" style="zoom: 33%;" />
+
+<p>以上模拟的是网易云搜索音乐时可以看到的一个历史记录，采用的是流式布局，给<code>TextView</code>设置圆角背景后效果还不错，如何设置请看这篇博客<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a2131907a0f4">关于View控件详情以及设置圆角背景</a></p>
+<p>过程分析：</p>
+<ol>
+<li>首先依旧搭好框架，先获取容器自身的尺寸以及<code>MeasureSpec</code>，以及设置尺寸，此处需要根据父容器的<code>MeasureSpec</code>进行设置测量尺寸</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">resultWidth = if (parentWidhtMode==MeasureSpec.EXACTLY) parentWidth else resultWidth</span><br><span class="line">resultHeight = if (parentHightMode==MeasureSpec.EXACTLY) parentHeight else resultHeight</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>因为我们需要为每一个子控件设置外间距，所以不能采取系统的测量方式即<code>measureChildren</code>或者<code>measureChild</code>，下面给出源码分析</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">public static int getChildMeasureSpec(int spec, int padding, int childDimension) &#123;</span><br><span class="line">        int specMode = MeasureSpec.getMode(spec);</span><br><span class="line">        int specSize = MeasureSpec.getSize(spec);</span><br><span class="line">		//-------------在父容器的约束下，必须减去外间距，剩余的空间才能用于摆放子控件--------------------------</span><br><span class="line">        int size = Math.max(0, specSize - padding);</span><br><span class="line"></span><br><span class="line">        int resultSize = 0;</span><br><span class="line">        int resultMode = 0;</span><br><span class="line"></span><br><span class="line">        switch (specMode) &#123;</span><br><span class="line">        // Parent has imposed an exact size on us</span><br><span class="line">        case MeasureSpec.EXACTLY:</span><br><span class="line">            if (childDimension &gt;= 0) &#123;</span><br><span class="line">                resultSize = childDimension;</span><br><span class="line">                resultMode = MeasureSpec.EXACTLY;</span><br><span class="line">            &#125; else if (childDimension == LayoutParams.MATCH_PARENT) &#123;</span><br><span class="line">                // Child wants to be our size. So be it.</span><br><span class="line">                resultSize = size;</span><br><span class="line">                resultMode = MeasureSpec.EXACTLY;</span><br><span class="line">            &#125; else if (childDimension == LayoutParams.WRAP_CONTENT) &#123;</span><br><span class="line">                // Child wants to determine its own size. It can&#x27;t be</span><br><span class="line">                // bigger than us.</span><br><span class="line">                resultSize = size;</span><br><span class="line">                resultMode = MeasureSpec.AT_MOST;</span><br><span class="line">            &#125;</span><br><span class="line">            break;</span><br><span class="line"></span><br><span class="line">        // Parent has imposed a maximum size on us</span><br><span class="line">        case MeasureSpec.AT_MOST:</span><br><span class="line">            if (childDimension &gt;= 0) &#123;</span><br><span class="line">                // Child wants a specific size... so be it</span><br><span class="line">                resultSize = childDimension;</span><br><span class="line">                resultMode = MeasureSpec.EXACTLY;</span><br><span class="line">            &#125; else if (childDimension == LayoutParams.MATCH_PARENT) &#123;</span><br><span class="line">                // Child wants to be our size, but our size is not fixed.</span><br><span class="line">                // Constrain child to not be bigger than us.</span><br><span class="line">                resultSize = size;</span><br><span class="line">                resultMode = MeasureSpec.AT_MOST;</span><br><span class="line">            &#125; else if (childDimension == LayoutParams.WRAP_CONTENT) &#123;</span><br><span class="line">                // Child wants to determine its own size. It can&#x27;t be</span><br><span class="line">                // bigger than us.</span><br><span class="line">                resultSize = size;</span><br><span class="line">                resultMode = MeasureSpec.AT_MOST;</span><br><span class="line">            &#125;</span><br><span class="line">            break;</span><br><span class="line"></span><br><span class="line">        // Parent asked to see how big we want to be</span><br><span class="line">        case MeasureSpec.UNSPECIFIED:</span><br><span class="line">            if (childDimension &gt;= 0) &#123;</span><br><span class="line">                // Child wants a specific size... let him have it</span><br><span class="line">                resultSize = childDimension;</span><br><span class="line">                resultMode = MeasureSpec.EXACTLY;</span><br><span class="line">            &#125; else if (childDimension == LayoutParams.MATCH_PARENT) &#123;</span><br><span class="line">                // Child wants to be our size... find out how big it should</span><br><span class="line">                // be</span><br><span class="line">                resultSize = View.sUseZeroUnspecifiedMeasureSpec ? 0 : size;</span><br><span class="line">                resultMode = MeasureSpec.UNSPECIFIED;</span><br><span class="line">            &#125; else if (childDimension == LayoutParams.WRAP_CONTENT) &#123;</span><br><span class="line">                // Child wants to determine its own size.... find out how</span><br><span class="line">                // big it should be</span><br><span class="line">                resultSize = View.sUseZeroUnspecifiedMeasureSpec ? 0 : size;</span><br><span class="line">                resultMode = MeasureSpec.UNSPECIFIED;</span><br><span class="line">            &#125;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">        //noinspection ResourceType</span><br><span class="line">        return MeasureSpec.makeMeasureSpec(resultSize, resultMode);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>此方法是系统内部测量子控件必定会调用的方法，我们据此进行模仿，代码中<strong>虚线</strong>部分解释在设置外间距的情况下，子控件能用的剩余空间为多少，试想如果我们采用系统的<code>measureChild()</code>方法，那么参数中的<code>padding</code>的值为0，又由于父容器的模式为<code>AT_MOST</code>，子控件也为<code>AT_MOST</code>，根据<code>switch</code>语句容易得出，子控件的最终大小为<code>size</code>也就是父容器的大小，假设只添加一个控件，那么它的宽度即为父容器的宽度，那我们在布局的时候，设置左右外间距，就意味着，真实布局大小为<code>2*space+width</code>，而父容器的大小同理可以得出是屏幕宽度，那岂不就是超出了整个屏幕的宽度了吗，显然，这太糟糕了，所以我们只能自己通过<code>measure()</code>方法存储子控件的尺寸，而所需的<code>MeasureSpec</code>则通过<code>getChildMeasureSpec</code>获取，手动设置间距，xml中的尺寸可以通过<code>layoutParams</code>拿到，这便是手动添加间距的方式</p>
+</blockquote>
+<ol start="3">
+<li>在测量的同时，制定布局方案，这就好比绘制造房子的图纸，而<code>onLayout</code>便相当于根据图纸造房子，即根据已设置好的布局规则摆放子控件，下面通过图解说明摆放规则</li>
+</ol>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/%E6%B5%81%E5%BC%8F%E5%B8%83%E5%B1%80.png"></p>
+<blockquote>
+<p>设置多个数组保存数据的作用就是保存布局规则，在<code>onLayout()</code>中只需要取出数组中的数组摆放控件即可，所以<code>onMeasure()</code>中制定规则更加繁琐</p>
+</blockquote>
+<p><strong>踩坑点分析</strong></p>
+<p>①. 跳出for循环后，其实还有最后一行没有添加到<code>allLineChildren</code>中去，因为最后一行通常不满足换行条件，所以进行判断添加</p>
+<p>②. <code>allLineChildren</code>和<code>lineHeights</code>两个属性变量不要在声明时初始化，因为<code>onMeasure()</code>方法会被调用两次，导致重复添加，所以其初始化必须在<code>onMeasure()</code>中</p>
+<p>③. <code>lineChildren</code>在换行时不能调用<code>clear()</code>清空，而是创建一个新的实例对象，否则只会添加最后一行的控件</p>
+<h3 id="五-总结"><a href="#五-总结" class="headerlink" title="五.总结"></a>五.总结</h3><blockquote>
+<p>自定义ViewGroup的测量与布局不会超出以上三种情况，最重要的是流式布局，建议多写几遍，熟悉自定义规则的步骤，写完三种，发现归根结底，子控件的测量都可使用<code>measure()</code>来实现，自己制作<code>MeasureSpec</code>或者通过系统的方法获取，测量模式很重要，子控件和父容器的尺寸都和此挂钩，一一映射</p>
+</blockquote>
+<p><strong>代码链接</strong></p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/defineViewGroup/tree/master/app/src/main/java/swu/cx/defineviewgroup">自定义ViewGroup</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/%E8%87%AA%E5%AE%9A%E4%B9%89ViewGroup.html" data-id="clchki9ll006yt0qh5ipj7xch" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android%E9%AB%98%E7%BA%A7UI/" rel="tag">Android高级UI</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-自定义ViewGroup引入" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/%E8%87%AA%E5%AE%9A%E4%B9%89ViewGroup%E5%BC%95%E5%85%A5.html" class="article-date">
+  <time datetime="2020-10-26T06:42:56.000Z" itemprop="datePublished">2020-10-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/">Android自定义系列</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/%E8%87%AA%E5%AE%9A%E4%B9%89ViewGroup%E5%BC%95%E5%85%A5.html">自定义ViewGroup引入</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-引言"><a href="#一-引言" class="headerlink" title="一.引言"></a>一.引言</h3><blockquote>
+<p>自定义控件阶段主要是使用<code>onDraw()</code>方法进行绘制，常与自定义动画相结合，而自定义ViewGroup关键在于<strong>定规则</strong>-&gt;子控件的摆放规则，比如系统的<strong>LinearLayout</strong>，一行一行摆放或者一列一列摆放，在定义复杂规则之前，我们先改写LinearLayout找找感觉，完成<strong>底部导航栏小Demo</strong></p>
+</blockquote>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/%E5%BA%95%E9%83%A8%E5%AF%BC%E8%88%AA%E6%A0%8F.gif" style="zoom:50%;" />
+
+<h3 id="二-实现思路分析"><a href="#二-实现思路分析" class="headerlink" title="二.实现思路分析"></a>二.实现思路分析</h3><ol>
+<li><p>结构上很直观的可以看出，该导航栏是两层LinearLayout，外层是横向布局，内层是纵向布局，本Demo中自定义了两个ViewGroup，都继承自LinearLayout，你可能会觉得外层没必要自己写，直接使用系统的，答案是不行，因为当某个标签被点击时，它本身不仅需要改变，在它之前的那个标签同样需要改变，所以我们一定需要<strong>第三者</strong>来管理所有标签，而使用系统的无法实现，另外当然还有一种思路，让<strong>MainActivity</strong>来管理所有标签，这时外层使用系统的没有问题，缺点是失去了封装的优势，并且会让MainActivity中的逻辑变得混乱，仅仅为了一个控件，不值得，所以定义两个ViewGroup是最佳的选择，而且还可以<strong>自定义属性</strong>让用户设置标签的样式，由于数量太多，本Demo中省去了</p>
+</li>
+<li><p>另外一个难点是外层如何传递数据给内层？一个标签不仅有图片、文字还有显示的状态，同时传递这么多不同类型的数据，我们很容易想到封装，将<strong>所有属性封装到一个数据类中进行管理</strong>，Kotlin中专门提供了一种数据类，只用于存储数据-&gt;data class，简单易操作</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">data class itemModel(</span><br><span class="line">    var normalIcon:Int,</span><br><span class="line">    var selectIcon:Int,</span><br><span class="line">    var text:String,</span><br><span class="line">    var normalColor:Int,</span><br><span class="line">    var selectColor:Int,</span><br><span class="line">    var selected:Boolean</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>将构造函数的参数设置为属性，便能保存下来，这就是数据模型，封装思想</p>
+</blockquote>
+<ol start="3">
+<li><p>在什么时候将这些数据传递到内层每个标签？内层标签的初始化创建肯定在外层容器的构造方法中进行，所以当外层容器被解析完成后所有的标签实例就已经创建完毕，即当调用<code>setContentView(R.layout.activity_main)</code>后，我们才能传递数据，即有了实例对象才能设置图片和文字等资源，由于实例化标签和设置资源不是同时进行的，所以在外层容器中需要数组进行保存数据，当这个数组被赋值时，就可以设置资源，为了简便以及体现思路，重写数组变量的<code>set()</code>方法</p>
+</li>
+<li><p>高阶函数回调，当一个标签被点击时，首先更改上一个标签的状态，由于记录标签状态的变量<code>mSelected</code>重写了<code>set()</code>方法，而在<code>set()</code>方法中进行了更新UI，所以只需再记录当前是第几个标签即可，每个标签都有自己的<code>index</code>，其实很多时候重写<code>set()</code>方法很具优势，不仅体现思路，而且让代码简洁</p>
+</li>
+<li><p>外层线性布局需要给每一个标签设置<code>weight</code>比重，且值都相等，均分</p>
+</li>
+<li><p>当我们创建一个标签时，调用<code>addView()</code>不能在<code>apply</code>里面添加，因为标签本身就是容器，所以在<code>apply</code>内部调用的<code>addView()</code>是标签的而不是外层容器的，因此只能在<code>also</code>里面把当前标签添加进外层容器，只有单个控件才能在<code>apply</code>中调用外层容器的<code>addView()</code>，这点很重要</p>
+</li>
+</ol>
+<h3 id="三-小结"><a href="#三-小结" class="headerlink" title="三.小结"></a>三.小结</h3><p>此Demo采用系统的布局方式仅是一个引入，综合自定义属性，还挺有意义的，毕竟绝大部分app都会有底部导航栏</p>
+<p><strong>代码链接</strong></p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/androidUI-BottomTabBar/tree/master/app/src/main/java/swu/cx/learning_10_17">底部导航栏</a></p>
+<h3 id="四-测量模式MeasureSpec"><a href="#四-测量模式MeasureSpec" class="headerlink" title="四.测量模式MeasureSpec"></a>四.测量模式MeasureSpec</h3><blockquote>
+<p>测量模式是对控件的尺寸进行约束，有以下三种</p>
+</blockquote>
+<ol>
+<li><p>EXACTLY</p>
+<p>在xml中设置具体的值：如100dp</p>
+</li>
+<li><p>AT_MOST</p>
+<p>不能超过某个值：match_parent、wrap_content</p>
+</li>
+<li><p>UNSPECIFIED</p>
+<p>不具体的：无限、滚动，常用于ScrollView、RecyclerView，很少使用此测量模式</p>
+</li>
+</ol>
+<h3 id="五-从测量模式中获取尺寸"><a href="#五-从测量模式中获取尺寸" class="headerlink" title="五.从测量模式中获取尺寸"></a>五.从测量模式中获取尺寸</h3><blockquote>
+<p><code>MeasureSpec</code>是一个整数，4字节，32位，由于它的范围很大，单纯就屏幕尺寸来说绰绰有余，所以它不仅能存储控件的大小，还能存储控件的测量模式，测量模式仅占高两位</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public static final int UNSPECIFIED = 0 &lt;&lt; MODE_SHIFT;</span><br><span class="line">public static final int EXACTLY     = 1 &lt;&lt; MODE_SHIFT;</span><br><span class="line">public static final int AT_MOST     = 2 &lt;&lt; MODE_SHIFT;</span><br><span class="line">------------------------------------------------------------------------------------------------------------</span><br><span class="line">public static int getMode(int measureSpec) &#123;</span><br><span class="line">            //noinspection ResourceType</span><br><span class="line">            return (measureSpec &amp; MODE_MASK);</span><br><span class="line">        &#125;</span><br><span class="line">------------------------------------------------------------------------------------------------------------</span><br><span class="line">public static int getSize(int measureSpec) &#123;</span><br><span class="line">            return (measureSpec &amp; ~MODE_MASK);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>MODE_SHIFT</code>的值为30，<code>MODE_MASK</code>的二进制值为<strong>11左移30位</strong></p>
+<p><strong>下面通过图解来理解<code>getMode</code>和<code>getSize</code></strong></p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/%E6%B5%8B%E9%87%8F%E6%A8%A1%E5%BC%8F%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.png"></p>
+<blockquote>
+<p>只需知道<code>MeasureSpec</code>的存值和取值原理即可，存值与上图同理</p>
+</blockquote>
+<h3 id="六-LayoutParams与xml中layout-width-height的关系"><a href="#六-LayoutParams与xml中layout-width-height的关系" class="headerlink" title="六.LayoutParams与xml中layout_width/height的关系"></a>六.LayoutParams与xml中layout_width/height的关系</h3><blockquote>
+<p><code>LayoutParams</code>-&gt;布局参数，任何一个控件都有一个<code>layoutparams</code>里面保存了你在xml中设置的<code>layout_width/height</code>的具体值，可通过<code>width和height</code>获取，下面通过源码分析它和xml中布局宽高的关系</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public LayoutParams(Context c, AttributeSet attrs) &#123;</span><br><span class="line">            TypedArray a = c.obtainStyledAttributes(attrs, R.styleable.ViewGroup_Layout);</span><br><span class="line">            setBaseAttributes(a,</span><br><span class="line">                    R.styleable.ViewGroup_Layout_layout_width,</span><br><span class="line">                    R.styleable.ViewGroup_Layout_layout_height);</span><br><span class="line">            a.recycle();</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到<code>LayoutParams</code>内部是通过解析xml中对应的属性来获取到控件的<code>layout_width/height</code>，<code>layoutparams</code>在自定义ViewGroup中会使用到，此处只需明白其中的<code>width和height</code>是如何获取到的即可</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote>
+<p>在以后实际开发中，自定义ViewGroup很多时候都会采取底部导航栏的形式继承系统的布局方式，毕竟UI设计师的想法是有限的，建议先掌握继承系统的布局写法，近年兴起的流式布局会在下一篇文章中讲述，</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/%E8%87%AA%E5%AE%9A%E4%B9%89ViewGroup%E5%BC%95%E5%85%A5.html" data-id="clchki9ln0074t0qhag4ha08s" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android%E9%AB%98%E7%BA%A7UI/" rel="tag">Android高级UI</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/9/">&amp;laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/11/">下一页 &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-UI%E7%B3%BB%E5%88%97/">Android UI系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%AE%9E%E6%88%98%E9%9B%86/">Android实战集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E9%9B%86/">Android开发基础集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/">Android自定义系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Android设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%BF%9B%E9%98%B6/">Android进阶</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E9%87%8D%E8%A6%81%E7%BB%84%E4%BB%B6/">Android重要组件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E9%A1%B9%E7%9B%AE/">Android项目</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E8%BF%9B%E9%98%B6/">Java进阶</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/html%E5%AD%A6%E4%B9%A0/">html学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/">个人成长</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%9B%E6%89%A3%E9%A2%98%E8%A7%A3/">力扣题解</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8E%92%E5%BA%8F%E9%9B%86/">排序集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8%E4%B8%8E%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/">注解处理器与开源框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E6%8E%A7%E4%BB%B6/">系统控件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%84%E4%BB%B6%E5%8C%96%E7%B3%BB%E5%88%97/">组件化系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%93%E9%A2%98/">设计模式专题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E9%9B%86/">问题总结集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag">Android常用琐碎知识点</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E5%BC%80%E5%8F%91%E5%B0%8FDemo/" rel="tag">Android开发小Demo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E9%AB%98%E7%BA%A7UI/" rel="tag">Android高级UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" rel="tag">hexo博客搭建问题总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93/" rel="tag">发布开源库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/" rel="tag">学年设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" rel="tag">算法篇</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" rel="tag">系统高级UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" rel="tag">网络开源库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" style="font-size: 18px;">Android常用琐碎知识点</a> <a href="/tags/Android%E5%BC%80%E5%8F%91%E5%B0%8FDemo/" style="font-size: 10px;">Android开发小Demo</a> <a href="/tags/Android%E9%AB%98%E7%BA%A7UI/" style="font-size: 16px;">Android高级UI</a> <a href="/tags/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" style="font-size: 10px;">hexo博客搭建问题总结</a> <a href="/tags/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93/" style="font-size: 10px;">发布开源库</a> <a href="/tags/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">学年设计</a> <a href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" style="font-size: 20px;">算法篇</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" style="font-size: 12px;">系统高级UI</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" style="font-size: 14px;">网络开源库</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/%E8%87%AA%E5%AE%9A%E4%B9%89PhotoView%E5%A4%84%E7%90%86%E6%89%8B%E5%8A%BF.html">自定义PhotoView处理手势</a>
+          </li>
+        
+          <li>
+            <a href="/%E9%A6%96%E6%AC%A1%E5%BC%80%E6%BA%90%E5%BA%93-%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E6%96%87%E5%AD%97%E6%B8%90%E5%8F%98%E6%95%88%E6%9E%9C.html">首次开源库-不一样的文字渐变效果</a>
+          </li>
+        
+          <li>
+            <a href="/CoordinatorLayout%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89Behavior%E5%85%A5%E9%97%A8.html">CoordinatorLayout原理分析以及自定义Behavior入门</a>
+          </li>
+        
+          <li>
+            <a href="/NestedScrollView%E5%B5%8C%E5%A5%97%E6%BB%91%E5%8A%A8%E5%8E%9F%E7%90%86.html">NestedScrollView嵌套滑动原理</a>
+          </li>
+        
+          <li>
+            <a href="/APT-javapoet%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B.html">APT-javapoet详细教程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 EngineerOfFinger<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/%20%7C%7C%20fas%20fa-home" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives/%20%7C%7C%20fas%20fa-archive" class="mobile-nav-link">时间轴</a>
+  
+    <a href="/tags/%20%7C%7C%20fas%20fa-tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/categories/%20%7C%7C%20fas%20fa-folder-open" class="mobile-nav-link">分类</a>
+  
+    <a href="/link/%20%7C%7C%20fas%20fa-link" class="mobile-nav-link">友链</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

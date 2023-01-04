@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>梦幻泡影</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="success&#x3D;persistence">
+<meta property="og:type" content="website">
+<meta property="og:title" content="梦幻泡影">
+<meta property="og:url" content="https://wiwiyiyi.com/index.html">
+<meta property="og:site_name" content="梦幻泡影">
+<meta property="og:description" content="success&#x3D;persistence">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="EngineerOfFinger">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="梦幻泡影" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/wiwi.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">梦幻泡影</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">[object Object]</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/%20%7C%7C%20fas%20fa-home">主页</a>
+        
+          <a class="main-nav-link" href="/archives/%20%7C%7C%20fas%20fa-archive">时间轴</a>
+        
+          <a class="main-nav-link" href="/tags/%20%7C%7C%20fas%20fa-tags">标签</a>
+        
+          <a class="main-nav-link" href="/categories/%20%7C%7C%20fas%20fa-folder-open">分类</a>
+        
+          <a class="main-nav-link" href="/link/%20%7C%7C%20fas%20fa-link">友链</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wiwiyiyi.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-今日打卡APP" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/%E4%BB%8A%E6%97%A5%E6%89%93%E5%8D%A1APP.html" class="article-date">
+  <time datetime="2021-04-10T09:17:18.000Z" itemprop="datePublished">2021-04-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E9%A1%B9%E7%9B%AE/">Android项目</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/%E4%BB%8A%E6%97%A5%E6%89%93%E5%8D%A1APP.html">今日打卡APP</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-引言"><a href="#一-引言" class="headerlink" title="一.引言"></a>一.引言</h3><blockquote>
+<p>本Demo用于参加学院举办的软件设计大赛，主要功能是定位打卡，以及图片的上传和下载，和服务器的交互，下面先上效果图</p>
+</blockquote>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E9%A1%B9%E7%9B%AE/SignAppShow.gif" style="zoom:150%;" />
+
+<h3 id="二-项目大致结构介绍"><a href="#二-项目大致结构介绍" class="headerlink" title="二.项目大致结构介绍"></a>二.项目大致结构介绍</h3><p>设计此项目时还处在Android开发的基础阶段，所以采用的还是MVC设计模式，当然这也是最后一个MVC项目，页面的搭建使用的是Fragment+Navigation，还用到了抽屉式布局用于展示用户的基本信息，比较简洁，通过<code>RecyclerView</code>展示数据，网络访问框架使用的是<code>OkHttp3</code>，当数据请求成功并返回时，通过<code>Adapter</code>提供的<code>notifyDataSetChanged</code>实现界面刷新，但该方法效率较低，通过<code>ViewPager2</code>来管理二级入口</p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E9%A1%B9%E7%9B%AE/APP%E7%BB%93%E6%9E%84%E5%9B%BE.png"></p>
+<p>项目大致结构如上图所示</p>
+<h3 id="三-第三方平台"><a href="#三-第三方平台" class="headerlink" title="三.第三方平台"></a>三.第三方平台</h3><p>该项目使用到了如下地方平台：</p>
+<ul>
+<li>比目科技短信验证</li>
+<li>高德SDK</li>
+<li>极光推送SDK</li>
+<li>阿里的OOS对象存储</li>
+</ul>
+<p>集成第三方平台容易遇到坑，也算是一个学习过程吧，小编也总结了坑点</p>
+<h3 id="四-总结分析"><a href="#四-总结分析" class="headerlink" title="四.总结分析"></a>四.总结分析</h3><p>该Demo也不算小，也不再是以前那些没有网络请求数据的静态APP，该项目开发过程遇到过很多坑点，基本上都是由于数据传递问题导致的空指针，同时也对网络有了更深层次的理解，由于当时处于初级阶段，所以使用不是很成熟，作为最后一个MVC项目，在开发过程中就已经感觉到MVVM的强大了，可惜没有时间重构。该项目比较复杂的地方就是网络请求数据并刷新界面了，由于没有使用ViewModel进行数据的管理，这使得数据的传递变得相当麻烦，通过Handler实现数据的异步回调，相比协程来说是在麻烦不少，需要对不同的数据类型通过Message中的类型来进行标识，数据一旦变多，就很难管理，此外也体会到了<code>Retrofit</code>的便捷，由于使用校园网进行项目演示，而IP地址时常变化，所以将其作为全局变量来管理，但使用Retrofit方便多了，并且很多代码不需要自己实现，总之，此项目为日后进行项目开发奠定了坚实的基础。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/%E4%BB%8A%E6%97%A5%E6%89%93%E5%8D%A1APP.html" data-id="clchki9k2002xt0qhhosgheiw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-网络开源库-Retrofit" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93-Retrofit.html" class="article-date">
+  <time datetime="2021-02-07T02:12:18.000Z" itemprop="datePublished">2021-02-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E9%9B%86/">Android开发基础集</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93-Retrofit.html">网络开源库-Retrofit</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-引言"><a href="#一-引言" class="headerlink" title="一.引言"></a>一.引言</h3><blockquote>
+<p>小编花了两天时间了解了Retrofit，认识了Retrofit是什么，以及如何使用它，讲真，我在第一次接触Retrofit时，觉得它实在是有点抽象，可能因为<strong>注解</strong>使用太多了的吧，以及请求网络方法的编写有点特别，习惯了使用Okhttp还真觉得Retrofit有点难以理解，甚至使用都很困难，不过折磨了两天，会使用它请求网络之后，发现Retrofit是真的简洁，特别是对于一个公司的项目开发来说确实太好用了，请求网络的不二之选，下面谈谈我对学习网络请求的心得吧。</p>
+</blockquote>
+<ol>
+<li>在使用Okhttp之前我还在使用HttpURLConnection，实在麻烦，除了需要写具体连接，还要使用<strong>IO流</strong>来接收返回的数据，显然笨拙，并且臃肿</li>
+<li>在认识Retrofit之前，使用过Okhttp和Volley，只能说各有优缺点，Okhttp使用起来流程容易理解，但还是需要做具体的网络连接(创建client、request、call、response等等)并且还需要自己解析返回的Json字符串等数据，Volley呢，使用很简洁，这点体现在使用流程，不需要像Okhttp那样创建过多的对象，缺点是大文件上传下载效率不太行</li>
+<li>今天算是真正认识了Retrofit，它不算是一个独立的网络开源库，因为它仅仅是将Okhttp做了一层封装，本质还是Okhttp，但正是由于这层封装为开发者省去了不少麻烦，小编在这里竖起了大拇指，下面小编将介绍Retrofit的基本使用，于我而言已经够目前程度的开发了</li>
+</ol>
+<h3 id="二-剖析Retrofit"><a href="#二-剖析Retrofit" class="headerlink" title="二.剖析Retrofit"></a>二.剖析Retrofit</h3><p>上面也说到了，我刚开始之所以觉得Retrofit难以理解，就是因为它大量使用注解，并且网络请求的方法具体是由系统帮我们实现，还好提前接触过<strong>Room</strong>的使用，我感觉他俩挺类似的，都大量使用注解来构建方法，所以显得有些抽象，对初学者来说不太友好，其实注解就是一个标记，别想得太复杂，作为新手只需要知道怎么去添加注解并使用，当使用熟练后可以去看下Retrofit的源码，看它是如何处理注解的</p>
+<p><strong>Retrofit共22个注解，这里只列出本次学习用到过的注解，并且是相当常用的，如需进一步了解，请看本文末尾推荐的博客</strong></p>
+<ol>
+<li><p>请求方法类</p>
+<p>GET</p>
+<p>POST</p>
+<p>HTTP</p>
+<p>这些其实对应的是具体有哪些网络请求的方式，不需要记</p>
+</li>
+<li><p>标记类</p>
+<p>FormUrlEncoded</p>
+<p>Multipart</p>
+</li>
+<li><p>参数类</p>
+<p>Query</p>
+<p>Field</p>
+<p>FieldMap</p>
+<p>QueryMap</p>
+<p>Path</p>
+<p>URL</p>
+<p>Part</p>
+</li>
+</ol>
+<p>以上注解都是重中之重，普遍使用，下面开始撸码分批次详解</p>
+<h3 id="三-Retrofit的使用步骤"><a href="#三-Retrofit的使用步骤" class="headerlink" title="三.Retrofit的使用步骤"></a>三.Retrofit的使用步骤</h3><p>上面提到进行网络请求的方法都是通过注解来构建的，并且具体实现是由系统实现，因此它是抽象的，自然使用一个接口来封装所有的网络请求方法</p>
+<ol>
+<li>创建一个接口用于封装所有的网络请求方法</li>
+<li>通过Retrofit提供的Builder建造者模式创建一个Retrofit对象，具体内容包括服务器基址，本次案例使用的是本地服务器，以及解析Json数据的转换器和适配器等等</li>
+<li>在接口中通过注解构建方法，在请求类标记中拼接URL路径以及方法中定义参数和返回值，在例子中会具体演示</li>
+<li>使用Retrofit的对象提供的代理模式创建一个<strong>接口的实例</strong></li>
+<li>通过接口实例调用网络请求方法获取到Call对象</li>
+<li>最后通过Call对象发起请求，具体有同步(execute)和异步(enquue)，这点和Okhttp里的一样</li>
+</ol>
+<p>看上去步骤多，其实使用超简单</p>
+<p>下面提供需要添加的依赖</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">implementation &#x27;com.squareup.retrofit2:retrofit:2.4.0&#x27;</span><br><span class="line">    //使用Gson进行Json数据的解析</span><br><span class="line">implementation &#x27;com.squareup.retrofit2:converter-gson:2.4.0&#x27;</span><br></pre></td></tr></table></figure>
+
+<h3 id="四-不带参数的GET请求"><a href="#四-不带参数的GET请求" class="headerlink" title="四.不带参数的GET请求"></a>四.不带参数的GET请求</h3><p>由于大部分测试都是使用的是本地服务器上的后台程序，所以基址都是电脑IP，之前在Okhttp篇以及提到过了，在此就不做赘述，第一个网络请求是不带参数的，通过php编写的后端程序返回一个字符串“小王”</p>
+<p>由于基址都一样，所以都可以使用同一个Retrofit对象以及接口实例对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">private val retrofit = Retrofit.Builder()</span><br><span class="line">        .baseUrl(&quot;http://192.168.0.103/&quot;)</span><br><span class="line">        .addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">        .build()</span><br><span class="line">private val api = retrofit.create(NetWorkAPI::class.java)</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：基址的末尾一定要加上/，然手添加解析工具Gson，接口对象通过Retrofit提供的create方法创建</strong></p>
+<p>下面重点关注接口中的网络请求方法怎么写</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@GET(&quot;a.php&quot;)</span><br><span class="line">fun getJsonTestString(): Call&lt;ResponseBody&gt;</span><br></pre></td></tr></table></figure>
+
+<p>由于不带参数所以很简洁，可以看到先使用网络请求的注解进行表示，括号内拼接路径，因此完整路径为：</p>
+<p><a target="_blank" rel="noopener" href="http://192.168.0.103/a.php">http://192.168.0.103/a.php</a></p>
+<p><strong>如法炮制，其他方式的网络请求注解都可按此方式，还有另外一种动态的URL，下面会提</strong></p>
+<p>返回一个Call对象，由于这里不需要解析Json数据，所以是ResponseBody类型，如需解析这填入具体的解析类型</p>
+<p>然后是通过接口的实例对象调用网络请求方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">val call = api.getJsonTestString()</span><br><span class="line">call.enqueue(object :Callback&lt;ResponseBody&gt;&#123;</span><br><span class="line">            override fun onResponse(call: Call&lt;ResponseBody&gt;, response: Response&lt;ResponseBody&gt;) &#123;</span><br><span class="line">                showText.text = response.body()?.string()</span><br><span class="line">            &#125;</span><br><span class="line">            override fun onFailure(call: Call&lt;ResponseBody&gt;, t: Throwable) &#123;</span><br><span class="line">                Log.v(&quot;cx&quot;,&quot;失败&quot;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>可以发现调用方法并处理结果是真的简单，这里使用的是异步，同步的话需要搭配协程</p>
+<h3 id="五-带参数的GET请求"><a href="#五-带参数的GET请求" class="headerlink" title="五.带参数的GET请求"></a>五.带参数的GET请求</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">val retrofit = Retrofit.Builder()</span><br><span class="line">            .baseUrl(&quot;http://apis.juhe.cn/simpleWeather/&quot;)</span><br><span class="line">            .addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">            .build()</span><br><span class="line">val api = retrofit.create(NetWorkAPI::class.java)</span><br><span class="line">val call = api.getWeather(&quot;北京&quot;)</span><br><span class="line">call.enqueue(object :Callback&lt;Weather&gt;&#123;</span><br><span class="line">            override fun onResponse(call: Call&lt;Weather&gt;, response: Response&lt;Weather&gt;) &#123;</span><br><span class="line">                val cityName = response.body()?.result?.city</span><br><span class="line">                showText.text = &quot;当前城市：$cityName&quot;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            override fun onFailure(call: Call&lt;Weather&gt;, t: Throwable) &#123;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;)</span><br><span class="line">------------------------------------------------------------------------------------------------------------ @GET(&quot;query&quot;)</span><br><span class="line">fun getWeather(@Query(&quot;city&quot;) City:String,@Query(&quot;key&quot;) key:String = API_KEY):Call&lt;Weather&gt; </span><br><span class="line">------------------------------------------------------------------------------------------------------------</span><br><span class="line">data class Weather(val error_code:Int,val result: Result)</span><br><span class="line">data class Result(val city:String,val realtime: RealTime)</span><br><span class="line">data class RealTime(</span><br><span class="line">    val temperature:String,</span><br><span class="line">    val info:String,</span><br><span class="line">    val direct:String,</span><br><span class="line">    val power:String</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>拼接路径和上一个例子相似，如果要拼接参数的话，需要在函数参数中使用注解，GET方式使用@Query(链接中的字段名)，参数也可直接赋值常量写死，经过上述拼接，最终的访问链接为：<a target="_blank" rel="noopener" href="http://apis.juhe.cn/simpleWeather/query?city=%E5%9F%8E%E5%B8%82%E5%90%8D&amp;key=%E5%BA%94%E7%94%A8key">http://apis.juhe.cn/simpleWeather/query?city=城市名&amp;key=应用key</a></p>
+</blockquote>
+<p>使用的是聚合数据提供的天气查询的API，因此返回的是Weather类对象，故Call对象泛型中填入Weather，程序会自动进行json解析，进过以上两个例子可以总结出如果不需要对返回的数据进行类转换，则Call的泛型类型为ResponseBody，反之则为具体的转换类的类型</p>
+<p><strong>进行一个补充，由于此处的链接基址不再是本地服务器，所以我创建了一个新的Retrofit对象，但是在实际开发中最好只用一个Retrofit实例，即提供单例模式，下面推荐使用动态链接</strong></p>
+<p>如果你需要定义一个链接和基址不同的网络请求方法，那么你只需要使用@Url标注参数，参数即为你的链接地址</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">val url = &quot;http://apis.juhe.cn/simpleWeather/query?city=北京&amp;key=应用key&quot;</span><br><span class="line">val call = api.dynamicGetWeather(url)</span><br><span class="line">call.enqueue(object:Callback&lt;Weather&gt;&#123;</span><br><span class="line">            override fun onResponse(call: Call&lt;Weather&gt;, response: Response&lt;Weather&gt;) &#123;</span><br><span class="line">                val cityName = response.body()?.result?.city</span><br><span class="line">                showText.text = &quot;当前城市：$cityName&quot;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            override fun onFailure(call: Call&lt;Weather&gt;, t: Throwable) &#123;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">------------------------------------------------------------------------------------------------------------</span><br><span class="line">@GET</span><br><span class="line">fun dynamicGetWeather(@Url url:String):Call&lt;Weather&gt;        </span><br></pre></td></tr></table></figure>
+
+<p>此处我们使用的时以本地服务器IP为基址的Retrofit对象，因为使用了@Url标注，当系统检测到你传入的url基址和之前的不一样，那么它就会以使用注解标注的url为真正的链接，其实动态url还有另一种用法，达到和静态一样的效果</p>
+<p>使用注解标注后可以在参数中拼接链接，也就是说GET等请求注解括号内不需要内容，下面改装第一个例子</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@GET</span><br><span class="line">fun getJsonTestString2(@Url url:String): Call&lt;ResponseBody&gt;</span><br><span class="line">------------------------------------------------------------------------------------------------------------</span><br><span class="line">val call = api.getJsonTestString(&quot;a.php&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>使用时传入url链接的剩余部分即可，系统会自动拼接之前设置的基址</p>
+<h3 id="六-使用Map一次传入多个参数发起GET请求"><a href="#六-使用Map一次传入多个参数发起GET请求" class="headerlink" title="六.使用Map一次传入多个参数发起GET请求"></a>六.使用Map一次传入多个参数发起GET请求</h3><p>如果你的链接中需要传入多个参数，而且又想使用GET请求，下面推荐使用Map包装键值对一次性传入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@GET(&quot;login/login.php&quot;)</span><br><span class="line">fun getMultyParamsLogin(@QueryMap params:Map&lt;String,String&gt;):Call&lt;ResponseBody&gt;</span><br><span class="line">------------------------------------------------------------------------------------------------------------</span><br><span class="line">val paramsMap = HashMap&lt;String,String&gt;().apply &#123;</span><br><span class="line">            put(&quot;user_name&quot;,&quot;jack&quot;)</span><br><span class="line">            put(&quot;user_pwd&quot;,&quot;123&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">val call = api.getMultyParamsLogin(paramsMap)</span><br><span class="line">call.enqueue(object :Callback&lt;ResponseBody&gt;&#123;</span><br><span class="line">            override fun onResponse(call: Call&lt;ResponseBody&gt;, response: Response&lt;ResponseBody&gt;) &#123;</span><br><span class="line">                showText.text = response.body()?.string()</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            override fun onFailure(call: Call&lt;ResponseBody&gt;, t: Throwable) &#123;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>使用@QueryMap注解表示你需要传入一个Map键值对的包装，系统会自动根据字段去填充值以及拼接链接</p>
+</blockquote>
+<h3 id="七-使用POST方式登录提交表单"><a href="#七-使用POST方式登录提交表单" class="headerlink" title="七.使用POST方式登录提交表单"></a>七.使用POST方式登录提交表单</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@FormUrlEncoded</span><br><span class="line">@POST(&quot;login/login.php&quot;)</span><br><span class="line">fun getPostFormLogin(@Field(&quot;user_name&quot;) name:String,@Field(&quot;user_pwd&quot;) pwd:String):Call&lt;ResponseBody&gt;</span><br><span class="line">------------------------------------------------------------------------------------------------------------</span><br><span class="line">val call = api.getPostFormLogin(&quot;jack&quot;,&quot;123&quot;)</span><br><span class="line">call.enqueue(object :Callback&lt;ResponseBody&gt;&#123;</span><br><span class="line">            override fun onResponse(call: Call&lt;ResponseBody&gt;, response: Response&lt;ResponseBody&gt;) &#123;</span><br><span class="line">                Toast.makeText(this@MainActivity,&quot;登录成功！&quot;,Toast.LENGTH_SHORT).show()</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            override fun onFailure(call: Call&lt;ResponseBody&gt;, t: Throwable) &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>POST方式首先需要使用@FormUrlEncoded表明你提交的是表单</li>
+<li>拼接路径和GET方式一样，此处不做赘述</li>
+<li>传入的参数使用@Field(字段名称)注解标注，注意这和GET请求标注参数是不同的</li>
+</ol>
+<h3 id="八-使用POST方式上传文件"><a href="#八-使用POST方式上传文件" class="headerlink" title="八.使用POST方式上传文件"></a>八.使用POST方式上传文件</h3><p>首先配置访问文件的权限，详情请看Okhttp篇</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@Multipart</span><br><span class="line">@POST(&quot;upload.php&quot;)</span><br><span class="line">fun getPostFile(@Part file:MultipartBody.Part):Call&lt;ResponseBody&gt;</span><br><span class="line">------------------------------------------------------------------------------------------------------------</span><br><span class="line">val requestBodyFile = RequestBody.create(MediaType.parse(&quot;image/png&quot;),file)</span><br><span class="line">val multyBody = MultipartBody.Part.createFormData(&quot;file&quot;,&quot;retrofit上传的文件.png&quot;,requestBodyFile )</span><br><span class="line">val call = api.getPostFile(multyBody)</span><br><span class="line">call.enqueue(object :Callback&lt;ResponseBody&gt;&#123;</span><br><span class="line">            override fun onResponse(call: Call&lt;ResponseBody&gt;, response: Response&lt;ResponseBody&gt;) &#123;</span><br><span class="line">                showText.text = response.body()?.string()</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            override fun onFailure(call: Call&lt;ResponseBody&gt;, t: Throwable) &#123;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>首先使用@Multipart表示提交的媒体类型</li>
+<li>函数的参数使用@Part标注，参数类型是MultipartBody.Part</li>
+<li>在代码中给文件对象设置媒体类型并且封装成<code>RequestBody</code>类型</li>
+<li>接着创建传入的参数<code>MultipartBody.Part</code>类型，参数一是你后台程序中文件的字段名，Okhttp篇中有介绍，参数二是上传到服务器端后的名称，参数三是步骤3中创建的对象</li>
+</ol>
+<blockquote>
+<p>上传文件稍微繁琐一点，多两个步骤</p>
+</blockquote>
+<h3 id="九-文件下载"><a href="#九-文件下载" class="headerlink" title="九.文件下载"></a>九.文件下载</h3><p>文件下载较为简单，使用普通的GET请求即可，拼接好路径</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">@GET(&quot;girl1.jpg&quot;)</span><br><span class="line">fun getDownLoadPic():Call&lt;ResponseBody&gt;</span><br><span class="line">------------------------------------------------------------------------------------------------------------</span><br><span class="line">val call = api.getDownLoadPic()</span><br><span class="line">call.enqueue(object :Callback&lt;ResponseBody&gt;&#123;</span><br><span class="line">            override fun onResponse(call: Call&lt;ResponseBody&gt;, response: Response&lt;ResponseBody&gt;) &#123;</span><br><span class="line">                val filePath = Environment.getExternalStorageDirectory().absolutePath+&quot;/a/retrofitDownload.png&quot;</span><br><span class="line">                val diskFile = File(filePath)</span><br><span class="line">                if (!diskFile.exists())&#123;</span><br><span class="line">                    diskFile.createNewFile()</span><br><span class="line">                &#125;</span><br><span class="line">                response.body()?.byteStream().use &#123;input-&gt;</span><br><span class="line">                    val buffer = input?.readBytes()</span><br><span class="line">                    diskFile.outputStream().use &#123;output-&gt;</span><br><span class="line">                        output.write(buffer)</span><br><span class="line">                    &#125;</span><br><span class="line">                   BitmapFactory.decodeFile(filePath).also &#123; imageView.setImageBitmap(it) &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            override fun onFailure(call: Call&lt;ResponseBody&gt;, t: Throwable) &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>访问链接成功后，文件流会包裹在ResponseBody中带回，后续的便是文件操作，一笔略过</p>
+</blockquote>
+<h3 id="十-总结"><a href="#十-总结" class="headerlink" title="十.总结"></a>十.总结</h3><blockquote>
+<p>其实在开头就已经有总结Retrofit的好处了，相信跟着小编的步伐，已经会使用Retrofit了，在实际开发中使用Retrofit简直方便，将所有的网络请求封装到一个接口中，将Retrofit对象封装成单例，只能说竖起大拇指！下面配上整体效果图以及代码链接</p>
+</blockquote>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E7%BD%91%E7%BB%9C/retrofit%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA.gif" style="zoom:33%;" />
+
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/cmyperson/article/details/86521735">推荐博客1</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/duncan891101/article/details/107890269">推荐博客2</a></p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/retrofit-test">代码链接</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93-Retrofit.html" data-id="clchki9lf006it0qha4sf21m3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" rel="tag">网络开源库</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Android设计模式-MVP" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-MVP.html" class="article-date">
+  <time datetime="2020-11-30T01:11:34.000Z" itemprop="datePublished">2020-11-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Android设计模式</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-MVP.html">Android设计模式-MVP</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-简介"><a href="#一-简介" class="headerlink" title="一.简介"></a>一.简介</h3><p>有了MVC的基础，理解MVP变得相对容易，MVP的出现是为了让三个板块完全分离，功能的分块更加清晰</p>
+<p>MVP的全称是：Model(数据模型)-View(视图)-Presenter(中间处理者)</p>
+<p>与MVC不同的之处：</p>
+<ol>
+<li>View(视图层)：将XML和Activity/Fragment统称为View，负责UI交互的部分</li>
+<li>Presenter：处理逻辑业务以及和Model之间的数据交互</li>
+</ol>
+<p><strong>关系图如下</strong></p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/MVP%E5%9B%BE%E8%A7%A3.png" style="zoom:66%;" />
+
+<h3 id="二-通过接口解决Presenter和View之间的鸿沟"><a href="#二-通过接口解决Presenter和View之间的鸿沟" class="headerlink" title="二.通过接口解决Presenter和View之间的鸿沟"></a>二.通过接口解决Presenter和View之间的鸿沟</h3><p>根据上图，View中接收到用户的输入事件后，需要通过Presenter进行逻辑处理和数据传递，因此View(即Activity)中需要保存一个Presenter的对象，但这还不够，因为activity并不知道Presenter中到底有什么方法对View中的数据进行处理，所以我们需要统一接口，还有一个好处就是，更改方法直接在接口中进行增删改即可，操作简单，同理，Presenter从Model中获取到数据后，需要更新UI，同样也需要View对应的一个接口对象，所以每增加一个视图，接口的数量会成倍增长，这也是MVP繁琐的地方</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/MVP%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0.png" style="zoom:67%;" />
+
+<p>数据模型和MVC中基本没什么变化</p>
+<h3 id="三-接口的具体设计"><a href="#三-接口的具体设计" class="headerlink" title="三.接口的具体设计"></a>三.接口的具体设计</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">interface IBookPresenter &#123;</span><br><span class="line">    fun checkInput(content1:String,content2:String)</span><br><span class="line">    fun addBook(book: Book)</span><br><span class="line">&#125;</span><br><span class="line">interface IBookView &#123;</span><br><span class="line">    fun inputIsValid(valid:Boolean)</span><br><span class="line">    fun showBooks(book:List&lt;Book&gt;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Presenter和View都有对应的接口，在设计时只需单独考虑他们各自需要提供什么方法给对方进行逻辑处理以及界面刷新，让具体的Preseter和View类实现各自的接口以及里面的方法即可，这样就实现了Model和View的完全分离，各个板块分离很清晰</p>
+<h3 id="四-强调数据模型层抽离出接口的重要性"><a href="#四-强调数据模型层抽离出接口的重要性" class="headerlink" title="四.强调数据模型层抽离出接口的重要性"></a>四.强调数据模型层抽离出接口的重要性</h3><p>在本次MVP的架构中，数据的获取采取模拟网络的方式，所以仓库中获取数据的途径得改变，下面通过代码来展示</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">object BookProviderFactory &#123;</span><br><span class="line">    fun getBookRepository():BookRepository&#123;</span><br><span class="line">        val dao = netWork.getInstance().bookdao</span><br><span class="line">        return BookRepository.getInstance(dao)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%95%B0%E6%8D%AE%E6%8A%BD%E7%A6%BB.jpg"></p>
+<p>可以看到只需要在仓库提供类里面稍微修改一下类名即可，将<code>dataBase</code>换成了<code>netWork</code>，相当轻松，NetWork包下的创建和dataBase类似，因此在考虑数据模型层中数据的获取方式时，不能将其写死，而应该抽离成接口的方式，统一方法，在数据提供类里面拆卸会变得很容易，不仅方便个人，也方便和你合作的人</p>
+<h3 id="五-总结"><a href="#五-总结" class="headerlink" title="五.总结"></a>五.总结</h3><p>MVP虽然解决了MVC分离不够彻底的缺点，但它却增加了接口，增加了类，代码量也会快速膨胀，写起来很不方便</p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/android-design-pattern-mvp">代码链接</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-MVP.html" data-id="clchki9j0000ft0qh8g5o277q" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Android设计模式-MVC" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-MVC.html" class="article-date">
+  <time datetime="2020-11-30T01:10:54.000Z" itemprop="datePublished">2020-11-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Android设计模式</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-MVC.html">Android设计模式-MVC</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-MVC概述"><a href="#一-MVC概述" class="headerlink" title="一.MVC概述"></a>一.MVC概述</h3><p>MVC是 <strong>Model(模型)-View(视图)-Controller(控制器)</strong>  的简写</p>
+<ul>
+<li>Model：数据模型-&gt;从现实生活中抽离的对象模型，封装了<strong>数据和对数据的操作</strong>，Kotlin中不仅仅局限于<strong>数据类</strong>，和数据有关的类以及操作类、接口都可称作Model</li>
+<li>View：视图，提供应用和用户进行交互的接口，Android中主要指xml布局文件</li>
+<li>Controller：负责View和Model之间的交互，处理逻辑，更新UI，在Android中指Activity或Fragment</li>
+</ul>
+<p><strong>三者间关系图</strong></p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/MVC.png"></p>
+<h3 id="二-MVC实例演示"><a href="#二-MVC实例演示" class="headerlink" title="二.MVC实例演示"></a>二.MVC实例演示</h3><p>下面通过一个小demo对MVC设计模式进行诠释，效果如下：</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/bookShow.gif" style="zoom:45%;" />
+
+<h3 id="三-数据模型"><a href="#三-数据模型" class="headerlink" title="三.数据模型"></a>三.数据模型</h3><ol>
+<li><p>分析数据模型</p>
+<p>能直观感受到的模型是<strong>书</strong>，它包含两个书名和作者名两个信息，所以通过<code>data class Book(val bookName:String,val authorName:String)</code>数据类的形式进行封装，但对于大型项目来说，数据模型不仅仅只有这个</p>
+</li>
+<li><p>扩展常规思维的数据模型</p>
+<p>如果将该小demo做成一个大项目，那么对数据的处理不仅仅只是更新UI，而应该将数据保存起来，存入数据库或者上传到服务器上，当我们需要数据时，又需要到数据库或网络中去加载，保存到本地，因此我们需要一个数据库(先以数据库存储为例)的操作类-<code>dataBase</code>以及本地仓库操作类-<code>BookRepository</code></p>
+</li>
+<li><p>抽离数据模型</p>
+<p>在第二步中已经知道，需要增加数据库或者网络的操作类，而本地仓库会报存这两个类的对象，当我们需要对仓库中的数据进行操作时，其实是通过具体的(数据库或网络操作的)对象进行的，那么问题来了，如果使用者需要更换操作对象，那么就得找到具体的源码，更改仓库中保存的对象，并且拆卸很不方便，对于多人协作的项目来说，着实有些笨拙，那么我们便将具体对数据的存取操作封装成<strong>接口</strong>，操作类只需实现接口，仓库里保存该接口的对象即可，下面通过图来理解</p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%8A%BD%E7%A6%BB%E6%8E%A5%E5%8F%A3%E6%A8%A1%E5%9E%8B.png"></p>
+</li>
+</ol>
+<p> 为了进一步方便使用者，将仓库的创建也抽离出来</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">object BookProviderFactory &#123;</span><br><span class="line">    fun getBookRepository():BookRepository&#123;</span><br><span class="line">        val dao = dataBase.getInstance().bookdao</span><br><span class="line">        return BookRepository.getInstance(dao)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果需要更改获取数据的方式，只需找到该类，修改里面的<code>dao</code>即可，这样对数据操作类的拆卸变得相当简单了，这便是统一接口的好处</p>
+<p><strong>具体源码请点击文末链接查看</strong></p>
+<p>另外还用到了单例设计模式，此项目中采用java版本的懒汉式加载，但用Kotlin表示更加简洁，<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/26c43a48a23a">点击查看详情</a></p>
+<h3 id="四-Controller"><a href="#四-Controller" class="headerlink" title="四.Controller"></a>四.Controller</h3><blockquote>
+<p>此demo中，MainActivity作为<strong>Controller</strong>对数据和逻辑进行处理</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">class MainActivity : AppCompatActivity() &#123;</span><br><span class="line">    override fun onCreate(savedInstanceState: Bundle?) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_main)</span><br><span class="line">        submit.setOnClickListener &#123;</span><br><span class="line">            if (bookName.text.isEmpty())&#123;</span><br><span class="line">                Toast.makeText(this,&quot;书名不能为空！！&quot;,Toast.LENGTH_SHORT).show()</span><br><span class="line">                return@setOnClickListener</span><br><span class="line">            &#125;</span><br><span class="line">            if (athorName.text.isEmpty())&#123;</span><br><span class="line">                Toast.makeText(this,&quot;作者名不能为空！！&quot;,Toast.LENGTH_SHORT).show()</span><br><span class="line">                return@setOnClickListener</span><br><span class="line">            &#125;</span><br><span class="line">            //保存书本信息</span><br><span class="line">            val book = Book(bookName.text.toString(),athorName.text.toString())</span><br><span class="line">            //获取仓库对象</span><br><span class="line">            val repository = BookProviderFactory.getBookRepository()</span><br><span class="line">            repository.addBook(book,this)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    fun upDateUI(str:String)&#123;</span><br><span class="line">        content.text = str</span><br><span class="line">        bookName.setText(&quot;&quot;)</span><br><span class="line">        athorName.setText(&quot;&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="五-数据处理-Model"><a href="#五-数据处理-Model" class="headerlink" title="五.数据处理-Model"></a>五.数据处理-Model</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class BookRepository(private val dao: BookDao) &#123;</span><br><span class="line">    companion object&#123;</span><br><span class="line">        @Volatile private var instance: BookRepository?=null</span><br><span class="line">        fun getInstance(dao: BookDao)= instance?: synchronized(this)&#123;</span><br><span class="line">            instance?: BookRepository(dao).also &#123; instance = it &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    fun getBooks():List&lt;Book&gt;&#123;</span><br><span class="line">        return dao.getBooks()</span><br><span class="line">    &#125;</span><br><span class="line">    fun addBook(book: Book,mainActivity: MainActivity)&#123;</span><br><span class="line">        dao.addBook(book)</span><br><span class="line">        val builder = StringBuilder()</span><br><span class="line">        getBooks().forEach &#123;book -&gt;</span><br><span class="line">            builder.append(&quot;$&#123;book.name&#125;-$&#123;book.author&#125; \n&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">        mainActivity.upDateUI(builder.toString())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过以上代码可以发现，MainActivity从View即XML中获取数据，监听View的点击事件，负责将数据传给Model进行处理，及时更新UI，完成View和Model之间的交互，其实从初学Android或者其他有UI界面的语言开始，我们就一直在用MVC的架构方式，太普遍了</p>
+<h3 id="六-总结"><a href="#六-总结" class="headerlink" title="六.总结"></a>六.总结</h3><ul>
+<li>MVC的优点：将View(UI)、Controller(逻辑处理)、Model(数据模型以及处理)分隔开，功能划分很清楚，也容易掌握，使用简单</li>
+<li>MVC的缺点：Controller中的代码过于冗杂，即负责管理UI，又负责传递数据以及逻辑业务的处理，所以当项目变大时，Controller中的代码迅速膨胀，不易管理，Activity或Fragment的负载将会很大，并且Model通过Controller与View间接挂钩，没有完全分离</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/mvc-design-pattern">代码链接</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-MVC.html" data-id="clchki9iz000et0qhgvc883j1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-集成高德地图总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/%E9%9B%86%E6%88%90%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BE%E6%80%BB%E7%BB%93.html" class="article-date">
+  <time datetime="2021-04-10T14:04:53.000Z" itemprop="datePublished">2021-04-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E9%9B%86/">问题总结集</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/%E9%9B%86%E6%88%90%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BE%E6%80%BB%E7%BB%93.html">集成高德地图总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-引言"><a href="#一-引言" class="headerlink" title="一.引言"></a>一.引言</h3><blockquote>
+<p>市面上的绝大多数App都会使用到定位服务，都需集成高德地图SDK，才能调用其提供的API接口，显示地图以及其他定位功能，跟着官网的文档进行学习即可，但对于Window系统来说，集成时坑多，后期学习相信都没问题，下面小编总结出主要的坑点以及配置流程</p>
+</blockquote>
+<h3 id="二-获取SHA的值"><a href="#二-获取SHA的值" class="headerlink" title="二.获取SHA的值"></a>二.获取SHA的值</h3><ol>
+<li><p>首先登录并进入控制台创建一个应用</p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E7%AF%87/%E5%88%9B%E5%BB%BA%E9%AB%98%E5%BE%B7key.png"></p>
+</li>
+<li><p>添加一个key</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E7%AF%87/%E5%88%9B%E5%BB%BAkey.png" style="zoom:50%;" /></li>
+</ol>
+<p><strong>坑点就在第二步，如何获取SHA的值</strong></p>
+<h5 id="一-获取调试版SHA1的值"><a href="#一-获取调试版SHA1的值" class="headerlink" title="一.获取调试版SHA1的值"></a>一.获取调试版SHA1的值</h5><p>调试版的获取比较轻松，但近日我再次获取时，又发生了一些变化，安装之前的做法出现以下错误</p>
+<p><code>非法选项: C:\Users\1\.android\debug.keystore</code></p>
+<p>下面介绍新的做法</p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E7%AF%87/%E8%8E%B7%E5%8F%96debug%E7%8A%B6%E6%80%81key.png"></p>
+<p><code>keytool -list -alias androiddebugkey -keystore &quot;C盘对应的debug.keystore路径&quot; -storepass android -keypass android</code></p>
+<h5 id="二-获取发布版SHA1的值"><a href="#二-获取发布版SHA1的值" class="headerlink" title="二.获取发布版SHA1的值"></a>二.获取发布版SHA1的值</h5><ol>
+<li><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E7%AF%87/%E8%8E%B7%E5%8F%96%E5%8F%91%E5%B8%83%E7%89%881.png" style="zoom:80%;" /></li>
+<li><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E7%AF%87/%E8%8E%B7%E5%8F%96%E5%8F%91%E5%B8%832.png" style="zoom: 50%;" /></li>
+<li><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E7%AF%87/%E8%8E%B7%E5%8F%96%E5%8F%91%E5%B8%83%E7%89%883.png" style="zoom:50%;" /></li>
+<li><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E7%AF%87/%E8%8E%B7%E5%8F%96%E5%8F%91%E5%B8%83%E7%89%884.png" style="zoom:50%;" /></li>
+</ol>
+<blockquote>
+<p>发布版的获取需要进入到<strong>jdk安装路径中bin文件中</strong>，执行<code>keytool -list -v -keystore jks文件路径</code>命令即可获得发布版SHA1的值</p>
+</blockquote>
+<h3 id="三-配置so镜像文件以及gradle集成"><a href="#三-配置so镜像文件以及gradle集成" class="headerlink" title="三.配置so镜像文件以及gradle集成"></a>三.配置so镜像文件以及gradle集成</h3><p>在步骤2中创建好key后，<code>&lt;meta-data android:name=&quot;com.amap.api.v2.apikey&quot; android:value=&quot;key&quot;/&gt;</code>，需要在application标签中添加这句话</p>
+<p>最后只差配置地图：</p>
+<ol>
+<li><p>官网提供了两种方式添加地图，一是手动复制对应的jar包到lib目录，另外一种是通过gradle下载，小编推荐第二种，很方便</p>
+<p><code>implementation &#39;com.amap.api:3dmap:7.9.0.1&#39;</code></p>
+</li>
+<li><p>在app模块对应的gradle中的defaultConfig大括号里添加一下代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ndk &#123;</span><br><span class="line">          abiFilters  &quot;armeabi-v7a&quot;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+
+<p>官网还添加了其他镜像版本，但其实上面一个就够了，这也是apk瘦身中最主要的一步</p>
+</li>
+</ol>
+<p>最后在manifests中添加权限即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--允许程序打开网络套接字--&gt;</span><br><span class="line">   &lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;</span><br><span class="line">   &lt;!--允许程序设置内置sd卡的写权限--&gt;</span><br><span class="line">   &lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot; /&gt;</span><br><span class="line">   &lt;!--允许程序获取网络状态--&gt;</span><br><span class="line">   &lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot; /&gt;</span><br><span class="line">   &lt;!--允许程序访问WiFi网络信息--&gt;</span><br><span class="line">   &lt;uses-permission android:name=&quot;android.permission.ACCESS_WIFI_STATE&quot; /&gt;</span><br><span class="line">   &lt;!--允许程序读写手机状态和身份--&gt;</span><br><span class="line">   &lt;uses-permission android:name=&quot;android.permission.READ_PHONE_STATE&quot; /&gt;</span><br><span class="line">   &lt;!--允许程序访问CellID或WiFi热点来获取粗略的位置--&gt;</span><br><span class="line">   &lt;uses-permission android:name=&quot;android.permission.ACCESS_COARSE_LOCATION&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>添加地图控件并初始化地图的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;androidx.constraintlayout.widget.ConstraintLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    tools:context=&quot;.MainActivity&quot;&gt;</span><br><span class="line">    &lt;com.amap.api.maps.MapView</span><br><span class="line">        android:id=&quot;@+id/mapView&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;match_parent&quot;/&gt;</span><br><span class="line">&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;</span><br><span class="line">class MainActivity : AppCompatActivity() &#123;</span><br><span class="line">    override fun onCreate(savedInstanceState: Bundle?) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_main)</span><br><span class="line">        mapView.onCreate(savedInstanceState)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在就能显示地图啦</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E7%AF%87/Screenshot_20210410_220225_swu.cx.gaodemap.jpg" style="zoom:25%;" />
+
+<h3 id="四-总结"><a href="#四-总结" class="headerlink" title="四.总结"></a>四.总结</h3><blockquote>
+<p>由于项目需要，也是第一次接触高德地图的集成，稍微麻烦一点的就是SHA的获取，其他的还好，调试版的SHA都是一样的，只是发布版不一样，日后创建key只需要重新获取发布版的SHA即可</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/%E9%9B%86%E6%88%90%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BE%E6%80%BB%E7%BB%93.html" data-id="clchki9lw0084t0qhhxcd6gcg" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-APK打包流程以及瘦身" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/APK%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B%E4%BB%A5%E5%8F%8A%E7%98%A6%E8%BA%AB.html" class="article-date">
+  <time datetime="2021-03-05T11:45:51.000Z" itemprop="datePublished">2021-03-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E9%9B%86/">Android开发基础集</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/APK%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B%E4%BB%A5%E5%8F%8A%E7%98%A6%E8%BA%AB.html">APK打包流程以及瘦身</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-引言"><a href="#一-引言" class="headerlink" title="一.引言"></a>一.引言</h3><blockquote>
+<p>小编最近参加软件设计大赛，由于最终打包生成的app接近100MB，为了缩小app的体积，小编开始了解APK瘦身，在此之前还得了解APK的打包流程，其实由AS打包的app就是APK，下面小编从APK的组成说起</p>
+</blockquote>
+<h3 id="二-APK的成分"><a href="#二-APK的成分" class="headerlink" title="二.APK的成分"></a>二.APK的成分</h3><p><strong>首先得知道APK就是一个压缩包，官网中给出了APK的组成如下</strong></p>
+<p>①目录</p>
+<ol>
+<li><p><code>META-INF</code>：包含 <code>CERT.SF</code> 和 <code>CERT.RSA</code> 签名文件，以及 <code>MANIFEST.MF</code> 清单文件</p>
+</li>
+<li><p><code>assets</code>：包含应用的资源；应用可以使用 <code>AssetManager</code> 对象检索这些资源</p>
+</li>
+<li><p><code>res</code>：包含未编译到 <code>resources.arsc</code> 中的资源</p>
+</li>
+<li><p><code>lib</code>: 包含特定于处理器软件层的已编译代码。此目录包含每种平台类型的子目录，如 <code>armeabi</code>、<code>armeabi-v7a</code>、<code>arm64-v8a</code>、<code>x86</code>、<code>x86_64</code> 和 <code>mips</code></p>
+</li>
+</ol>
+<p>②文件</p>
+<ol>
+<li><code>resources.arsc</code>：包含已编译的资源。此文件包含 <code>res/values/</code> 文件夹的所有配置中的 XML 内容。打包工具会提取此 XML 内容，将其编译为二进制文件形式，并压缩内容。此内容包括语言字符串和样式，以及未直接包含在 <code>resources.arsc</code> 文件中的内容（例如布局文件和图片）的路径</li>
+<li><code>classes.dex</code>：包含以 Dalvik/ART 虚拟机可理解的 DEX 文件格式编译的类</li>
+<li><code>AndroidManifest.xml</code>：包含核心 Android 清单文件。此文件列出了应用的名称、版本、访问权限和引用的库文件。该文件使用 Android 的二进制 XML 格式</li>
+</ol>
+<p>下面展示小编项目打包后的APK通过压缩软件查看内部结构</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E6%9D%82%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/apk%E7%BB%93%E6%9E%84%E5%9B%BE.png" style="zoom: 75%;" />
+
+<h3 id="三-APK打包流程"><a href="#三-APK打包流程" class="headerlink" title="三.APK打包流程"></a>三.APK打包流程</h3><blockquote>
+<p>在了解了APK的组成后，再来看APK的打包流程</p>
+</blockquote>
+<p><strong>先上流程图</strong></p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E6%9D%82%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/apk%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B.png"></p>
+<ol>
+<li>首先通过Android SDK中build-tools目录下对应的android版本提供的aapt工具将应用资源<strong>Application Resources</strong>打包生成R.java和对应的打包资源</li>
+<li>和aapt位于同一目录下的aidl工具会将aidl文件打包成java文件</li>
+<li>所有的.java文件通过java编译器编译为.class文件</li>
+<li>将上一步骤编译的.class文件和第三方jar中的.class通过dex工具打包成.dex文件</li>
+<li>然后将编译过的资源文件和.dex文件以及其他可能没有引用的资源文件通过apk打包工具打包成apk文件，但此时的.apk还不能运行，因为要通过最后一步签名才可以，签名后还会进行对齐处理</li>
+</ol>
+<h3 id="四-APK瘦身"><a href="#四-APK瘦身" class="headerlink" title="四.APK瘦身"></a>四.APK瘦身</h3><p>有了前面的铺垫，终于来到了APK瘦身模块，通过瘦身步骤，小编的APP较少了接近40MB的体积，感觉效果还是很不错的，下面开始真正的瘦身</p>
+<ol>
+<li><p>图片瘦身</p>
+<p>一个项目最常见并且几乎不能缺省的资源便是图片，小编的项目也是图片太多，但目前没办法处理，对于使用了套图的项目，小编强烈建议改用矢量图Vector，因为它可以随比例缩放不失真，并且体积是真的小，当然能使用xml的资源更好，并且适量图还可以通过Tint着色得到不同颜色的矢量图，完全满足需求</p>
+</li>
+<li><p>国际化</p>
+<p>如果你的APP仅在中国使用，那么使用中文即可，所以去掉国际化也可以缩小体积，特别是对于文字资源特别多的项目</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">resConfigs &#x27;zh&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>在对应的app模块defaultConfig {}大括号中添加</p>
+</li>
+<li><p>动态库优化</p>
+<p>如果集成过第三方平台SDK的朋友应该知道会在app模块defaultConfig {}大括号中添加一下代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ndk &#123;</span><br><span class="line">       abiFilters &#x27;armeabi&#x27;, &#x27;armeabi-v7a&#x27;, &#x27;arm64-v8a&#x27;,&#x27;x86&#x27;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+
+<p>因为so库的底层是用C/C++实现的，存在版本不兼容问题，比如虚拟机需要’x86’版本，而真机需要’armeabi-v7a’版本，但是现实中APP的使用只需要armeabi-v7a版本即可，微信就是这样做的，将其他版本删去后，你的app会缩小不少体积，这一步是瘦身的核心输出</p>
+</li>
+<li><p>移除未使用的资源</p>
+<p>在Refactor选项中有<code>Remove Unused Resources</code>，可以一键移除未使用的资源</p>
+<p>当你找到有些资源没有可能没有被使用时，可以使用一下代码，然后再一键删除，这样处理会安全很多，考虑到隐形引用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">resources.getIdentifier(&quot;activity_main&quot;,&quot;layout&quot;,packageName)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="五-总结"><a href="#五-总结" class="headerlink" title="五.总结"></a>五.总结</h3><blockquote>
+<p>就目前而言，经常使用的APK瘦身方式如上所示，同时APK的打包流程也需了解</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/APK%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B%E4%BB%A5%E5%8F%8A%E7%98%A6%E8%BA%AB.html" data-id="clchki9ig0001t0qh50urfx8h" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag">Android常用琐碎知识点</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ViewPager2的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/ViewPager2%E7%9A%84%E4%BD%BF%E7%94%A8.html" class="article-date">
+  <time datetime="2021-02-20T07:32:53.000Z" itemprop="datePublished">2021-02-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E9%9B%86/">Android开发基础集</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/ViewPager2%E7%9A%84%E4%BD%BF%E7%94%A8.html">ViewPager2的使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-引言"><a href="#一-引言" class="headerlink" title="一.引言"></a>一.引言</h3><blockquote>
+<p>在学习了系统的一个高级U<code>RecyclerView</code>后，小编今天又学习了<code>ViewPager2</code>，它在项目中的使用也是相当频繁的，并且也可以当<code>RecyclerView</code>使用，也可以作为app的一个二级入口，现在的app都使用了这个，底部导航属于一级入口，而一个页面内左右滑动还可以有很多页面，这就是二级入口，此外，<code>ViewPager2</code>用来浏览图片也是相当的香，下面开始教程</p>
+</blockquote>
+<h3 id="二-用法一：App二级入口"><a href="#二-用法一：App二级入口" class="headerlink" title="二.用法一：App二级入口"></a>二.用法一：App二级入口</h3><p>此处就不展示搭配底部导航栏的一级入口了</p>
+<ol>
+<li><p>首先创建几个页面，这里的页面都是Fragment</p>
+</li>
+<li><p>在搭建界面时，需要下载viewPager2，下载完毕后，先拖入一个<code>TabLayout</code>，它是一个顶部导航栏，和ViewPager中的各个页面相关联，在拖入一个<code>viewPager2</code>在它下面</p>
+</li>
+<li><p>搭建好界面后就是绑定界面，viewPager2和RecyclerView类似，同样通过一个适配器来决定展示什么内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class viewPagerAdapter(fragmentActivity: FragmentActivity) :</span><br><span class="line">    FragmentStateAdapter(fragmentActivity) &#123;</span><br><span class="line">    override fun getItemCount() = 3</span><br><span class="line"></span><br><span class="line">    override fun createFragment(position: Int) = when (position) &#123;</span><br><span class="line">        0 -&gt; RotateFragment()</span><br><span class="line">        1 -&gt; ScaleFragment()</span><br><span class="line">        else -&gt; TranslateFragment()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>第一个方法是返回ViewPager中需要展示的页面数量，第二个方法是根据滚动的位置即当前是第几个页面来创建对应的Fragment显示页面</p>
+</blockquote>
+</li>
+<li><p>给<code>viewPager2</code>设置adapter，并绑定顶部导航</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">viewpager2.adapter = viewPagerAdapter(this)</span><br><span class="line">TabLayoutMediator(tablayout,viewpager2)&#123; tab: TabLayout.Tab, i: Int -&gt;</span><br><span class="line">            when(i)&#123;</span><br><span class="line">                0-&gt;tab.text = &quot;旋转&quot;</span><br><span class="line">                1-&gt;tab.text = &quot;缩放&quot;</span><br><span class="line">                else-&gt;tab.text = &quot;移动&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;.attach()</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>根据当前是第几个页面来给顶部导航栏设置标题</p>
+</blockquote>
+</li>
+</ol>
+<p><strong>以上便是viewPager2作为二级入口的用法，流程其实很简单，下面展示效果</strong></p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/viewPager2show.gif" style="zoom: 33%;" />
+
+<blockquote>
+<p>在tabLayout和viewPager2之间加一条分隔线效果如图所示，tabLayout的<code>tabIndicatorColor</code>属性可以设置顶部导航栏的下划线颜色，三个Fragment较为简单，中央放置一张图片，并给它添加属性动画</p>
+</blockquote>
+<h3 id="三-用法二：浏览图片"><a href="#三-用法二：浏览图片" class="headerlink" title="三.用法二：浏览图片"></a>三.用法二：浏览图片</h3><blockquote>
+<p>对于此用法，个人感觉和<code>RecyclerView</code>并无区别，<code>ViewPager2</code>同样采用的是适配器模式，展示什么样的内容完全由adapter来决定，使用步骤和<code>RecyclerView</code>基本一样，下面开始撸码</p>
+</blockquote>
+<ol>
+<li><p>创建单个视图的布局文件</p>
+</li>
+<li><p>创建适配器adapter类，此处依旧使用RecyclerView中的ListAdapter</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class PagerPhotoListAdapter: ListAdapter&lt;PhotoItem, PagerPhotoListAdapter.PagerPhotoViewHolder&gt;(DiffCallBack) &#123;</span><br><span class="line">    object DiffCallBack:DiffUtil.ItemCallback&lt;PhotoItem&gt;()&#123;</span><br><span class="line">        override fun areItemsTheSame(oldItem: PhotoItem, newItem: PhotoItem): Boolean &#123;</span><br><span class="line">            return oldItem === newItem</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        override fun areContentsTheSame(oldItem: PhotoItem, newItem: PhotoItem): Boolean &#123;</span><br><span class="line">            return oldItem.id == newItem.id</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    class PagerPhotoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)</span><br><span class="line"></span><br><span class="line">    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagerPhotoViewHolder &#123;</span><br><span class="line">        LayoutInflater.from(parent.context).inflate(R.layout.pager_photo_view,parent,false).also &#123;</span><br><span class="line">            return PagerPhotoViewHolder(it)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    override fun onBindViewHolder(holder: PagerPhotoViewHolder, position: Int) &#123;</span><br><span class="line">        Glide.with(holder.itemView)</span><br><span class="line">            .load(getItem(position).largeImageURL)</span><br><span class="line">            .placeholder(R.drawable.photo_placeholder)</span><br><span class="line">            .into(holder.itemView.pagerPhoto)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>设置适配器的同时提供数据源</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PagerPhotoListAdapter().apply &#123;</span><br><span class="line">            viewPager2.adapter = this</span><br><span class="line">            submitList(photoList)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<p>以上是使用ViewPager2浏览图片的步骤，本次的Demo是在上次的简易画廊的基础上进行的优化，将第二个页面改装成了浏览图片，为了实现效果，还要设置以下viewPager2的两个事件监听</p>
+</blockquote>
+<p><strong>当页面被滑动时，即切换图片的监听事件</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() &#123;</span><br><span class="line">            override fun onPageSelected(position: Int) &#123;</span><br><span class="line">                super.onPageSelected(position)</span><br><span class="line">                photoTag.text = getString(R.string.photoTag, position + 1, photoList?.size)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>设置底部的页数显示随着左右滑动更新</p>
+<p><strong>设置当前应该显示数据源中哪个内容</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">viewPager2.setCurrentItem(arguments?.getInt(&quot;PHOTO_POSITION&quot;) ?: 0, false)</span><br></pre></td></tr></table></figure>
+
+<p>从其他页面跳转到此页面时触发</p>
+<p><strong>效果展示</strong></p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/viewPager2%E6%B5%8F%E8%A7%88%E5%9B%BE%E7%89%87.gif" style="zoom: 33%;" />
+
+<p>代码中使用到了动态申请权限，小编在之前的文章也写到过，由于在低版本的Android系统中，文件的写入属于危险权限，所以此处添加了动态申请权限，并且还搭配了协程</p>
+<h3 id="四-总结"><a href="#四-总结" class="headerlink" title="四.总结"></a>四.总结</h3><blockquote>
+<p>以上是ViewPager2的两种用法，学会使用它相信对于项目开发是如鱼得水，确实很好用</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/viewpager2-gallery">代码链接</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/ViewPager2%E7%9A%84%E4%BD%BF%E7%94%A8.html" data-id="clchki9jr0026t0qh52m18pup" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" rel="tag">系统高级UI</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-网络阶段小Demo-简易画廊" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/%E7%BD%91%E7%BB%9C%E9%98%B6%E6%AE%B5%E5%B0%8FDemo-%E7%AE%80%E6%98%93%E7%94%BB%E5%BB%8A.html" class="article-date">
+  <time datetime="2021-02-20T01:52:44.000Z" itemprop="datePublished">2021-02-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E9%9B%86/">Android开发基础集</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/%E7%BD%91%E7%BB%9C%E9%98%B6%E6%AE%B5%E5%B0%8FDemo-%E7%AE%80%E6%98%93%E7%94%BB%E5%BB%8A.html">网络阶段小Demo-简易画廊</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-引言"><a href="#一-引言" class="headerlink" title="一.引言"></a>一.引言</h3><blockquote>
+<p>近段时间对使用流行的几大网络开源框架进行了学习，为了巩固和复习之前的知识，熟悉MVVM设计模式，试做一个简易图片画廊的小Demo，不断从网络中加载图片并展示</p>
+</blockquote>
+<h3 id="二-知识点分析"><a href="#二-知识点分析" class="headerlink" title="二.知识点分析"></a>二.知识点分析</h3><ol>
+<li>MVVM设计模式</li>
+<li>单例设计模式</li>
+<li>Navigation-Fragment导航</li>
+<li>RecyclerView展示图片</li>
+<li>网络请求框架Volley、Glide的使用</li>
+<li>使用Gson解析Json数据</li>
+</ol>
+<blockquote>
+<p>另外使用到了下拉刷新<code>swiperefreshlayout</code>、图片闪烁装饰<code>shimmerlayout</code>，界面跳转时数据传递使用了<code>Parcelable</code>对象序列化，此实例本应该使用Repository作一层封装，简化ViewModel层，但为了简单就省略了</p>
+</blockquote>
+<h3 id="三-设计思路分析"><a href="#三-设计思路分析" class="headerlink" title="三.设计思路分析"></a>三.设计思路分析</h3><p>RecyclerView的适配器Adapter使用的是ListAdapter，通过submitList()方法提交数据，不至于想notifyDataSetChanged()那样消耗内存，通过数据驱动加载图片，只有两个页面，逻辑也较为简单，首先通过Volley去加载数据，获取到每张图片具体的url后，将数据提交给Adapter，在Adapter内部绑定视图时，取出url通过Glide去加载图片，并在创建视图时设置点击事件，跳转到具体界面，传递一个带有大图url的对象，在目的界面通过传递的数据取出大图url，通过Glide加载图片，具体细节可以查看代码</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E7%BD%91%E7%BB%9C/%E7%AE%80%E6%98%93%E7%94%BB%E5%BB%8A%E7%BB%93%E6%9E%84%E5%9B%BE.png" style="zoom:50%;" />
+
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E7%BD%91%E7%BB%9C/%E7%AE%80%E6%98%93%E7%94%BB%E5%BB%8A%E6%95%88%E6%9E%9C%E5%9B%BE.gif"></p>
+<h3 id="四-总结"><a href="#四-总结" class="headerlink" title="四.总结"></a>四.总结</h3><blockquote>
+<p>算是对网络阶段的一个收尾，Demo不难，但效果还不错</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/gallery-test">代码链接</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/%E7%BD%91%E7%BB%9C%E9%98%B6%E6%AE%B5%E5%B0%8FDemo-%E7%AE%80%E6%98%93%E7%94%BB%E5%BB%8A.html" data-id="clchki9li006ot0qhaztf5xst" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" rel="tag">网络开源库</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-网络开源库-Okhttp" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93-Okhttp.html" class="article-date">
+  <time datetime="2021-02-07T02:11:31.000Z" itemprop="datePublished">2021-02-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E9%9B%86/">Android开发基础集</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93-Okhttp.html">网络开源库-Okhttp</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-引言"><a href="#一-引言" class="headerlink" title="一.引言"></a>一.引言</h3><p>当Android进入网络阶段时，我们首选考虑的是使用什么工具去请求网络以及实现数据回调，记得在Java网络阶段时使用的是<code>HttpURLConnection</code>，但使用它的步骤特别多，繁琐在于使用流包装发送数据以及接收数据，使用起来很不愉悦，今天便开始了学习Android中常用的网络开源库系列，更加高效地进行网络请求，本文先从<code>Okhttp</code>入手</p>
+<h3 id="二-Okhttp简介"><a href="#二-Okhttp简介" class="headerlink" title="二.Okhttp简介"></a>二.Okhttp简介</h3><p>Okhttp是一个高效的HTTP客户端，具有一下特性：</p>
+<ol>
+<li>支持HTTP/2，允许所有同一个主机地址的请求共享同一个socket连接</li>
+<li>连接池减少请求延时</li>
+<li>透明的GZIP压缩减少响应数据的大小</li>
+<li>缓存响应内容，避免一些完全重复的请求</li>
+</ol>
+<p>话不多说，下面通过具体例子来展示Okhttp的实际应用</p>
+<h3 id="三-准备工作"><a href="#三-准备工作" class="headerlink" title="三.准备工作"></a>三.准备工作</h3><p>本篇文章是建立在app与本地服务器之间的交互上进行阐述的，我搭建的是<strong>Apache</strong>服务器，后台应用使用的是<strong>php</strong>语言进行处理网络请求，由于初次接触Android端请求网络，所以想强调一下<strong>下载文件只需要知道文件链接即可，而上传文件是一定要通过php等后端程序来进行处理的，当然Tomcat是通过具体的方法来处理</strong></p>
+<p>当本地服务器(Apache/Tomcat)搭建好了后，最关心的问题便是如何使用手机通过链接访问电脑上的文件，需经历以下步骤：</p>
+<ol>
+<li><p>通过<strong>win+R、输入cmd</strong>打开终端，再输入<code>ipconfig</code>查看本地服务器的IP地址</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E7%BD%91%E7%BB%9C/%E6%9F%A5%E6%89%BEIP%E5%9C%B0%E5%9D%80.png" style="zoom: 65%;" />
+
+<p>IPv4对应的便是本机的IP，注意：同一台电脑在<strong>手机热点、家庭路由器、校园网</strong>等不同的局域网中，IP地址是不同的，这点很关键，另外记住手机开热点也算一个局域网</p>
+</li>
+<li><p>查到IP地址后便是提供一个<strong>局域网环境</strong>，可以理解为手机、电脑连上同一个WIFI，很多时候会选择手机开热点</p>
+</li>
+<li><p>将你电脑的防火墙关掉，否则会访问失败</p>
+</li>
+<li><p>具体的访问便通过IP地址加上文件路径即可，如<code>http://192.168.0.103/1.jpg</code></p>
+</li>
+<li><p>Android应用程序还需添加联网的权限，在<code>manifests</code>清单文件中添加<code>&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;/&gt;</code></p>
+<p>除此之外，由于访问本地服务器都是http，所以还需在application标签中添加<code>android:usesCleartextTraffic=&quot;true&quot;</code></p>
+</li>
+</ol>
+<p>以上工作做好后，便开始真正的网络操作</p>
+<h3 id="四-Okhttp使用GET方式实现简单的网络请求"><a href="#四-Okhttp使用GET方式实现简单的网络请求" class="headerlink" title="四.Okhttp使用GET方式实现简单的网络请求"></a>四.Okhttp使用GET方式实现简单的网络请求</h3><blockquote>
+<p>Okhttp的网络请求分为同步和异步，使用同步的话需要在子线程中执行请求任务，异步是通过将任务添加到队列中在后台执行，执行完毕后通过回调处理结果</p>
+</blockquote>
+<ol>
+<li><p>同步请求</p>
+<p>使用php后端程序返回一个字符串，代码如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">echo &quot;小王&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E7%BD%91%E7%BB%9C/%E5%90%8C%E6%AD%A5Get%E6%96%B9%E5%BC%8F.png" style="zoom:40%;" /></li>
+<li><p>异步请求</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">fun getAsynchronous()&#123;</span><br><span class="line">        val client = OkHttpClient()</span><br><span class="line">        val request = Request.Builder()</span><br><span class="line">            .url(&quot;http://192.168.0.103/a.php&quot;)</span><br><span class="line">            .build()</span><br><span class="line">        client.newCall(request).enqueue(object :Callback&#123;</span><br><span class="line">            override fun onFailure(call: Call, e: IOException) &#123;</span><br><span class="line">                //请求失败的处理</span><br><span class="line">                Log.v(&quot;cx&quot;,&quot;网络异常，请换5G网！&quot;)</span><br><span class="line">            &#125;</span><br><span class="line">            override fun onResponse(call: Call, response: Response) &#123;</span><br><span class="line">                val result = response.body?.string()</span><br><span class="line">                Log.v(&quot;cx&quot;,&quot;结果为：$result&quot;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<p>此处为了方便就用了线程，实际开发还是得用协程，推荐使用异步请求的方式</p>
+</blockquote>
+<p>用法总结：</p>
+<ol>
+<li><p>首先创建一个client用于发起请求</p>
+</li>
+<li><p>创建一个请求用于设置<strong>url</strong>访问链接</p>
+</li>
+<li><p>通过<code>newCall()</code>方法发起请求，可选择<code>excute()</code>同步和<code>enqueue(回调的接口)</code>两种方式</p>
+</li>
+<li><p>使用POST方式还需另外创建一个请求体用于传递参数</p>
+</li>
+</ol>
+<h3 id="五-Okhttp使用POST方式普通请求"><a href="#五-Okhttp使用POST方式普通请求" class="headerlink" title="五.Okhttp使用POST方式普通请求"></a>五.Okhttp使用POST方式普通请求</h3><p>下面使用异步请求的方式展示POST请求，首先上php后端程序代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">	//获取用户使用get方式提交的数据</span><br><span class="line">	$name=$_POST[&quot;user_name&quot;];</span><br><span class="line">	$password=$_POST[&quot;user_pwd&quot;];</span><br><span class="line">	//数据库中查询是否有这个用户</span><br><span class="line">	if ($name==&quot;jack&quot;&amp;&amp;$password==&quot;123&quot;) &#123;</span><br><span class="line">		echo &quot;登录成功&quot;;</span><br><span class="line">	&#125;else&#123;</span><br><span class="line">		echo &quot;用户名或者密码出错&quot;.$name.&quot;&amp;&quot;.$password;</span><br><span class="line">	&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这是一个典型的登录判断的网络请求，Android端提交数据时需要和<strong>字段</strong>一一对应</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">fun postData()&#123;</span><br><span class="line">        val client = OkHttpClient()</span><br><span class="line">        val requestBody = FormBody.Builder()</span><br><span class="line">            .add(&quot;user_name&quot;, &quot;jack&quot;)</span><br><span class="line">            .add(&quot;user_pwd&quot;, &quot;123&quot;)</span><br><span class="line">            .build()</span><br><span class="line">        val request = Request.Builder()</span><br><span class="line">                .url(&quot;http://192.168.0.103//login/login.php&quot;)</span><br><span class="line">                .post(requestBody)</span><br><span class="line">                .build()</span><br><span class="line">        client.newCall(request).enqueue(object :Callback&#123;</span><br><span class="line">            override fun onFailure(call: Call, e: IOException) &#123;</span><br><span class="line">                Log.v(&quot;cx&quot;,&quot;网络异常，请稍后再试！&quot;)</span><br><span class="line">            &#125;</span><br><span class="line">            override fun onResponse(call: Call, response: Response) &#123;</span><br><span class="line">                val result = response.body?.string()</span><br><span class="line">                Log.v(&quot;cx&quot;, &quot;结果为：$result&quot;)</span><br><span class="line">                //Log-&gt;结果为：登录成功</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>创建请求体时通过<code>add()</code>方法添加字段及其对应的值，创建请求体时，默认使用的是<strong>GET</strong>方式，使用post直接传入请求体即可</p>
+</blockquote>
+<h3 id="六-使用Okhttp实现文件上传和下载准备工作"><a href="#六-使用Okhttp实现文件上传和下载准备工作" class="headerlink" title="六.使用Okhttp实现文件上传和下载准备工作"></a>六.使用Okhttp实现文件上传和下载准备工作</h3><p>以上的网络请求都是较为基础简单的，下面介绍一个APP必不可少的操作：文件上传和下载，涉及两个过程，一是网络请求，二是文件操作，在学习时，个人觉得文件操作稍微难一点，花了好一会儿功夫才弄明白Andriod系统中SD卡的目录如何获取</p>
+<p><strong>要对手机内存进行读写操作需要添加以下权限</strong></p>
+<ol>
+<li>&lt;uses-permission android:name=”android.permission.READ_EXTERNAL_STORAGE” /&gt;<br>&lt;uses-permission android:name=”android.permission.WRITE_EXTERNAL_STORAGE” /&gt;</li>
+<li>application标签中添加<br>android:requestLegacyExternalStorage=”true”</li>
+</ol>
+<p><strong>如何获取到手机内存的目录</strong></p>
+<ol>
+<li><p>手机内存在Android Studio中称为SD卡，通过下面这行代码获取到手机内存的根目录</p>
+<p><code>Environment.getExternalStorageDirectory().absolutePath</code></p>
+</li>
+<li><p>再在后面拼接上文件所在目录以及文件名即可找到文件</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E7%BD%91%E7%BB%9C/%E6%89%8B%E6%9C%BA%E5%86%85%E5%AD%98%E5%9B%BE.png" style="zoom:33%;" />
+
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E7%BD%91%E7%BB%9C/%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6.png"></p>
+</li>
+</ol>
+<blockquote>
+<p>由上图可以知道手机内存的根目录通过代码获取得到是**/storage/emulated/0**</p>
+</blockquote>
+<p>如果仅仅是读取文件的话还比较麻烦，因为在Android版本6.0以上需要动态申请权限，下面上代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">if (Build.VERSION.SDK_INT &gt;= 23) &#123;</span><br><span class="line">               val REQUEST_CODE_CONTACT = 101</span><br><span class="line">               val permissions = arrayOf&lt;String&gt;(</span><br><span class="line">                   Manifest.permission.WRITE_EXTERNAL_STORAGE</span><br><span class="line">               )</span><br><span class="line">               //验证是否许可权限</span><br><span class="line">               for (str in permissions) &#123;</span><br><span class="line">                   if (this.checkSelfPermission(str) !== PackageManager.PERMISSION_GRANTED) &#123;</span><br><span class="line">                       //申请权限</span><br><span class="line">                       this.requestPermissions(permissions, REQUEST_CODE_CONTACT)</span><br><span class="line">                       return</span><br><span class="line">                   &#125; else &#123;</span><br><span class="line">                       //申请好权限后需要做的事情</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的情况自然是上传文件需要用到，而下载文件只需要指定下载的位置，然后通过<code>createNewFile()</code>创建文件即可</p>
+<blockquote>
+<p>以上是目前网络操作需要用到的知识点，日后会在写项目的同时不断补充</p>
+</blockquote>
+<h3 id="七-使用Okhttp上传文件"><a href="#七-使用Okhttp上传文件" class="headerlink" title="七.使用Okhttp上传文件"></a>七.使用Okhttp上传文件</h3><p>依旧先上服务器后端程序php代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">  $file=$_FILES[&quot;file&quot;];</span><br><span class="line">  $name=$file[&quot;name&quot;];</span><br><span class="line">  $type=$file[&quot;type&quot;];</span><br><span class="line">  $size=$file[&quot;size&quot;];</span><br><span class="line">  $temp=$file[&quot;tmp_name&quot;];</span><br><span class="line">  //拼接路径</span><br><span class="line">  $path;</span><br><span class="line">  if ($type==&quot;application/pdf&quot;) &#123;</span><br><span class="line">  	$path=&quot;upload/pdf/&quot;;</span><br><span class="line">  &#125;else if ($type==&quot;image/jpg&quot;||$type==&quot;image/jpeg&quot;||$type==&quot;image/png&quot;) &#123;</span><br><span class="line">  	$path=&quot;upload/image/&quot;;</span><br><span class="line">  &#125;else if ($type==&quot;video/mp4&quot;) &#123;</span><br><span class="line">  	$path=&quot;upload/video/&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">  //拼接完整路径</span><br><span class="line">  $filePath=$path.$name;</span><br><span class="line">  //判断是否存在</span><br><span class="line">  if (file_exists($filePath)) &#123;</span><br><span class="line">  	echo &quot;文件已存在&quot;;</span><br><span class="line">  &#125;else&#123;</span><br><span class="line">  	move_uploaded_file($temp, $filePath);</span><br><span class="line">    echo $filePath;</span><br><span class="line">  	echo &quot;保存文件成功&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>接着上Okhttp操作代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">fun realUpload()&#123;</span><br><span class="line">        val filePath = Environment.getExternalStorageDirectory().absolutePath+&quot;/a/a.mp4&quot;</span><br><span class="line">        val file = File(filePath)</span><br><span class="line">        Thread&#123;</span><br><span class="line">            if (Build.VERSION.SDK_INT &gt;= 23) &#123;</span><br><span class="line">                val REQUEST_CODE_CONTACT = 101</span><br><span class="line">                val permissions = arrayOf&lt;String&gt;(</span><br><span class="line">                    Manifest.permission.WRITE_EXTERNAL_STORAGE</span><br><span class="line">                )</span><br><span class="line">                //验证是否许可权限</span><br><span class="line">                for (str in permissions) &#123;</span><br><span class="line">                    if (this.checkSelfPermission(str) !== PackageManager.PERMISSION_GRANTED) &#123;</span><br><span class="line">                        //申请权限</span><br><span class="line">                        this.requestPermissions(permissions, REQUEST_CODE_CONTACT)</span><br><span class="line">                        return@Thread</span><br><span class="line">                    &#125; else &#123;</span><br><span class="line">                        upLoadFile(file)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;.start()</span><br><span class="line">    &#125;</span><br><span class="line">private fun upLoadFile(file: File)&#123;</span><br><span class="line">        val url = &quot;http://192.168.0.103/upload.php&quot;</span><br><span class="line">        val client = OkHttpClient()</span><br><span class="line">        val requestBody = MultipartBody.Builder()</span><br><span class="line">            .setType(MultipartBody.FORM)</span><br><span class="line">            .addFormDataPart(&quot;file&quot;, &quot;这就是Okhttp吗！.mp4&quot;,file.asRequestBody(&quot;video/mp4&quot;.toMediaTypeOrNull()))</span><br><span class="line">            .build()</span><br><span class="line">        val request = Request.Builder()</span><br><span class="line">            .url(url)</span><br><span class="line">            .post(requestBody)</span><br><span class="line">            .build()</span><br><span class="line">        client.newCall(request).execute()</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果展示</strong></p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E7%BD%91%E7%BB%9C/%E6%89%8B%E6%9C%BA%E7%AB%AF%E6%9F%A5%E7%9C%8B.gif" style="zoom:40%;" />
+
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E7%BD%91%E7%BB%9C/%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9F%A5%E7%9C%8B.gif" style="zoom: 80%;" />
+
+<blockquote>
+<p>使用POST方式上传文件唯一不同的是请求体，需要通过<code>setType()</code>标识上传的是媒体类型，另外还需设置媒体类型以及媒体在传输过程中的名字，这个变量名必须和服务器后端程序中的变量名一一对应，否则后端会无法接收，媒体类型是通过<code>MediaType</code>来设置，具体类型有<strong>video/mp4、image/png、image/jpg、image/jpeg、application/pdf</strong>等</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">java风格</span><br><span class="line">addFormDataPart(&quot;file&quot;, fileName, RequestBody.create(MediaType.parse(&quot;video/mp4&quot;), file)</span><br><span class="line">Kotlin风格</span><br><span class="line">addFormDataPart(&quot;file&quot;, fileName,file.asRequestBody(&quot;video/mp4&quot;.toMediaTypeOrNull()))</span><br></pre></td></tr></table></figure>
+
+<p><strong>fileName</strong>指的是上传到本地服务器后文件的名字，如果将类型设置为**”application/octet-stream”**，它会上传到本地服务器的根目录</p>
+<h3 id="八-使用Okhttp下载文件"><a href="#八-使用Okhttp下载文件" class="headerlink" title="八.使用Okhttp下载文件"></a>八.使用Okhttp下载文件</h3><blockquote>
+<p>对于下载文件轻松多了，虽然网络请求变得简单了，但IO流方面在Kotlin中让我有点头疼，既有它方便的地方也有效率低的地方，下面上代码</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">private fun downLoadFile()&#123;</span><br><span class="line">      val url = &quot;http://192.168.0.103/这就是Okhttp吗！.mp4&quot;</span><br><span class="line">      val client = OkHttpClient()</span><br><span class="line">      val request = Request.Builder()</span><br><span class="line">          .url(url)</span><br><span class="line">          .build()</span><br><span class="line">      client.newCall(request).enqueue(object :Callback&#123;</span><br><span class="line">          override fun onFailure(call: Call, e: IOException) &#123;</span><br><span class="line">              Log.v(&quot;cx&quot;,&quot;下载失败！&quot;)</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          override fun onResponse(call: Call, response: Response) &#123;</span><br><span class="line">              val content = response.body?.byteStream().use &#123;</span><br><span class="line">                  it?.readBytes()</span><br><span class="line">              &#125;</span><br><span class="line">              val filePath = Environment.getExternalStorageDirectory().absolutePath+&quot;/a/这就是Okhttp吗！.mp4&quot;</span><br><span class="line">              val file = File(filePath)</span><br><span class="line">              if (!file.exists())&#123;</span><br><span class="line">                  file.createNewFile()</span><br><span class="line">              &#125;</span><br><span class="line">              file.outputStream().use &#123;</span><br><span class="line">                  it.write(content)</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>可以发现发起网络请求后，通过<code>response</code>可以带回输入流，本地服务器中的文件写入到内存中，再通过输出流写入到手机内存指定的文件夹，Kotlin是真的太简洁了，通过<code>byteStream()</code>可以直接获取到输入流，然后直接通过它获取到<code>BufferdReader</code>，但是缓冲流无法将流中的数据写入到字节数组中，这就让我很头疼，如果写入到字符串中的话，会导致文件损坏，因此我就使用的是普通的输入输出流，中间层通过字节数组缓存，毫无疑问如果是大文件的话，这种效率不太高，至于IO流的包装还有待研究</p>
+</blockquote>
+<h3 id="九-总结"><a href="#九-总结" class="headerlink" title="九.总结"></a>九.总结</h3><blockquote>
+<p>经历过上面的过程总算知道怎样使用Okhttp发起常见的网络请求了，并且操作手机内存中的文件，如果你写过<code>HttpURLConnection</code>请求网络以及相关的文件操作，你会发现Okhttp是真的简洁好用，下面将从源码层面细说Okhttp框架</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/okhttp-learning">代码链接</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93-Okhttp.html" data-id="clchki9le006ft0qhagqtbgv9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" rel="tag">网络开源库</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-自定义Dialog详解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/%E8%87%AA%E5%AE%9A%E4%B9%89Dialog%E8%AF%A6%E8%A7%A3.html" class="article-date">
+  <time datetime="2021-02-01T03:19:33.000Z" itemprop="datePublished">2021-02-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/">Android自定义系列</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/%E8%87%AA%E5%AE%9A%E4%B9%89Dialog%E8%AF%A6%E8%A7%A3.html">自定义Dialog详解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-引言"><a href="#一-引言" class="headerlink" title="一.引言"></a>一.引言</h3><blockquote>
+<p>在实际写项目时，我们会有弹出一个对话框的需求，对话框比较轻量，可以升级用户体验，并且使用也不是很难，但系统提供的Dialog无法满足我们多样化的需求，尤其是界面布局以及响应事件，下面小编将按步骤详解如何自定义Dialog</p>
+</blockquote>
+<h3 id="二-Dialog基本介绍"><a href="#二-Dialog基本介绍" class="headerlink" title="二.Dialog基本介绍"></a>二.Dialog基本介绍</h3><p>Dialog也有自己的生命周期，这里不做详细介绍，因为通常我们使用只会涉及到一级Dialog，而不会像选择地区时会涉及到省/市/县三级Dialog，这种情况会涉及到Dialog的保存即生命周期，本文主要自定义Dialog的流程以及使用中需要注意的基本设置，能够满足个性化使用即可</p>
+<h3 id="三-自定义Dialog基本流程"><a href="#三-自定义Dialog基本流程" class="headerlink" title="三.自定义Dialog基本流程"></a>三.自定义Dialog基本流程</h3><ol>
+<li><p>创建Dialog的布局文件</p>
+<p>①值得注意的是布局大小不要使用<code>match_parent</code>，因为实际弹出的对话框肯定不会填满整个屏幕的，并且如果没有在代码中设置Dialog的大小的话，会默认使用<code>wrap_content</code>，所以原本的布局都会被打乱，很难看，所以建议布局大小采用固定值，并且后面在代码中也会使用布局的固定值设定Dialog的大小</p>
+<p>②当然Dialog的背景可以设置为某张图片，如果担心图片填不满或者拉伸失真，建议图片的宽高比和Dialog的宽高比相近，这样按比例填充的效果还不错，下面上图</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Room/dialog%E5%A1%AB%E5%85%85%E5%9B%BE%E7%89%87.png" style="zoom:40%;" /></li>
+<li><p>在res/values/styles.xml文件中新建Dialog的样式，不添加则会使用系统的默认样式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;style name=&quot;自定义Dialog的类名&quot; parent=&quot;android:Theme.Dialog&quot;&gt;</span><br><span class="line">        //背景颜色及透明程度</span><br><span class="line">        &lt;item name=&quot;android:windowBackground&quot;&gt;@android:color/transparent&lt;/item&gt;</span><br><span class="line">        //Dialog是否半透明</span><br><span class="line">        &lt;item name=&quot;android:windowIsTranslucent&quot;&gt;false&lt;/item&gt;</span><br><span class="line">        //是否去除标题</span><br><span class="line">        &lt;item name=&quot;android:windowNoTitle&quot;&gt;true&lt;/item&gt;</span><br><span class="line">        //Dailog是否浮动/移动</span><br><span class="line">        &lt;item name=&quot;android:windowIsFloating&quot;&gt;false&lt;/item&gt;</span><br><span class="line">        //弹出Dialog时，是否变暗背景</span><br><span class="line">        &lt;item name=&quot;android:backgroundDimEnabled&quot;&gt;true&lt;/item&gt;</span><br><span class="line">        //是否需要在Dialog中自动弹出键盘</span><br><span class="line">        &lt;item name=&quot;android:windowSoftInputMode&quot;&gt;stateVisible&lt;/item&gt;</span><br><span class="line">    &lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>①由于本次做的Demo需要在弹出Dialog的同时弹出键盘，所以需要添加最后一句话，不添加是不会弹出键盘的</p>
+<p>②在弹出键盘时发现Dialog会被键盘顶上去，所以我们需要在style中设置Dialog不可浮动，这点很关键，至于Dialog会被挡住的问题需要在代码中设置Dialog的位置</p>
+<p>③以上是常用属性，可以自行百度了解其他属性</p>
+</li>
+<li><p>创建类继承自Dialog</p>
+<p>自定义的Dialog类需要传入<code>context</code>上下文，即该Dialog附属于哪个Activity，样式可以不用传递，直接在父类的构造方法中传入即可，所有的代码逻辑类似于Activity在<code>onCreate</code>方法中填写，下面上代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">class WordsDialog(private val mContext: Context, private val viewModel: MyViewModel):Dialog(mContext,R.style.WordsDialog) &#123;</span><br><span class="line">    override fun onCreate(savedInstanceState: Bundle?) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState)</span><br><span class="line">        val view = LayoutInflater.from(mContext).inflate(R.layout.words_add_dialog_layout,null,false)</span><br><span class="line">        setContentView(view)</span><br><span class="line">        setCancelable(false)</span><br><span class="line">        val lp = window?.attributes</span><br><span class="line">        lp?.width = dpTopx(300)</span><br><span class="line">        lp?.height = dpTopx(400)</span><br><span class="line">        lp?.x = dpTopx(0)</span><br><span class="line">        lp?.y = dpTopx(-50)</span><br><span class="line">        window?.attributes = lp</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        val cancelBtn = view.findViewById&lt;Button&gt;(R.id.cancelBtn)</span><br><span class="line">        val addBtn = view.findViewById&lt;Button&gt;(R.id.addBtn)</span><br><span class="line">        val inputWords = view.findViewById&lt;EditText&gt;(R.id.inputWords)</span><br><span class="line">        val inputMeanings = view.findViewById&lt;EditText&gt;(R.id.inputMeanings)</span><br><span class="line"></span><br><span class="line">        val wordsTextWatcher = object :TextWatcher&#123;</span><br><span class="line">            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) &#123;</span><br><span class="line">                val english = inputWords.text.toString().trim()</span><br><span class="line">                val chinese = inputMeanings.text.toString().trim()</span><br><span class="line">                addBtn.isEnabled  = english.isNotEmpty() &amp;&amp; chinese.isNotEmpty()</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            override fun afterTextChanged(p0: Editable?) &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        showKeyBoard(inputWords)</span><br><span class="line">        cancelBtn.setOnClickListener &#123;</span><br><span class="line">            dismiss()</span><br><span class="line">        &#125;</span><br><span class="line">        addBtn.setOnClickListener &#123;</span><br><span class="line">            val english = inputWords.text.toString().trim()</span><br><span class="line">            val chinese = inputMeanings.text.toString().trim()</span><br><span class="line">            viewModel.insert(Word(english,chinese))</span><br><span class="line">            hideKeyBoard(it)</span><br><span class="line">            Toast.makeText(context,&quot;添加成功!&quot;,Toast.LENGTH_SHORT).show()</span><br><span class="line">            dismiss()</span><br><span class="line">        &#125;</span><br><span class="line">        inputWords.addTextChangedListener(wordsTextWatcher)</span><br><span class="line">        inputMeanings.addTextChangedListener(wordsTextWatcher)</span><br><span class="line">    &#125;</span><br><span class="line">    private fun dpTopx(dp:Int) = (context.resources.displayMetrics.density*dp).toInt()</span><br><span class="line">    private fun showKeyBoard(editText: EditText)&#123;</span><br><span class="line">        editText.requestFocus()</span><br><span class="line">        val inputMethodManager = mContext.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager</span><br><span class="line">        inputMethodManager.showSoftInput(editText,0)</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    private fun hideKeyBoard(view: View)&#123;</span><br><span class="line">        val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager</span><br><span class="line">        inputMethodManager.hideSoftInputFromWindow(view.windowToken,0)</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>①首先我们需要通过<code>LayoutInflater</code>解析布局，由于没有父容器，所以参数中传入null，然后通过<code>setContentView</code>关联Dialog和布局，通过解析得到view布局对象可以得到布局文件中的控件，并添加监听事件，这点很自然，直接码代码即可</p>
+<p>②处理好界面中的控件后，关键一步是设置Dialog的大小以及显示位置，如果不设置，则会采用默认的中心位置以及包裹内容，这样会显得很奇怪，所以我们可以通过<code>window</code>获取到布局参数<code>attributes</code>，添加好布局参数后，又将其赋值给<code>attributes</code></p>
+<p>③具体设置窗体大小时需要进行dp值和px值的转换，因为布局文件中的固定值是dp，而不同设备的屏幕密度是不相同的，代码中的默认单位是px，所以我们需要进行一层转换，之前也用过很多次了，不再叙述</p>
+<p>④设置窗体的位置时注意坐标原点在哪儿，由于默认是从屏幕的中心弹出对话框，经过测试，发现默认位置的中心应该就是坐标原点，据此来设置偏移量，经过不断调试找到合适位置</p>
+</li>
+</ol>
+<h3 id="四-自定义Dialog小结"><a href="#四-自定义Dialog小结" class="headerlink" title="四.自定义Dialog小结"></a>四.自定义Dialog小结</h3><p>在使用时，只需创建对象并调用<code>show</code>方法即可，经过以上流程发现自定义Dialog以及使用其实不难，只是要运用得很灵活的话需要注意一些小细节，另外趁着闲暇之时去看了一下系统提供的Dialog的Builder类，即通过建造者模式创建一个Dialog，我感觉静态内部类Builder只是将以上代码创建Dialog的关键步骤进行了封装，并提供接口给使用者，使用起来更加简洁，这里就不做这层封装了，因为在写小项目中很多东西是可以内部写死的，就不再多此一举进行封装了</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wiwiyiyi.com/%E8%87%AA%E5%AE%9A%E4%B9%89Dialog%E8%AF%A6%E8%A7%A3.html" data-id="clchki9ll006ut0qh3ahh3l5e" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android%E9%AB%98%E7%BA%A7UI/" rel="tag">Android高级UI</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/">下一页 &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-UI%E7%B3%BB%E5%88%97/">Android UI系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%AE%9E%E6%88%98%E9%9B%86/">Android实战集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E9%9B%86/">Android开发基础集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/">Android自定义系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Android设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%BF%9B%E9%98%B6/">Android进阶</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E9%87%8D%E8%A6%81%E7%BB%84%E4%BB%B6/">Android重要组件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E9%A1%B9%E7%9B%AE/">Android项目</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E8%BF%9B%E9%98%B6/">Java进阶</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/html%E5%AD%A6%E4%B9%A0/">html学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/">个人成长</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%9B%E6%89%A3%E9%A2%98%E8%A7%A3/">力扣题解</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8E%92%E5%BA%8F%E9%9B%86/">排序集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8%E4%B8%8E%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/">注解处理器与开源框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E6%8E%A7%E4%BB%B6/">系统控件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%84%E4%BB%B6%E5%8C%96%E7%B3%BB%E5%88%97/">组件化系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%93%E9%A2%98/">设计模式专题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E9%9B%86/">问题总结集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag">Android常用琐碎知识点</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E5%BC%80%E5%8F%91%E5%B0%8FDemo/" rel="tag">Android开发小Demo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E9%AB%98%E7%BA%A7UI/" rel="tag">Android高级UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" rel="tag">hexo博客搭建问题总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93/" rel="tag">发布开源库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/" rel="tag">学年设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" rel="tag">算法篇</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" rel="tag">系统高级UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" rel="tag">网络开源库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" style="font-size: 18px;">Android常用琐碎知识点</a> <a href="/tags/Android%E5%BC%80%E5%8F%91%E5%B0%8FDemo/" style="font-size: 10px;">Android开发小Demo</a> <a href="/tags/Android%E9%AB%98%E7%BA%A7UI/" style="font-size: 16px;">Android高级UI</a> <a href="/tags/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" style="font-size: 10px;">hexo博客搭建问题总结</a> <a href="/tags/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93/" style="font-size: 10px;">发布开源库</a> <a href="/tags/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">学年设计</a> <a href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" style="font-size: 20px;">算法篇</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" style="font-size: 12px;">系统高级UI</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" style="font-size: 14px;">网络开源库</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/%E8%87%AA%E5%AE%9A%E4%B9%89PhotoView%E5%A4%84%E7%90%86%E6%89%8B%E5%8A%BF.html">自定义PhotoView处理手势</a>
+          </li>
+        
+          <li>
+            <a href="/%E9%A6%96%E6%AC%A1%E5%BC%80%E6%BA%90%E5%BA%93-%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E6%96%87%E5%AD%97%E6%B8%90%E5%8F%98%E6%95%88%E6%9E%9C.html">首次开源库-不一样的文字渐变效果</a>
+          </li>
+        
+          <li>
+            <a href="/CoordinatorLayout%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89Behavior%E5%85%A5%E9%97%A8.html">CoordinatorLayout原理分析以及自定义Behavior入门</a>
+          </li>
+        
+          <li>
+            <a href="/NestedScrollView%E5%B5%8C%E5%A5%97%E6%BB%91%E5%8A%A8%E5%8E%9F%E7%90%86.html">NestedScrollView嵌套滑动原理</a>
+          </li>
+        
+          <li>
+            <a href="/APT-javapoet%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B.html">APT-javapoet详细教程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 EngineerOfFinger<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/%20%7C%7C%20fas%20fa-home" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives/%20%7C%7C%20fas%20fa-archive" class="mobile-nav-link">时间轴</a>
+  
+    <a href="/tags/%20%7C%7C%20fas%20fa-tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/categories/%20%7C%7C%20fas%20fa-folder-open" class="mobile-nav-link">分类</a>
+  
+    <a href="/link/%20%7C%7C%20fas%20fa-link" class="mobile-nav-link">友链</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
