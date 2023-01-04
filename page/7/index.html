@@ -1,932 +1,410 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>梦幻泡影 - 指尖上的工程师</title><meta name="author" content="EngineerOfFinger"><meta name="copyright" content="EngineerOfFinger"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="success&amp;#x3D;persistence"><link rel="shortcut icon" href="/img/wiwi.ico"><link rel="canonical" href="https://wiwiyiyi.com/page/7/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: EngineerOfFinger","link":"链接: ","source":"来源: 梦幻泡影","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '梦幻泡影',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-01-04 19:52:56'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-  
-  <title>梦幻泡影</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="success&#x3D;persistence">
-<meta property="og:type" content="website">
-<meta property="og:title" content="梦幻泡影">
-<meta property="og:url" content="https://wiwiyiyi.com/page/7/index.html">
-<meta property="og:site_name" content="梦幻泡影">
-<meta property="og:description" content="success&#x3D;persistence">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="EngineerOfFinger">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="梦幻泡影" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/img/wiwi.ico">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">梦幻泡影</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">[object Object]</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
         
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-          <a class="main-nav-link" href="/%20%7C%7C%20fas%20fa-home">主页</a>
-        
-          <a class="main-nav-link" href="/archives/%20%7C%7C%20fas%20fa-archive">时间轴</a>
-        
-          <a class="main-nav-link" href="/tags/%20%7C%7C%20fas%20fa-tags">标签</a>
-        
-          <a class="main-nav-link" href="/categories/%20%7C%7C%20fas%20fa-folder-open">分类</a>
-        
-          <a class="main-nav-link" href="/link/%20%7C%7C%20fas%20fa-link">友链</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wiwiyiyi.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-分治算法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95.html" class="article-date">
-  <time datetime="2021-03-26T09:42:00.000Z" itemprop="datePublished">2021-03-26</time>
-</a>
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">106</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/img/background.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">梦幻泡影</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">梦幻泡影</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=1505608482" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="mailto:1505608482@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95.html" title="分治算法"><img class="post_bg" src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2F%E5%A3%81%E7%BA%B824.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="分治算法"></a></div><div class="recent-post-info"><a class="article-title" href="/%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95.html" title="分治算法">分治算法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-03-26T09:42:00.000Z" title="发表于 2021-03-26 17:42:00">2021-03-26</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/">算法篇</a></span></div><div class="content">一.引言
+分治算法是将一个复杂的问题分成两个或者更多的相同或相似的子问题，在把子问题分成更小的子问题…..直到最后子问题可以简单的直接求解，原问题的解即子问题的解的合并。快速排序和归并排序便使用到了此算法，下面以汉诺塔问题的求解来介绍分治算法
+
+二.汉诺塔
+
+游戏描述：有三根杆(编号A、B、C)，在A杆自下而上、由大到小按顺序放置64个金盘。游戏的目标：把A杆上的金盘全部移到C杆上，并仍保持原有顺序叠好。操作规则：每次只能移动一个盘子，并且在移动过程中三根杆上都始终保持大盘在下，小盘在上，操作过程中盘子可以置于A、B、C任一杆上。
+
+以两个盘为例，可以发现，一共可以分为3个步骤，首先把A塔底盘上面的所有盘移动到B塔，然后将A塔的底盘移动到C塔，最后将B塔上的所有盘移动到C塔，显然该过程中第一步和最后一步存在递归，第二步只移动一个盘没有递归可言，下面上代码
+
+123456789101112static void HanoiSolution(int num,char a,char b,char c)&#123;        if (num==1)&#123;            Sys ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95.html" title="字符串匹配算法"><img class="post_bg" src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2F%E5%A3%81%E7%BA%B824.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="字符串匹配算法"></a></div><div class="recent-post-info"><a class="article-title" href="/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95.html" title="字符串匹配算法">字符串匹配算法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-03-24T11:17:20.000Z" title="发表于 2021-03-24 19:17:20">2021-03-24</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/">算法篇</a></span></div><div class="content">一.引言
+字符串匹配在算法中也算是一个经典，小编接下来将介绍两种字符串匹配的算法，所谓字符串匹配就是在一个字符串中查找某个子串，如果存在目标子串，则返回第一次出现的下标，否则返回-1
+
+二.暴力匹配算法见字思义，这种算法效率十分低，但可以帮助我们理解字符串匹配的整体过程
+
+
+代码实现
+1234567891011121314151617181920static int violenceMatchString(String str1,String str2)&#123;        char[] s1 = str1.toCharArray();        char[] s2 = str2.toCharArray();        int sLen1 = s1.length;        int sLen2 = s2.length;        int i = 0,j = 0;        while (i&lt;sLen1 &amp;&amp; j&lt;sLen2)&#123;            if (s1[i] == s2[j])&#123;             ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html" title="动态规划"><img class="post_bg" src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2F%E5%A3%81%E7%BA%B85.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="动态规划"></a></div><div class="recent-post-info"><a class="article-title" href="/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html" title="动态规划">动态规划</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-03-24T00:23:09.000Z" title="发表于 2021-03-24 08:23:09">2021-03-24</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/">算法篇</a></span></div><div class="content">一.引言
+本文将介绍动态规划算法以及几个案例求解，动态规划的核心思想是：将大问题划分为小问题进行解决，从而一步步获取最优解的处理算法，与分治算法不同的是，动态规划中下一个子阶段的求解是建立在上一个子阶段的解的基础上，进行进一步的求解，具有依赖关系，动态规划可以通过填表的方式来逐步推进，得到最优解，下面通过具体案例来分析
+
+二.01背包问题背包问题：有一个背包，容量为4磅，现有如下物品
+
+
+
+物品
+重量
+价格
+
+
+
+吉他(G)
+1
+1500
+
+
+音响(S)
+4
+3000
+
+
+电脑(L)
+3
+2000
+
+
+要求：
+
+达到的目标为装入的背包的总价值最大，并且重量不超出
+装入的物品不能重复
+
+下面先列出关键公式：
+123(1) v[i][0]=v[0][j]=0 //初始化，第一行第一列都为0(2) 当w[i]&gt;j时：v[i][j] = v[i-1][j](3) 当j&gt;=w[i]时：v[i][j] = max&#123;v[i-1][j]，val[i]+v[i-1][j-w[i]]&#125;
+
+解释：
+
+这里v是一个二维数组，行对应的是所装物品，列对应的是不同的容量，w数组是每个 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/%E5%B0%86%E6%95%B0%E5%AD%97%E7%BF%BB%E8%AF%91%E6%88%90%E5%AD%97%E7%AC%A6%E4%B8%B2.html" title="将数字翻译成字符串"><img class="post_bg" src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2F%E5%A3%81%E7%BA%B824.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="将数字翻译成字符串"></a></div><div class="recent-post-info"><a class="article-title" href="/%E5%B0%86%E6%95%B0%E5%AD%97%E7%BF%BB%E8%AF%91%E6%88%90%E5%AD%97%E7%AC%A6%E4%B8%B2.html" title="将数字翻译成字符串">将数字翻译成字符串</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-03-22T08:25:12.000Z" title="发表于 2021-03-22 16:25:12">2021-03-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%8A%9B%E6%89%A3%E9%A2%98%E8%A7%A3/">力扣题解</a></span></div><div class="content">一.题目描述给定一个数字，我们按照如下规则把它翻译为字符串：0 翻译成 “a” ，1 翻译成 “b”，……，11 翻译成 “l”，……，25 翻译成 “z”。一个数字可能有多个翻译。请编程实现一个函数，用来计算一个数字有多少种不同的翻译方法。
+示例 1:
+123输入: 12258输出: 5解释: 12258有5种不同的翻译，分别是&quot;bccfi&quot;, &quot;bwfi&quot;, &quot;bczi&quot;, &quot;mcfi&quot;和&quot;mzi&quot;
+
+提示：
+
+0 &lt;= num &lt; 231
+
+二.思路分析小编在拿到这道题后很自然的想到将数字转换字符串，进而得到字符数组，然后遍历数组，但最终也只考虑到了相邻两个元素，一种情况中可能存在多个两两成对的情况，普通的遍历不能解决问题，官网给出的解决方案是动态规划，首先建立状态转移方程
+
+首先用dp一维数组来保存每次遍历的总结果数，则dp[i] = dp[i-1] + dp[i-2]，该数组的起始值为1，有没有更多的情况取决于有没有相邻的两个数组合后可以翻译成一个字符，每次遍历之前 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/%E9%93%BE%E8%A1%A8%E7%9A%84%E5%B1%80%E9%83%A8%E5%8F%8D%E8%BD%AC.html" title="链表的局部反转"><img class="post_bg" src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2Faji19-vf7d9.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="链表的局部反转"></a></div><div class="recent-post-info"><a class="article-title" href="/%E9%93%BE%E8%A1%A8%E7%9A%84%E5%B1%80%E9%83%A8%E5%8F%8D%E8%BD%AC.html" title="链表的局部反转">链表的局部反转</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-03-18T07:26:27.000Z" title="发表于 2021-03-18 15:26:27">2021-03-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%8A%9B%E6%89%A3%E9%A2%98%E8%A7%A3/">力扣题解</a></span></div><div class="content">一.题目描述给你单链表的头节点head和两个整数left和right ，其中left&lt;=right。请你反转从位置left到位置right的链表节点，返回 反转后的链表 
+示例 1：
+
+12输入：head = [1,2,3,4,5], left = 2, right = 4输出：[1,4,3,2,5]
+
+示例 2：
+12输入：head = [5], left = 1, right = 1输出：[5]
+
+提示：
+
+链表中节点数目为 n
+1 &lt;= n &lt;= 500
+-500 &lt;= Node.val &lt;= 500
+1 &lt;= left &lt;= right &lt;= n
+
+二.思路分析
+之前已经刷到过链表反转问题，而此处不一样的是局部反转，只需要记录局部反转链表的前一个和后一个结点即可，这次我使用的是栈来保存需要反转的结点，因为后进先出，刚好满足反转效果，但本题还有一个坑点，如果left的值为1，也就意味着头结点也会加入反转序列，可以自己尝试一下，这种情况最终只会输出一个结点，所以我们需要额外添加一个虚拟结点，这种控制边界问题的结点称为哨兵，哨兵结点的n ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E5%8F%AF%E5%88%B0%E6%A0%BC%E5%AD%90%E6%95%B0.html" title="机器人深度优先可到格子数"><img class="post_bg" src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2Faiw14-olfut.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="机器人深度优先可到格子数"></a></div><div class="recent-post-info"><a class="article-title" href="/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E5%8F%AF%E5%88%B0%E6%A0%BC%E5%AD%90%E6%95%B0.html" title="机器人深度优先可到格子数">机器人深度优先可到格子数</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-03-18T03:09:39.000Z" title="发表于 2021-03-18 11:09:39">2021-03-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%8A%9B%E6%89%A3%E9%A2%98%E8%A7%A3/">力扣题解</a></span></div><div class="content">一.题目描述地上有一个m行n列的方格，从坐标 [0,0] 到坐标 [m-1,n-1] 。一个机器人从坐标 [0, 0] 的格子开始移动，它每次可以向左、右、上、下移动一格（不能移动到方格外），也不能进入行坐标和列坐标的数位之和大于k的格子。例如，当k为18时，机器人能够进入方格 [35, 37] ，因为3+5+3+7=18。但它不能进入方格 [35, 38]，因为3+5+3+8=19。请问该机器人能够到达多少个格子？
+示例 1：
+12输入：m = 2, n = 3, k = 1输出：3
+
+示例 2：
+12输入：m = 3, n = 1, k = 0输出：1
+
+提示：
+
+1 &lt;= n,m &lt;= 100
+0 &lt;= k &lt;= 20
+
+二.思路分析在看到这道题目时，首先想到的是深度优先遍历，使用栈来保存路径，走到末端便回退栈，有点类似迷宫问题，但让我头疼的是迷宫问题的边界是标识的，并且在此你还需要进行判断下一步能不能走通，如果不行还需改变方向，四个方向都不通只能回退栈，感觉将问题变得复杂了，下面参考力扣官网解答，使用递归实现深度优先遍历，弄清楚子问题是什么，从当前点出发 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/%E5%AE%8C%E5%85%A8%E4%BD%BF%E7%94%A8%E4%BD%8D%E8%BF%90%E7%AE%97%E5%AE%9E%E7%8E%B0%E5%8A%A0%E6%B3%95.html" title="完全使用位运算实现加法"><img class="post_bg" src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2F%E5%A3%81%E7%BA%B814.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="完全使用位运算实现加法"></a></div><div class="recent-post-info"><a class="article-title" href="/%E5%AE%8C%E5%85%A8%E4%BD%BF%E7%94%A8%E4%BD%8D%E8%BF%90%E7%AE%97%E5%AE%9E%E7%8E%B0%E5%8A%A0%E6%B3%95.html" title="完全使用位运算实现加法">完全使用位运算实现加法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-03-16T07:44:15.000Z" title="发表于 2021-03-16 15:44:15">2021-03-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%8A%9B%E6%89%A3%E9%A2%98%E8%A7%A3/">力扣题解</a></span></div><div class="content">一.题目描述写一个函数，求两个整数之和，要求在函数体内不得使用 “+”、“-”、“*”、“/” 四则运算符号。
+ 示例:
+12输入: a = 1, b = 1输出: 2
+
+提示：
+
+a, b 均可能是负数或 0
+结果不会溢出 32 位整数
+
+二.思路分析
+小编在看到题目的时候首先想到的是二进制位运算，但由于不太熟悉位运算的使用，一直卡壳，下面介绍容易理解的解题思路
+
+基本思路来源是二进制数字的加法，如果没有进位，则将0、1相加，若要进位当前位为0，向上一位进1，那么这个过程怎么通过位运算来实现呢：
+设两数字的二进制形式 a、b，其求和 s = a + b，a(i)代表a的二进制第i位，则分为以下四种情况：
+
+
+
+a(i)
+b(i)
+无进位和n(i)
+进位c(i+1)
+
+
+
+0
+0
+0
+0
+
+
+0
+1
+1
+0
+
+
+1
+0
+1
+0
+
+
+1
+1
+0
+1
+
+
+通过观察上表可以发现对应的两个二进制数字不同时没有进位，都为1时有进位，所以前者可以为两个数的异或运算，后者为两数的与运算并且要左移1位，即进位，然后先通过异或运算求两个数的和，如果进位为0则不需要进行，否则继续求和，直到不再进位，因为有 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/%E4%BD%BF%E7%94%A8Idea%E5%88%9B%E5%BB%BAJavaWeb%E5%BA%94%E7%94%A8%E4%BB%A5%E5%8F%8AServlet%E7%9A%84%E5%9D%91.html" title="使用Idea创建JavaWeb应用以及Servlet的坑"><img class="post_bg" src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2Favt4t-slvbe.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用Idea创建JavaWeb应用以及Servlet的坑"></a></div><div class="recent-post-info"><a class="article-title" href="/%E4%BD%BF%E7%94%A8Idea%E5%88%9B%E5%BB%BAJavaWeb%E5%BA%94%E7%94%A8%E4%BB%A5%E5%8F%8AServlet%E7%9A%84%E5%9D%91.html" title="使用Idea创建JavaWeb应用以及Servlet的坑">使用Idea创建JavaWeb应用以及Servlet的坑</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-03-13T07:08:13.000Z" title="发表于 2021-03-13 15:08:13">2021-03-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E9%9B%86/">问题总结集</a></span></div><div class="content">一.引言
+今天小编开始了一个新的领域知识的学习-Java后端，在Android开发过程中请求网络的链接指向的就是服务器提供的端口，也叫后端应用，用于处理用户发送的请求，网页端同理，可能很多朋友使用的是Eclipse写后端应用，毕竟是免费的，小编用的是IDEA工具，在创建Servlet应用的过程中坑点特多，下面一一列出
+
+二.坑点解决
+An incompatible version [1.1.30] of the APR based Apache Tomcat Native library
+这是由于Tomcat安装文件夹bin目录中的tcnative-1.dll版本不一致问题，参考此篇文章下载对应的版本，该博客中说将32位的拖到对应的文件夹，但我的不行，我需要64位的，即x86文件夹下对应的文件
+
+运行tomcat时出现 Can’t load IA 32-bit .dll on a AMD 64-bit platform
+此问题是由于你安装的jdk和Tomcat版本不一致造成的，可以百度一下自己应该安装多少版本的jdk
+
+即使手动导入了servlet-api.jar也不无法使用HttpS ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/%E4%B8%BB%E8%A6%81%E5%85%83%E7%B4%A0.html" title="主要元素"><img class="post_bg" src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2F%E5%A3%81%E7%BA%B822.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="主要元素"></a></div><div class="recent-post-info"><a class="article-title" href="/%E4%B8%BB%E8%A6%81%E5%85%83%E7%B4%A0.html" title="主要元素">主要元素</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-03-11T08:47:59.000Z" title="发表于 2021-03-11 16:47:59">2021-03-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%8A%9B%E6%89%A3%E9%A2%98%E8%A7%A3/">力扣题解</a></span></div><div class="content">一.题目描述数组中占比超过一半的元素称之为主要元素。给定一个整数数组，找到它的主要元素。若没有，返回-1。
+示例 1：
+12输入：[1,2,5,9,5,9,5,5,5]输出：5
+
+示例 2：
+12输入：[3,2]输出：-1
+
+示例 3：
+12输入：[2,2,1,1,1,2,2]输出：2
+
+二.思路分析
+看到此题目后，首先第一个想法是利用桶思想，将它们各自放入一个桶中，然后依次计数，但是发现这样特别耗内存，因为你并不知道给定数组中元素的范围，并且貌似不太好操作，然后便想到了使用键值对的方式进行存储，下面展示代码
+
+123456789101112131415public static int majorityElement(int[] nums) &#123;        HashMap&lt;Integer,Integer&gt; map = new HashMap&lt;&gt;();        for (int i = 0; i &lt; nums.length; i++) &#123;            int value = map.get(nums[i])==null ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/%E9%A1%BA%E6%97%B6%E9%92%88%E6%89%93%E5%8D%B0%E7%9F%A9%E9%98%B5.html" title="顺时针打印矩阵"><img class="post_bg" src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2Fankz3-nvjhn.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="顺时针打印矩阵"></a></div><div class="recent-post-info"><a class="article-title" href="/%E9%A1%BA%E6%97%B6%E9%92%88%E6%89%93%E5%8D%B0%E7%9F%A9%E9%98%B5.html" title="顺时针打印矩阵">顺时针打印矩阵</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-03-11T06:56:33.000Z" title="发表于 2021-03-11 14:56:33">2021-03-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%8A%9B%E6%89%A3%E9%A2%98%E8%A7%A3/">力扣题解</a></span></div><div class="content">一.题目描述输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字。
+
+
+示例 1：
+12输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]输出：[1,2,3,6,9,8,7,4,5]
+
+示例 2：
+12输入：matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]输出：[1,2,3,4,8,12,11,10,9,5,6,7]
+
+限制：
+
+0 &lt;= matrix.length &lt;= 100
+0 &lt;= matrix[i].length &lt;= 100
+
+二.思路分析
+小编开始审错题了，将该矩阵当做了方阵，所以之前写的算法仅适用于方阵，但最容易想到的思路还是旋转打印路径的方式，官方文档也是这样处理的，但后来小编采纳了另外一个博主的思路，他将此问题模型化了，可以将矩阵看作是带有上下左右边界的一块地，每次都会经历向右、向下、向左、向上四个方向的打印操作，因此通过四个for循环进行模拟，从起始边到终点边，每遍历完一边，就将那边向内移动一个距离，直到某两个对边超过对方就算遍历完成，该思路很清晰并且好记，下面上代码
+
+ ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/6/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#content-inner">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/#content-inner">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/#content-inner">11</a><a class="extend next" rel="next" href="/page/8/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">EngineerOfFinger</div><div class="author-info__description">success=persistence</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">106</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/wiwi289"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=1505608482" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="mailto:1505608482@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">梦幻泡影般的世界</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/%E8%87%AA%E5%AE%9A%E4%B9%89PhotoView%E5%A4%84%E7%90%86%E6%89%8B%E5%8A%BF.html" title="自定义PhotoView处理手势"><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2Faqkbn-dh264.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="自定义PhotoView处理手势"/></a><div class="content"><a class="title" href="/%E8%87%AA%E5%AE%9A%E4%B9%89PhotoView%E5%A4%84%E7%90%86%E6%89%8B%E5%8A%BF.html" title="自定义PhotoView处理手势">自定义PhotoView处理手势</a><time datetime="2022-01-29T12:43:41.000Z" title="发表于 2022-01-29 20:43:41">2022-01-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/%E9%A6%96%E6%AC%A1%E5%BC%80%E6%BA%90%E5%BA%93-%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E6%96%87%E5%AD%97%E6%B8%90%E5%8F%98%E6%95%88%E6%9E%9C.html" title="首次开源库-不一样的文字渐变效果"><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2Fam9ca-9d943.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="首次开源库-不一样的文字渐变效果"/></a><div class="content"><a class="title" href="/%E9%A6%96%E6%AC%A1%E5%BC%80%E6%BA%90%E5%BA%93-%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E6%96%87%E5%AD%97%E6%B8%90%E5%8F%98%E6%95%88%E6%9E%9C.html" title="首次开源库-不一样的文字渐变效果">首次开源库-不一样的文字渐变效果</a><time datetime="2022-01-26T09:12:37.000Z" title="发表于 2022-01-26 17:12:37">2022-01-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/CoordinatorLayout%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89Behavior%E5%85%A5%E9%97%A8.html" title="CoordinatorLayout原理分析以及自定义Behavior入门"><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2F24.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CoordinatorLayout原理分析以及自定义Behavior入门"/></a><div class="content"><a class="title" href="/CoordinatorLayout%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89Behavior%E5%85%A5%E9%97%A8.html" title="CoordinatorLayout原理分析以及自定义Behavior入门">CoordinatorLayout原理分析以及自定义Behavior入门</a><time datetime="2022-01-26T05:22:05.000Z" title="发表于 2022-01-26 13:22:05">2022-01-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/NestedScrollView%E5%B5%8C%E5%A5%97%E6%BB%91%E5%8A%A8%E5%8E%9F%E7%90%86.html" title="NestedScrollView嵌套滑动原理"><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2Fam9ca-9d943.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="NestedScrollView嵌套滑动原理"/></a><div class="content"><a class="title" href="/NestedScrollView%E5%B5%8C%E5%A5%97%E6%BB%91%E5%8A%A8%E5%8E%9F%E7%90%86.html" title="NestedScrollView嵌套滑动原理">NestedScrollView嵌套滑动原理</a><time datetime="2022-01-23T05:50:24.000Z" title="发表于 2022-01-23 13:50:24">2022-01-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/APT-javapoet%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B.html" title="APT-javapoet详细教程"><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2Fai157-9qbgp.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="APT-javapoet详细教程"/></a><div class="content"><a class="title" href="/APT-javapoet%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B.html" title="APT-javapoet详细教程">APT-javapoet详细教程</a><time datetime="2022-01-16T13:52:04.000Z" title="发表于 2022-01-16 21:52:04">2022-01-16</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Android-UI%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">Android UI系列</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Android%E5%AE%9E%E6%88%98%E9%9B%86/"><span class="card-category-list-name">Android实战集</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E9%9B%86/"><span class="card-category-list-name">Android开发基础集</span><span class="card-category-list-count">20</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Android%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">Android自定义系列</span><span class="card-category-list-count">8</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="card-category-list-name">Android设计模式</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Android%E8%BF%9B%E9%98%B6/"><span class="card-category-list-name">Android进阶</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Android%E9%87%8D%E8%A6%81%E7%BB%84%E4%BB%B6/"><span class="card-category-list-name">Android重要组件</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Android%E9%A1%B9%E7%9B%AE/"><span class="card-category-list-name">Android项目</span><span class="card-category-list-count">2</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" style="font-size: 1.42em; color: #99a6b7">Android常用琐碎知识点</a> <a href="/tags/Android%E5%BC%80%E5%8F%91%E5%B0%8FDemo/" style="font-size: 1.1em; color: #999">Android开发小Demo</a> <a href="/tags/Android%E9%AB%98%E7%BA%A7UI/" style="font-size: 1.34em; color: #99a3b0">Android高级UI</a> <a href="/tags/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" style="font-size: 1.1em; color: #999">hexo博客搭建问题总结</a> <a href="/tags/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93/" style="font-size: 1.1em; color: #999">发布开源库</a> <a href="/tags/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/" style="font-size: 1.1em; color: #999">学年设计</a> <a href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" style="font-size: 1.5em; color: #99a9bf">算法篇</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" style="font-size: 1.18em; color: #999ca1">系统高级UI</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" style="font-size: 1.26em; color: #999fa8">网络开源库</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 1.1em; color: #999">随笔</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/01/"><span class="card-archive-list-date">一月 2022</span><span class="card-archive-list-count">7</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/12/"><span class="card-archive-list-date">十二月 2021</span><span class="card-archive-list-count">10</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/11/"><span class="card-archive-list-date">十一月 2021</span><span class="card-archive-list-count">21</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/07/"><span class="card-archive-list-date">七月 2021</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/05/"><span class="card-archive-list-date">五月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/04/"><span class="card-archive-list-date">四月 2021</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/03/"><span class="card-archive-list-date">三月 2021</span><span class="card-archive-list-count">26</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/02/"><span class="card-archive-list-date">二月 2021</span><span class="card-archive-list-count">14</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">106</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">122.8k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-01-04T11:52:55.278Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By EngineerOfFinger</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="http://www.wiwiyiyi.com">唯玖依依</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    window.typed = new Typed("#subtitle", {
+      strings: "热爱生活，忠于Code",
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = '热'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}</script></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95.html">分治算法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一-引言"><a href="#一-引言" class="headerlink" title="一.引言"></a>一.引言</h3><blockquote>
-<p>分治算法是将一个复杂的问题分成两个或者更多的相同或相似的子问题，在把子问题分成更小的子问题…..直到最后子问题可以简单的直接求解，原问题的解即子问题的解的合并。快速排序和归并排序便使用到了此算法，下面以汉诺塔问题的求解来介绍分治算法</p>
-</blockquote>
-<h3 id="二-汉诺塔"><a href="#二-汉诺塔" class="headerlink" title="二.汉诺塔"></a>二.汉诺塔</h3><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimgedu.lagou.com%2F9909c10440814a6ba9d6bd63be86c8e9.jpg&refer=http%3A%2F%2Fimgedu.lagou.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1619353961&t=858441c25615ce9cb1c65d461d6b5e1a" style="zoom: 80%;" />
-
-<p>游戏描述：有三根杆(编号A、B、C)，在A杆自下而上、由大到小按顺序放置64个金盘。游戏的目标：把A杆上的金盘全部移到C杆上，并仍保持原有顺序叠好。操作规则：每次只能移动一个盘子，并且在移动过程中三根杆上都始终保持大盘在下，小盘在上，操作过程中盘子可以置于A、B、C任一杆上。</p>
-<blockquote>
-<p>以两个盘为例，可以发现，一共可以分为3个步骤，首先把A塔底盘上面的所有盘移动到B塔，然后将A塔的底盘移动到C塔，最后将B塔上的所有盘移动到C塔，显然该过程中第一步和最后一步存在递归，第二步只移动一个盘没有递归可言，下面上代码</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">static void HanoiSolution(int num,char a,char b,char c)&#123;</span><br><span class="line">        if (num==1)&#123;</span><br><span class="line">            System.out.println(&quot;第1个盘从 &quot;+a+&quot;-&gt;&quot;+c);</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            //1.先将最上面的盘从A移到B塔</span><br><span class="line">            HanoiSolution(num-1,a,c,b);</span><br><span class="line">            //2.将最底部的盘从A移到C塔</span><br><span class="line">            System.out.println(&quot;第&quot;+num+&quot;个盘从 &quot;+a+&quot;-&gt;&quot;+c);</span><br><span class="line">            //3.将B塔的所有盘移到C塔</span><br><span class="line">            HanoiSolution(num-1,b,a,c);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以看到代码是真的很简单，但为了弄清楚它是如何记录当前是哪个盘，以及怎么移动的，需要进入递归层层跟进，建议以3个盘为例进行推衍，会发现，在递归过程中，通过将三个塔传入不同的参数位置实现盘的的移动，还是挺烧脑的，这类问题只需要从最简单的情况入手，弄清楚解决问题的几大步骤即可</p>
-<h3 id="三-总结"><a href="#三-总结" class="headerlink" title="三.总结"></a>三.总结</h3><p>最后再总结一下分治算法的核心步骤：</p>
-<ol>
-<li>分解：将原问题分解为若干个规模较小，相互独立，与原问题形式相同的子问题</li>
-<li>解决：若子问题规模较小而容易被解决则直接解决，否则递归地解各个子问题</li>
-<li>合并：将各个子问题的解合并为原问题的解</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wiwiyiyi.com/%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95.html" data-id="clchkr8ns003f5oqhdu6h23lt" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" rel="tag">算法篇</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-字符串匹配算法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95.html" class="article-date">
-  <time datetime="2021-03-24T11:17:20.000Z" itemprop="datePublished">2021-03-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95.html">字符串匹配算法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一-引言"><a href="#一-引言" class="headerlink" title="一.引言"></a>一.引言</h3><blockquote>
-<p>字符串匹配在算法中也算是一个经典，小编接下来将介绍两种字符串匹配的算法，所谓字符串匹配就是在一个字符串中查找某个子串，如果存在目标子串，则返回第一次出现的下标，否则返回-1</p>
-</blockquote>
-<h3 id="二-暴力匹配算法"><a href="#二-暴力匹配算法" class="headerlink" title="二.暴力匹配算法"></a>二.暴力匹配算法</h3><p>见字思义，这种算法效率十分低，但可以帮助我们理解字符串匹配的整体过程</p>
-<img src="https://img-blog.csdnimg.cn/img_convert/5750ee4c59ec352b434eacfca38ed2d1.png" style="zoom:50%;" />
-
-<p><strong>代码实现</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">static int violenceMatchString(String str1,String str2)&#123;</span><br><span class="line">        char[] s1 = str1.toCharArray();</span><br><span class="line">        char[] s2 = str2.toCharArray();</span><br><span class="line">        int sLen1 = s1.length;</span><br><span class="line">        int sLen2 = s2.length;</span><br><span class="line">        int i = 0,j = 0;</span><br><span class="line">        while (i&lt;sLen1 &amp;&amp; j&lt;sLen2)&#123;</span><br><span class="line">            if (s1[i] == s2[j])&#123;</span><br><span class="line">                i++;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                i = i-(j-1);</span><br><span class="line">                j = 0;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (j==sLen2)&#123;</span><br><span class="line">            return i-j;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>无论是哪种匹配算法，都存在双指针<code>i</code>、<code>j</code>，上面的动图已经很清晰了，该算法的效率之所以效率低，是因为一旦发现不匹配，指针<code>i</code>会回溯，并且还会遍历已经遍历过的子串，反反复复，效率肯定低下</p>
-</blockquote>
-<h3 id="三-KMP算法"><a href="#三-KMP算法" class="headerlink" title="三.KMP算法"></a>三.KMP算法</h3><p>KMP算法是由三位大牛共同发现的，关于它的介绍网上已经很多了，在此不作赘述，主要分享我在学习该算法时的疑惑，最大的疑惑是为什么发生不匹配的情况时可以跳过已经匹配过的子串，该过程是通过next数组来实现的，其实next数组记录的前后缀字符串公共子串中首次出现的位置</p>
-<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%AE%97%E6%B3%95%E7%AF%87/kmp%E5%9B%BE%E8%A7%A3.png" style="zoom:67%;" />
-
-<p><strong>下面上代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">static int KMPMatchString(String origin,String target)&#123;</span><br><span class="line">            int[] next = KMPNextArray(target);</span><br><span class="line">        for (int i = 0 , j = 0; i &lt; origin.length(); i++) &#123;</span><br><span class="line">            while (j&gt;0 &amp;&amp; origin.charAt(i)!=target.charAt(j))&#123;</span><br><span class="line">                j = next[j-1];</span><br><span class="line">            &#125;</span><br><span class="line">            if (origin.charAt(i)==target.charAt(j))&#123;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">            if (j==target.length())&#123;</span><br><span class="line">                return i-j+1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">    static int[] KMPNextArray(String target)&#123;</span><br><span class="line">        int[] next = new int[target.length()];</span><br><span class="line">        next[0] = 0;</span><br><span class="line">        for (int i = 1,j = 0; i &lt; target.length(); i++) &#123;</span><br><span class="line">            while (j&gt;0 &amp;&amp; target.charAt(i)!=target.charAt(j))&#123;</span><br><span class="line">                j = next[j-1];</span><br><span class="line">            &#125;</span><br><span class="line">            if (target.charAt(i)==target.charAt(j))&#123;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">            next[i] = j;</span><br><span class="line">        &#125;</span><br><span class="line">        return next;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>首先求出next数组，在真正进行字符串匹配时，<code>j</code>的回溯和求next数组时操作一样，关键点也是<code>j</code>的回溯，结合上图进行理解</p>
-</blockquote>
-<h3 id="四-总结"><a href="#四-总结" class="headerlink" title="四.总结"></a>四.总结</h3><blockquote>
-<p>KMP算法通过next数组保存位置并且不会发生<code>i</code>的回溯大大提升了匹配效率，个人感觉KMP算法确实挺绕的，如果实在难以理解，可以通过具体的例子进行步步推衍以及假设分析，会发现<code>i</code>不进行回溯是有道理的并且不会出错</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wiwiyiyi.com/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95.html" data-id="clchkr8o3004f5oqhgrc43gst" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" rel="tag">算法篇</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-动态规划" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html" class="article-date">
-  <time datetime="2021-03-24T00:23:09.000Z" itemprop="datePublished">2021-03-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html">动态规划</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一-引言"><a href="#一-引言" class="headerlink" title="一.引言"></a>一.引言</h3><blockquote>
-<p>本文将介绍动态规划算法以及几个案例求解，动态规划的核心思想是：将大问题划分为小问题进行解决，从而一步步获取最优解的处理算法，与分治算法不同的是，动态规划中下一个子阶段的求解是建立在上一个子阶段的解的基础上，进行进一步的求解，具有依赖关系，<strong>动态规划可以通过填表的方式来逐步推进，得到最优解</strong>，下面通过具体案例来分析</p>
-</blockquote>
-<h3 id="二-01背包问题"><a href="#二-01背包问题" class="headerlink" title="二.01背包问题"></a>二.01背包问题</h3><p><strong>背包问题：有一个背包，容量为4磅，现有如下物品</strong></p>
-<table>
-<thead>
-<tr>
-<th align="center">物品</th>
-<th align="center">重量</th>
-<th align="center">价格</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">吉他(G)</td>
-<td align="center">1</td>
-<td align="center">1500</td>
-</tr>
-<tr>
-<td align="center">音响(S)</td>
-<td align="center">4</td>
-<td align="center">3000</td>
-</tr>
-<tr>
-<td align="center">电脑(L)</td>
-<td align="center">3</td>
-<td align="center">2000</td>
-</tr>
-</tbody></table>
-<p>要求：</p>
-<ol>
-<li>达到的目标为装入的背包的总价值最大，并且重量不超出</li>
-<li>装入的物品不能重复</li>
-</ol>
-<p>下面先列出关键公式：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(1) v[i][0]=v[0][j]=0 //初始化，第一行第一列都为0</span><br><span class="line">(2) 当w[i]&gt;j时：v[i][j] = v[i-1][j]</span><br><span class="line">(3) 当j&gt;=w[i]时：v[i][j] = max&#123;v[i-1][j]，val[i]+v[i-1][j-w[i]]&#125;</span><br></pre></td></tr></table></figure>
-
-<p>解释：</p>
-<blockquote>
-<p>这里v是一个二维数组，行对应的是所装物品，列对应的是不同的容量，w数组是每个物品对应的重量，val数组是每个物品对应的价值，下面通过填表来解释上面公式</p>
-</blockquote>
-<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%AE%97%E6%B3%95%E7%AF%87/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3.png" style="zoom:65%;" />
-
-<p><strong>v[i][j] =  v[i-1][j]就是依赖于上一个子阶段求解结果，装不下更多的物品显然只能使用上一次最佳的情况</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">static void knapsackProblem()&#123;</span><br><span class="line">        int[] w = new int[]&#123;1,4,3&#125;;</span><br><span class="line">        int[] val = new int[]&#123;1500,2500,2000&#125;;</span><br><span class="line">        int capacity = 4;</span><br><span class="line">        int count = 3;</span><br><span class="line">        int[][] v = new int[count+1][capacity+1];</span><br><span class="line">        for (int i = 0; i &lt; v.length; i++) &#123;</span><br><span class="line">            v[i][0] = 0;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 0; i &lt; v[0].length; i++) &#123;</span><br><span class="line">            v[0][i] = 0;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 1; i &lt; v.length; i++) &#123;</span><br><span class="line">            for (int j = 1; j &lt; v[0].length; j++) &#123;</span><br><span class="line">                if(j&lt;w[i-1])&#123;</span><br><span class="line">                    v[i][j] = v[i-1][j];</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    v[i][j] = Math.max(v[i-1][j],val[i-1]+v[i-1][j-w[i-1]]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 1; i &lt; v.length; i++) &#123;</span><br><span class="line">            for (int j = 0; j &lt; v[0].length; j++) &#123;</span><br><span class="line">                System.out.print(v[i][j]+&quot; &quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>需要注意的是第一行第一列由于实际意义都为0，所以代码中指针值需要减一才能对应两个一维数组中的值</p>
-</blockquote>
-<h3 id="三-钢材切割问题"><a href="#三-钢材切割问题" class="headerlink" title="三.钢材切割问题"></a>三.钢材切割问题</h3><p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%AE%97%E6%B3%95%E7%AF%87/%E9%92%A2%E6%9D%A1%E5%88%87%E5%89%B2.png"></p>
-<p>思路分析：</p>
-<blockquote>
-<p>对于一定长度的钢材，它可以先分成两段，其中的每一段还可以继续往下分，直到不能分为止，然后对每次分段结果进行求出最大值，所以它是存在递归公式的，下面呢是各长度的钢条的最佳价格，可以重上述价格表中拼凑而得</p>
-</blockquote>
-<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%AE%97%E6%B3%95%E7%AF%87/%E9%92%A2%E6%9D%90%E9%97%AE%E9%A2%98%E5%A1%AB%E8%A1%A8.png"></p>
-<p><strong>r<sub>n</sub>=max(p<sub>n</sub>,r<sub>1</sub>+r<sub>n-1</sub>,r<sub>2</sub>+r<sub>n-2</sub>,r<sub>1</sub>+r<sub>n-1</sub>,…….r<sub>n-1</sub>+r<sub>1</sub>,)</strong></p>
-<blockquote>
-<p>上述便是递推公式，p<sub>n</sub>表示不切割对应的价格，然后和剩余所有切割的情况取最大值，该公式还可进行简化，如下：</p>
-</blockquote>
-<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%AE%97%E6%B3%95%E7%AF%87/%E7%AE%80%E5%8C%96%E9%92%A2%E6%9D%90%E9%80%92%E6%8E%A8%E5%85%AC%E5%BC%8F.png"></p>
-<p><strong>该公式是指定左边不切割，切割右边，p<sub>i</sub>指左边不切割对应的价格，不断对该结果取最大值</strong></p>
-<p>注：上述r数组就是进行迭代的最大价格数组，在下面代码中指的是maxValue数组</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">static int cutRodNoRecursion(int n)&#123;</span><br><span class="line">        int[] p = &#123;0,1,5,8,9,10,17,17,20,24,30&#125;;</span><br><span class="line">        int[] maxValue = new int[n+1];</span><br><span class="line">        int[] s = new int[n+1];</span><br><span class="line">        maxValue[0] = p[0];</span><br><span class="line">        s[0] = 0;</span><br><span class="line">        for (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">            int res = 0;</span><br><span class="line">            int res_s = 0;</span><br><span class="line">            for (int j = 1; j &lt;= i; j++) &#123;</span><br><span class="line">                if (p[j]+maxValue[i-j]&gt;res)&#123;</span><br><span class="line">                    res = p[j]+maxValue[i-j];</span><br><span class="line">                    res_s = j;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            maxValue[i] = res;</span><br><span class="line">            s[i] = res_s;</span><br><span class="line">        &#125;</span><br><span class="line">        ArrayList&lt;Integer&gt; ans = new ArrayList&lt;&gt;();</span><br><span class="line">        while (n&gt;0)&#123;</span><br><span class="line">            ans.add(s[n]);</span><br><span class="line">            n-=s[n];</span><br><span class="line">        &#125;</span><br><span class="line">        //输出切割方案</span><br><span class="line">        int max = maxValue[n];</span><br><span class="line">        for(int temp:ans) System.out.print(temp+&quot; &quot;);</span><br><span class="line">        return max;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%AE%97%E6%B3%95%E7%AF%87/%E9%92%A2%E6%9D%90%E5%88%87%E5%89%B2%E6%96%B9%E6%A1%88%E4%BF%9D%E5%AD%98.png"></p>
-<blockquote>
-<p>通过s数组来保存左边的钢材长度，然后通过最终结果依次往回寻，便可得到切割方案，比如长度为9时，可以看到，左边切3，那么剩余6，然后看到6对应的值s[6]为6，所以右边剩余0，那么便可以得到方案[3,6]，个人觉得还是很巧妙的</p>
-</blockquote>
-<h3 id="四-最长公共子序列"><a href="#四-最长公共子序列" class="headerlink" title="四.最长公共子序列"></a>四.最长公共子序列</h3><p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%AE%97%E6%B3%95%E7%AF%87/%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97.png"></p>
-<p><strong>子序列中字符的相对顺序必须和原字符串中的一样</strong></p>
-<p>在知道什么是子序列后，下面我们来研究如何求两个字符串中最长的公共子序列：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">X=&#x27;ABCD&#x27; Y=&#x27;ABD&#x27; Z=&#x27;ABC&#x27;</span><br><span class="line">(1) 对于X、Y两个字符串来说，它们最后一个字符相等，那么它们的长度各自减1，如果各自减1后的公共子序列的长度为k，那么最终长度肯定为k+1</span><br><span class="line">(2) 对于X、Z来说，最后一个字符不相等，那么也就意味着，最长公共子序列要么是X长度减1中取得，要么就是Z减1中取得</span><br></pre></td></tr></table></figure>
-
-<p>针对以上情况，可以得出下列状态转移方程，也叫递推式</p>
-<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%AE%97%E6%B3%95%E7%AF%87/%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97%E9%80%92%E6%8E%A8%E5%BC%8F.png" style="zoom:67%;" />
-
-<blockquote>
-<p>二维数组c的行表示字符串1，列表示字符串2，不相等的时候显然取上一子阶段获得的最大值，这也是动态规划的特点</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">static int LongestCS(String s1,String s2)&#123;</span><br><span class="line">        int[][] c = new int[s1.length()+1][s2.length()+1];</span><br><span class="line">        int[][] b = new int[s1.length()+1][s2.length()+1];</span><br><span class="line">        // 1表示来自左上方，2表示来自上方，3表示来自左方</span><br><span class="line">        for(int i=0;i&lt;s1.length()+1;i++)&#123;</span><br><span class="line">            c[i][0] = 0;</span><br><span class="line">            b[i][0] = 0;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i=0;i&lt;s2.length()+1;i++) &#123;</span><br><span class="line">            c[0][i] = 0;</span><br><span class="line">            b[0][i] = 0;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 1; i &lt; s1.length()+1; i++) &#123;</span><br><span class="line">            for (int j = 1; j &lt; s2.length()+1; j++) &#123;</span><br><span class="line">                if (s1.charAt(i-1)==s2.charAt(j-1))&#123;</span><br><span class="line">                    c[i][j] = c[i-1][j-1]+1;</span><br><span class="line">                    b[i][j] = 1;</span><br><span class="line">                &#125;else if (c[i-1][j]&gt;c[i][j-1])&#123;</span><br><span class="line">                    c[i][j] = c[i-1][j];</span><br><span class="line">                    b[i][j] = 2;</span><br><span class="line">                &#125;else &#123;</span><br><span class="line">                    c[i][j] = c[i][j-1];</span><br><span class="line">                    b[i][j] = 3;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        //回溯输出最长公共子序列</span><br><span class="line">        int i = s1.length(),j = s2.length();</span><br><span class="line">        ArrayList&lt;Character&gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">        while (i&gt;0&amp;&amp;j&gt;0)&#123;</span><br><span class="line">            switch (b[i][j])&#123;</span><br><span class="line">                case 1:</span><br><span class="line">                    res.add(s1.charAt(i-1));</span><br><span class="line">                    i-=1;</span><br><span class="line">                    j-=1;</span><br><span class="line">                    break;</span><br><span class="line">                case 2:</span><br><span class="line">                    i-=1;</span><br><span class="line">                    break;</span><br><span class="line">                case 3:</span><br><span class="line">                    j-=1;</span><br><span class="line">                    break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        Collections.reverse(res);</span><br><span class="line">        for (char temp: res)&#123;</span><br><span class="line">            System.out.print(temp+&quot; &quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        return c[s1.length()][s2.length()];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="五-总结"><a href="#五-总结" class="headerlink" title="五.总结"></a>五.总结</h3><blockquote>
-<p>学完以上三个动态规划的问题后，发现动态规划的关键点就是建立递推方程，即状态转移方程，只要列出递推式，剩下的也就不难了，对于动态规划中的最佳方案需要用到回溯，有些思维难度，都需要辅助空间来记录每一步的状态，然后倒过来进行遍历</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wiwiyiyi.com/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html" data-id="clchkr8nv003o5oqhbe539r8q" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" rel="tag">算法篇</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-将数字翻译成字符串" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/%E5%B0%86%E6%95%B0%E5%AD%97%E7%BF%BB%E8%AF%91%E6%88%90%E5%AD%97%E7%AC%A6%E4%B8%B2.html" class="article-date">
-  <time datetime="2021-03-22T08:25:12.000Z" itemprop="datePublished">2021-03-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%8A%9B%E6%89%A3%E9%A2%98%E8%A7%A3/">力扣题解</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/%E5%B0%86%E6%95%B0%E5%AD%97%E7%BF%BB%E8%AF%91%E6%88%90%E5%AD%97%E7%AC%A6%E4%B8%B2.html">将数字翻译成字符串</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一-题目描述"><a href="#一-题目描述" class="headerlink" title="一.题目描述"></a>一.题目描述</h3><p>给定一个数字，我们按照如下规则把它翻译为字符串：0 翻译成 “a” ，1 翻译成 “b”，……，11 翻译成 “l”，……，25 翻译成 “z”。一个数字可能有多个翻译。请编程实现一个函数，用来计算一个数字有多少种不同的翻译方法。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: 12258</span><br><span class="line">输出: 5</span><br><span class="line">解释: 12258有5种不同的翻译，分别是&quot;bccfi&quot;, &quot;bwfi&quot;, &quot;bczi&quot;, &quot;mcfi&quot;和&quot;mzi&quot;</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>0 &lt;= num &lt; 231</code></li>
-</ul>
-<h3 id="二-思路分析"><a href="#二-思路分析" class="headerlink" title="二.思路分析"></a>二.思路分析</h3><p>小编在拿到这道题后很自然的想到将数字转换字符串，进而得到字符数组，然后遍历数组，但最终也只考虑到了相邻两个元素，一种情况中可能存在多个两两成对的情况，普通的遍历不能解决问题，官网给出的解决方案是动态规划，首先建立状态转移方程</p>
-<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%AE%97%E6%B3%95%E7%AF%87/%E6%95%B0%E5%AD%97%E8%BD%AC%E6%8D%A2%E6%88%90%E5%AD%97%E7%AC%A6%E4%B8%B2.png"></p>
-<p>首先用dp一维数组来保存每次遍历的总结果数，则<code>dp[i] = dp[i-1] + dp[i-2]</code>，该数组的起始值为1，有没有更多的情况取决于有没有相邻的两个数组合后可以翻译成一个字符，每次遍历之前都会先复制保存上一次遍历的结果，显然从第三位数开始才会有<strong>上图最后2位的部分翻译结果数</strong>，如果当前的最后两位不能翻译，那么就相当于上图的第一种情况，而当前的结果数显然就是上一次遍历后的结果数，有点绕，可以结合代码进行理解</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public int translateNum(int num) &#123;</span><br><span class="line">        String sNum = String.valueOf(num);</span><br><span class="line">        int  length = sNum.length();</span><br><span class="line">        if(length&lt;2) return 1;</span><br><span class="line">        int[] dp = new int[length];</span><br><span class="line">        dp[0] = 1;</span><br><span class="line">        char[] nums = sNum.toCharArray();</span><br><span class="line">        for(int i = 1;i&lt;length;i++)&#123;</span><br><span class="line">            dp[i] = dp[i-1];</span><br><span class="line">            int curNum = (nums[i-1]-&#x27;0&#x27;)*10+(nums[i]-&#x27;0&#x27;);</span><br><span class="line">            if(curNum&gt;9&amp;&amp;curNum&lt;26)&#123;</span><br><span class="line">                if(i-2&lt;0)&#123;</span><br><span class="line">                    dp[i]++;</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    dp[i]+=dp[i-2];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[length-1];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="三-总结"><a href="#三-总结" class="headerlink" title="三.总结"></a>三.总结</h3><blockquote>
-<p>个人感觉动态规划的关键点就是分析出递归方程即动态转移方程，通过一维数组来保存每次的结果，这比递归调用好很多，毕竟递归调用会计算重复的子状态，时间复杂度太高</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wiwiyiyi.com/%E5%B0%86%E6%95%B0%E5%AD%97%E7%BF%BB%E8%AF%91%E6%88%90%E5%AD%97%E7%AC%A6%E4%B8%B2.html" data-id="clchkr8o8004q5oqhgk8y6qbm" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-链表的局部反转" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/%E9%93%BE%E8%A1%A8%E7%9A%84%E5%B1%80%E9%83%A8%E5%8F%8D%E8%BD%AC.html" class="article-date">
-  <time datetime="2021-03-18T07:26:27.000Z" itemprop="datePublished">2021-03-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%8A%9B%E6%89%A3%E9%A2%98%E8%A7%A3/">力扣题解</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/%E9%93%BE%E8%A1%A8%E7%9A%84%E5%B1%80%E9%83%A8%E5%8F%8D%E8%BD%AC.html">链表的局部反转</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一-题目描述"><a href="#一-题目描述" class="headerlink" title="一.题目描述"></a>一.题目描述</h3><p>给你单链表的头节点<code>head</code>和两个整数<code>left</code>和<code>right </code>，其中<code>left</code>&lt;=<code>right</code>。请你反转从位置<code>left</code>到位置<code>right</code>的链表节点，返回 反转后的链表 </p>
-<p><strong>示例 1：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2021/02/19/rev2ex2.jpg" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [1,2,3,4,5], left = 2, right = 4</span><br><span class="line">输出：[1,4,3,2,5]</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [5], left = 1, right = 1</span><br><span class="line">输出：[5]</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li>链表中节点数目为 <code>n</code></li>
-<li><code>1 &lt;= n &lt;= 500</code></li>
-<li><code>-500 &lt;= Node.val &lt;= 500</code></li>
-<li><code>1 &lt;= left &lt;= right &lt;= n</code></li>
-</ul>
-<h3 id="二-思路分析"><a href="#二-思路分析" class="headerlink" title="二.思路分析"></a>二.思路分析</h3><blockquote>
-<p>之前已经刷到过链表反转问题，而此处不一样的是局部反转，只需要记录局部反转链表的前一个和后一个结点即可，这次我使用的是栈来保存需要反转的结点，因为后进先出，刚好满足反转效果，但本题还有一个坑点，如果<code>left</code>的值为1，也就意味着头结点也会加入反转序列，可以自己尝试一下，这种情况最终只会输出一个结点，所以我们需要额外添加一个虚拟结点，这种控制边界问题的结点称为<strong>哨兵</strong>，哨兵结点的next域指向的头结点，如果头结点发生反转，那么此时的头结点将会发生变化，所以需要一个哨兵结点来进行保存新的头结点</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode reverseBetween(ListNode head, int left, int right) &#123;</span><br><span class="line">        ListNode FakeHead = new ListNode(0);</span><br><span class="line">        FakeHead.next = head;</span><br><span class="line">        Stack&lt;ListNode&gt; stack = new Stack();</span><br><span class="line">        ListNode newHead = FakeHead,newTail = null,headPointer = head;</span><br><span class="line">        for(int i = 1;i&lt;=right;i++)&#123;</span><br><span class="line">            if(i==left-1)&#123;</span><br><span class="line">            	//记录局部反转链表的前一个结点</span><br><span class="line">                newHead = headPointer;</span><br><span class="line">            &#125;else if(i&gt;=left)&#123;</span><br><span class="line">                stack.push(headPointer);</span><br><span class="line">            &#125;</span><br><span class="line">            headPointer = headPointer.next;</span><br><span class="line">        &#125;</span><br><span class="line">        //记录局部反转链表的下一个结点</span><br><span class="line">        newTail = headPointer;</span><br><span class="line">        int length = stack.size();</span><br><span class="line">        for(int i = 0;i&lt;length;i++)&#123;</span><br><span class="line">            ListNode temp = stack.pop();</span><br><span class="line">            newHead.next = temp;</span><br><span class="line">            newHead = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        newHead.next = newTail;</span><br><span class="line">        return FakeHead.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="三-总结"><a href="#三-总结" class="headerlink" title="三.总结"></a>三.总结</h3><blockquote>
-<p>本题思路并不难，唯一需要注意的是头结点是否需要变化，即边界是否发生变化，需要一个哨兵结点来控制</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wiwiyiyi.com/%E9%93%BE%E8%A1%A8%E7%9A%84%E5%B1%80%E9%83%A8%E5%8F%8D%E8%BD%AC.html" data-id="clchkr8pf007y5oqh8drcd94w" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-机器人深度优先可到格子数" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E5%8F%AF%E5%88%B0%E6%A0%BC%E5%AD%90%E6%95%B0.html" class="article-date">
-  <time datetime="2021-03-18T03:09:39.000Z" itemprop="datePublished">2021-03-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%8A%9B%E6%89%A3%E9%A2%98%E8%A7%A3/">力扣题解</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E5%8F%AF%E5%88%B0%E6%A0%BC%E5%AD%90%E6%95%B0.html">机器人深度优先可到格子数</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一-题目描述"><a href="#一-题目描述" class="headerlink" title="一.题目描述"></a>一.题目描述</h3><p>地上有一个m行n列的方格，从坐标<code> [0,0]</code> 到坐标<code> [m-1,n-1]</code> 。一个机器人从坐标<code> [0, 0]</code> 的格子开始移动，它每次可以向左、右、上、下移动一格（不能移动到方格外），也不能进入行坐标和列坐标的数位之和大于k的格子。例如，当k为18时，机器人能够进入方格 [35, 37] ，因为3+5+3+7=18。但它不能进入方格 [35, 38]，因为3+5+3+8=19。请问该机器人能够到达多少个格子？</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：m = 2, n = 3, k = 1</span><br><span class="line">输出：3</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：m = 3, n = 1, k = 0</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>1 &lt;= n,m &lt;= 100</code></li>
-<li><code>0 &lt;= k &lt;= 20</code></li>
-</ul>
-<h3 id="二-思路分析"><a href="#二-思路分析" class="headerlink" title="二.思路分析"></a>二.思路分析</h3><p>在看到这道题目时，首先想到的是深度优先遍历，使用栈来保存路径，走到末端便回退栈，有点类似迷宫问题，但让我头疼的是迷宫问题的边界是标识的，并且在此你还需要进行判断下一步能不能走通，如果不行还需改变方向，四个方向都不通只能回退栈，感觉将问题变得复杂了，下面参考力扣官网解答，使用递归实现深度优先遍历，弄清楚子问题是什么，从当前点出发，可以划出4个方向的路径，那么下一个点同样可以划出4个方向，显然是递归的，对四个方向进行递归，当然得控制好递归结束的条件，同时遍历过的点需要标记不能再遍历，下面上代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    int getSum(int num)&#123;</span><br><span class="line">        int sum = 0;</span><br><span class="line">        while(num!=0)&#123;</span><br><span class="line">            sum+=num%10;</span><br><span class="line">            num/=10;</span><br><span class="line">        &#125;</span><br><span class="line">        return sum;</span><br><span class="line">    &#125;    </span><br><span class="line">    public int movingCount(int m, int n, int k) &#123;</span><br><span class="line">       boolean[][] visited = new boolean[m][n];</span><br><span class="line">       return dfsSolver(0,0,m,n,visited,k);</span><br><span class="line">    &#125;</span><br><span class="line">    int dfsSolver(int i,int j,int m,int n,boolean[][] visited,int k)&#123;</span><br><span class="line">            if(i&lt;0||j&lt;0||i&gt;=m||j&gt;=n||visited[i][j]||getSum(i)+getSum(j)&gt;k) return 0;</span><br><span class="line">            visited[i][j] = true;</span><br><span class="line">            return 1+dfsSolver(i+1,j,m,n,visited,k)+dfsSolver(i,j-1,m,n,visited,k)+dfsSolver(i-1,j,m,n,visited,k)+dfsSolver(i,j+1,m,n,visited,k);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>对于dfsSolver方法的返回值上，肯定至少返回1，剩下的便是子问题是否能走通</p>
-</blockquote>
-<h3 id="三-总结"><a href="#三-总结" class="headerlink" title="三.总结"></a>三.总结</h3><blockquote>
-<p>对于深度优先搜索首先应当考虑递归算法，想清楚子问题是什么，如何进行递归调用，以及递归结束的条件</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wiwiyiyi.com/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E5%8F%AF%E5%88%B0%E6%A0%BC%E5%AD%90%E6%95%B0.html" data-id="clchkr8oo005q5oqhbxjsezxa" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-完全使用位运算实现加法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/%E5%AE%8C%E5%85%A8%E4%BD%BF%E7%94%A8%E4%BD%8D%E8%BF%90%E7%AE%97%E5%AE%9E%E7%8E%B0%E5%8A%A0%E6%B3%95.html" class="article-date">
-  <time datetime="2021-03-16T07:44:15.000Z" itemprop="datePublished">2021-03-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%8A%9B%E6%89%A3%E9%A2%98%E8%A7%A3/">力扣题解</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/%E5%AE%8C%E5%85%A8%E4%BD%BF%E7%94%A8%E4%BD%8D%E8%BF%90%E7%AE%97%E5%AE%9E%E7%8E%B0%E5%8A%A0%E6%B3%95.html">完全使用位运算实现加法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一-题目描述"><a href="#一-题目描述" class="headerlink" title="一.题目描述"></a>一.题目描述</h3><p>写一个函数，求两个整数之和，要求在函数体内不得使用 “+”、“-”、“*”、“/” 四则运算符号。</p>
-<p> <strong>示例:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: a = 1, b = 1</span><br><span class="line">输出: 2</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>a</code>, <code>b</code> 均可能是负数或 0</li>
-<li>结果不会溢出 32 位整数</li>
-</ul>
-<h3 id="二-思路分析"><a href="#二-思路分析" class="headerlink" title="二.思路分析"></a>二.思路分析</h3><blockquote>
-<p>小编在看到题目的时候首先想到的是<strong>二进制位运算</strong>，但由于不太熟悉位运算的使用，一直卡壳，下面介绍容易理解的解题思路</p>
-</blockquote>
-<p>基本思路来源是二进制数字的加法，如果没有进位，则将0、1相加，若要进位当前位为0，向上一位进1，那么这个过程怎么通过位运算来实现呢：</p>
-<p>设两数字的二进制形式 a、b，其求和 s = a + b，a(i)代表a的二进制第i位，则分为以下四种情况：</p>
-<table>
-<thead>
-<tr>
-<th align="center">a(i)</th>
-<th align="center">b(i)</th>
-<th align="center">无进位和n(i)</th>
-<th align="center">进位c(i+1)</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">0</td>
-</tr>
-<tr>
-<td align="center">0</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">0</td>
-</tr>
-<tr>
-<td align="center">1</td>
-<td align="center">0</td>
-<td align="center">1</td>
-<td align="center">0</td>
-</tr>
-<tr>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">0</td>
-<td align="center">1</td>
-</tr>
-</tbody></table>
-<p>通过观察上表可以发现对应的两个二进制数字不同时没有进位，都为1时有进位，所以前者可以为两个数的异或运算，后者为两数的与运算并且<strong>要左移1位</strong>，即进位，然后先通过异或运算求两个数的和，如果进位为0则不需要进行，否则继续求和，直到不再进位，因为有连续进位的情况</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public static int add(int a, int b) &#123;</span><br><span class="line">        while (b!=0)&#123;</span><br><span class="line">            int n = (a&amp;b)&lt;&lt;1;</span><br><span class="line">            a ^= b;</span><br><span class="line">            b = n;</span><br><span class="line">        &#125;</span><br><span class="line">        return a;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="三-总结"><a href="#三-总结" class="headerlink" title="三.总结"></a>三.总结</h3><blockquote>
-<p>头一次遇到这种问题，有助于理解二进制运算，另外在计算机中数值统一使用补码的形式来表示和存储，所以加减法可以统一处理</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wiwiyiyi.com/%E5%AE%8C%E5%85%A8%E4%BD%BF%E7%94%A8%E4%BD%8D%E8%BF%90%E7%AE%97%E5%AE%9E%E7%8E%B0%E5%8A%A0%E6%B3%95.html" data-id="clchkr8o5004h5oqhesy7f0e4" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-使用Idea创建JavaWeb应用以及Servlet的坑" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/%E4%BD%BF%E7%94%A8Idea%E5%88%9B%E5%BB%BAJavaWeb%E5%BA%94%E7%94%A8%E4%BB%A5%E5%8F%8AServlet%E7%9A%84%E5%9D%91.html" class="article-date">
-  <time datetime="2021-03-13T07:08:13.000Z" itemprop="datePublished">2021-03-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E9%9B%86/">问题总结集</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/%E4%BD%BF%E7%94%A8Idea%E5%88%9B%E5%BB%BAJavaWeb%E5%BA%94%E7%94%A8%E4%BB%A5%E5%8F%8AServlet%E7%9A%84%E5%9D%91.html">使用Idea创建JavaWeb应用以及Servlet的坑</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一-引言"><a href="#一-引言" class="headerlink" title="一.引言"></a>一.引言</h3><blockquote>
-<p>今天小编开始了一个新的领域知识的学习-Java后端，在Android开发过程中请求网络的链接指向的就是服务器提供的端口，也叫后端应用，用于处理用户发送的请求，网页端同理，可能很多朋友使用的是Eclipse写后端应用，毕竟是免费的，小编用的是IDEA工具，在创建Servlet应用的过程中坑点特多，下面一一列出</p>
-</blockquote>
-<h3 id="二-坑点解决"><a href="#二-坑点解决" class="headerlink" title="二.坑点解决"></a>二.坑点解决</h3><ol>
-<li><p><strong>An incompatible version [1.1.30] of the APR based Apache Tomcat Native library</strong></p>
-<p>这是由于Tomcat安装文件夹bin目录中的<strong>tcnative-1.dll</strong>版本不一致问题，<a target="_blank" rel="noopener" href="https://blog.csdn.net/readyyy/article/details/87703334">参考此篇文章下载对应的版本</a>，该博客中说将32位的拖到对应的文件夹，但我的不行，我需要64位的，即<strong>x86</strong>文件夹下对应的文件</p>
-</li>
-<li><p><strong>运行tomcat时出现 Can’t load IA 32-bit .dll on a AMD 64-bit platform</strong></p>
-<p>此问题是由于你安装的jdk和Tomcat版本不一致造成的，可以百度一下自己应该安装多少版本的jdk</p>
-</li>
-<li><p>即使手动导入了servlet-api.jar也不无法使用HttpServlet类</p>
-<p>虽不清楚这是怎么回事但可以将Tomcat安装目录下的lib文件夹中的jar包拷贝到WEB-INF目录下的lib文件夹，然后右键点击<strong>add as Library</strong></p>
-<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E7%AF%87/servlet-api.jar%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98.png" style="zoom: 50%;" /></li>
-</ol>
-<blockquote>
-<p>经历了上述过程，坑点基本上已经解决完毕了，下面我们来看怎么创建Servlet应用，<a target="_blank" rel="noopener" href="https://blog.csdn.net/gaoqingliang521/article/details/108677301">详情请看此篇文章</a>，其实在导入了servlet包后，可以直接创建Servlet类，很方便，至于Tomcat的配置还需见上面的文章，在此不做赘述</p>
-</blockquote>
-<h3 id="三-认识javaWeb应用基本的配置"><a href="#三-认识javaWeb应用基本的配置" class="headerlink" title="三.认识javaWeb应用基本的配置"></a>三.认识javaWeb应用基本的配置</h3><ol>
-<li><p>可以说Servlet类就是一个后端程序，添加的注解便是访问它的url路径</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">@WebServlet(&quot;/swu.cx.web.MyServlet&quot;)</span><br><span class="line">public class MyServlet extends HttpServlet &#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException &#123;</span><br><span class="line">        resp.setContentType(&quot;text/html;charSet=UTF-8&quot;);//设置respponse的文档类型及编码方式</span><br><span class="line"></span><br><span class="line">        PrintWriter out=resp.getWriter();</span><br><span class="line"></span><br><span class="line">        out.print((&quot;&lt;script&gt;alert(\&quot;hello world!\&quot;);&lt;/script&gt;&quot;));</span><br><span class="line"></span><br><span class="line">        out.print(&quot;这是一个简单的例子&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>基本路径拼接上配置注解中的应用路径就是完整的url链接</p>
-<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E7%AF%87/url%E8%A7%A3%E8%AF%BB1.png"></p>
-</li>
-<li><p>显然上面的方式访问不太合理，常见的链接后缀有php、html、py等，这些是通过WEB-INF目录下的web.xml文件配置的</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;servlet&gt;</span><br><span class="line">        &lt;servlet-name&gt;MyFirstWebApp&lt;/servlet-name&gt;</span><br><span class="line">        &lt;servlet-class&gt;swu.cx.web.MyServlet&lt;/servlet-class&gt;</span><br><span class="line">    &lt;/servlet&gt;</span><br><span class="line">&lt;servlet-mapping&gt;</span><br><span class="line">        &lt;servlet-name&gt;MyFirstWebApp&lt;/servlet-name&gt;</span><br><span class="line">        &lt;url-pattern&gt;/MyWebApp.php&lt;/url-pattern&gt;</span><br><span class="line">&lt;/servlet-mapping&gt;</span><br></pre></td></tr></table></figure>
-
-<p>以上两对标签是配套使用的，第一对标签仅仅是命个名，对某个具体的Servlet类添加个名字，建立映射关系，第二对标签是根据上面命名的指向更改url中的名称，<code>http://localhost:8080/MyWebApp.php</code>是新的访问链接，使用类名同样能够访问</p>
-</li>
-<li><p>如何指定Tomcat运行起来默认显示的html页面</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;welcome-file-list&gt;</span><br><span class="line">     &lt;welcome-file&gt;mydata.jsp&lt;/welcome-file&gt;</span><br><span class="line">&lt;/welcome-file-list&gt;</span><br></pre></td></tr></table></figure>
-
-<p>通过这对标签可以指定显示哪个页面，创建的页面和index.jsp位于同一目录下</p>
-</li>
-<li><p>如何相应用户的访问</p>
-<p>在Servlet类中通过重写<code>doGet</code>和<code>doPost</code>两个方法可以进行相应，显然处理GET请求使用第一个，处理POST请求使用第二个，通过参数中的<code>HttpServletResponse</code>对象进行操作，这里就不进行具体演示了</p>
-</li>
-</ol>
-<h3 id="四-总结"><a href="#四-总结" class="headerlink" title="四.总结"></a>四.总结</h3><blockquote>
-<p>初次接触后端应用的开发，感觉还是蛮有趣的，毕竟可以自己写一些简单GET、POST请求相应供Android开发进行网络测试学习，了解即可</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wiwiyiyi.com/%E4%BD%BF%E7%94%A8Idea%E5%88%9B%E5%BB%BAJavaWeb%E5%BA%94%E7%94%A8%E4%BB%A5%E5%8F%8AServlet%E7%9A%84%E5%9D%91.html" data-id="clchkr8no00385oqh0xwjdpry" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-主要元素" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/%E4%B8%BB%E8%A6%81%E5%85%83%E7%B4%A0.html" class="article-date">
-  <time datetime="2021-03-11T08:47:59.000Z" itemprop="datePublished">2021-03-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%8A%9B%E6%89%A3%E9%A2%98%E8%A7%A3/">力扣题解</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/%E4%B8%BB%E8%A6%81%E5%85%83%E7%B4%A0.html">主要元素</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一-题目描述"><a href="#一-题目描述" class="headerlink" title="一.题目描述"></a>一.题目描述</h3><p>数组中占比超过一半的元素称之为主要元素。给定一个<strong>整数</strong>数组，找到它的主要元素。若没有，返回-1。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：[1,2,5,9,5,9,5,5,5]</span><br><span class="line">输出：5</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：[3,2]</span><br><span class="line">输出：-1</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 3：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：[2,2,1,1,1,2,2]</span><br><span class="line">输出：2</span><br></pre></td></tr></table></figure>
-
-<h3 id="二-思路分析"><a href="#二-思路分析" class="headerlink" title="二.思路分析"></a>二.思路分析</h3><blockquote>
-<p>看到此题目后，首先第一个想法是利用桶思想，将它们各自放入一个桶中，然后依次计数，但是发现这样特别耗内存，因为你并不知道给定数组中元素的范围，并且貌似不太好操作，然后便想到了使用键值对的方式进行存储，下面展示代码</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public static int majorityElement(int[] nums) &#123;</span><br><span class="line">        HashMap&lt;Integer,Integer&gt; map = new HashMap&lt;&gt;();</span><br><span class="line">        for (int i = 0; i &lt; nums.length; i++) &#123;</span><br><span class="line">            int value = map.get(nums[i])==null ? 1 :map.get(nums[i])+1;</span><br><span class="line"></span><br><span class="line">            map.put(nums[i],value);</span><br><span class="line">        &#125;</span><br><span class="line">        Set&lt;Map.Entry&lt;Integer,Integer&gt;&gt; entry = map.entrySet();</span><br><span class="line">        for (Map.Entry&lt;Integer,Integer&gt; temp:entry)&#123;</span><br><span class="line">            if (temp.getValue()&gt;nums.length/2)&#123;</span><br><span class="line">                return temp.getKey();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">       return -1;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="三-摩尔投票法进行优化"><a href="#三-摩尔投票法进行优化" class="headerlink" title="三.摩尔投票法进行优化"></a>三.摩尔投票法进行优化</h3><p>使用摩尔投票算法可以实现时间复杂度为O(n)，控件复杂度为O(1)，简单理解一下什么是摩尔投票法，让数组中每两个数之间进行“厮杀”，遍历数组，假设当前数为票数最多的，如果下一个数和当前数不相等，则票数减1，类似于抵消，直到票数减为0，然后重新指定下一位数作为票数最多的，显然，通过这样两两抵消的方式，只有出现次数最多的那个数可以留到最后，并且它的票数是大于0的，当然也存在票数相等的状况，但就本题目来说，如果存在“主要元素”，那么票数一定大于0，否则返回-1，即没有，下面上代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">public int VotingAlgorithm(int[] nums)&#123;</span><br><span class="line">        int num = 0;</span><br><span class="line">        int count = 0;</span><br><span class="line">        for (int temp:nums)&#123;</span><br><span class="line">            if (count==0)&#123;</span><br><span class="line">                num = temp;</span><br><span class="line">                count=1;</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                if (num==temp)&#123;</span><br><span class="line">                    count++;</span><br><span class="line">                &#125;else &#123;</span><br><span class="line">                    count--;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (count&lt;=0)&#123;</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;</span><br><span class="line">        count = 0;</span><br><span class="line">        for (int temp:nums)&#123;</span><br><span class="line">            if (temp==num) count++;</span><br><span class="line">        &#125;</span><br><span class="line">        if (count&gt;nums.length/2)&#123;</span><br><span class="line">            return num;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>逻辑比较简单，这种相互厮杀的思想确实不错</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wiwiyiyi.com/%E4%B8%BB%E8%A6%81%E5%85%83%E7%B4%A0.html" data-id="clchkr8nj002y5oqhhqzi87z9" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-顺时针打印矩阵" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/%E9%A1%BA%E6%97%B6%E9%92%88%E6%89%93%E5%8D%B0%E7%9F%A9%E9%98%B5.html" class="article-date">
-  <time datetime="2021-03-11T06:56:33.000Z" itemprop="datePublished">2021-03-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%8A%9B%E6%89%A3%E9%A2%98%E8%A7%A3/">力扣题解</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/%E9%A1%BA%E6%97%B6%E9%92%88%E6%89%93%E5%8D%B0%E7%9F%A9%E9%98%B5.html">顺时针打印矩阵</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一-题目描述"><a href="#一-题目描述" class="headerlink" title="一.题目描述"></a>一.题目描述</h3><p>输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字。</p>
-<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%AE%97%E6%B3%95%E7%AF%87/%E9%A1%BA%E6%97%B6%E9%92%88%E6%89%93%E5%8D%B0%E6%95%B0%E7%BB%84.png" style="zoom:67%;" />
-
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]</span><br><span class="line">输出：[1,2,3,6,9,8,7,4,5]</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]</span><br><span class="line">输出：[1,2,3,4,8,12,11,10,9,5,6,7]</span><br></pre></td></tr></table></figure>
-
-<p><strong>限制：</strong></p>
-<ul>
-<li><code>0 &lt;= matrix.length &lt;= 100</code></li>
-<li><code>0 &lt;= matrix[i].length &lt;= 100</code></li>
-</ul>
-<h3 id="二-思路分析"><a href="#二-思路分析" class="headerlink" title="二.思路分析"></a>二.思路分析</h3><blockquote>
-<p>小编开始审错题了，将该矩阵当做了方阵，所以之前写的算法仅适用于方阵，但最容易想到的思路还是旋转打印路径的方式，官方文档也是这样处理的，但后来小编采纳了另外一个博主的思路，他将此问题模型化了，可以将矩阵看作是带有上下左右边界的一块地，每次都会经历向右、向下、向左、向上四个方向的打印操作，因此通过四个for循环进行模拟，从起始边到终点边，每遍历完一边，就将那边向内移动一个距离，直到某两个对边超过对方就算遍历完成，该思路很清晰并且好记，下面上代码</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public int[] spiralOrder(int[][] matrix) &#123;</span><br><span class="line">        if (matrix.length==0) return new int[0];</span><br><span class="line">        int left = 0 ,right = matrix[0].length-1, top = 0, bottom = matrix.length-1;</span><br><span class="line">        int count = 0;</span><br><span class="line">        int[] result = new int[(right+1)*(bottom+1)];</span><br><span class="line">        while (true)&#123;</span><br><span class="line">            for (int i = left;i&lt;=right;i++) result[count++] = matrix[top][i];</span><br><span class="line">            if (++top&gt;bottom) break;</span><br><span class="line">            for (int i = top; i &lt;= bottom; i++) result[count++] = matrix[i][right];</span><br><span class="line">            if (left&gt;--right) break;</span><br><span class="line">            for (int i = right; i &gt;=left ; i--) result[count++] = matrix[bottom][i];</span><br><span class="line">            if (top&gt;--bottom) break;</span><br><span class="line">            for (int i = bottom; i &gt;= top ; i--) result[count++] = matrix[i][left];</span><br><span class="line">            if (++left&gt;right) break;</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="三-总结"><a href="#三-总结" class="headerlink" title="三.总结"></a>三.总结</h3><blockquote>
-<p>此类问题关键点是模型化，只要找到合适的模型进行处理，就相当快</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wiwiyiyi.com/%E9%A1%BA%E6%97%B6%E9%92%88%E6%89%93%E5%8D%B0%E7%9F%A9%E9%98%B5.html" data-id="clchkr8pj00875oqhdan2c0ac" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/page/6/">&amp;laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/8/">下一页 &amp;raquo;</a>
-  </nav>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-UI%E7%B3%BB%E5%88%97/">Android UI系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%AE%9E%E6%88%98%E9%9B%86/">Android实战集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E9%9B%86/">Android开发基础集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/">Android自定义系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Android设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%BF%9B%E9%98%B6/">Android进阶</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E9%87%8D%E8%A6%81%E7%BB%84%E4%BB%B6/">Android重要组件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E9%A1%B9%E7%9B%AE/">Android项目</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E8%BF%9B%E9%98%B6/">Java进阶</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/html%E5%AD%A6%E4%B9%A0/">html学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/">个人成长</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%9B%E6%89%A3%E9%A2%98%E8%A7%A3/">力扣题解</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8E%92%E5%BA%8F%E9%9B%86/">排序集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8%E4%B8%8E%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/">注解处理器与开源框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E6%8E%A7%E4%BB%B6/">系统控件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%84%E4%BB%B6%E5%8C%96%E7%B3%BB%E5%88%97/">组件化系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%93%E9%A2%98/">设计模式专题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E9%9B%86/">问题总结集</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag">Android常用琐碎知识点</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E5%BC%80%E5%8F%91%E5%B0%8FDemo/" rel="tag">Android开发小Demo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E9%AB%98%E7%BA%A7UI/" rel="tag">Android高级UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" rel="tag">hexo博客搭建问题总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93/" rel="tag">发布开源库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/" rel="tag">学年设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" rel="tag">算法篇</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" rel="tag">系统高级UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" rel="tag">网络开源库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" style="font-size: 18px;">Android常用琐碎知识点</a> <a href="/tags/Android%E5%BC%80%E5%8F%91%E5%B0%8FDemo/" style="font-size: 10px;">Android开发小Demo</a> <a href="/tags/Android%E9%AB%98%E7%BA%A7UI/" style="font-size: 16px;">Android高级UI</a> <a href="/tags/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" style="font-size: 10px;">hexo博客搭建问题总结</a> <a href="/tags/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93/" style="font-size: 10px;">发布开源库</a> <a href="/tags/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">学年设计</a> <a href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" style="font-size: 20px;">算法篇</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" style="font-size: 12px;">系统高级UI</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" style="font-size: 14px;">网络开源库</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/%E8%87%AA%E5%AE%9A%E4%B9%89PhotoView%E5%A4%84%E7%90%86%E6%89%8B%E5%8A%BF.html">自定义PhotoView处理手势</a>
-          </li>
-        
-          <li>
-            <a href="/%E9%A6%96%E6%AC%A1%E5%BC%80%E6%BA%90%E5%BA%93-%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E6%96%87%E5%AD%97%E6%B8%90%E5%8F%98%E6%95%88%E6%9E%9C.html">首次开源库-不一样的文字渐变效果</a>
-          </li>
-        
-          <li>
-            <a href="/CoordinatorLayout%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89Behavior%E5%85%A5%E9%97%A8.html">CoordinatorLayout原理分析以及自定义Behavior入门</a>
-          </li>
-        
-          <li>
-            <a href="/NestedScrollView%E5%B5%8C%E5%A5%97%E6%BB%91%E5%8A%A8%E5%8E%9F%E7%90%86.html">NestedScrollView嵌套滑动原理</a>
-          </li>
-        
-          <li>
-            <a href="/APT-javapoet%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B.html">APT-javapoet详细教程</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2023 EngineerOfFinger<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-    <a href="/%20%7C%7C%20fas%20fa-home" class="mobile-nav-link">主页</a>
-  
-    <a href="/archives/%20%7C%7C%20fas%20fa-archive" class="mobile-nav-link">时间轴</a>
-  
-    <a href="/tags/%20%7C%7C%20fas%20fa-tags" class="mobile-nav-link">标签</a>
-  
-    <a href="/categories/%20%7C%7C%20fas%20fa-folder-open" class="mobile-nav-link">分类</a>
-  
-    <a href="/link/%20%7C%7C%20fas%20fa-link" class="mobile-nav-link">友链</a>
-  
-</nav>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-  </div>
-</body>
-</html>
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

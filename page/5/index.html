@@ -1,1139 +1,367 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>梦幻泡影 - 指尖上的工程师</title><meta name="author" content="EngineerOfFinger"><meta name="copyright" content="EngineerOfFinger"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="success&amp;#x3D;persistence"><link rel="shortcut icon" href="/img/wiwi.ico"><link rel="canonical" href="https://wiwiyiyi.com/page/5/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: EngineerOfFinger","link":"链接: ","source":"来源: 梦幻泡影","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '梦幻泡影',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-01-04 19:52:56'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-  
-  <title>梦幻泡影</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="success&#x3D;persistence">
-<meta property="og:type" content="website">
-<meta property="og:title" content="梦幻泡影">
-<meta property="og:url" content="https://wiwiyiyi.com/page/5/index.html">
-<meta property="og:site_name" content="梦幻泡影">
-<meta property="og:description" content="success&#x3D;persistence">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="EngineerOfFinger">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="梦幻泡影" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/img/wiwi.ico">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">梦幻泡影</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">[object Object]</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
         
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-          <a class="main-nav-link" href="/%20%7C%7C%20fas%20fa-home">主页</a>
-        
-          <a class="main-nav-link" href="/archives/%20%7C%7C%20fas%20fa-archive">时间轴</a>
-        
-          <a class="main-nav-link" href="/tags/%20%7C%7C%20fas%20fa-tags">标签</a>
-        
-          <a class="main-nav-link" href="/categories/%20%7C%7C%20fas%20fa-folder-open">分类</a>
-        
-          <a class="main-nav-link" href="/link/%20%7C%7C%20fas%20fa-link">友链</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wiwiyiyi.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-建造者模式" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F.html" class="article-date">
-  <time datetime="2021-11-23T09:27:20.000Z" itemprop="datePublished">2021-11-23</time>
-</a>
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%93%E9%A2%98/">设计模式专题</a>
-  </div>
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">106</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/img/background.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">梦幻泡影</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">梦幻泡影</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=1505608482" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="mailto:1505608482@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F.html" title="建造者模式"><img class="post_bg" src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2Facaft-88gti.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="建造者模式"></a></div><div class="recent-post-info"><a class="article-title" href="/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F.html" title="建造者模式">建造者模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-11-23T09:27:20.000Z" title="发表于 2021-11-23 17:27:20">2021-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%93%E9%A2%98/">设计模式专题</a></span></div><div class="content">一.前言
+随着水果店的发展，会想着推出组合套餐的优惠活动，组合是关键点，如下图
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+
+
+要实现上述流程，需要用到建造者模式
+二.建造者模式实践
+前言中提到的一个个流程就是挨个赋值的过程，这里有两种套餐，自然就有两种不同的组合，建造方式也不同，所以抽象成接口
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263interface Builder &#123;    fun buildApple(price: Int):Builder    fun buildBanana(price: Int):Builder    fun buildOrange(price: Int):Builder    fun getFruitMeal():FruitMeal&#125;class FruitMeal &#123;    private var apple:Apple? = null    private var bana ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.html" title="抽象工厂模式"><img class="post_bg" src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2F%E5%A3%81%E7%BA%B82.jfif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="抽象工厂模式"></a></div><div class="recent-post-info"><a class="article-title" href="/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.html" title="抽象工厂模式">抽象工厂模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-11-23T07:44:40.000Z" title="发表于 2021-11-23 15:44:40">2021-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%93%E9%A2%98/">设计模式专题</a></span></div><div class="content">一.前言
+前面介绍了工厂方法模式，分门别类生产水果，现在有这样一个需求，为了更好的收益，需要将水果进行打包，那么根据工厂方法的思路，每一种水果对应一个bag，并且对应一个bagFactory，那么就有了一下代码
+
+1234567891011121314151617interface Bag &#123;    fun packageFruit(fruit: Fruit)&#125;class AppleBag: Bag &#123;    override fun packageFruit(fruit: Fruit) &#123;        println(&quot;苹果使用老百姓口袋&quot;)    &#125;&#125;--------------------------------------------------------------------------------------------interface BagFactory &#123;    fun getBag(): Bag&#125;class AppFactory: FruitFactory & ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F.html" title="工厂方法模式"><img class="post_bg" src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2F%E5%A3%81%E7%BA%B826.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="工厂方法模式"></a></div><div class="recent-post-info"><a class="article-title" href="/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F.html" title="工厂方法模式">工厂方法模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-11-23T07:44:13.000Z" title="发表于 2021-11-23 15:44:13">2021-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%93%E9%A2%98/">设计模式专题</a></span></div><div class="content">一.前言
+前面介绍了简单工厂模式，并模拟了果园摘水果的场景，那么试想，如果果园的水果种类爆炸性增长，那么SimpleFruitFactory这个类会不断修改而且还不符合如下原则：
+
+
+不符单一职责原则：一个类负责了各种各样水果的创建
+不符开闭原则：扩展品类的时候，需要修改已有的代码
+
+下面介绍工厂方法模式
+二.工厂方法有了如上思考，再结合实际生活，比如果园肯定会分门别类，专门种苹果的叫苹果园，以此类推香蕉园、橘子园等等，只要新增一个品种，我们就新增一个xx园
+
+结构图
+
+如此一来，一个工厂生成一种水果，符合单一职责，新增水果种类，就新增对应的工厂类，符合开闭原则
+代码如下：
+1234567891011121314interface FruitFactory &#123;    fun getFruit(): Fruit&#125;//具体实现class AppFactory: FruitFactory &#123;    override fun getFruit(): Fruit &#123;        return Apple()    &#125;&#125;class Ba ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.html" title="简单工厂模式"><img class="post_bg" src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2Fa7d5m-o8xx4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="简单工厂模式"></a></div><div class="recent-post-info"><a class="article-title" href="/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.html" title="简单工厂模式">简单工厂模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-11-23T05:19:33.000Z" title="发表于 2021-11-23 13:19:33">2021-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%93%E9%A2%98/">设计模式专题</a></span></div><div class="content">一.前言
+简单工厂模式不属于23中设计模式，比较基础，是为了后续做扩展方才引入
+
+二.简单工厂模式场景模拟
+这里通过一个小例子来说明简单工厂模式，果园摘水果问题
+
+
+原始方式
+自己想吃水果，直接去果园亲自摘，简单说就是自己new一个水果实例
+
+这种方式有明显的弊端：
+
+使用者需要自己new一个实例
+使用者需要自己维护new出来的实例
+使用者需要了解参数的具体意义，比如这里的采摘员，如果采摘员是常量，我们还得去了解有哪些，还有价格
+
+综上，原始方式对于使用者来说不友好
+
+简单工厂生产方式
+通过一个工厂类统一管理
+123456789101112131415161718object SimpleFruitFactory &#123;    const val APPLE = 1    const val BANANA = 2    const val ORANGE = 3    fun getFruit(fruitType: Int) = when (fruitType) &#123;        APPLE -&gt; Apple()        BANANA -&gt; Banana ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%85%AD%E5%A4%A7%E5%8E%9F%E5%88%99.html" title="设计模式六大原则"><img class="post_bg" src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2F%E5%A3%81%E7%BA%B86.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="设计模式六大原则"></a></div><div class="recent-post-info"><a class="article-title" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%85%AD%E5%A4%A7%E5%8E%9F%E5%88%99.html" title="设计模式六大原则">设计模式六大原则</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-11-22T12:24:10.000Z" title="发表于 2021-11-22 20:24:10">2021-11-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%93%E9%A2%98/">设计模式专题</a></span></div><div class="content">一.前言
+在项目开发中，必不可少的是对设计模式的掌握，从过往的理解来看，设计模式很多时候都和接口有关，本专题以设计模式六大原则开始
+
+二.常用的设计模式及其对应的类型
+创建型模式：静态工厂模式、工厂方法模式、抽象工厂模式、单例模式、建造者模式
+结构型模式：桥接模式、适配器模式、装饰器模式、代理模式、组合模式
+行为型模式：模板方法模式、策略模式、观察者模式、责任链模式、命令模式、访问者模式
+
+
+设计模式是解决问题的思想，重要的是思想，撸码的时候不要可以追求设计模式，否则你会半天撸不出一行码
+
+三.六大原则详解
+单一职责原则：一个类负责一项职责
+
+
+单一职责原则比较简单，就是某个功能的独立化，不能将多个功能掺杂在一个类里面，如上图，UserController管理User信息，OrderController管理Order信息
+
+里氏替换原则：子类可以扩展父类的功能，但不要改变父类原有的功能
+
+依赖倒置原则：面向接口编程
+
+
+​    大白话就是撸码时用接口类型，不用子类类型，多态的体现
+
+接口隔离原则：设计接口功能尽量细粒度，最小功能单元
+
+
+​    如果需要给AImplChild新增方 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/%E5%AD%90%E6%A8%A1%E5%9D%97%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1-%E8%B7%AF%E7%94%B1.html" title="子模块之间的通信-路由"><img class="post_bg" src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2Fa5sah-vglqb.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="子模块之间的通信-路由"></a></div><div class="recent-post-info"><a class="article-title" href="/%E5%AD%90%E6%A8%A1%E5%9D%97%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1-%E8%B7%AF%E7%94%B1.html" title="子模块之间的通信-路由">子模块之间的通信-路由</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-11-19T12:39:37.000Z" title="发表于 2021-11-19 20:39:37">2021-11-19</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BB%84%E4%BB%B6%E5%8C%96%E7%B3%BB%E5%88%97/">组件化系列</a></span></div><div class="content">一.前言
+前面介绍了组件化概念以及项目如何进行组件化管理，也提到子模块之间是独立的，不能相互依赖，而app模块仅仅是一个入口，所以业务之间的通信往来也就是子模块之间的通信就显得很重要，下面将对此详解
+
+二.子模块之间通信基本方案
+子模块之间通信方式有广播、EventBus、类加载机制、全局Map等方式，这里只介绍类加载和全局Map的方式，前两种可以实现效果，但项目中基本不用
+
+
+类加载方式
+先说明一下为什么能够通过类加载的方式来实现子模块间的通信
+
+
+可以看到dex文件中的类都是放在一起的，并不会受模块化的影响，所以就可以通过类加载的方式来通过Intent跳转
+123456try &#123;               val targetClazz = Class.forName(&quot;com.bytedance.register.RegisterActivity&quot;)               startActivity(Intent(this,targetClazz))           &#125; catch (e: Exception) &#123;   ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/%E9%A1%B9%E7%9B%AE%E7%BB%84%E4%BB%B6%E5%8C%96%E5%85%A5%E9%97%A8%E4%BD%BF%E7%94%A8.html" title="项目组件化入门使用"><img class="post_bg" src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2F%E5%A3%81%E7%BA%B818.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="项目组件化入门使用"></a></div><div class="recent-post-info"><a class="article-title" href="/%E9%A1%B9%E7%9B%AE%E7%BB%84%E4%BB%B6%E5%8C%96%E5%85%A5%E9%97%A8%E4%BD%BF%E7%94%A8.html" title="项目组件化入门使用">项目组件化入门使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-11-19T02:12:15.000Z" title="发表于 2021-11-19 10:12:15">2021-11-19</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BB%84%E4%BB%B6%E5%8C%96%E7%B3%BB%E5%88%97/">组件化系列</a></span></div><div class="content">一.前言在日常的个人开发中，我们都习惯分包来管理项目，虽然简单，但包与包之间的耦合性太严重，比如将新增的一个A业务通过一个包来管理，后续不需要这个业务了，把这个包删掉后，其他包如果导入了A业务中的一些类，显然修改的地方会有点多，很不方便，而且一旦项目做大以后，包与包之间的导入关系更加复杂，对于后继者来说难以维护，下面介绍组件化的管理方式
+二.组件化概念
+组件化简单说就是通过Module来管理各个业务，各个Module之间不能相互依赖，从而实现高度解耦，自由拆卸和组装，可重用，分层独立化
+
+
+
+如上图，每个module地位都是平等的，分包管理方式都会将业务代码放在app moudule中，并且只有这一个module，而组件化管理是将一个业务通过一个module来管理，所以app module最终也只是一个入口，形象的说就是一个app壳，每个子模块之间不能相互依赖
+三.Gradle控制测试环境和正式环境
+
+通过Gradle的相关配置可以决定一个子模块能否独立运行，独立运行时就将该模块打包成apk，正式环境下，不能独立运行，只能作为lib依赖包依附于app壳
+
+
+gradle加载配置流程
+
+ ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/RecyclerView%E8%87%AA%E5%AE%9A%E4%B9%89LayoutManager%E5%AE%9E%E7%8E%B0%E8%84%89%E8%84%89%E5%8D%A1%E7%89%87%E6%BB%91%E5%8A%A8.html" title="RecyclerView自定义LayoutManager实现脉脉卡片滑动"><img class="post_bg" src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2Fai157-9qbgp.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RecyclerView自定义LayoutManager实现脉脉卡片滑动"></a></div><div class="recent-post-info"><a class="article-title" href="/RecyclerView%E8%87%AA%E5%AE%9A%E4%B9%89LayoutManager%E5%AE%9E%E7%8E%B0%E8%84%89%E8%84%89%E5%8D%A1%E7%89%87%E6%BB%91%E5%8A%A8.html" title="RecyclerView自定义LayoutManager实现脉脉卡片滑动">RecyclerView自定义LayoutManager实现脉脉卡片滑动</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-11-15T08:04:28.000Z" title="发表于 2021-11-15 16:04:28">2021-11-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%B3%BB%E7%BB%9F%E6%8E%A7%E4%BB%B6/">系统控件</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/">系统高级UI</a></span></div><div class="content">一.前言
+前面介绍了RecyclerView的回收复用流程，熟悉源码是为了自定义做准备，很多时候可以参照系统的写法，本文会通过自定义LayoutManager来实现脉脉中的卡片滑动效果，系统提供的LayoutManager实在单一
+
+二.通过绘制实现RecyclerView吸顶效果
+在使用RecyclerView时，通常会关心ViewType展示多种Holder，以及Adapter的数据填充样式，对于ItemDecoration很多时候只会用来实现分割线，如果要实现个性化的绘制可以使用ItemDecoration提供的绘制方法，下面展示Demo效果
+
+
+
+这个吸顶效果就是通过ItemDecoration提供的绘制方法实现的
+
+onDraw
+在绘制每个itemView之前绘制，上图中的每个跟着滑动的头部就是在此处绘制
+
+onDrawOver
+在绘制了每个itemView之后绘制，上图中固定的顶部在此处绘制
+
+
+注：根据以上的介绍，itemView可以覆盖onDraw绘制的内容，onDrawOver可以覆盖itemView
+实现思路：
+
+根据三者的覆盖关系，显然onDraw需要额外的空间来 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/RecyclerView%E5%9B%9E%E6%94%B6%E4%B8%8E%E5%A4%8D%E7%94%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.html" title="RecyclerView回收与复用源码分析"><img class="post_bg" src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2Fai157-9qbgp.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RecyclerView回收与复用源码分析"></a></div><div class="recent-post-info"><a class="article-title" href="/RecyclerView%E5%9B%9E%E6%94%B6%E4%B8%8E%E5%A4%8D%E7%94%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.html" title="RecyclerView回收与复用源码分析">RecyclerView回收与复用源码分析</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-11-15T08:03:27.000Z" title="发表于 2021-11-15 16:03:27">2021-11-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%B3%BB%E7%BB%9F%E6%8E%A7%E4%BB%B6/">系统控件</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/">系统高级UI</a></span></div><div class="content">一.前言
+RecyclerView可以说是项目中使用频度很高的一个系统控件，相比于ListView，它最大优势就是常听到的四级缓存，ListView只有两级缓存(缓存屏幕中看到的、屏幕外的)，下面通过源码流程来分析RecyclerView的回收复用机制
+
+二.回收复用的入口
+回收有两个入口，一是在布局onLayout时，二是在fill填充itemView时，下面通过流程图的方式来梳理
+
+①onLayout
+
+
+因为RecyclerView的具体onLayout是交给具体的LayoutManager来实现的，所以回收复用的具体操作是由LayoutManager来完成，在自定义LayoutManager时需考虑这一点，参考系统提供的LinearLayoutManager
+
+上图的两个重心是LinearLayoutManager中回收入口的分叉和Recycler中的实际回收情况，而我们在自定义LayoutManager时，回收Holder只需要通过detachAndScrapAttachedViews这一个方法即可，具体是如何进行回收的我们不关心，但需要知道有哪几种，因为这对应了几种缓存
+
+ ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/Android%E5%85%B3%E4%BA%8EUI%E5%B8%83%E5%B1%80%E7%9A%84%E5%B0%8F%E6%80%BB%E7%BB%93.html" title="Android关于UI布局的小总结"><img class="post_bg" src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2Fapje7-q54la.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Android关于UI布局的小总结"></a></div><div class="recent-post-info"><a class="article-title" href="/Android%E5%85%B3%E4%BA%8EUI%E5%B8%83%E5%B1%80%E7%9A%84%E5%B0%8F%E6%80%BB%E7%BB%93.html" title="Android关于UI布局的小总结">Android关于UI布局的小总结</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-07-22T07:46:35.000Z" title="发表于 2021-07-22 15:46:35">2021-07-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/">个人成长</a></span></div><div class="content">项目常用三种布局详解一.背景今日在做UI布局方面的修改，相信很多新人在过往一般都是独立开发小项目，所以为了方便都习惯用ConstraintLayout，因而其他三种布局接近边缘化，所以特地总结此篇文章以便快速上手公司项目的布局优化任务
+二.6种布局基础FrameLayout帧布局是最简单的，特点就是，内部的控件不能指定摆放的位置，只能重叠在左上角
+优点：FrameLayout效率最高(体现在绘制速度上)，占用内存也是三者中最少的
+所以能使用FrameLayout就尽量使用FrameLayout作为外层容器，这也是布局优化的一个技巧
+不能使用FrameLayout的场景：如果在代码中有设置布局参数(LayoutParam)，就不能将xml中的布局容器进行替换，因为设置布局参数对FrameLayout无效，也就是上面所提到的内部控件无法制定摆放位置
+此外FrameLayout有的时候也会被用作占位符，通常搭配Fragment使用，确定Fragment在Activity视图中的位置
+LinearLayout线性布局分横向和纵向，通过orientation属性来设置布局方向(horizonta ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/4/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/#content-inner">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/#content-inner">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/#content-inner">11</a><a class="extend next" rel="next" href="/page/6/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">EngineerOfFinger</div><div class="author-info__description">success=persistence</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">106</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/wiwi289"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=1505608482" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="mailto:1505608482@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">梦幻泡影般的世界</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/%E8%87%AA%E5%AE%9A%E4%B9%89PhotoView%E5%A4%84%E7%90%86%E6%89%8B%E5%8A%BF.html" title="自定义PhotoView处理手势"><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2Faqkbn-dh264.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="自定义PhotoView处理手势"/></a><div class="content"><a class="title" href="/%E8%87%AA%E5%AE%9A%E4%B9%89PhotoView%E5%A4%84%E7%90%86%E6%89%8B%E5%8A%BF.html" title="自定义PhotoView处理手势">自定义PhotoView处理手势</a><time datetime="2022-01-29T12:43:41.000Z" title="发表于 2022-01-29 20:43:41">2022-01-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/%E9%A6%96%E6%AC%A1%E5%BC%80%E6%BA%90%E5%BA%93-%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E6%96%87%E5%AD%97%E6%B8%90%E5%8F%98%E6%95%88%E6%9E%9C.html" title="首次开源库-不一样的文字渐变效果"><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2Fam9ca-9d943.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="首次开源库-不一样的文字渐变效果"/></a><div class="content"><a class="title" href="/%E9%A6%96%E6%AC%A1%E5%BC%80%E6%BA%90%E5%BA%93-%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E6%96%87%E5%AD%97%E6%B8%90%E5%8F%98%E6%95%88%E6%9E%9C.html" title="首次开源库-不一样的文字渐变效果">首次开源库-不一样的文字渐变效果</a><time datetime="2022-01-26T09:12:37.000Z" title="发表于 2022-01-26 17:12:37">2022-01-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/CoordinatorLayout%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89Behavior%E5%85%A5%E9%97%A8.html" title="CoordinatorLayout原理分析以及自定义Behavior入门"><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2F24.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CoordinatorLayout原理分析以及自定义Behavior入门"/></a><div class="content"><a class="title" href="/CoordinatorLayout%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89Behavior%E5%85%A5%E9%97%A8.html" title="CoordinatorLayout原理分析以及自定义Behavior入门">CoordinatorLayout原理分析以及自定义Behavior入门</a><time datetime="2022-01-26T05:22:05.000Z" title="发表于 2022-01-26 13:22:05">2022-01-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/NestedScrollView%E5%B5%8C%E5%A5%97%E6%BB%91%E5%8A%A8%E5%8E%9F%E7%90%86.html" title="NestedScrollView嵌套滑动原理"><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2Fam9ca-9d943.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="NestedScrollView嵌套滑动原理"/></a><div class="content"><a class="title" href="/NestedScrollView%E5%B5%8C%E5%A5%97%E6%BB%91%E5%8A%A8%E5%8E%9F%E7%90%86.html" title="NestedScrollView嵌套滑动原理">NestedScrollView嵌套滑动原理</a><time datetime="2022-01-23T05:50:24.000Z" title="发表于 2022-01-23 13:50:24">2022-01-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/APT-javapoet%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B.html" title="APT-javapoet详细教程"><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2Fai157-9qbgp.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="APT-javapoet详细教程"/></a><div class="content"><a class="title" href="/APT-javapoet%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B.html" title="APT-javapoet详细教程">APT-javapoet详细教程</a><time datetime="2022-01-16T13:52:04.000Z" title="发表于 2022-01-16 21:52:04">2022-01-16</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Android-UI%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">Android UI系列</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Android%E5%AE%9E%E6%88%98%E9%9B%86/"><span class="card-category-list-name">Android实战集</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E9%9B%86/"><span class="card-category-list-name">Android开发基础集</span><span class="card-category-list-count">20</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Android%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">Android自定义系列</span><span class="card-category-list-count">8</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="card-category-list-name">Android设计模式</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Android%E8%BF%9B%E9%98%B6/"><span class="card-category-list-name">Android进阶</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Android%E9%87%8D%E8%A6%81%E7%BB%84%E4%BB%B6/"><span class="card-category-list-name">Android重要组件</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Android%E9%A1%B9%E7%9B%AE/"><span class="card-category-list-name">Android项目</span><span class="card-category-list-count">2</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" style="font-size: 1.42em; color: #99a6b7">Android常用琐碎知识点</a> <a href="/tags/Android%E5%BC%80%E5%8F%91%E5%B0%8FDemo/" style="font-size: 1.1em; color: #999">Android开发小Demo</a> <a href="/tags/Android%E9%AB%98%E7%BA%A7UI/" style="font-size: 1.34em; color: #99a3b0">Android高级UI</a> <a href="/tags/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" style="font-size: 1.1em; color: #999">hexo博客搭建问题总结</a> <a href="/tags/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93/" style="font-size: 1.1em; color: #999">发布开源库</a> <a href="/tags/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/" style="font-size: 1.1em; color: #999">学年设计</a> <a href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" style="font-size: 1.5em; color: #99a9bf">算法篇</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" style="font-size: 1.18em; color: #999ca1">系统高级UI</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" style="font-size: 1.26em; color: #999fa8">网络开源库</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 1.1em; color: #999">随笔</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/01/"><span class="card-archive-list-date">一月 2022</span><span class="card-archive-list-count">7</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/12/"><span class="card-archive-list-date">十二月 2021</span><span class="card-archive-list-count">10</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/11/"><span class="card-archive-list-date">十一月 2021</span><span class="card-archive-list-count">21</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/07/"><span class="card-archive-list-date">七月 2021</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/05/"><span class="card-archive-list-date">五月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/04/"><span class="card-archive-list-date">四月 2021</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/03/"><span class="card-archive-list-date">三月 2021</span><span class="card-archive-list-count">26</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/02/"><span class="card-archive-list-date">二月 2021</span><span class="card-archive-list-count">14</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">106</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">122.8k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-01-04T11:52:55.278Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By EngineerOfFinger</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="http://www.wiwiyiyi.com">唯玖依依</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    window.typed = new Typed("#subtitle", {
+      strings: "热爱生活，忠于Code",
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = '热'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}</script></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F.html">建造者模式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一-前言"><a href="#一-前言" class="headerlink" title="一.前言"></a>一.前言</h3><blockquote>
-<p>随着水果店的发展，会想着推出组合套餐的优惠活动，组合是关键点，如下图</p>
-</blockquote>
-<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%B0%B4%E6%9E%9C%E5%A5%97%E9%A4%90%E5%BB%BA%E9%80%A0%E6%B5%81%E7%A8%8B.png" style="zoom:40%;" />
-
-<p>要实现上述流程，需要用到建造者模式</p>
-<h3 id="二-建造者模式实践"><a href="#二-建造者模式实践" class="headerlink" title="二.建造者模式实践"></a>二.建造者模式实践</h3><p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F%E4%BA%A7%E5%93%81%E5%9B%BE.png"></p>
-<p>前言中提到的一个个流程就是挨个赋值的过程，这里有两种套餐，自然就有两种不同的组合，建造方式也不同，所以抽象成接口</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">interface Builder &#123;</span><br><span class="line">    fun buildApple(price: Int):Builder</span><br><span class="line">    fun buildBanana(price: Int):Builder</span><br><span class="line">    fun buildOrange(price: Int):Builder</span><br><span class="line">    fun getFruitMeal():FruitMeal</span><br><span class="line">&#125;</span><br><span class="line">class FruitMeal &#123;</span><br><span class="line">    private var apple:Apple? = null</span><br><span class="line">    private var banana:Banana? = null</span><br><span class="line">    private var orange: Orange? = null</span><br><span class="line"></span><br><span class="line">    private var discount = 0</span><br><span class="line">    private var totalPrice = 0</span><br><span class="line"></span><br><span class="line">    fun init() &#123;</span><br><span class="line">        totalPrice+=apple?.getPrice()?:0</span><br><span class="line">        totalPrice+=banana?.getPrice()?:0</span><br><span class="line">        totalPrice+=orange?.getPrice()?:0</span><br><span class="line"></span><br><span class="line">        totalPrice = if (totalPrice &gt; 0)  totalPrice-discount else totalPrice</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fun cost() = totalPrice</span><br><span class="line"></span><br><span class="line">    fun setApple(apple: Apple) &#123;</span><br><span class="line">        this.apple = apple</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fun setBanana(banana: Banana) &#123;</span><br><span class="line">        this.banana = banana</span><br><span class="line">    &#125;</span><br><span class="line">    fun setOrange(orange: Orange) &#123;</span><br><span class="line">        this.orange = orange</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fun setDiscount(discount: Int) &#123;</span><br><span class="line">        this.discount = discount</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">class HolidayBuilder: Builder &#123;</span><br><span class="line">    private val fruitMeal = FruitMeal()</span><br><span class="line">    override fun buildApple(price: Int): Builder&#123;</span><br><span class="line">        fruitMeal.setApple(Apple(price))</span><br><span class="line">        return this</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    override fun buildBanana(price: Int): Builder&#123;</span><br><span class="line">        fruitMeal.setBanana(Banana(&quot;管理员一号&quot;,price))</span><br><span class="line">        return this</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    override fun buildOrange(price: Int): Builder &#123;</span><br><span class="line">        fruitMeal.setOrange(Orange(price))</span><br><span class="line">        return this</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    override fun getFruitMeal(): FruitMeal &#123;</span><br><span class="line">        fruitMeal.setDiscount(15)</span><br><span class="line">        fruitMeal.init()</span><br><span class="line">        return fruitMeal</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>此处为了模仿项目开发中的建造者模式采用了链式调用，其实对比一下，像android中的Dialog，是将Builder嵌套在Dialog内部，而这里是将Builder从FruitMeal中分离了出来，建造者目前看是处理多流程处理的</p>
-</blockquote>
-<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%BB%BA%E9%80%A0%E8%80%85%E5%92%8C%E5%B7%A5%E5%8E%82%E5%AF%B9%E6%AF%94.png"></p>
-<p>建造者本是工厂模式的一种，类比一下，很相似，Builder接口其实就是抽象工厂，具体的Builder就是Factory</p>
-<h3 id="三-总结"><a href="#三-总结" class="headerlink" title="三.总结"></a>三.总结</h3><blockquote>
-<p>建造者模式在项目中用的比较广泛，像很多开原框架都会用到，并且不难，最好将Builder嵌套在目标产物的内部</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wiwiyiyi.com/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F.html" data-id="clchkr8od004y5oqhg7yl7ggb" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-抽象工厂模式" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.html" class="article-date">
-  <time datetime="2021-11-23T07:44:40.000Z" itemprop="datePublished">2021-11-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%93%E9%A2%98/">设计模式专题</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.html">抽象工厂模式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一-前言"><a href="#一-前言" class="headerlink" title="一.前言"></a>一.前言</h3><blockquote>
-<p>前面介绍了工厂方法模式，分门别类生产水果，现在有这样一个需求，为了更好的收益，需要将水果进行打包，那么根据工厂方法的思路，每一种水果对应一个bag，并且对应一个bagFactory，那么就有了一下代码</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">interface Bag &#123;</span><br><span class="line">    fun packageFruit(fruit: Fruit)</span><br><span class="line">&#125;</span><br><span class="line">class AppleBag: Bag &#123;</span><br><span class="line">    override fun packageFruit(fruit: Fruit) &#123;</span><br><span class="line">        println(&quot;苹果使用老百姓口袋&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">interface BagFactory &#123;</span><br><span class="line">    fun getBag(): Bag</span><br><span class="line">&#125;</span><br><span class="line">class AppFactory: FruitFactory &#123;</span><br><span class="line">    override fun getFruit(): Fruit &#123;</span><br><span class="line">        return Apple()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上述实现简单，那么问题来了，Bag也是面向接口编程，传入水果进行打包时，无论是什么水果都可以进行打包，也就是发生了错乱</p>
-<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E4%BA%A7%E5%93%81%E7%BB%93%E6%9E%84.png" style="zoom:50%;" />
-
-<p>下面介绍抽象工厂模式解决此问题</p>
-<h3 id="二-抽象工厂模式"><a href="#二-抽象工厂模式" class="headerlink" title="二.抽象工厂模式"></a>二.抽象工厂模式</h3><blockquote>
-<p>产生上述错乱问题的原因就是生成水果和包装的工厂分开管理，所以可以将一种水果的生成和bag的生成聚合在一起，也就抽象出了一个抽象工厂</p>
-</blockquote>
-<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E4%BA%A7%E5%93%81%E7%BB%93%E6%9E%84%E5%9B%BE.png"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">interface AbstractFactory &#123;</span><br><span class="line">    fun getFruit(): Fruit</span><br><span class="line">    fun getBag(): Bag</span><br><span class="line">&#125;</span><br><span class="line">class AppleFactoryImpl: AbstractFactory &#123;</span><br><span class="line">    override fun getFruit(): Fruit &#123;</span><br><span class="line">        return Apple()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    override fun getBag(): Bag &#123;</span><br><span class="line">        return AppleBag()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如此一来获取Fruit时，同时获取Bag，就不会导致混乱，这也提醒我们，如果是有关联的两个Factory，一定要将它们抽象成一个共有的Factory，避免混乱</p>
-<h3 id="三-总结"><a href="#三-总结" class="headerlink" title="三.总结"></a>三.总结</h3><blockquote>
-<p>抽象工厂的关键点在于聚合两个有关联的Factory，后续如果还需要生成同一个产品的附件品时，直接在抽象工厂中扩展即可</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wiwiyiyi.com/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.html" data-id="clchkr8oh005c5oqh41nic9id" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-工厂方法模式" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F.html" class="article-date">
-  <time datetime="2021-11-23T07:44:13.000Z" itemprop="datePublished">2021-11-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%93%E9%A2%98/">设计模式专题</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F.html">工厂方法模式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一-前言"><a href="#一-前言" class="headerlink" title="一.前言"></a>一.前言</h3><blockquote>
-<p>前面介绍了简单工厂模式，并模拟了果园摘水果的场景，那么试想，如果果园的水果种类爆炸性增长，那么SimpleFruitFactory这个类会不断修改而且还不符合如下原则：</p>
-</blockquote>
-<ol>
-<li>不符单一职责原则：一个类负责了各种各样水果的创建</li>
-<li>不符开闭原则：扩展品类的时候，需要修改已有的代码</li>
-</ol>
-<p>下面介绍工厂方法模式</p>
-<h3 id="二-工厂方法"><a href="#二-工厂方法" class="headerlink" title="二.工厂方法"></a>二.工厂方法</h3><p>有了如上思考，再结合实际生活，比如果园肯定会分门别类，专门种苹果的叫苹果园，以此类推香蕉园、橘子园等等，只要新增一个品种，我们就新增一个xx园</p>
-<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%9E%9C%E5%9B%AD%E5%9B%BE%E8%A7%A3.png"></p>
-<p>结构图</p>
-<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E7%BB%93%E6%9E%84%E5%9B%BE.png"></p>
-<p>如此一来，一个工厂生成一种水果，符合单一职责，新增水果种类，就新增对应的工厂类，符合开闭原则</p>
-<p>代码如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">interface FruitFactory &#123;</span><br><span class="line">    fun getFruit(): Fruit</span><br><span class="line">&#125;</span><br><span class="line">//具体实现</span><br><span class="line">class AppFactory: FruitFactory &#123;</span><br><span class="line">    override fun getFruit(): Fruit &#123;</span><br><span class="line">        return Apple()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class BananaFactory: FruitFactory &#123;</span><br><span class="line">    override fun getFruit(): Fruit &#123;</span><br><span class="line">        return Banana(&quot;采摘员一号&quot;,100)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>使用者只需要寻找对应的工厂类产生对象即可，可以发现返回值都是Fruit，也就是面向接口编程，在实际开发中很常用</p>
-<h3 id="三-总结"><a href="#三-总结" class="headerlink" title="三.总结"></a>三.总结</h3><blockquote>
-<p>通过工厂方法模式解决了简单工厂模式中不符六大原则的弊端，重点在于分门别类，也就是单一职责以及开闭原则</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wiwiyiyi.com/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F.html" data-id="clchkr8oa004t5oqhas872j27" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-简单工厂模式" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.html" class="article-date">
-  <time datetime="2021-11-23T05:19:33.000Z" itemprop="datePublished">2021-11-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%93%E9%A2%98/">设计模式专题</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.html">简单工厂模式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一-前言"><a href="#一-前言" class="headerlink" title="一.前言"></a>一.前言</h3><blockquote>
-<p>简单工厂模式不属于23中设计模式，比较基础，是为了后续做扩展方才引入</p>
-</blockquote>
-<h3 id="二-简单工厂模式场景模拟"><a href="#二-简单工厂模式场景模拟" class="headerlink" title="二.简单工厂模式场景模拟"></a>二.简单工厂模式场景模拟</h3><blockquote>
-<p>这里通过一个小例子来说明简单工厂模式，果园摘水果问题</p>
-</blockquote>
-<ol>
-<li><p>原始方式</p>
-<p>自己想吃水果，直接去果园亲自摘，简单说就是自己new一个水果实例</p>
-<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%95%A3%E5%85%BB%E6%96%B9%E5%BC%8F.png"></p>
-<p>这种方式有明显的弊端：</p>
-<ol>
-<li>使用者需要自己new一个实例</li>
-<li>使用者需要自己维护new出来的实例</li>
-<li>使用者需要了解参数的具体意义，比如这里的采摘员，如果采摘员是常量，我们还得去了解有哪些，还有价格</li>
-</ol>
-<p>综上，原始方式对于使用者来说不友好</p>
-</li>
-<li><p>简单工厂生产方式</p>
-<p>通过一个工厂类统一管理</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">object SimpleFruitFactory &#123;</span><br><span class="line">    const val APPLE = 1</span><br><span class="line">    const val BANANA = 2</span><br><span class="line">    const val ORANGE = 3</span><br><span class="line"></span><br><span class="line">    fun getFruit(fruitType: Int) = when (fruitType) &#123;</span><br><span class="line">        APPLE -&gt; Apple()</span><br><span class="line">        BANANA -&gt; Banana(&quot;采摘员一号&quot;, 100)</span><br><span class="line">        ORANGE -&gt; Orange(50)</span><br><span class="line">        else -&gt; null</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fun getApple() = Apple()</span><br><span class="line"></span><br><span class="line">    fun getBanana() = Banana(&quot;采摘员一号&quot;, 100)</span><br><span class="line"></span><br><span class="line">    fun getOrange() = Orange(50)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E7%94%9F%E4%BA%A7.png"></p>
-<p>通过工厂的方式生产水果，这里提供了两种方式，一是根据type来获取，二是直接获取</p>
-<p>优势：</p>
-<ol>
-<li>将对象的创建和使用分开</li>
-<li>将生产过程集中后，易于管理(增删改)</li>
-<li>当水果类有变动时，用户不需要手动修改代码</li>
-</ol>
-</li>
-</ol>
-<h3 id="三-总结"><a href="#三-总结" class="headerlink" title="三.总结"></a>三.总结</h3><blockquote>
-<p>简单工厂模式作为工厂模式的入门，理解这么做的好处即可，说白了就是将对象的产生集中管理</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wiwiyiyi.com/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.html" data-id="clchkr8ox006a5oqh7prravwd" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-设计模式六大原则" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%85%AD%E5%A4%A7%E5%8E%9F%E5%88%99.html" class="article-date">
-  <time datetime="2021-11-22T12:24:10.000Z" itemprop="datePublished">2021-11-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%93%E9%A2%98/">设计模式专题</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%85%AD%E5%A4%A7%E5%8E%9F%E5%88%99.html">设计模式六大原则</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一-前言"><a href="#一-前言" class="headerlink" title="一.前言"></a>一.前言</h3><blockquote>
-<p>在项目开发中，必不可少的是对设计模式的掌握，从过往的理解来看，设计模式很多时候都和接口有关，本专题以设计模式六大原则开始</p>
-</blockquote>
-<h3 id="二-常用的设计模式及其对应的类型"><a href="#二-常用的设计模式及其对应的类型" class="headerlink" title="二.常用的设计模式及其对应的类型"></a>二.常用的设计模式及其对应的类型</h3><ol>
-<li>创建型模式：静态工厂模式、工厂方法模式、抽象工厂模式、单例模式、建造者模式</li>
-<li>结构型模式：桥接模式、适配器模式、装饰器模式、代理模式、组合模式</li>
-<li>行为型模式：模板方法模式、策略模式、观察者模式、责任链模式、命令模式、访问者模式</li>
-</ol>
-<blockquote>
-<p>设计模式是解决问题的思想，重要的是思想，撸码的时候不要可以追求设计模式，否则你会半天撸不出一行码</p>
-</blockquote>
-<h3 id="三-六大原则详解"><a href="#三-六大原则详解" class="headerlink" title="三.六大原则详解"></a>三.六大原则详解</h3><ol>
-<li><p>单一职责原则：一个类负责一项职责</p>
-<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%99.png" style="zoom:30%;" />
-
-<p>单一职责原则比较简单，就是某个功能的独立化，不能将多个功能掺杂在一个类里面，如上图，UserController管理User信息，OrderController管理Order信息</p>
-</li>
-<li><p>里氏替换原则：子类可以扩展父类的功能，但不要改变父类原有的功能</p>
-<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E9%87%8C%E5%BC%8F%E6%9B%BF%E6%8D%A2%E5%8E%9F%E5%88%99.png" style="zoom:30%;" /></li>
-<li><p>依赖倒置原则：面向接口编程</p>
-<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E9%9D%A2%E5%90%91%E6%8E%A5%E5%8F%A3%E7%BC%96%E7%A8%8B%E5%8E%9F%E5%88%99.png" style="zoom:30%;" />
-
-<p>​    大白话就是撸码时用接口类型，不用子类类型，多态的体现</p>
-</li>
-<li><p>接口隔离原则：设计接口功能尽量细粒度，最小功能单元</p>
-<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99.png" style="zoom:30%;" />
-
-<p>​    如果需要给AImplChild新增方法，首先想到的是在A接口中新增，但是这样的话AImpl也会实现这个它本身     不需要的test方法，所以单独抽离一个接口让AImplChild来实现，这样的话AImplChild既可以用A也可以用    newA来接收，个人觉得不是很方便，因为如果用newA来接收，那么就无法调用A中的方法，但AImplChild    也是A接口的实现类，所以这种隔离在项目开发中很少用到，小编在实际项目见过接口间的继承，也就是说    这里newA继承A接口，那么newA的实现自然就可以调用A中的方法</p>
-</li>
-<li><p>迪米特法则：降低耦合，局部变量中，尽量不要导入新的Class类</p>
-<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%BF%AA%E7%B1%B3%E7%89%B9%E6%B3%95%E5%88%99.png" style="zoom:30%;" />
-
-<p>从类的结构上来说，没有影响，但导入了一个新的类，在类的结构上是看不到这个类的使用的，所以在撸码时尽量将局部变量设置为属性</p>
-</li>
-<li><p>开闭原则：对扩展开放，对修改关闭(比较宏观)</p>
-<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%BC%80%E9%97%AD%E5%8E%9F%E5%88%99.png" style="zoom:33%;" />
-
-<p>当一个体系需要新增功能时，应该合理添加，如上图，增加一套代码，新增接口以及实现等，就算新增的功能很简单，很少，也不能将功能添加在已有的代码中，比如添加到这里UserController中，明显不合理</p>
-</li>
-</ol>
-<h3 id="四-总结"><a href="#四-总结" class="headerlink" title="四.总结"></a>四.总结</h3><blockquote>
-<p>本文是设计模式的开章，上述介绍的原则中，后续的设计模式中重点考察单一职责原则、依赖倒置原则和开闭原则，以上的原则其实日常撸码中用得很频繁，不要刻意去往这上面靠</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wiwiyiyi.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%85%AD%E5%A4%A7%E5%8E%9F%E5%88%99.html" data-id="clchkr8pc007m5oqh8b7whuf7" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-子模块之间的通信-路由" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/%E5%AD%90%E6%A8%A1%E5%9D%97%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1-%E8%B7%AF%E7%94%B1.html" class="article-date">
-  <time datetime="2021-11-19T12:39:37.000Z" itemprop="datePublished">2021-11-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%BB%84%E4%BB%B6%E5%8C%96%E7%B3%BB%E5%88%97/">组件化系列</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/%E5%AD%90%E6%A8%A1%E5%9D%97%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1-%E8%B7%AF%E7%94%B1.html">子模块之间的通信-路由</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一-前言"><a href="#一-前言" class="headerlink" title="一.前言"></a>一.前言</h3><blockquote>
-<p>前面介绍了组件化概念以及项目如何进行组件化管理，也提到子模块之间是独立的，不能相互依赖，而app模块仅仅是一个入口，所以业务之间的通信往来也就是子模块之间的通信就显得很重要，下面将对此详解</p>
-</blockquote>
-<h3 id="二-子模块之间通信基本方案"><a href="#二-子模块之间通信基本方案" class="headerlink" title="二.子模块之间通信基本方案"></a>二.子模块之间通信基本方案</h3><blockquote>
-<p>子模块之间通信方式有广播、EventBus、类加载机制、全局Map等方式，这里只介绍类加载和全局Map的方式，前两种可以实现效果，但项目中基本不用</p>
-</blockquote>
-<ol>
-<li><p>类加载方式</p>
-<p>先说明一下为什么能够通过类加载的方式来实现子模块间的通信</p>
-<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86.png" style="zoom:33%;" />
-
-<p>可以看到dex文件中的类都是放在一起的，并不会受模块化的影响，所以就可以通过类加载的方式来通过Intent跳转</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">               val targetClazz = Class.forName(&quot;com.bytedance.register.RegisterActivity&quot;)</span><br><span class="line">               startActivity(Intent(this,targetClazz))</span><br><span class="line">           &#125; catch (e: Exception) &#123;</span><br><span class="line">               e.printStackTrace()</span><br><span class="line">           &#125;</span><br></pre></td></tr></table></figure>
-
-<p>这种方式简单可行，但缺点也很明显，难以维护，实际撸码的时候一定要确保类名没写错，否则直接崩了</p>
-</li>
-<li><p>全局Map</p>
-<p>在公共的模块中通过一个仓库存储所有的Class对象，所有模块都会依赖这个公共模块，所以在A模块中可以通过相应的信息拿到B模块中Activity的Class</p>
-<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/%E5%85%A8%E5%B1%80Map.png" style="zoom:33%;" />
-
-<p>该方式不容易出错，但是一旦类变多了，则手动添加的次数也会变多，未免显得有些麻烦，这种方式是为后续的组件路由ARouter做铺垫</p>
-<h3 id="三-Arouter路由"><a href="#三-Arouter路由" class="headerlink" title="三.Arouter路由"></a>三.Arouter路由</h3><blockquote>
-<p>以上两种方式虽然都能实现子模块间的跳转，但在项目中不适用，下面介绍阿里开源的一个路由框架Arouter</p>
-</blockquote>
-<p>这里先介绍用法，以Kotlin为例(坑比java稍多)</p>
-<ol>
-<li><p>添加依赖</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">implementation &quot;com.alibaba:arouter-api:1.5.2&quot;</span><br><span class="line">kapt &quot;com.alibaba:arouter-compiler:1.5.2&quot;</span><br></pre></td></tr></table></figure>
-
-<p>这里的版本号最好通过一个公共的配置文件进行管理，kotlin需要使用注解处理器插件<code>apply plugin: &#39;kotlin-kapt&#39;</code></p>
-</li>
-<li><p>Arouter根据组名的不同分类管理，所以需要从gradle配置中透传app模块名作为组名</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">defaultConfig &#123;</span><br><span class="line">        kapt &#123;</span><br><span class="line">            arguments &#123;arg(&quot;AROUTER_MODULE_NAME&quot;, project.getName())&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>在Application初始化时初始化ARouter</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class MyApp: Application() &#123;</span><br><span class="line">    override fun onCreate() &#123;</span><br><span class="line">        super.onCreate()</span><br><span class="line">        if (isDebug()) &#123;           // 这两行必须写在init之前，否则这些配置在init过程中将无效</span><br><span class="line">    		ARouter.openLog();     // 打印日志</span><br><span class="line">    		ARouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有					安全风险)</span><br><span class="line">			&#125;</span><br><span class="line">			ARouter.init(mApplication); // 尽可能早，推荐在Application中初始化</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>跳转原理</p>
-<p>Arouter跳转的原理和上面介绍的全局Map保存所有Activity的Class对象很类似，只不过Arouter通过APT进行处理，根据path来跳转，所以每个Activity都需要对应一个自己的path，如”/app/MainActivity”，通过@Route(path)来标识一个Activity，这里的path最好通过一个常量类管理</p>
-<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/path%E5%AD%98%E5%82%A8Class%E5%AF%B9%E8%B1%A1.png"></p>
-<p>如上图，ARouter会在编译器扫描所有使用@Route标识path的Activity，并将模块名作为组名分组管理，每个模块都会生成类似的管理类，这个管理和全局Map方式的管理方式相似，简化一下就是说，<strong>path为key，Class对象为value</strong>，编译期存储，跳转的时候根据目的Activity的path取出目的Activity的Class对象，然后跳转，这也就是路由寻址，然后跳转</p>
-</li>
-<li><p>跳转传参</p>
-<p>路由跳转的时候可以传递参数，以及序列化的对象，为了简化路由跳转，下面做了一层扩展</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fun open(path: String, build: Postcard.() -&gt; Unit = &#123;&#125;) &#123;</span><br><span class="line">        val postcard = ARouter.getInstance().build(path)</span><br><span class="line">        postcard.build()</span><br><span class="line">        postcard.navigation()</span><br><span class="line">    &#125;</span><br><span class="line">fun openWithFinish(path: String, build: Postcard.() -&gt; Unit = &#123;&#125;) &#123;</span><br><span class="line">        open(path, build)</span><br><span class="line">        finish()</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>通过函数扩展的方式让跳转时方便许多，还可做其他扩展，方便路由成功时做回调</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">open(RouterPathConstants.PERSONAL_ACTIVITY_PATH)&#123;</span><br><span class="line">                withString(&quot;name&quot;,&quot;fuck&quot;)</span><br><span class="line">                withInt(&quot;age&quot;,12)</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
-
-<p>在目的页面通过@Autowired、@JvmField同时作用于字段</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Autowired    //@Autowired(name = &quot;name&quot;)这样也是可以，下面的属性名就可以换用其他名</span><br><span class="line">  @JvmField</span><br><span class="line">   var name: String? = null</span><br><span class="line">      </span><br><span class="line">  @Autowired</span><br><span class="line">  @JvmField</span><br><span class="line">   var age: Int = 0</span><br></pre></td></tr></table></figure>
-
-<p>在目的Activity中还需进行注入</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ARouter.getInstance().inject(this)</span><br></pre></td></tr></table></figure></li>
-<li><p>路由跳转成功的回调以及从上一个页面返回携带结果值的方式</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">ARouter.getInstance().build(RouterPathConstants.PERSONAL_ACTIVITY_PATH).navigation(this,</span><br><span class="line">                    REQUEST_CODE,object: NavigationCallback&#123;</span><br><span class="line">                    override fun onFound(postcard: Postcard?) &#123;</span><br><span class="line">                        Log.e(&quot;cx&quot;,&quot;路由成功&quot;)</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    override fun onLost(postcard: Postcard?) &#123;</span><br><span class="line">                        Log.e(&quot;cx&quot;,&quot;路由失败&quot;)</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    override fun onArrival(postcard: Postcard?) &#123;</span><br><span class="line">                        Log.e(&quot;cx&quot;,&quot;跳转成功&quot;)</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    override fun onInterrupt(postcard: Postcard?) &#123;</span><br><span class="line">                        Log.e(&quot;cx&quot;,&quot;被拦截&quot;)</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                &#125;)</span><br></pre></td></tr></table></figure>
-
-<p>注：请求码一定要大于0，否则不会回到onActivityResult方法，其余步骤和startActivityForResult一样</p>
-</li>
-</ol>
-<h3 id="四-总结"><a href="#四-总结" class="headerlink" title="四.总结"></a>四.总结</h3><blockquote>
-<p>本文只介绍了路由方式的基本使用，碍于时间问题，只能后续补一篇关于ARouter的详细流程分析，并用APT手撸ARouter，其实原理很简单，上面稍微介绍了一下，APT生成相关的组管理器后，在此基础上封装一层路由寻址就好，通过反射的方式，取出组管理器，然后根据组管理器拿到目的页面的Class对象，即可跳转</p>
-</blockquote>
-<p><a target="_blank" rel="noopener" href="https://github.com/alibaba/ARouter/blob/master/README_CN.md">其余高级用法参考官网文档</a></p>
-<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/modulize_router">代码链接</a></p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wiwiyiyi.com/%E5%AD%90%E6%A8%A1%E5%9D%97%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1-%E8%B7%AF%E7%94%B1.html" data-id="clchkr8o2004c5oqhhu6xaalz" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-项目组件化入门使用" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/%E9%A1%B9%E7%9B%AE%E7%BB%84%E4%BB%B6%E5%8C%96%E5%85%A5%E9%97%A8%E4%BD%BF%E7%94%A8.html" class="article-date">
-  <time datetime="2021-11-19T02:12:15.000Z" itemprop="datePublished">2021-11-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%BB%84%E4%BB%B6%E5%8C%96%E7%B3%BB%E5%88%97/">组件化系列</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/%E9%A1%B9%E7%9B%AE%E7%BB%84%E4%BB%B6%E5%8C%96%E5%85%A5%E9%97%A8%E4%BD%BF%E7%94%A8.html">项目组件化入门使用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一-前言"><a href="#一-前言" class="headerlink" title="一.前言"></a>一.前言</h3><p>在日常的个人开发中，我们都习惯分包来管理项目，虽然简单，但包与包之间的耦合性太严重，比如将新增的一个A业务通过一个包来管理，后续不需要这个业务了，把这个包删掉后，其他包如果导入了A业务中的一些类，显然修改的地方会有点多，很不方便，而且一旦项目做大以后，包与包之间的导入关系更加复杂，对于后继者来说难以维护，下面介绍组件化的管理方式</p>
-<h3 id="二-组件化概念"><a href="#二-组件化概念" class="headerlink" title="二.组件化概念"></a>二.组件化概念</h3><blockquote>
-<p>组件化简单说就是通过Module来管理各个业务，各个Module之间不能相互依赖，从而实现高度解耦，自由拆卸和组装，可重用，分层独立化</p>
-</blockquote>
-<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/%E7%BB%84%E4%BB%B6%E5%8C%96%E7%BB%93%E6%9E%84%E5%9B%BE.png" style="zoom:40%;" />
-
-<p>如上图，每个module地位都是平等的，分包管理方式都会将业务代码放在app moudule中，并且只有这一个module，而组件化管理是将一个业务通过一个module来管理，所以app module最终也只是一个入口，形象的说就是一个app壳，<strong>每个子模块之间不能相互依赖</strong></p>
-<h3 id="三-Gradle控制测试环境和正式环境"><a href="#三-Gradle控制测试环境和正式环境" class="headerlink" title="三.Gradle控制测试环境和正式环境"></a>三.Gradle控制测试环境和正式环境</h3><p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%E5%92%8C%E6%AD%A3%E5%BC%8F%E7%8E%AF%E5%A2%83.png"></p>
-<blockquote>
-<p>通过Gradle的相关配置可以决定一个子模块能否独立运行，独立运行时就将该模块打包成apk，正式环境下，不能独立运行，只能作为lib依赖包依附于app壳</p>
-</blockquote>
-<ol>
-<li><p>gradle加载配置流程</p>
-<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/gradle%E5%8A%A0%E8%BD%BD%E6%B5%81%E7%A8%8B.png"></p>
-<p>app加载完之后就是各个子模块</p>
-</li>
-<li><p>抽离使用公共的gradle配置</p>
-<p>可以看到每个module都有相似的配置，比如编译版本、目标版本等等，随着模块的增多，为了方便管理，可以将这部分公共的配置抽离形成一个公共的gradle配置文件config.gradle</p>
-<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/%E6%8A%BD%E7%A6%BBconfig.gradle.png" style="zoom:50%;" />
-
-
-
-<p>在根项目路径下创建一个gradle配置文件，这里使用的是Groovy语法，属于java的一个分支，也有面向对象的特性，增加一个ext扩展块，通过键值对的方式保存公共配置，这个过程是死的，多写几遍就好</p>
-</li>
-<li><p>导入公共配置并使用</p>
-<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/%E5%AF%BC%E5%85%A5%E5%85%AC%E5%85%B1%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png"></p>
-<p>在项目的build.gradle中通过<code>apply from : &#39;配置文件名&#39;</code>导入，根据之前分析的gradle加载配置流程，当项目的build.gradle加载完之后，在模块的build.gradle中就能访问配置文件中的内容</p>
-<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/%E5%AD%90%E6%A8%A1%E5%9D%97%E4%B8%AD%E4%BD%BF%E7%94%A8%E5%85%AC%E5%85%B1%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E5%80%BC.png" style="zoom:40%;" />
-
-<p>在子模块中通过<code>rootProject</code>就可以访问公共配置文件中的内容，这里通过一个临时变量来保存拿到的值做一个缓存提升性能，不保存也是可以的</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">dependenciesId = [</span><br><span class="line">            stdlib :&quot;org.jetbrains.kotlin:kotlin-stdlib:1.4.32&quot;,</span><br><span class="line">            core :&#x27;androidx.core:core-ktx:1.6.0&#x27;,</span><br><span class="line">            appcompat :&#x27;androidx.appcompat:appcompat:1.3.1&#x27;,</span><br><span class="line">            material :&#x27;com.google.android.material:material:1.4.0&#x27;,</span><br><span class="line">            constraintlayout :&#x27;androidx.constraintlayout:constraintlayout:2.1.1&#x27;</span><br><span class="line">    ]</span><br><span class="line">//遍历依赖</span><br><span class="line">dependenciesId.each &#123; k, v -&gt; implementation v &#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以将implementation类型的依赖统一通过键值对来管理，然后在build.gradle的dependencies{}中遍历依赖，同理androidTestImplementation类型的依赖也可以通过此方法来管理</p>
-<p>注：对于library没有applicationID</p>
-</li>
-<li><p>控制测试环境和正式环境</p>
-<p>两种情况通过一个开关就可以控制，在ext扩展块中定义一个布尔变量即可，这里以debug和release两种包来进行区分</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">isReleased = false</span><br><span class="line">   </span><br><span class="line">  url = [</span><br><span class="line">          debug: &quot;123455555&quot;,</span><br><span class="line">          release: &quot;adkfjafkasf&quot;</span><br><span class="line">  ]</span><br></pre></td></tr></table></figure>
-
-<p>在app模块的build.gradle中进行配置，如果是debug签名，则生成debug的url，反之生成release的url</p>
-<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/buildTypes%E4%B8%AD%E7%94%9F%E6%88%90%E5%80%BC.png" style="zoom:25%;" />
-
-<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/BuildConfig.png" style="zoom:33%;" />
-
-<p>如上图所示，很显然，defaultConfig这个闭包中可以指定编译生成的BuildConfig类中的内容，可以通过以下代码生成对应的变量</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">buildConfigField(&quot;类型&quot;,&quot;变量名&quot;,对应配置文件的值)</span><br></pre></td></tr></table></figure>
-
-<p>如此一来就可以在代码中拿到配置文件中的值来判断是否是测试环境，做相应的处理</p>
-<p>接下来就是如何通过配置文件中的这个变量来决定模块是否可以独立运行，我们知道如果一个模块能够独立运行，那么它导入的插件一定是<code>&#39;com.android.application&#39;</code>，否则是<code>com.android.library&#39;</code>，所以通过一个if控制即可</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if (isReleased) &#123;</span><br><span class="line">    apply plugin: &#x27;com.android.library&#x27;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    apply plugin: &#x27;com.android.application&#x27;</span><br><span class="line">&#125;</span><br><span class="line">apply plugin: &#x27;kotlin-android&#x27;</span><br></pre></td></tr></table></figure>
-
-<p>对于这种需要动态调整的插件导入，不使用plugins { id ‘插件名’}的方式导入，kotlin模块比较坑，必须按照上述模板写，如此一来就可以通过isReleased变量控制模块是否可以独立运行了</p>
-</li>
-<li><p>正式环境，子模块依附于app壳</p>
-<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/%E4%BE%9D%E9%99%84%E4%BA%8Eapp%E5%A3%B3.png" style="zoom:33%;" /></li>
-</ol>
-<h3 id="四-测试环境下控制AndroidManifest以及测试代码"><a href="#四-测试环境下控制AndroidManifest以及测试代码" class="headerlink" title="四.测试环境下控制AndroidManifest以及测试代码"></a>四.测试环境下控制AndroidManifest以及测试代码</h3><blockquote>
-<p>在测试环境下，我们希望使用测试的Activity，这个就需要通过提供测试环境下的AndroidManifest文件以及控制文件路径来实现</p>
-</blockquote>
-<ol>
-<li><p>提供测试环境的AndroidManifest以及测试的Activity</p>
-</li>
-<li><p>在子模块的build.gradle中通过sourceSets根据是否是正式环境来指定AndroidManifest的文件路径</p>
-<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/sourceSets%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84.png" style="zoom:33%;" />
-
-<p>注：在正式打包时，测试代码不应打包，所以在sourceSets中还可以屏蔽测试代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">java &#123;</span><br><span class="line">            exclude &quot;**/debug/**&quot;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="五-总结"><a href="#五-总结" class="headerlink" title="五.总结"></a>五.总结</h3><blockquote>
-<p>将项目组件化的过程是固定的，因为涉及到一些gradle配置以及groovy语法，所以需要多写几次，此外也可以了解一下groovy语法</p>
-</blockquote>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wiwiyiyi.com/%E9%A1%B9%E7%9B%AE%E7%BB%84%E4%BB%B6%E5%8C%96%E5%85%A5%E9%97%A8%E4%BD%BF%E7%94%A8.html" data-id="clchkr8pg00825oqhafspg4k5" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-RecyclerView自定义LayoutManager实现脉脉卡片滑动" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/RecyclerView%E8%87%AA%E5%AE%9A%E4%B9%89LayoutManager%E5%AE%9E%E7%8E%B0%E8%84%89%E8%84%89%E5%8D%A1%E7%89%87%E6%BB%91%E5%8A%A8.html" class="article-date">
-  <time datetime="2021-11-15T08:04:28.000Z" itemprop="datePublished">2021-11-15</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%B3%BB%E7%BB%9F%E6%8E%A7%E4%BB%B6/">系统控件</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/RecyclerView%E8%87%AA%E5%AE%9A%E4%B9%89LayoutManager%E5%AE%9E%E7%8E%B0%E8%84%89%E8%84%89%E5%8D%A1%E7%89%87%E6%BB%91%E5%8A%A8.html">RecyclerView自定义LayoutManager实现脉脉卡片滑动</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一-前言"><a href="#一-前言" class="headerlink" title="一.前言"></a>一.前言</h3><blockquote>
-<p>前面介绍了RecyclerView的回收复用流程，熟悉源码是为了自定义做准备，很多时候可以参照系统的写法，本文会通过自定义LayoutManager来实现脉脉中的卡片滑动效果，系统提供的LayoutManager实在单一</p>
-</blockquote>
-<h3 id="二-通过绘制实现RecyclerView吸顶效果"><a href="#二-通过绘制实现RecyclerView吸顶效果" class="headerlink" title="二.通过绘制实现RecyclerView吸顶效果"></a>二.通过绘制实现RecyclerView吸顶效果</h3><blockquote>
-<p>在使用RecyclerView时，通常会关心ViewType展示多种Holder，以及Adapter的数据填充样式，对于ItemDecoration很多时候只会用来实现分割线，如果要实现个性化的绘制可以使用ItemDecoration提供的绘制方法，下面展示Demo效果</p>
-</blockquote>
-<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/RecyclerView%E5%90%B8%E9%A1%B6%E6%95%88%E6%9E%9C.gif" style="zoom:50%;" />
-
-<p>这个吸顶效果就是通过ItemDecoration提供的绘制方法实现的</p>
-<ol>
-<li><p>onDraw</p>
-<p>在绘制每个itemView之前绘制，上图中的每个跟着滑动的头部就是在此处绘制</p>
-</li>
-<li><p>onDrawOver</p>
-<p>在绘制了每个itemView之后绘制，上图中固定的顶部在此处绘制</p>
-</li>
-</ol>
-<p>注：根据以上的介绍，itemView可以覆盖onDraw绘制的内容，onDrawOver可以覆盖itemView</p>
-<p>实现思路：</p>
-<ol>
-<li><p>根据三者的覆盖关系，显然onDraw需要额外的空间来绘制头部，因此需要在<code>getItemOffsets</code>预留足够的高度，因为屏幕的宽度是固定的，所以横向预留大小缩减最终itemView的宽度，纵向预留大小增加itemView的高度，所以可以将绘制的可移动的头部归为itemView的一部分。</p>
-</li>
-<li><p>然后在onDraw方法中通过判断当前itemView是否是一个组的第一个，如果是则绘制头部，因为是第一个，所以肯定在<code>getItemOffsets</code>方法中已经预留了足够的空间用于绘制头部。</p>
-</li>
-<li><p>在onDrawOver中绘制固定的头部，这里需要额外处理的是固定顶部被推动的效果，如果当前可见的itemView是当前组的最后一个，那么下一个组的头部往上滑动时，需要固定顶部往上推出，推出这个效果其实就是通过改变固定头部的bottom即可，绘制的文本位置取决于bottom的位置，那么这个逻辑如何来确定，因为上面的itemView和绘制的头部差不多大，所以当第一个可见的itemView的下一个位置是一个组的头部时，这时候就需要改变固定头部的bottom</p>
-</li>
-<li><p>这里还有一个稍微懵的点，顶部被推出时，如何确定绘制文本的基准线，这点在自定义绘制中有提到如何让绘制的文本处于纵向居中，参考<a href="https://wiwiyiyi.com/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B1%9E%E6%80%A7%E5%92%8C%E7%BB%98%E5%88%B6%E6%96%87%E6%9C%AC.html">自定义文本绘制</a>，其实我们只需清楚什么变，什么不变，绘制的文本之所以不会按照预想的位置居中显示，就是因为需要将文本的位置向下移动一个space的距离，博客中有写到这个space的偏移，然后以此时的bottom为准向上移动到预想的中线，再向下偏移一个space即可</p>
-</li>
-<li><p>画布剪裁，这里RecyclerView设置了paddingTop，所以紫色区域是不能绘制，因此在onDrawOver中绘制文本时需要剪裁画布，剪裁画布通常都会搭配<code>save</code>和<code>restore</code>方法，在此区间内绘制是一层画布，多次剪裁就类似于PS中的图层叠加，<strong>其实剪裁画布很多时候也是为了防止过度绘制</strong>，剪裁的画布只对后面最近的一次绘制有效，而这里绘制文本后不需要再绘制其他内容，所以不需要save和restore</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">c.clipRect(left,top,right,top+bottom)</span><br><span class="line">c.drawText(text, left+Utils.dp2px(20),baseLine,mTextPaint)</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p> <a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/improving-repository/blob/master/app/src/main/java/com/bytedance/improvingroad/widget/RVTestDecoration.kt">代码链接</a></p>
-<h3 id="三-自定义LayoutManager"><a href="#三-自定义LayoutManager" class="headerlink" title="三.自定义LayoutManager"></a>三.自定义LayoutManager</h3><blockquote>
-<p>上面的内容只是一个补充，顺带复习之前的内容，下面将介绍通过自定义LayoutManager实现一个特色卡片拖动效果</p>
-</blockquote>
-<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/%E5%8D%A1%E7%89%87%E6%BB%91%E5%8A%A8.gif" style="zoom:50%;" />
-
-<p>这里每个itemView布局简单，就是通过自定LayoutManager来决定每个ItemView的摆放，这里不像LinearLayoutManager那样可以滑动，没有重写<code>scrollVerticallyBy</code>以及<code>scrollHorizontallyBy</code>，滑动效果通过TouchHelper来实现</p>
-<p>实现思路：</p>
-<ol>
-<li><p>唯一不同的是LayoutManager，具体怎么摆放，所以Adapter以及其他操作和普通使用相同</p>
-</li>
-<li><p>LayoutManager必须重写<code>onLayoutChildren</code>方法，当数据发生改变时，会重新布局，并且还需<code>detachAndScrapAttachedViews</code>处理回收，<code>recycler.getViewForPosition(i)</code>获取对应位置的View，在源码流程中可以看到</p>
-</li>
-<li><p>测量view，摆放时需要考虑通过ItemDecoration预留的间距<code>layoutDecoratedWithMargins</code></p>
-</li>
-<li><p>随着展示item的位置，itemView的大小会进行缩放以及移动，这个就靠手动调试，找出合适的值，下面贴出关键代码</p>
-</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">override fun onLayoutChildren(recycler: RecyclerView.Recycler?, state: RecyclerView.State?) &#123;</span><br><span class="line">        //ViewHolder回收复用</span><br><span class="line">        if (recycler == null) &#123;</span><br><span class="line">            Log.e(&quot;onLayoutChildren&quot;, &quot;recycler is null&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">        detachAndScrapAttachedViews(recycler!!)</span><br><span class="line"></span><br><span class="line">        val itemCount = itemCount</span><br><span class="line">        val bottomPos = if (itemCount &lt; CardConfig.MAX_SHOW_COUNT) &#123;</span><br><span class="line">            0</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            itemCount - CardConfig.MAX_SHOW_COUNT</span><br><span class="line">        &#125;</span><br><span class="line">        for (i in bottomPos until itemCount) &#123;</span><br><span class="line">            val view = recycler.getViewForPosition(i)</span><br><span class="line">            addView(view)</span><br><span class="line"></span><br><span class="line">            measureChildWithMargins(view, 0, 0)</span><br><span class="line">            val widthSpace = width - getDecoratedMeasuredWidth(view)</span><br><span class="line">            val heightSpace = height - getDecoratedMeasuredHeight(view)</span><br><span class="line"></span><br><span class="line">            // 布局 ---draw -- onDraw ,onDrawOver, onLayout</span><br><span class="line">            layoutDecoratedWithMargins(</span><br><span class="line">                view, widthSpace / 2, heightSpace / 2,</span><br><span class="line">                widthSpace / 2 + getDecoratedMeasuredWidth(view),</span><br><span class="line">                heightSpace / 2 + getDecoratedMeasuredHeight(view)</span><br><span class="line">            )</span><br><span class="line">            var level = itemCount - i -1</span><br><span class="line">            if (level &gt; 0) &#123;</span><br><span class="line">                if (level &lt; CardConfig.MAX_SHOW_COUNT -1) &#123;</span><br><span class="line">                    view.translationY = CardConfig.TRANS_Y_GAP * level</span><br><span class="line">                    view.scaleX = 1-CardConfig.SCALE_GAP*level</span><br><span class="line">                    view.scaleY = 1-CardConfig.SCALE_GAP*level</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    view.translationY = CardConfig.TRANS_Y_GAP * (level - 1)</span><br><span class="line">                    view.scaleX = 1-CardConfig.SCALE_GAP*(level-1)</span><br><span class="line">                    view.scaleY = 1-CardConfig.SCALE_GAP*(level-1)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>个人感觉自定义LayoutManager的关键在于知道调用哪个方法进行回收，以及复用时通过哪个方法拿到缓存的View，剩余的操作在于measure以及layout，为了展示出自定义LayoutManager的优势，定义摆放规则会有些思维瓶颈，另外就是定义TouchHelper的CallBack用于在滑动时重绘itemView，只要处于滑动或拖动的过程，onDraw就会被一直调用，刷新绘制</p>
-</blockquote>
-<h3 id="四-总结"><a href="#四-总结" class="headerlink" title="四.总结"></a>四.总结</h3><blockquote>
-<p>先对自定义LayoutManager做一个小结，类比LinearLayoutManager，线性布局，至上而下，而这里是将所有卡片重叠在了一起，从Z轴的角度来说是自里向外进行摆放，并且越靠近外面，卡片就越大，这就是规则。本篇文章比较偏应用，聚焦点在绘制上面，在滑动事件处理时，肯定会重新绘制，这是需要关注的一点，这里的TouchHelper是ItemDecoration的子类，在onDraw时根据滑动距离来影响后面view的大小，详情可以看代码</p>
-</blockquote>
-<p><a target="_blank" rel="noopener" href="https://gitee.com/wiwiyiyi/improving-repository/commit/ba7572b130b2814853d00b187b2bd1fc9477388d">代码链接</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wiwiyiyi.com/RecyclerView%E8%87%AA%E5%AE%9A%E4%B9%89LayoutManager%E5%AE%9E%E7%8E%B0%E8%84%89%E8%84%89%E5%8D%A1%E7%89%87%E6%BB%91%E5%8A%A8.html" data-id="clchkr8n2001q5oqh1y2ph2ob" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" rel="tag">系统高级UI</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-RecyclerView回收与复用源码分析" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/RecyclerView%E5%9B%9E%E6%94%B6%E4%B8%8E%E5%A4%8D%E7%94%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.html" class="article-date">
-  <time datetime="2021-11-15T08:03:27.000Z" itemprop="datePublished">2021-11-15</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%B3%BB%E7%BB%9F%E6%8E%A7%E4%BB%B6/">系统控件</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/RecyclerView%E5%9B%9E%E6%94%B6%E4%B8%8E%E5%A4%8D%E7%94%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.html">RecyclerView回收与复用源码分析</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一-前言"><a href="#一-前言" class="headerlink" title="一.前言"></a>一.前言</h3><blockquote>
-<p>RecyclerView可以说是项目中使用频度很高的一个系统控件，相比于ListView，它最大优势就是常听到的四级缓存，ListView只有两级缓存(缓存屏幕中看到的、屏幕外的)，下面通过源码流程来分析RecyclerView的回收复用机制</p>
-</blockquote>
-<h3 id="二-回收复用的入口"><a href="#二-回收复用的入口" class="headerlink" title="二.回收复用的入口"></a>二.回收复用的入口</h3><blockquote>
-<p>回收有两个入口，一是在布局onLayout时，二是在fill填充itemView时，下面通过流程图的方式来梳理</p>
-</blockquote>
-<p>①onLayout</p>
-<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/onLayout%E5%9B%9E%E6%94%B6%E6%B5%81%E7%A8%8B.png"></p>
-<ol>
-<li><p>因为RecyclerView的具体onLayout是交给具体的LayoutManager来实现的，所以回收复用的具体操作是由LayoutManager来完成，在自定义LayoutManager时需考虑这一点，参考系统提供的LinearLayoutManager</p>
-</li>
-<li><p>上图的两个重心是LinearLayoutManager中回收入口的分叉和Recycler中的实际回收情况，而我们在自定义LayoutManager时，回收Holder只需要通过<code>detachAndScrapAttachedViews</code>这一个方法即可，具体是如何进行回收的我们不关心，但需要知道有哪几种，因为这对应了几种缓存</p>
-</li>
-<li><p>我们在Recycler这一层来划分缓存方式：</p>
-<ol>
-<li>mChangedScrap(和动画有关)</li>
-<li>mAttachedScrap(缓存以及展示出来的item)</li>
-<li>mCachedViews(类似于一个高速缓存，默认大小是2)</li>
-<li>mViewCacheExtension自定义缓存(在复用的时候会介绍)</li>
-<li>RecyclerPool缓存池</li>
-</ol>
-<p>很多博客说的都是四级缓存，默认没有将与动画有关的mChangedScrap考虑在内</p>
-</li>
-<li><p>下面介绍一下缓存池和mCachedViews的关系</p>
-<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/%E7%BC%93%E5%AD%98%E6%B1%A0%E4%B8%8E%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98.png" style="zoom:40%;" />
-
-<p>当回收缓存一个holder时，因为mCachedViews的大小为2，所以一旦超过这个大小，就得将头部的holder移入缓存池，1号位前           移，然后将holder添加到末尾，所以缓存池中的Holder都来自mCachedViews，另外就是在添加到缓存池前holder中的数据会被清空，并且mCachedViews只能存同一种holder，即viewtype相同，如果有变化，则直接存入缓存池，并且缓存池中的每一中type只能存5个，通过一个SparseArray来管理，键是viewtype，值是对应的holder数组</p>
-<p>②fill</p>
-</li>
-</ol>
-<p>​    <img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/fill%E7%9A%84%E5%9B%9E%E6%94%B6%E6%B5%81%E7%A8%8B.png" style="zoom: 75%;" /></p>
-<p>​    在fill中只考虑了recycleViewHolderInternal这种情况，滑动过程中会触发</p>
-<h3 id="三-复用入口"><a href="#三-复用入口" class="headerlink" title="三.复用入口"></a>三.复用入口</h3><blockquote>
-<p>上面通过回收流程的分析，了解到了有几种缓存，下面同样通过流程图的方式来理解复用流程，入口同样有两个，布局时以及滑动时</p>
-</blockquote>
-<p>①onLayout</p>
-<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/onLayout%E5%A4%8D%E7%94%A8%E6%B5%81%E7%A8%8B.png"></p>
-<p>上面的重点在于<code>tryGetViewHolderForPositionByDeadline</code>获取缓存的holder，可能的复用过程通过函数的命名也就知道是从哪个缓存中取出了</p>
-<p>@onTouchEvent</p>
-<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/onTouch%E5%A4%8D%E7%94%A8%E5%85%A5%E5%8F%A3.png"></p>
-<p>对比onLayout的入口，其实很相似，都是在fill中进行复用</p>
-<h3 id="四-总结"><a href="#四-总结" class="headerlink" title="四.总结"></a>四.总结</h3><p>分多级缓存就是为了提高复用效率，这里暂且谈常规的缓存，自定义缓存几乎不会用到，系统做回收的时候也没有考虑到自定的</p>
-<ol>
-<li>从mAttachedScrap、mChangedScrap、mCachedViews中取出的holder不需要再绑定数据</li>
-<li>从RecyclerPool取出的holder需要重新绑定数据</li>
-<li>mAttachedScrap、mChangedScrap缓存的是屏幕看到的holder</li>
-</ol>
-<blockquote>
-<p>小编最初就被这多级缓存搞过心态，忘记了需要重新绑定数据，上面的流程多走几遍倒也有些印象，需要知道大致会经历哪些流程，如何进行回收复用的</p>
-</blockquote>
-<h3 id="五-参考文章"><a href="#五-参考文章" class="headerlink" title="五.参考文章"></a>五.参考文章</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/yzpbright/article/details/108953435">https://blog.csdn.net/yzpbright/article/details/108953435</a></p>
-<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6854573221702795277">https://juejin.cn/post/6854573221702795277</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wiwiyiyi.com/RecyclerView%E5%9B%9E%E6%94%B6%E4%B8%8E%E5%A4%8D%E7%94%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.html" data-id="clchkr8mz001i5oqh0m0uhdjn" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" rel="tag">系统高级UI</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Android关于UI布局的小总结" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/Android%E5%85%B3%E4%BA%8EUI%E5%B8%83%E5%B1%80%E7%9A%84%E5%B0%8F%E6%80%BB%E7%BB%93.html" class="article-date">
-  <time datetime="2021-07-22T07:46:35.000Z" itemprop="datePublished">2021-07-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/">个人成长</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Android%E5%85%B3%E4%BA%8EUI%E5%B8%83%E5%B1%80%E7%9A%84%E5%B0%8F%E6%80%BB%E7%BB%93.html">Android关于UI布局的小总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="项目常用三种布局详解"><a href="#项目常用三种布局详解" class="headerlink" title="项目常用三种布局详解"></a>项目常用三种布局详解</h1><h2 id="一-背景"><a href="#一-背景" class="headerlink" title="一.背景"></a>一.背景</h2><p>今日在做UI布局方面的修改，相信很多新人在过往一般都是独立开发小项目，所以为了方便都习惯用<code>ConstraintLayout</code>，因而其他三种布局接近边缘化，所以特地总结此篇文章以便快速上手公司项目的布局优化任务</p>
-<h2 id="二-6种布局基础"><a href="#二-6种布局基础" class="headerlink" title="二.6种布局基础"></a>二.6种布局基础</h2><h3 id="FrameLayout"><a href="#FrameLayout" class="headerlink" title="FrameLayout"></a>FrameLayout</h3><p>帧布局是最简单的，特点就是，内部的控件不能指定摆放的位置，只能重叠在左上角</p>
-<p><strong>优点：FrameLayout效率最高(体现在绘制速度上)，占用内存也是三者中最少的</strong></p>
-<p>所以能使用FrameLayout就尽量使用FrameLayout作为外层容器，这也是布局优化的一个技巧</p>
-<p>不能使用FrameLayout的场景：如果在代码中有设置布局参数(LayoutParam)，就不能将xml中的布局容器进行替换，因为设置布局参数对FrameLayout无效，也就是上面所提到的内部控件无法制定摆放位置</p>
-<p>此外FrameLayout有的时候也会被用作占位符，通常搭配Fragment使用，确定Fragment在Activity视图中的位置</p>
-<h3 id="LinearLayout"><a href="#LinearLayout" class="headerlink" title="LinearLayout"></a>LinearLayout</h3><p>线性布局分横向和纵向，通过<code>orientation</code>属性来设置布局方向(horizontal|vertical)，默认是horizontal</p>
-<p>LinearLayout常用的属性分为两部分解说：</p>
-<p>设置容器本身的属性：</p>
-<ul>
-<li><p>orientation：设置控件摆放方向，依次按纵向或者横向排列</p>
-</li>
-<li><p>gravity：设置控件在容器内部的位置-&gt;left、top、right、bottom、center、center_horizontal、center_vertical</p>
-<p>可以通过|连接两个方位，如bottom|left，即底部靠左</p>
-</li>
-<li><p>padding：设置控件与容器内壁的距离</p>
-</li>
-</ul>
-<p>设置控件本身的属性：</p>
-<ul>
-<li>layout_weight：给控件分配权重，用于按照比例瓜分容器空间(控件的高度或者宽度都为0)</li>
-<li>layout_gravity：设置控件在容器中的摆放方位，和gravity值相同，但靠左还是靠右因orientation而异，可以自己试一试，会因为布局方向而没有效果</li>
-<li>layout_margin：设置控件与四周的距离</li>
-</ul>
-<p>常用的属性如上，很多时候会将内和外两种相对属性弄混，所以我就分容器和控件两种类别，但它们其实是相对的，因为控件内部还会有内容，比如TextView，文本相对于控件来说是内部内容，所以可以根据以上两种分类联合记忆</p>
-<p><strong>重点想说一下padding和margin两种属性，一个是内，一个是外</strong></p>
-<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%AE%9E%E4%B9%A0%E6%88%90%E9%95%BF%E9%9B%86/padding%E5%92%8Cmargin.png" style="zoom:60%;" />
-
-<p>可以看到上图，红色箭头是设置layout_margin，黑色箭头是设置padding，对比可以发现，padding区域是属于控件本身，而margin部分属于容器，如果要实现一段间距，并且扩大控件的触摸事件响应范围，我们可以用padding代替margin，如果说上面的控件是一个button，而你想扩大button的点击区域，不改变button上的文本距离外部容器的距离，那么我们可以让button填充满整个容器，那么之前的padding应该加上外部的margin，如下图</p>
-<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%AE%9E%E4%B9%A0%E6%88%90%E9%95%BF%E9%9B%86/padding%E6%9B%BF%E6%8D%A2.png" style="zoom:60%;" />
-
-<p>对比很明显，黄色区域的点击范围扩大了，可以自己写一个小demo试一试，实际上面的控件通常是一个容器，content才是控件</p>
-<p>另外，如果上面的控件没有设置margin，而是外层的容器设置了padding，这其实是等价的，因为空白区域都属于外层容器</p>
-<h3 id="RelativeLayout"><a href="#RelativeLayout" class="headerlink" title="RelativeLayout"></a>RelativeLayout</h3><p>线性布局提供了布局方案：纵向或者横向，相对布局需要我们自己确定布局方案，灵活性更大</p>
-<p>容器本身独有的属性：</p>
-<ul>
-<li>ignoreGravity：忽略某个控件的布局方案，默认放在容器左上角</li>
-</ul>
-<p>设置布局方案的属性：</p>
-<ol>
-<li><p>相对于父容器的方位</p>
-<ul>
-<li><p>android: layout_alignParentLeft：靠左边显示。</p>
-</li>
-<li><p>android: layout_alignParentTop：靠顶部显示。</p>
-</li>
-<li><p>android: layout_alignParentRight：靠右边显示。</p>
-</li>
-<li><p>android: layout_alignParentBottom：靠底部显示。</p>
-</li>
-<li><p>android: layout_centerInParent：居中显示。</p>
-</li>
-<li><p>android: layout_centerHorizontal：水平居中显示。</p>
-</li>
-<li><p>android: layout_centerVertical：垂直居中显示。</p>
-</li>
-</ul>
-</li>
-<li><p>相对于其他view的方位</p>
-<ul>
-<li><p>android: layout_toLeftOf：在指定view的左边</p>
-</li>
-<li><p>android: layout_toRightOf：在指定view的右边</p>
-</li>
-<li><p>android: layout_above：在指定view的上方</p>
-</li>
-<li><p>android: layout_below：在指定view的下方</p>
-</li>
-</ul>
-</li>
-<li><p>相对于其他view的对齐方式</p>
-<ul>
-<li><p>android: layout_alignBaseline：和指定view的baseline 对齐。</p>
-</li>
-<li><p>android: layout_alignLeft：和指定view的左边对齐</p>
-</li>
-<li><p>android: layout_alignTop：和指定view的顶部对齐</p>
-</li>
-<li><p>android: layout_alignRight：和指定view的右边对齐</p>
-</li>
-<li><p>android: layout_alignBottom：和指定view的底部对齐</p>
-</li>
-</ul>
-</li>
-</ol>
-<p>Tip：如果默认方向是从左往右，start和left等价，end和right等价，可以进行替换，因为我们通常默认从左到右，而像阿拉伯语是从右到左。相对于view的布局方案，所指定的view和摆放的view需要<strong>位于同一个RelativeLayout中</strong>，因为会存在布局的嵌套</p>
-<p>将相对于父容器的位置和相对于其他view的位置以及margin和top等组合在一起就能确定view的摆放位置了</p>
-<h3 id="TableLayout"><a href="#TableLayout" class="headerlink" title="TableLayout"></a>TableLayout</h3><p>表格布局：通常用在类似于表单的区域，比较好管理行列结构以及布局</p>
-<ul>
-<li>TableRow：控制一行，每添加一个view就增加一列</li>
-<li>layout_column：作用在每行中的view上，整个表格的列数是以最多的那一行为准，该属性可以控制view摆放在哪一行</li>
-<li>layout_span：设置view占几列，默认值是1</li>
-</ul>
-<h3 id="GridLayout"><a href="#GridLayout" class="headerlink" title="GridLayout"></a>GridLayout</h3><p>网格布局：比表格布局更加灵活</p>
-<p>设置容器本身的属性：</p>
-<ul>
-<li>columnCount：设置最大的列数</li>
-<li>rowCount：设置最大的行数</li>
-<li>orientation：子view排列方向，horizontal：一行一行的添加，当view数量超出最大范围时，会增加行数 vertical：一列一列添加，当超出数量范围时，会增加列数</li>
-<li>alignmentMode：alignBounds：对齐子视图边界 alignMargins ：对齐子视图内容，默认值</li>
-<li>useDefaultMargins：没有指定视图的布局参数时使用默认的边距，默认值是false</li>
-</ul>
-<p>设置view的摆放属性：</p>
-<ul>
-<li>layout_column：设置view摆放在第几列(从0开始)</li>
-<li>layout_row：设置view摆放在第几行(从0开始)</li>
-<li>layout_columnSpan：指定view占据的列数</li>
-<li>layout_rowSpan：指定view占据的行数</li>
-<li>layout_gravity：设置view在容器中的位置，主要搭配跨列和跨行的时候使用，否则没有效果</li>
-<li>layout_columnWeight：列权重</li>
-<li>layout_rowWeight：行权重</li>
-</ul>
-<h3 id="AbsoluteLayout"><a href="#AbsoluteLayout" class="headerlink" title="AbsoluteLayout"></a>AbsoluteLayout</h3><p>绝对布局：通过设置view的x和y坐标来确定view的摆放位置，显然会出现屏幕适配的问题，发生拉伸等等，完全不能使用</p>
-<h2 id="三-UI绘制的流程解析"><a href="#三-UI绘制的流程解析" class="headerlink" title="三.UI绘制的流程解析"></a>三.UI绘制的流程解析</h2><p>首先说一下Window、WindowManager、ViewRootImpl、DecorView</p>
-<ol>
-<li><p>Window：一个抽象基类，它提供了一系列窗口的方法，比如设置背景，标题等等，而它的唯一实现类则是PhoneWindow</p>
-</li>
-<li><p>WindowManager：窗口管理器，每一个窗口管理器都与一个的窗口显示绑定，可以对view进行增删操作</p>
-<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%AE%9E%E4%B9%A0%E6%88%90%E9%95%BF%E9%9B%86/windowmanager.webp" style="zoom:67%;" />
-
-<p>Activity内部保存有一个WindowManager的实例，在Activity被创建的时候进行的初始化，同时也保存了Window的实例</p>
-</li>
-<li><p>ViewRootImpl是一个视图层次结构的顶部，它实现了View与WindowManager之间所需要的协议，作为WindowManagerGlobal中大部分的内部实现，对view的操作最终是通过ViewRootImpl提供的方法实现的，</p>
-</li>
-<li><p>DecorView：顶级视图，继承与FramentLayout，setContentView则是添加在它里面的@id/content里</p>
-</li>
-</ol>
-<p>上述和Activity创建的关系：</p>
-<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E7%90%86%E8%AE%BA%E8%AF%BE%E5%AD%A6%E4%B9%A0/Activity%E5%90%AF%E5%8A%A8.png" style="zoom:70%;" />
-
-<p>ViewRootImpl负责完成view的测量、布局、绘制</p>
-<p>UI的绘制流程包括：measure、layout、draw，都是从根视图递归遍历view树进行的，下面以measure流程为例进行说明</p>
-<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%AE%9E%E4%B9%A0%E6%88%90%E9%95%BF%E9%9B%86/measure%E6%B5%81%E7%A8%8B.png"></p>
-<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%AE%9E%E4%B9%A0%E6%88%90%E9%95%BF%E9%9B%86/%E5%B1%82%E7%BA%A7%E5%88%86%E6%9E%90.png" style="zoom:50%;" />
-
-<p>顺着箭头的方向进行遍历测量，最后回退确定各个容器的尺寸</p>
-<p><strong>不论是采用哪种布局，都会对view测量两次，第一次是layoutRequested为true，第二次是因为是第一次加载视图，mFirst和mStopped都为true，可以通过断点调试发现调用栈</strong></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wiwiyiyi.com/Android%E5%85%B3%E4%BA%8EUI%E5%B8%83%E5%B1%80%E7%9A%84%E5%B0%8F%E6%80%BB%E7%BB%93.html" data-id="clchkr8mf000e5oqh5zki2eto" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/page/4/">&amp;laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/6/">下一页 &amp;raquo;</a>
-  </nav>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-UI%E7%B3%BB%E5%88%97/">Android UI系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%AE%9E%E6%88%98%E9%9B%86/">Android实战集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E9%9B%86/">Android开发基础集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E5%88%97/">Android自定义系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Android设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E8%BF%9B%E9%98%B6/">Android进阶</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E9%87%8D%E8%A6%81%E7%BB%84%E4%BB%B6/">Android重要组件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E9%A1%B9%E7%9B%AE/">Android项目</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E8%BF%9B%E9%98%B6/">Java进阶</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/html%E5%AD%A6%E4%B9%A0/">html学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/">个人成长</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%9B%E6%89%A3%E9%A2%98%E8%A7%A3/">力扣题解</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8E%92%E5%BA%8F%E9%9B%86/">排序集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8%E4%B8%8E%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/">注解处理器与开源框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E6%8E%A7%E4%BB%B6/">系统控件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%84%E4%BB%B6%E5%8C%96%E7%B3%BB%E5%88%97/">组件化系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%93%E9%A2%98/">设计模式专题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E9%9B%86/">问题总结集</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag">Android常用琐碎知识点</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E5%BC%80%E5%8F%91%E5%B0%8FDemo/" rel="tag">Android开发小Demo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E9%AB%98%E7%BA%A7UI/" rel="tag">Android高级UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" rel="tag">hexo博客搭建问题总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93/" rel="tag">发布开源库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/" rel="tag">学年设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" rel="tag">算法篇</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" rel="tag">系统高级UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" rel="tag">网络开源库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Android%E5%B8%B8%E7%94%A8%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" style="font-size: 18px;">Android常用琐碎知识点</a> <a href="/tags/Android%E5%BC%80%E5%8F%91%E5%B0%8FDemo/" style="font-size: 10px;">Android开发小Demo</a> <a href="/tags/Android%E9%AB%98%E7%BA%A7UI/" style="font-size: 16px;">Android高级UI</a> <a href="/tags/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" style="font-size: 10px;">hexo博客搭建问题总结</a> <a href="/tags/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93/" style="font-size: 10px;">发布开源库</a> <a href="/tags/%E5%AD%A6%E5%B9%B4%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">学年设计</a> <a href="/tags/%E7%AE%97%E6%B3%95%E7%AF%87/" style="font-size: 20px;">算法篇</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7UI/" style="font-size: 12px;">系统高级UI</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93/" style="font-size: 14px;">网络开源库</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/%E8%87%AA%E5%AE%9A%E4%B9%89PhotoView%E5%A4%84%E7%90%86%E6%89%8B%E5%8A%BF.html">自定义PhotoView处理手势</a>
-          </li>
-        
-          <li>
-            <a href="/%E9%A6%96%E6%AC%A1%E5%BC%80%E6%BA%90%E5%BA%93-%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E6%96%87%E5%AD%97%E6%B8%90%E5%8F%98%E6%95%88%E6%9E%9C.html">首次开源库-不一样的文字渐变效果</a>
-          </li>
-        
-          <li>
-            <a href="/CoordinatorLayout%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89Behavior%E5%85%A5%E9%97%A8.html">CoordinatorLayout原理分析以及自定义Behavior入门</a>
-          </li>
-        
-          <li>
-            <a href="/NestedScrollView%E5%B5%8C%E5%A5%97%E6%BB%91%E5%8A%A8%E5%8E%9F%E7%90%86.html">NestedScrollView嵌套滑动原理</a>
-          </li>
-        
-          <li>
-            <a href="/APT-javapoet%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B.html">APT-javapoet详细教程</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2023 EngineerOfFinger<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-    <a href="/%20%7C%7C%20fas%20fa-home" class="mobile-nav-link">主页</a>
-  
-    <a href="/archives/%20%7C%7C%20fas%20fa-archive" class="mobile-nav-link">时间轴</a>
-  
-    <a href="/tags/%20%7C%7C%20fas%20fa-tags" class="mobile-nav-link">标签</a>
-  
-    <a href="/categories/%20%7C%7C%20fas%20fa-folder-open" class="mobile-nav-link">分类</a>
-  
-    <a href="/link/%20%7C%7C%20fas%20fa-link" class="mobile-nav-link">友链</a>
-  
-</nav>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-  </div>
-</body>
-</html>
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
