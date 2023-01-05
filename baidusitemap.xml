@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://wiwiyiyi.com/%E5%AF%B9Kotlin%E5%92%8CJava%E4%B8%AD%E6%B3%9B%E5%9E%8B%E7%9A%84%E5%9B%9E%E9%A1%BE.html</loc>
+    <lastmod>2023-01-05</lastmod>
+  </url>
+  <url>
+    <loc>https://wiwiyiyi.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-MVVM.html</loc>
+    <lastmod>2023-01-05</lastmod>
+  </url>
+  <url>
+    <loc>https://wiwiyiyi.com/%E8%87%AA%E5%AE%9A%E4%B9%89Dialog%E8%AF%A6%E8%A7%A3.html</loc>
+    <lastmod>2023-01-05</lastmod>
+  </url>
+  <url>
+    <loc>https://wiwiyiyi.com/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93-Okhttp.html</loc>
+    <lastmod>2023-01-05</lastmod>
+  </url>
+  <url>
+    <loc>https://wiwiyiyi.com/%E7%BD%91%E7%BB%9C%E9%98%B6%E6%AE%B5%E5%B0%8FDemo-%E7%AE%80%E6%98%93%E7%94%BB%E5%BB%8A.html</loc>
+    <lastmod>2023-01-05</lastmod>
+  </url>
+  <url>
+    <loc>https://wiwiyiyi.com/ViewPager2%E7%9A%84%E4%BD%BF%E7%94%A8.html</loc>
+    <lastmod>2023-01-05</lastmod>
+  </url>
+  <url>
+    <loc>https://wiwiyiyi.com/APK%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B%E4%BB%A5%E5%8F%8A%E7%98%A6%E8%BA%AB.html</loc>
+    <lastmod>2023-01-05</lastmod>
+  </url>
+  <url>
+    <loc>https://wiwiyiyi.com/%E9%9B%86%E6%88%90%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BE%E6%80%BB%E7%BB%93.html</loc>
+    <lastmod>2023-01-05</lastmod>
+  </url>
+  <url>
+    <loc>https://wiwiyiyi.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-MVC.html</loc>
+    <lastmod>2023-01-05</lastmod>
+  </url>
+  <url>
+    <loc>https://wiwiyiyi.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-MVP.html</loc>
+    <lastmod>2023-01-05</lastmod>
+  </url>
+  <url>
+    <loc>https://wiwiyiyi.com/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93-Retrofit.html</loc>
+    <lastmod>2023-01-05</lastmod>
+  </url>
+  <url>
+    <loc>https://wiwiyiyi.com/%E4%BB%8A%E6%97%A5%E6%89%93%E5%8D%A1APP.html</loc>
+    <lastmod>2023-01-05</lastmod>
+  </url>
+  <url>
     <loc>https://wiwiyiyi.com/%E9%A6%96%E6%AC%A1%E5%BC%80%E6%BA%90%E5%BA%93-%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E6%96%87%E5%AD%97%E6%B8%90%E5%8F%98%E6%95%88%E6%9E%9C.html</loc>
     <lastmod>2023-01-04</lastmod>
   </url>
@@ -10,10 +58,6 @@
   </url>
   <url>
     <loc>https://wiwiyiyi.com/%E9%A1%B9%E7%9B%AE%E7%BB%84%E4%BB%B6%E5%8C%96%E5%85%A5%E9%97%A8%E4%BD%BF%E7%94%A8.html</loc>
-    <lastmod>2023-01-04</lastmod>
-  </url>
-  <url>
-    <loc>https://wiwiyiyi.com/%E9%9B%86%E6%88%90%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BE%E6%80%BB%E7%BB%93.html</loc>
     <lastmod>2023-01-04</lastmod>
   </url>
   <url>
@@ -85,23 +129,7 @@
     <lastmod>2023-01-04</lastmod>
   </url>
   <url>
-    <loc>https://wiwiyiyi.com/%E8%87%AA%E5%AE%9A%E4%B9%89Dialog%E8%AF%A6%E8%A7%A3.html</loc>
-    <lastmod>2023-01-04</lastmod>
-  </url>
-  <url>
-    <loc>https://wiwiyiyi.com/%E7%BD%91%E7%BB%9C%E9%98%B6%E6%AE%B5%E5%B0%8FDemo-%E7%AE%80%E6%98%93%E7%94%BB%E5%BB%8A.html</loc>
-    <lastmod>2023-01-04</lastmod>
-  </url>
-  <url>
     <loc>https://wiwiyiyi.com/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93-Volley.html</loc>
-    <lastmod>2023-01-04</lastmod>
-  </url>
-  <url>
-    <loc>https://wiwiyiyi.com/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93-Retrofit.html</loc>
-    <lastmod>2023-01-04</lastmod>
-  </url>
-  <url>
-    <loc>https://wiwiyiyi.com/%E7%BD%91%E7%BB%9C%E5%BC%80%E6%BA%90%E5%BA%93-Okhttp.html</loc>
     <lastmod>2023-01-04</lastmod>
   </url>
   <url>
@@ -133,11 +161,11 @@
     <lastmod>2023-01-04</lastmod>
   </url>
   <url>
-    <loc>https://wiwiyiyi.com/%E6%A1%B6%E6%8E%92%E5%BA%8F.html</loc>
+    <loc>https://wiwiyiyi.com/%E6%B1%82%E8%A7%A3%E5%A4%9A%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%89%8D%E7%BC%80.html</loc>
     <lastmod>2023-01-04</lastmod>
   </url>
   <url>
-    <loc>https://wiwiyiyi.com/%E6%B1%82%E8%A7%A3%E5%A4%9A%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%89%8D%E7%BC%80.html</loc>
+    <loc>https://wiwiyiyi.com/%E6%A1%B6%E6%8E%92%E5%BA%8F.html</loc>
     <lastmod>2023-01-04</lastmod>
   </url>
   <url>
@@ -229,11 +257,11 @@
     <lastmod>2023-01-04</lastmod>
   </url>
   <url>
-    <loc>https://wiwiyiyi.com/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93%E5%88%B0MavenCentral.html</loc>
+    <loc>https://wiwiyiyi.com/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F.html</loc>
     <lastmod>2023-01-04</lastmod>
   </url>
   <url>
-    <loc>https://wiwiyiyi.com/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F.html</loc>
+    <loc>https://wiwiyiyi.com/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93%E5%88%B0MavenCentral.html</loc>
     <lastmod>2023-01-04</lastmod>
   </url>
   <url>
@@ -273,10 +301,6 @@
     <lastmod>2023-01-04</lastmod>
   </url>
   <url>
-    <loc>https://wiwiyiyi.com/%E4%BB%8A%E6%97%A5%E6%89%93%E5%8D%A1APP.html</loc>
-    <lastmod>2023-01-04</lastmod>
-  </url>
-  <url>
     <loc>https://wiwiyiyi.com/%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6%E4%BB%A5%E5%8F%8A%E6%BB%91%E5%8A%A8%E5%86%B2%E7%AA%81%E7%9A%84%E5%A4%84%E7%90%86.html</loc>
     <lastmod>2023-01-04</lastmod>
   </url>
@@ -306,10 +330,6 @@
   </url>
   <url>
     <loc>https://wiwiyiyi.com/ViewPager%E5%AE%9E%E7%8E%B0Banner%E8%BD%AE%E6%92%AD%E5%9B%BE%E6%95%88%E6%9E%9C.html</loc>
-    <lastmod>2023-01-04</lastmod>
-  </url>
-  <url>
-    <loc>https://wiwiyiyi.com/ViewPager2%E7%9A%84%E4%BD%BF%E7%94%A8.html</loc>
     <lastmod>2023-01-04</lastmod>
   </url>
   <url>
@@ -353,11 +373,11 @@
     <lastmod>2023-01-04</lastmod>
   </url>
   <url>
-    <loc>https://wiwiyiyi.com/Java%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97%E5%92%8C%E7%BA%BF%E7%A8%8B%E6%B1%A0.html</loc>
+    <loc>https://wiwiyiyi.com/MVVM%E3%80%81LiveData%E3%80%81DataBinding%E7%BB%BC%E5%90%88%E5%B0%8Fdemo.html</loc>
     <lastmod>2023-01-04</lastmod>
   </url>
   <url>
-    <loc>https://wiwiyiyi.com/MVVM%E3%80%81LiveData%E3%80%81DataBinding%E7%BB%BC%E5%90%88%E5%B0%8Fdemo.html</loc>
+    <loc>https://wiwiyiyi.com/Java%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97%E5%92%8C%E7%BA%BF%E7%A8%8B%E6%B1%A0.html</loc>
     <lastmod>2023-01-04</lastmod>
   </url>
   <url>
@@ -365,11 +385,11 @@
     <lastmod>2023-01-04</lastmod>
   </url>
   <url>
-    <loc>https://wiwiyiyi.com/Handler%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.html</loc>
+    <loc>https://wiwiyiyi.com/Glide%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%BA%93.html</loc>
     <lastmod>2023-01-04</lastmod>
   </url>
   <url>
-    <loc>https://wiwiyiyi.com/Glide%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%BA%93.html</loc>
+    <loc>https://wiwiyiyi.com/Handler%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.html</loc>
     <lastmod>2023-01-04</lastmod>
   </url>
   <url>
@@ -393,18 +413,6 @@
     <lastmod>2023-01-04</lastmod>
   </url>
   <url>
-    <loc>https://wiwiyiyi.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-MVP.html</loc>
-    <lastmod>2023-01-04</lastmod>
-  </url>
-  <url>
-    <loc>https://wiwiyiyi.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-MVVM.html</loc>
-    <lastmod>2023-01-04</lastmod>
-  </url>
-  <url>
-    <loc>https://wiwiyiyi.com/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-MVC.html</loc>
-    <lastmod>2023-01-04</lastmod>
-  </url>
-  <url>
     <loc>https://wiwiyiyi.com/Android%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%8D%8F%E7%A8%8B%E4%BD%BF%E7%94%A8.html</loc>
     <lastmod>2023-01-04</lastmod>
   </url>
@@ -418,10 +426,6 @@
   </url>
   <url>
     <loc>https://wiwiyiyi.com/APT-Java%E6%90%AD%E5%BB%BA%E7%8E%AF%E5%A2%83%E4%BB%A5%E5%8F%8A%E5%85%A5%E9%97%A8.html</loc>
-    <lastmod>2023-01-04</lastmod>
-  </url>
-  <url>
-    <loc>https://wiwiyiyi.com/APK%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B%E4%BB%A5%E5%8F%8A%E7%98%A6%E8%BA%AB.html</loc>
     <lastmod>2023-01-04</lastmod>
   </url>
 </urlset> 
