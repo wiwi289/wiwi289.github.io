@@ -1,0 +1,324 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>发布开源库到MavenCentral详细教程 | 梦幻泡影</title><meta name="author" content="EngineerOfFinger"><meta name="copyright" content="EngineerOfFinger"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一.前言 本文将介绍发布自己的开源库到MavenCentral，之前是发布到JCenter，但JCenter已经停止发布开源库了，所以刚开始我去bintray的官网还找了半天的注册入口，蛮坑的，网页被魔改了，下面开始MavenCentral发布的流程  二.准备流程本文参考自郭婶的发布流程博客，只是"><link rel="shortcut icon" href="/img/wiwi.ico"><link rel="canonical" href="https://wiwiyiyi.com/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93%E5%88%B0MavenCentral"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: EngineerOfFinger","link":"链接: ","source":"来源: 梦幻泡影","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '发布开源库到MavenCentral详细教程',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-01-04 17:03:56'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">116</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2F%E5%A3%81%E7%BA%B88.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">梦幻泡影</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">发布开源库到MavenCentral详细教程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-01-09T11:53:20.000Z" title="发表于 2022-01-09 19:53:20">2022-01-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-01-04T09:03:56.000Z" title="更新于 2023-01-04 17:03:56">2023-01-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E9%9B%86/">问题总结集</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="发布开源库到MavenCentral详细教程"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h3 id="一-前言"><a href="#一-前言" class="headerlink" title="一.前言"></a>一.前言</h3><blockquote>
+<p>本文将介绍发布自己的开源库到MavenCentral，之前是发布到JCenter，但JCenter已经停止发布开源库了，所以刚开始我去bintray的官网还找了半天的注册入口，蛮坑的，网页被魔改了，下面开始MavenCentral发布的流程</p>
+</blockquote>
+<h3 id="二-准备流程"><a href="#二-准备流程" class="headerlink" title="二.准备流程"></a>二.准备流程</h3><p>本文参考自<a target="_blank" rel="noopener" href="https://blog.csdn.net/guolin_blog/article/details/119706565">郭婶的发布流程博客</a>，只是郭婶的发布方式是通过自己购买的域名做路径，所以如果想使用io.github的形式免费发布开源库，还得参考<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/FVR6_zMp5DxO5N4ptVuA6g">io.github形式</a>，好巧不巧，这篇文章是windows版本的，并且使用的是官方的maven-publish插件进行发布，会额外增加一些代码，郭婶的发布方式比较简洁，下面结合二者的优势吧，开始踩坑之旅。。</p>
+<ol>
+<li><p>在<a target="_blank" rel="noopener" href="https://issues.sonatype.org/secure/Dashboard.jspa">Sonatype平台</a>注册账号并创建工单</p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E7%AF%87/%E5%BC%80%E6%BA%901.png"></p>
+<p>注册账号，填密码的时候不要选择官方给你推荐什么Google浏览器会记住密码的推荐，使用自己的密码即可，因为后面在发布的时候需要使用到你的Sonatype账号和密码，另外，登录成功后，它会自动弹窗引导你创建一个issue，直接cancel吧，挺烦人的，然后就进入到上图所示的界面，点击create创建即可</p>
+</li>
+<li><p>填写工单信息，下面就展示一下我填写的信息吧</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E7%AF%87/%E5%BC%80%E6%BA%902.png" style="zoom:40%;" />
+
+<blockquote>
+<p>注：Group Id很重要，既然选择了io.github的形式，并且为了方便工作人员审查，所以最好是你的github账号倒过来，但不是com.github.用户名，我这里是io.github.wiwi289，并且在后面发布的时候也需要使用这个Group Id</p>
+</blockquote>
+</li>
+<li><p>再提交工单后，一会儿就会在下面出现来自工作人员的评论</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E7%AF%87/%E5%BC%80%E6%BA%903.png" style="zoom:60%;" />
+
+<p>我是周末提交的，但回的还是很快，不像郭婶说的那般非工作日很慢，很迷，第一个评论就是说要求我们在github上创建一个以<strong>工单号</strong>命名的空仓库，直接复制这个工单号去创建即可，比如这里是<code>OSSRH-77062</code>    </p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E7%AF%87/%E5%BC%80%E6%BA%904.png" style="zoom:40%;" />                                                            
+
+<p>然后就可以如上图一样回复工作人员已经创建成功，等待检查</p>
+</li>
+<li><p>等待工作人员检查完毕，会有相应的回复，这里就不贴结果了，看到回复就表明我们的Maven仓库已经就可以使用了，下面要做的就是发布开源库到Maven仓库</p>
+</li>
+<li><p>创建秘钥，这里展示mac的方式，windows可以参考上面提到的windwos版本的方式，不过个人觉得只参考秘钥的创建即可</p>
+<p><code>brew install gpg</code>，mac使用HomeBrew安装，这里也感觉蛮坑的吧，输入命令后会像下图一般，进入等待更新，一直等着，所以需要ctrl+c停止，否则真不知道要等到什么时候</p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E7%AF%87/%E5%BC%80%E6%BA%905.png"></p>
+</li>
+<li><p>安装成功后，输入以下命令生成秘钥，并设置秘钥密码，这两个都很重要</p>
+<p><code>gpg --full-generate-key</code></p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E7%AF%87/%E5%BC%80%E6%BA%906.png" style="zoom:50%;" />
+
+<p>弹出第一个信息很重要，一定要选择RSA加密的，前面的信息只有这一步需要注意，其他的回车即可，然后确认，并退出，退出的时候会让你设置密码，之后就可以看到生成的秘钥ID了</p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E7%AF%87/%E5%BC%80%E6%BA%907.png"></p>
+<p>可以看到这里生成的类型是RSA，这点很重要，否则在后面发布的时候会报加密异常，就是因为没有使用RSA加密方式</p>
+</li>
+<li><p>上传秘钥到GPG服务器，秘钥ID很长，但只需要最后8位，这点超重要</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpg --keyserver hkp://pgp.mit.edu --send-keys DC0B6B98</span><br></pre></td></tr></table></figure>
+
+<p>这里可能会上传不成功，超坑，需要下面的命令进行检查</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpg --keyserver hkp://pool.sks-keyservers.net --search-keys DC0B6B98</span><br></pre></td></tr></table></figure>
+
+<p>如果显示No Name，则上传不成功，不用再试了，感觉不会成功的，哭了，这时候就通过下面的网址手动上传秘钥</p>
+<p><a target="_blank" rel="noopener" href="https://keys.openpgp.org/upload/">https://keys.openpgp.org/upload/</a></p>
+<p>手动上传前还需要导出我们的秘钥</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpg --export 1111111@qq.com &gt; ~/Downloads/my_key.pub</span><br></pre></td></tr></table></figure>
+
+<p>然后再通过网站手动上传，网站会提示上传成功的</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E7%AF%87/%E5%BC%80%E6%BA%908.png" style="zoom:50%;" />
+
+<p>上传成功后，通过终端命令查询还是查不到(我的是这样)，不过网站显示成功即可，后续的验证就不会有问题</p>
+</li>
+<li><p>最后一步是生成私钥文件，一行命令搞定</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpg --export-secret-keys  -o 文件路径/secring.gpg</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="三-发布流程"><a href="#三-发布流程" class="headerlink" title="三.发布流程"></a>三.发布流程</h3><blockquote>
+<p>经过以上步骤的折磨，下面就稍微轻松很多了，唯一需要仔细的是AS中文件的信息填写</p>
+</blockquote>
+<p>发布的方式这里还是推崇使用<a target="_blank" rel="noopener" href="https://github.com/vanniktech/gradle-maven-publish-plugin">gradle-maven-publish-plugin</a>插件发布，只能说步骤少，效率高，超爽</p>
+<p>使用方式也很简单、亲民</p>
+<ol>
+<li><p>在你要开源的库的所在模块的build.gradle中添加如下代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        mavenCentral()</span><br><span class="line">    &#125;</span><br><span class="line">    dependencies &#123;</span><br><span class="line">        classpath &#x27;com.vanniktech:gradle-maven-publish-plugin:0.17.0&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//plugin ids放在这里</span><br><span class="line">allprojects &#123;</span><br><span class="line">    plugins.withId(&quot;com.vanniktech.maven.publish&quot;) &#123;</span><br><span class="line">        mavenPublish &#123;</span><br><span class="line">            sonatypeHost = &quot;S01&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">apply plugin: &quot;com.vanniktech.maven.publish&quot;</span><br></pre></td></tr></table></figure>
+
+<p>这里有一个坑点，buildscript{}闭合必须放在文件顶部，即所有插件的前面，否则报错，详情可以前往<a target="_blank" rel="noopener" href="https://github.com/wiwi289/GradualShowTextView/">我的github项目(本次开源对象)查看</a></p>
+</li>
+<li><p>在项目根目录下的gradle.properties文件增加如下内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">GROUP=io.github.wiwi289</span><br><span class="line">POM_ARTIFACT_ID=GradualShowTextView</span><br><span class="line">VERSION_NAME=1.0.0</span><br><span class="line"></span><br><span class="line">POM_NAME=GradualShowTextView</span><br><span class="line">POM_DESCRIPTION=A convenient text gradient TextView</span><br><span class="line">POM_INCEPTION_YEAR=2021</span><br><span class="line">POM_URL=https://github.com/wiwi289/GradualShowTextView/</span><br><span class="line"></span><br><span class="line">POM_LICENSE_NAME=The Apache Software License, Version 2.0</span><br><span class="line">POM_LICENSE_URL=https://www.apache.org/licenses/LICENSE-2.0.txt</span><br><span class="line">POM_LICENSE_DIST=repo</span><br><span class="line"></span><br><span class="line">POM_SCM_URL=https://github.com/wiwi289/GradualShowTextView/</span><br><span class="line">POM_SCM_CONNECTION=scm:git:git://github.com/wiwi289/GradualShowTextView.git</span><br><span class="line">POM_SCM_DEV_CONNECTION=scm:git:ssh://github.com/wiwi289/GradualShowTextView.git</span><br><span class="line"></span><br><span class="line">POM_DEVELOPER_ID=chenxiong</span><br><span class="line">POM_DEVELOPER_NAME=Chen Xiong</span><br><span class="line">POM_DEVELOPER_URL=https://github.com/wiwi289/</span><br><span class="line"></span><br><span class="line">signing.keyId=密钥ID的后8位(我的是DC0B6B98)</span><br><span class="line">signing.password=密钥密码(详情见上面的准备流程，生成秘钥时，系统让你设置的密码)</span><br><span class="line">signing.secretKeyRingFile=私钥文件路径(导出的路径)</span><br><span class="line"></span><br><span class="line">mavenCentralUsername=Sonatype账号</span><br><span class="line">mavenCentralPassword=Sonatype密码</span><br></pre></td></tr></table></figure>
+
+<p>上面的前三项决定着你的开源库的包路径是什么，比如这里，我的开源包路径就变成了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">io.github.wiwi289:GradualShowTextView:1.0.0</span><br></pre></td></tr></table></figure>
+
+<p>其他的内容其实在准备阶段也有强调，可以进行回顾，特别注意的是这个gradle.properties文件有太多隐私信息，需要排除在版本控制外</p>
+</li>
+<li><p>最后就可以点击AS右边的Gradle下的publish进行发布了，当然了我发了好几次也没发出去，不过踩过的坑点都在上面了，如果按照我的格式来发布的话，应该能直接起飞</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E7%AF%87/%E5%BC%80%E6%BA%909.png" style="zoom:33%;" />
+
+<p>成功的话，就显示Build Successfully，否则就看抛什么异常吧，仔细检查检查，一般都没问题</p>
+</li>
+<li><p>经过以上的发布步骤，虽然是发布出去了，但是还没有发布到MavenCentral中去，只是发送到了<a target="_blank" rel="noopener" href="https://s01.oss.sonatype.org/">https://s01.oss.sonatype.org/</a>这个仓库中，直接登录，账号和密码是前面申请的Sonatype账号，登录成功后点击左边的<strong>Staging Repositories</strong></p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E7%AF%87/%E5%BC%80%E6%BA%9010.png" style="zoom:50%;" />
+
+<p>可看到现在的状态是open的，就算你勾选了这个仓库，上面的Release按钮不可点击，所以我们需要勾选它，点击上面的close</p>
+<p>，会有一个弹窗，点击Confirm即可，然后就等待它的校验流程，可以选中它，看到下面的Activity窗口，会展示校验流程，并且还可以查看失败日志，这个很重要，如果后面刷新发现状态还是open，说明没有关闭成功，这时候就得查日志，只有状态变成closed，Release按钮才可点击</p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E7%AF%87/%E5%BC%80%E6%BA%9011.png"></p>
+<p>我之前就是因为秘钥上传不成功，才导致关闭失败，查日志才发现，坑炸了</p>
+</li>
+<li><p>如果后面点击Refresh，发现已关闭，那么就可点击Release进行发布了，会有弹窗，直接点Confirm即可，然后这个仓库就会消失，容易想到，消失的它正在被送往MavenCentral，所以过一会儿，你之前创建的工单下面会多一个评论</p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E7%AF%87/%E5%BC%80%E6%BA%9012.png"></p>
+<p>好了，看到这个消息，总算可以松口气了，等待同步到MavenCentral即可，几个小时后，你就可以使用你发布的开源了，使用方式如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    implementation &#x27;io.github.wiwi289:GradualShowTextView:1.0.0&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>同步成功后也可以在<a target="_blank" rel="noopener" href="https://search.maven.org/">search.maven.org/</a>搜索Group Id就能搜出你发布的所有开源库了</p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E7%AF%87/%E5%BC%80%E6%BA%9013.png"></p>
+</li>
+</ol>
+<h3 id="四-总结"><a href="#四-总结" class="headerlink" title="四.总结"></a>四.总结</h3><blockquote>
+<p>怎么说呢，一路艰辛，疯狂踩坑，从JCenter到MavenCentral，再到最后的豁然开朗，不过JCenter被废弃的这一个事实算是记住了，关于下一次再发布开源库，直接跳过准备流程，直接走发布流程即可~</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://wiwiyiyi.com">EngineerOfFinger</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://wiwiyiyi.com/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93%E5%88%B0MavenCentral.html">https://wiwiyiyi.com/%E5%8F%91%E5%B8%83%E5%BC%80%E6%BA%90%E5%BA%93%E5%88%B0MavenCentral.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://wiwiyiyi.com" target="_blank">梦幻泡影</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2F%E5%A3%81%E7%BA%B88.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechatpay.png" target="_blank"><img class="post-qr-code-img" src="/img/wechatpay.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.png" target="_blank"><img class="post-qr-code-img" src="/img/alipay.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E5%89%8D%E8%A8%80"><span class="toc-text">一.前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E5%87%86%E5%A4%87%E6%B5%81%E7%A8%8B"><span class="toc-text">二.准备流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89-%E5%8F%91%E5%B8%83%E6%B5%81%E7%A8%8B"><span class="toc-text">三.发布流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B-%E6%80%BB%E7%BB%93"><span class="toc-text">四.总结</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By EngineerOfFinger</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="http://www.wiwiyiyi.com">唯玖依依</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: '98ycqh6m2nJrelH3jn3rGh67-gzGzoHsz',
+      appKey: 'sTtYrqCeLu1Noiv3PFTqRzFr',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>hexo+github搭建博客问题总结 | 梦幻泡影</title><meta name="author" content="EngineerOfFinger"><meta name="copyright" content="EngineerOfFinger"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1.引入为了搭建自己的博客，选择不同于简书平台以及CSDN等的风格样式，我选择了在github上搭建静态网页，windows系统在搭建时bug频频，本文总结了我在搭建过程中遇到的问题以及解决方案 推荐一个前辈的博客，我跟着他搭建还算比较顺利 小石头前辈的博客链接 2.问题一当我们将本地仓库的博客推送"><link rel="shortcut icon" href="/img/wiwi.ico"><link rel="canonical" href="https://wiwiyiyi.com/hexo-github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: EngineerOfFinger","link":"链接: ","source":"来源: 梦幻泡影","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'hexo+github搭建博客问题总结',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-01-04 17:03:56'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">116</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2F%E5%A3%81%E7%BA%B81.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">梦幻泡影</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">hexo+github搭建博客问题总结</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-10-18T08:39:43.000Z" title="发表于 2020-10-18 16:39:43">2020-10-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-01-04T09:03:56.000Z" title="更新于 2023-01-04 17:03:56">2023-01-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E9%9B%86/">问题总结集</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="hexo+github搭建博客问题总结"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h3 id="1-引入"><a href="#1-引入" class="headerlink" title="1.引入"></a>1.引入</h3><p>为了搭建自己的博客，选择不同于简书平台以及CSDN等的风格样式，我选择了在github上搭建静态网页，windows系统在搭建时bug频频，本文总结了我在搭建过程中遇到的问题以及解决方案</p>
+<p><strong>推荐一个前辈的博客，我跟着他搭建还算比较顺利</strong></p>
+<p><a target="_blank" rel="noopener" href="http://182.254.228.71/">小石头前辈的博客链接</a></p>
+<h3 id="2-问题一"><a href="#2-问题一" class="headerlink" title="2.问题一"></a>2.问题一</h3><p>当我们将本地仓库的博客推送到github上时，并进行了秘钥添加，但当访问https://仓库名.github.io时无法访问，这是最近才出现的问题</p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/hexo%2Bgithub%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/1.png" alt="1"></p>
+<p><strong>解决方法如下：</strong></p>
+<p>①. <a target="_blank" rel="noopener" href="http://tool.chinaz.com/dns?type=1&host=wiwi289.github.io&ip=">查询DNS</a></p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/hexo%2Bgithub%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/2.png"></p>
+<p>②.进入C:\Windows\System32\drivers\etc找到host文件，由于对此文件的修改需要管理员权限，所以将其复制一份到桌面</p>
+<p>③.打开复制到桌面的host文件，将查找出来的所有DNS拼接上<strong>仓库名.github.io</strong>并添加到host文件的末尾</p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/hexo%2Bgithub%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/3.png"></p>
+<p>④.再将修改好的host文件移动到etc文件中，替换之前的host</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32627137/article/details/108046461">参考文章-解决访问github上的个人博客遭到拒绝</a></p>
+<h3 id="3-问题二"><a href="#3-问题二" class="headerlink" title="3.问题二"></a>3.问题二</h3><p>我在下载next主题时，使用的是DOS命令，网速特别慢，而且下载失败很多次，都是下载超时，这就让人很头疼，这里不建议使用DOS命令在终端进行下载，你可以直接去官网下载压缩包，然后解压到themes文件夹下，并重命名为next即可，速度快多了，此处我直接在百度网盘上提供next的压缩包</p>
+<p><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/15mtSV9Ud8psTcYwm9zbeUQ">next压缩包链接</a></p>
+<p><strong>提取码：va5q</strong></p>
+<h3 id="4-问题三"><a href="#4-问题三" class="headerlink" title="4.问题三"></a>4.问题三</h3><p>在启用next主题后，在本地 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a> 进行预览时显示一堆英文符号，没有CSS样式，困扰了我一天，如下图<br><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/hexo%2Bgithub%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/4.png" /><br>产生这种现象的原因是hexo 5高版本把 swig 渲染插件删了，需要单独安装，进入到本地博客的文件，右键Git Bash Here</p>
+<p>输入<strong>npm i hexo-renderer-swig</strong>安装插件，然后hexo clean ,hexo g ,hexo s就可正常预览</p>
+<h3 id="5-问题四"><a href="#5-问题四" class="headerlink" title="5.问题四"></a>5.问题四</h3><p>修改配置时，一定要看清是站点配置文件还是主题配置文件，还有就是很多问题都是由于空格数量或者位置不对产生的，在你不确定需要几个空格时，可以先看下系统板块有多少空格以及空格的位置，这点很关键</p>
+<h3 id="6-问题五"><a href="#6-问题五" class="headerlink" title="6.问题五"></a>6.问题五</h3><p>为了让谷歌和百度收录我们的博客，我们需要提交sitemap，小石头前辈写得很详细了，但我在注册谷歌账号的时候，发生了这样一个尴尬的情况，我注册成功谷歌邮箱后，说是有异常，让我进行手机号验证，但让人头疼的时，输入手机号无法进行验证，无论是啥手机号都不行，网上都说被封号了，刚注册就封？？？没办法，只能去淘宝买一个谷歌账号，5块钱解决问题，不用担心什么隐私问题，毕竟我们只是需要一个谷歌账号进行收录网站，网站本身就是公开的，所以不用担心，放心购买。</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/hexo%2Bgithub%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/Screenshot_20201021_223945_com.tencent.androidqqm.jpg" style="zoom:25%;" />
+
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/hexo%2Bgithub%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/Screenshot_20201021_224023_com.taobao.taobao.jpg" style="zoom:25%;" />
+
+<h3 id="7-问题六"><a href="#7-问题六" class="headerlink" title="7.问题六"></a>7.问题六</h3><p>我在coding平台上构建静态网页时，难受了一两个小时，因为coding更新了，在网上找的博客，界面会和你的不一样，我大部分时间花在了找构建静态网页的入口上，下面提供图示</p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/hexo%2Bgithub%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/7.gif"></p>
+<p>左下角的<strong>项目设置</strong>，按照图示找到功能开关，打开<strong>持续集成</strong>和<strong>持续部署</strong>两个开关，然后就会出现持续部署这个选项，再进行实名认证即可创建静态网页，还有创建<strong>普通静态网页</strong>即可，<strong>不需要选择hexo网页</strong>，反而会部署失败，因为hexo类型严格要求格式以及内容，普通的即可，使用没有问题，最后还想说，coding官网的企业微信小哥哥很热心，我问了他好多问题，回答都很及时，在官网的文档末尾能找到他的微信</p>
+<img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/hexo%2Bgithub%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/5.png" style="zoom:50%;" />
+
+<p>再重新进行hexo clean、hexo g &amp;&amp; gulp、hexo d，再次向百度提交站点，这时就可以成功抓取信息</p>
+<h3 id="8-问题七"><a href="#8-问题七" class="headerlink" title="8.问题七"></a>8.问题七</h3><p>他的博客中还提了将博客部署到gitee即码云上，但由于目前gitee的网页绑定域名服务关闭了，我没打算继续弄，小石头前辈亲自尝试后说部署过后反而降低了博客加载速度，所以不建议部署到gitee上，另外我又尝试了使用腾讯CDN进行加速网页加载，但效果并不明显，第一次加载都很慢，最好的方式是拥有自己的服务器，但目前不考虑，实在太贵了</p>
+<h3 id="9-问题八"><a href="#9-问题八" class="headerlink" title="9.问题八"></a>9.问题八</h3><p>在给github上的仓库添加域名解析时，主机的线路类型一定要选择<strong>境外</strong>，不然会和后面绑定coding发生冲突</p>
+<p><img src="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/hexo%2Bgithub%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/6.png"></p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><blockquote>
+<p>搭建属于自己的博客需要很有耐心，并且花连续的时间，最后的效果一定很棒！</p>
+</blockquote>
+<p><strong>最后再提供几篇参考文章进行美化界面：</strong></p>
+<p><a target="_blank" rel="noopener" href="https://www.wolfdan.cn/Hexo-Next-Gemini%E4%B8%BB%E9%A2%98%E9%80%8F%E6%98%8E%E5%8C%96%E4%BB%A5%E5%8F%8A%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%9A%84%E6%9B%B4%E6%94%B9/">Hexo-Next-Gemini主题透明化以及背景图片的更改</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/csdnSR/article/details/78300820">修改nexT Pisces主题内容区宽度</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/mqdxiaoxiao/article/details/93797964">Hexo博客NexT主题下添加文章边框阴影效果</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://wiwiyiyi.com">EngineerOfFinger</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://wiwiyiyi.com/hexo-github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93.html">https://wiwiyiyi.com/hexo-github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://wiwiyiyi.com" target="_blank">梦幻泡影</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/">hexo博客搭建问题总结</a></div><div class="post_share"><div class="social-share" data-image="https://blog-picture-1302250619.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E5%A3%81%E7%BA%B8%E5%9B%BE%2F%E5%A3%81%E7%BA%B81.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechatpay.png" target="_blank"><img class="post-qr-code-img" src="/img/wechatpay.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.png" target="_blank"><img class="post-qr-code-img" src="/img/alipay.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%BC%95%E5%85%A5"><span class="toc-text">1.引入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%97%AE%E9%A2%98%E4%B8%80"><span class="toc-text">2.问题一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%97%AE%E9%A2%98%E4%BA%8C"><span class="toc-text">3.问题二</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E9%97%AE%E9%A2%98%E4%B8%89"><span class="toc-text">4.问题三</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E9%97%AE%E9%A2%98%E5%9B%9B"><span class="toc-text">5.问题四</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E9%97%AE%E9%A2%98%E4%BA%94"><span class="toc-text">6.问题五</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E9%97%AE%E9%A2%98%E5%85%AD"><span class="toc-text">7.问题六</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E9%97%AE%E9%A2%98%E4%B8%83"><span class="toc-text">8.问题七</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%E9%97%AE%E9%A2%98%E5%85%AB"><span class="toc-text">9.问题八</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-text">小结</span></a></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By EngineerOfFinger</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="http://www.wiwiyiyi.com">唯玖依依</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: '98ycqh6m2nJrelH3jn3rGh67-gzGzoHsz',
+      appKey: 'sTtYrqCeLu1Noiv3PFTqRzFr',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
